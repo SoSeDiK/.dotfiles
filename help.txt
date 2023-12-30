@@ -1,0 +1,8 @@
+Updating:
+sudo nix-channel --update
+sudo nix flake update
+sudo nixos-rebuild switch --flake .#system
+home-manager switch --flake .#user
+
+sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh
+sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh

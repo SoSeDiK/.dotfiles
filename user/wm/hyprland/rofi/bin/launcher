@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Import Current Theme
+DIR="$HOME/.dotfiles/user/wm/hyprland/rofi"
+THEME="simple"
+RASI="$DIR/themes/$THEME/launcher.rasi"
+
+rofi \
+    -show drun -no-levenshtein-sort -hover-select -me-select-entry '' -me-accept-entry MousePrimary \
+	-theme ${RASI}
