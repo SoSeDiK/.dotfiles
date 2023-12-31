@@ -15,9 +15,6 @@ let
     #   runHook postInstall
     # '';
   });
-  compiledLayout = pkgs.runCommand "keyboard-layout" {} ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${./layouts/ruu.xkb} $out
-  '';
 in {
   # Fonts are nice to have
   fonts.packages = with pkgs; [
@@ -30,19 +27,14 @@ in {
   # Custom fonts dir ($XDG_DATA_HOME/fonts --> ~/.local/share/fonts)
   fonts.fontDir.enable = true;
 
-  # Load custom keyboard layout
-  # environment.systemPackages = with pkgs; [
-  #   xorg.xkbcomp
-  # ];
-  #services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${compiledLayout} $DISPLAY";
-
+  # Custom keyboard layout
   console.useXkbConfig = true;
   services.xserver = {
     enable = true;
     extraLayouts.ruu = {
-      description = "My custom US layout";
-      languages = [ "eng" ];
-      symbolsFile = (builtins.readFile ./layouts/ruu.xkb)
+      description = "Russian-Ukrainian United keyboard layout";
+      languages = [ "ru" ];
+      symbolsFile = ./layouts/ruu.xkb;
     };
   };
 
