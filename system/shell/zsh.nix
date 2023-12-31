@@ -17,6 +17,7 @@
       rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
       linkgpu = "sudo ~/.dotfiles/system/apps/virtualization/hooks/nvidia_gpu.sh";
       unlinkgpu = "sudo ~/.dotfiles/system/apps/virtualization/hooks/vfio_gpu.sh";
+      renv = "sudo systemctl restart display-manager.service";
     };
     #histSize = 10000;
     #histFile = "${config.xdg.dataHome}/zsh/history";

@@ -10,11 +10,15 @@
     ./screenshots/hyprshot.nix       # screenshots
     ./screenshots/satty.nix          # screenshots
     ./emoji-picker/rofimoji.nix      # emoji picker
+    ./misc/monitors.nix              # monitors managements
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = (builtins.readFile ./hypr/hyprland.conf);
+    plugins = [
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+    ];
   };
 
   home.packages = with pkgs; [

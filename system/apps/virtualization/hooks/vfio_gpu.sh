@@ -16,7 +16,7 @@ VIRSH_GPU_AUDIO=pci_0000_01_00_1
 # echo 0 > /sys/class/vtconsole/vtcon1/bind
 
 # Unbind EFI-Framebuffer
-echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
+# echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind # needed?
 
 # Avoid a race condition by waiting a couple of seconds. This can be calibrated to be shorter or longer if required for your system
 sleep 5

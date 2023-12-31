@@ -79,10 +79,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    ags.url = "github:Aylur/ags";
+
+    # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    ags.url = "github:Aylur/ags";
   };
 }

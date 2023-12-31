@@ -25,7 +25,7 @@ virsh nodedev-reattach $VIRSH_GPU_AUDIO
 #nvidia-xconfig --query-gpu-info > /dev/null 2>&1
 
 # Re-Bind EFI-Framebuffer
-echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind
+# echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind # needed?
 
 # Load nvidia drivers
 modprobe nvidia_uvm

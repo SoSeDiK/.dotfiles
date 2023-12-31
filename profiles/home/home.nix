@@ -22,6 +22,10 @@
     cinnamon.nemo-with-extensions         # file manager
   ];
 
+  # yeah.... custom heyboards are managed by env :/
+  # https://nixos.wiki/wiki/Keyboard_Layout_Customization
+  home.keyboard = null;
+
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
