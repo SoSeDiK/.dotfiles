@@ -10,10 +10,14 @@
     jmtpfs # MTP mounting
     udisks
     gnome.gnome-disk-utility # GUI wrapper for udisks
+
+    # extra disk tools
+    ventoy-full
   ];
 
   services.gvfs.enable = true; # MTP
 
+  # Mount data disk
   fileSystems."/home/${username}/Data" =
   { device = "/dev/sda2";
     fsType = "ntfs-3g";
