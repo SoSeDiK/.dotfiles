@@ -19,10 +19,10 @@
 
   # Mount data disk
   fileSystems."/home/${username}/Data" =
-  { device = "/dev/sda2";
-    fsType = "ntfs-3g";
-    options = [
-      "allow_other" # allow non-root access
-    ];
+  { device = "/dev/sda1";
+   fsType = "ntfs-3g";
+   options = [
+     "allow_other" # allow non-root access
+   ];
   };
 }

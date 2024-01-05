@@ -9,7 +9,7 @@ class Asusctl extends Service {
         });
     }
 
-    profiles = Object.freeze(['Performance', 'Balanced', 'Quiet']);
+    profiles = /** @type {const} */ (['Performance', 'Balanced', 'Quiet']);
     #profile = 'Balanced';
     #mode = 'Hyprid';
 
@@ -24,7 +24,7 @@ class Asusctl extends Service {
 
     /** @param {'Performance' | 'Balanced' | 'Quiet'} prof */
     setProfile(prof) {
-        Utils.execAsync(`powerprofilesctl set ${prof === 'Quiet' ? 'power-saver' : (prof === 'Balanced' ? 'balanced' : 'performance')}`)
+        Utils.execAsync(`asusctl profile --profile-set ${prof}`)
             .then(() => {
                 this.#profile = prof;
                 this.changed('profile');

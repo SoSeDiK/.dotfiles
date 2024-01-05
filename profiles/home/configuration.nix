@@ -29,6 +29,7 @@
   environment.systemPackages = with pkgs; [
     zenith-nvidia
     pciutils
+    lsof
     toybox
     wget
     curl
@@ -56,16 +57,6 @@
     description = name;
     extraGroups = [ "networkmanager" "wheel" "kvm" ];
     packages = with pkgs; [];
-  };
-
-  services.xserver = {
-    enable = true;
-    #layout = "us";
-    xkbVariant = "";
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
   };
 
   # Bootloader

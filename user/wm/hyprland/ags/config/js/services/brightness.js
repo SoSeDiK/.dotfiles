@@ -45,7 +45,7 @@ class Brightness extends Service {
         if (percent > 1)
             percent = 1;
 
-        Utils.execAsync(`brightnessctl s ${percent * 100}% -q -d amdgpu_bl0`)
+        Utils.execAsync(`brightnessctl s ${percent * 100}% -q`)
             .then(() => {
                 this.#screen = percent;
                 this.changed('screen');
@@ -59,7 +59,7 @@ class Brightness extends Service {
         if (dependencies(['brightnessctl'])) {
             this.#kbd = Number(Utils.exec(`brightnessctl -d ${KBD} g`));
             this.#kbdMax = Number(Utils.exec(`brightnessctl -d ${KBD} m`));
-            this.#screen = Number(Utils.exec('brightnessctl g -d amdgpu_bl0')) / Number(Utils.exec('brightnessctl m -d amdgpu_bl0'));
+            this.#screen = Number(Utils.exec('brightnessctl g')) / Number(Utils.exec('brightnessctl m'));
         }
     }
 }

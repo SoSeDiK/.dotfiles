@@ -8,6 +8,7 @@ VIRSH_GPU_AUDIO=pci_0000_01_00_1
 #source ~/.dotfiles/system/apps/virtualization/hooks/kvm.conf
 
 # Unload VFIO-PCI Kernel Driver
+# Nothing is using secondary GPU, so it's safe to just load it
 modprobe -r vfio_pci
 modprobe -r vfio_iommu_type1
 modprobe -r vfio
@@ -15,7 +16,6 @@ modprobe -r vfio
 # Re-Bind GPU to Nvidia Driver
 virsh nodedev-reattach $VIRSH_GPU_VIDEO
 virsh nodedev-reattach $VIRSH_GPU_AUDIO
-
 
 # Rebind VT consoles
 # echo 1 > /sys/class/vtconsole/vtcon0/bind

@@ -1,11 +1,11 @@
 { config, pkgs, username, ... }:
 let
-  # System's CPU (either "amd" or "intel").
+  # System's CPU (either "amd" or "intel")
   platform = "amd";
-  # The IOMMU ids for GPU passthrough.
+  # The IOMMU ids for GPU passthrough
   vfioIds = [ "10de:1f95" "10de:10fa" ];
   # Path to hooks
-  hooksPath = "/home/${username}/.dotfiles/system/apps/virtualization/hooks";
+  # hooksPath = "/home/${username}/.dotfiles/system/apps/virtualization/hooks";
 in {
   environment.systemPackages = with pkgs; [
     swtpm
@@ -13,23 +13,6 @@ in {
     looking-glass-client
     freerdp
   ];
-
-
-
-  # <vcpu placement="static">6</vcpu>
-  # <cputune>
-  #   <vcpupin vcpu="0" cpuset="6"/>
-  #   <vcpupin vcpu="1" cpuset="7"/>
-  #   <vcpupin vcpu="2" cpuset="8"/>
-  #   <vcpupin vcpu="3" cpuset="9"/>
-  #   <vcpupin vcpu="4" cpuset="10"/>
-  #   <vcpupin vcpu="5" cpuset="11"/>
-  # </cputune>
-
-
-    # <input type="evdev">
-    #   <source dev="/dev/input/by-id/usb-Razer_Orochi_V2_000000000000-event-mouse"/>
-    # </input>
 
   # Configure kernel options to make sure IOMMU & KVM support is on.
   # GPU kernel modules can be switched by scripts in ./hooks
@@ -77,30 +60,26 @@ in {
       swtpm.enable = true;
       #runAsRoot = false;
     };
+    # TODO figure out how this works
     # hooks.qemu = {
     #   hugepages_handler = "${hooksPath}/alloc_hugepages.sh";
     # };
   };
 
+  # Copy patched GPU ROM
   systemd.services.libvirtd = {
     preStart =
     ''
       mkdir -p /var/lib/libvirt/vgabios
-      mkdir -p /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin
-      mkdir -p /var/lib/libvirt/hooks/qemu.d/win11/release/end
       
       ln -sf /home/${username}/.dotfiles/patched.rom /var/lib/libvirt/vgabios/patched.rom
-      ln -sf ${hooksPath}/alloc_hugepages.sh /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh
-      ln -sf ${hooksPath}/dealloc_hugepages.sh /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh
-
-      chmod +x /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh
-      chmod +x /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh
     '';
   };
 
   hardware.opengl.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
+  # Workaround missing secure boot EFI options
   environment.etc = {
     "ovmf/edk2-x86_64-secure-code.fd" = {
       source = config.virtualisation.libvirtd.qemu.package + "/share/qemu/edk2-x86_64-secure-code.fd";
