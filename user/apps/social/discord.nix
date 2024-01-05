@@ -1,9 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    (pkgs.discord.override {
-      withVencord = true;
-    })
+  imports = [
+    ./krisp.nix   # https://github.com/NixOS/nixpkgs/issues/195512
   ];
+
+  programs.discord = {
+    enable = true;
+    wrapDiscord = true;
+  };
 }
