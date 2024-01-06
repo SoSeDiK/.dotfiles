@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -9,8 +9,11 @@
       "jdks/jdk21".source = jdk21;
   };
 
+
   programs.java = {
     enable = true;
     package = pkgs.jdk21;
   };
+
+  programs.nix-ld.enable = true;
 }

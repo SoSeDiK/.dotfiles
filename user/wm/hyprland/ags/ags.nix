@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, username, ... }:
 
 {
   imports = [ inputs.ags.homeManagerModules.default ];
@@ -11,7 +11,8 @@
 
   programs.ags = {
     enable = true;
-    configDir = ./config;
+    #configDir = ./config;
+    configDir = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.dotfiles/user/wm/hyprland/ags/config";
     extraPackages = [ pkgs.libsoup_3 ];
   };
 }

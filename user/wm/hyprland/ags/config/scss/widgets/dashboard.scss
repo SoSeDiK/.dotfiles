@@ -44,7 +44,10 @@ window#dashboard .window-content {
             margin-bottom: $spacing;
             margin-right: $spacing;
 
-            > label { margin-left: $radii / 2; }
+            > label {
+                margin-left: $radii / 2;
+                font-family: "NeoFont";
+            }
 
             button {
                 @include button;

@@ -1,21 +1,6 @@
 { config, pkgs, username, ... }:
 
-let
-  noto-fonts-color-emoji = (pkgs.noto-fonts-color-emoji).overrideAttrs (attrs: {
-    # postInstall = (attrs.postInstall or "") + ''
-    #   rm ${pkgs.noto-fonts-color-emoji}/share/fonts/noto/NotoColorEmoji.ttf
-    #   ln -s /home/${username}/.dotfiles/system/wm/libs/fonts ${pkgs.noto-fonts-color-emoji}/share/fonts/noto/NotoColorEmoji.ttf
-    # '';
-    # installPhase = ''
-    #   runHook preInstall
-    #   mkdir -p $out/share/fonts/noto
-    #   rm NotoColorEmoji.ttf
-    #   cp /home/${username}/.dotfiles/system/wm/libs/fonts/NotoColorEmoji.ttf ./
-    #   cp NotoColorEmoji.ttf $out/share/fonts/noto
-    #   runHook postInstall
-    # '';
-  });
-in {
+{
   # Fonts are nice to have
   fonts.packages = with pkgs; [
     noto-fonts-color-emoji
@@ -36,6 +21,13 @@ in {
       languages = [ "ru" ];
       symbolsFile = ./layouts/ruu.xkb;
     };
+  };
+
+  systemd.services.libvirtd = {
+    preStart =
+    ''
+      cp -r ./fonts/* ~/.local/share/fonts
+    '';
   };
 
   # Make custom fonts visible for Flatpaks
