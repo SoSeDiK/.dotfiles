@@ -5,6 +5,11 @@
     ./libs/wayland.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    libnotify
+    libsecret
+  ];
+
   xdg.portal = {
     enable = true;
     extraPortals = [

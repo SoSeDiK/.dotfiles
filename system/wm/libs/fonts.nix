@@ -16,7 +16,7 @@
     preStart =
     ''
       # Just in case. Could be deleted, and copy fails in that case.
-      mkdir /home/${username}/.local/share/fonts
+      mkdir -p /home/${username}/.local/share/fonts
       # Copy custom fonts
       cp -r /home/${username}/.dotfiles/system/wm/libs/fonts/* /home/${username}/.local/share/fonts
       # Fix fonts owner from root back to the user
@@ -27,7 +27,6 @@
   # Add custom keyboard layout (ruu)
   console.useXkbConfig = true;
   services.xserver = {
-    enable = true;
     extraLayouts.ruu = {
       description = "Russian-Ukrainian United keyboard layout";
       languages = [ "ru" ];
