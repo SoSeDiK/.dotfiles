@@ -27,8 +27,8 @@ in {
 
       # "nvidia"
       # "nvidia_modeset"
-      # "nvidia_uvm"
       # "nvidia_drm"
+      # "nvidia_uvm"
     ];
     kernelParams = [
       "${platform}_iommu=on"

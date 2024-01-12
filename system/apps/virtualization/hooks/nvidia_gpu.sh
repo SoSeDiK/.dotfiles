@@ -2,6 +2,8 @@
 # Helpful to read output when debugging
 set -x
 
+# Note: apps can be launched with Nvidia GPU via nvidia-offload %app%
+
 # Load the config file with our environmental variables
 VIRSH_GPU_VIDEO=pci_0000_01_00_0
 VIRSH_GPU_AUDIO=pci_0000_01_00_1
@@ -28,10 +30,13 @@ virsh nodedev-reattach $VIRSH_GPU_AUDIO
 # echo "efi-framebuffer.0" > /sys/bus/platform/drivers/efi-framebuffer/bind # needed?
 
 # Load nvidia drivers
-modprobe nvidia_uvm
-modprobe nvidia_drm
-modprobe nvidia_modeset
+# While "modeset" is recommended, it seems to work just fine without it,
+# and makes apps/services to not use dGPU by default, which also makes
+# switching back to vfio without restart easier
 modprobe nvidia
+#modprobe nvidia_modeset
+modprobe nvidia_drm modeset=0
+modprobe nvidia_uvm
 
 # Restart Display Manager
 #systemctl restart display-manager.service

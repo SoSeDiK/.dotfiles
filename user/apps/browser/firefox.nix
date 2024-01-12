@@ -22,11 +22,10 @@ in {
     "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
 
-    "x-scheme-handler/x-github-desktop-dev-auth" = "github-desktop";
+    "x-scheme-handler/x-github-desktop-dev-auth" = "github-desktop"; # TODO should probably be in github desktop package?
   };
 
   home.sessionVariables = {
     DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
   };
-
 }

@@ -7,5 +7,6 @@
     killall
     ffmpeg
     diff-so-fancy
+    nurl
   ];
 }

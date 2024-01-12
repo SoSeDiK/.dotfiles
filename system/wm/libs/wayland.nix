@@ -11,7 +11,7 @@
   environment.systemPackages = with pkgs; [ wayland ];
 
   environment.sessionVariables = {
-    #NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = "1";
   };
 
   services.xserver = {

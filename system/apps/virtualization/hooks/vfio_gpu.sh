@@ -7,30 +7,36 @@ VIRSH_GPU_VIDEO=pci_0000_01_00_0
 VIRSH_GPU_AUDIO=pci_0000_01_00_1
 #source ~/.dotfiles/system/apps/virtualization/hooks/kvm.conf
 
-# # Function to stop a process by PID
-# stop_process() {
-#   if [ -n "$1" ]; then
-#     echo "Stopping process with PID $1"
-#     sudo kill -9 "$1"
-#   fi
-# }
+unload_module() {
+    local module_name=$1
 
-# # Identify and stop processes using Nvidia modules
-# stop_processes() {
-#   local module_name="$1"
-#   local processes=$(lsof | grep "$module_name" | awk '{print $2}' | sort -u)
+    # Check if the module is currently in use
+    if lsmod | grep -q $module_name; then
+        echo "Module $module_name is currently in use."
 
-#   if [ -n "$processes" ]; then
-#     for pid in $processes; do
-#       stop_process "$pid"
-#     done
-#   else
-#     echo "No processes using $module_name found."
-#   fi
-# }
+        # Get PIDs of processes using the module
+        local pids=$(lsof | awk -v mod="$module_name" '$0~mod {print $2}')
 
-# Stop display manager (since most of the things are using the secondary GPU)
-systemctl stop display-manager.service
+        if [ -n "$pids" ]; then
+            echo "Processes using $module_name: $pids"
+            
+            # Kill the processes
+            echo "Killing processes using $module_name..."
+            kill -9 $pids
+        else
+            echo "No processes found using $module_name."
+        fi
+
+        # Unload the module
+        echo "Unloading $module_name..."
+        modprobe -r $module_name
+    else
+        echo "Module $module_name is not currently loaded."
+    fi
+}
+
+# Stop display manager (seems to not work without this)
+#systemctl stop display-manager.service
 
 # Unbind VT consoles
 # echo 0 > /sys/class/vtconsole/vtcon0/bind
@@ -40,23 +46,15 @@ systemctl stop display-manager.service
 # Unbind EFI-Framebuffer
 # echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind # needed?
 
-# stop_processes "nvidia_uvm"
-# stop_processes "nvidia_drm"
-# stop_processes "nvidia_modeset"
-# stop_processes "nvidia"
-
 # Unload all Nvidia drivers
-modprobe -r nvidia_uvm
-modprobe -r nvidia_drm
-modprobe -r nvidia_modeset
-modprobe -r nvidia
+unload_module nvidia_drm
+unload_module nvidia_modeset
+unload_module nvidia_uvm
+unload_module nvidia
 
-# Avoid a race condition by waiting a couple of seconds. This can be calibrated to be shorter or longer if required for your system
-sleep 5
-
-# Unbind the GPU from display driver
-virsh nodedev-detach $VIRSH_GPU_VIDEO
-virsh nodedev-detach $VIRSH_GPU_AUDIO
+# Re-Bind GPU to VFIO Driver
+virsh nodedev-reattach $VIRSH_GPU_VIDEO
+virsh nodedev-reattach $VIRSH_GPU_AUDIO
 
 # Load VFIO kernel module
 modprobe vfio
@@ -64,4 +62,4 @@ modprobe vfio_pci
 modprobe vfio_iommu_type1
 
 # Restart Display Manager
-systemctl start display-manager.service
+#systemctl start display-manager.service

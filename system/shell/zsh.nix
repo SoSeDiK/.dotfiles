@@ -11,8 +11,10 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      updates = "sudo nixos-rebuild switch --flake .#system";
-      updateu = "home-manager switch --flake .#user";
+      ver = "~/.dotfiles/system/shell/scripts/ver.sh";
+      update = "~/.dotfiles/system/shell/scripts/update_flake.sh";
+      updates = "~/.dotfiles/system/shell/scripts/update_system.sh";
+      updateu = "~/.dotfiles/system/shell/scripts/update_home.sh";
       hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
       rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
       linkgpu = "sudo ~/.dotfiles/system/apps/virtualization/hooks/nvidia_gpu.sh";

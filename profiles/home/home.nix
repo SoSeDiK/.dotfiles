@@ -1,8 +1,9 @@
-{ config, pkgs, inputs, wm, name, username, email, browser, term, editor, ... }: {
+{ config, pkgs, lib, inputs, wm, name, username, email, browser, term, editor, ... }: {
 
   imports = [
     (./. + "../../../user/wm/${wm}/${wm}.nix")
     (./. + "../../../user/apps/browser/${browser}.nix")
+    (./. + "../../../user/apps/browser/edge.nix") # Secondary browser :)
     (./. + "../../../user/apps/terminal/${term}.nix")
 
     ../../user/shell/cli-collection.nix
@@ -26,6 +27,7 @@
   # https://nixos.wiki/wiki/Keyboard_Layout_Customization
   home.keyboard = null;
 
+  # Also has "password-store": "gnome" added to ~/.vscode/argv.json
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -33,6 +35,11 @@
       jnoortheen.nix-ide
       arrterian.nix-env-selector
     ];
+    # userSettings = {
+    #     "window.titleBarStyle" = "custom";  # https://github.com/microsoft/vscode/issues/181533
+    #     # User settings
+    #     "editor.wordWrap" = "on";
+    # };
   };
 
   home.sessionVariables = {
@@ -56,10 +63,6 @@
   home.username = username;
   home.homeDirectory = "/home/" + username;
 
-  xdg.userDirs = {
-    pictures = "${config.home.homeDirectory}/Pictures";
-  };
-
-  home.stateVersion = "23.05"; # Do not change :)
-
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "23.05"; # tldr: Do not change :)
 }
