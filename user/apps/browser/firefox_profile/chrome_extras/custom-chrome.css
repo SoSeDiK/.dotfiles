@@ -1,0 +1,6 @@
+
+/* us.css.js overrides */
+/* Custom find text count color */
+:root {
+  --matches-indicator-text-color: white
+}

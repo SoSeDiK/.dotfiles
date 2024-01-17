@@ -36,3 +36,10 @@ List of things to do:
     - Exiting app (e.g. via tray -> close) that is placed in extra workspace makes the extra workspace show up and block the view
     - Fix unlinking nvidia GPU
     - Support printing things (as in printer)
+
+
+# Tracked issues (- isssue * workaround/note)
+- https://github.com/hyprwm/Hyprland/issues/3558
+    * Using exit_hypr script to kill Hyprland
+- https://github.com/hyprwm/Hyprland/issues/4375
+    * Using workspace_aware_switch script

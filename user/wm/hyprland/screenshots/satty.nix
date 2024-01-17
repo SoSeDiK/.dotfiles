@@ -2,7 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    grim slurp # dependencies
+    grim slurp hyprpicker jq # dependencies
+    grimblast
     satty
   ];
 }

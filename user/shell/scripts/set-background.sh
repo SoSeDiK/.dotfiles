@@ -1,2 +1,28 @@
 #!/usr/bin/env bash
-linux-wallpaperengine --screen-root eDP-1 --assets-dir /home/sosedik/Data/SteamLibrary/steamapps/common/wallpaper_engine/assets/ /home/sosedik/Data/SteamLibrary/steamapps/workshop/content/431960/859663165
+# Test IDs: 859663165 2985464274
+
+# Check if the first argument is provided
+if [ -n "$1" ]; then
+    # Check if the argument is a link
+    if [[ "$1" =~ ^https://steamcommunity.com/sharedfiles/filedetails/\?id=([0-9]+) ]]; then
+        # Extract numbers from the link
+        background_id="${BASH_REMATCH[1]}"
+    else
+        background_id=$1
+    fi
+    echo "Using provided wallpaper: $background_id"
+else
+    # Default background
+    echo "No argument provided, using default wallpaper"
+    background_id=2931446135
+fi
+
+assets_dir=~/Data/SteamLibrary/steamapps/common/wallpaper_engine/assets
+workshop_dir=~/Data/SteamLibrary/steamapps/workshop/content/431960
+screenshot_dest=~/.cache/wallpaper_dump.png
+
+# Kill old running instance
+pkill -f linux-wallpaperengine
+
+# --screen-root doesn't work; workaround via hyprwinwrap is used instead
+linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id &

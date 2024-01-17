@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-cd ~/.dotfiles
+pushd ~/.dotfiles
 git add .
 sudo nixos-rebuild switch --flake .#system
+popd

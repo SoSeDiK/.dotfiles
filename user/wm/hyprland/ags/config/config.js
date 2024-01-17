@@ -16,6 +16,6 @@ function mismatch() {
     return {};
 }
 
-export default v.ags === v.expected
+export default v.ags >= v.expected
     ? (await import('./js/main.js')).default
     : mismatch();

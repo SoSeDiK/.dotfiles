@@ -10,5 +10,6 @@
     jetbrains.idea-community
     mission-center # Windows-like process manager
     loupe # image viewer
+    gimp-with-plugins
   ];
 }

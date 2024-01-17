@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-cd ~/.dotfiles
+pushd ~/.dotfiles
 git add .
-rm ~/.config/mimeapps.list
+rm -f ~/.config/mimeapps.list
 home-manager switch --flake .#user
+popd

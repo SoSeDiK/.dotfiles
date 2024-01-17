@@ -7,7 +7,6 @@
     ./ags/ags.nix                    # task bar and many other things
     ./rofi/rofi.nix                  # app/task launcher
     ./cliphist/cliphist.nix          # clipboard history
-    ./screenshots/hyprshot.nix       # screenshots
     ./screenshots/satty.nix          # screenshots
     ./emoji-picker/rofimoji.nix      # emoji picker
     ./misc/monitors.nix              # monitors managements
@@ -18,6 +17,7 @@
     extraConfig = (builtins.readFile ./hypr/hyprland.conf);
     plugins = [
       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
     ];
   };
 

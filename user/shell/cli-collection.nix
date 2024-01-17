@@ -7,6 +7,7 @@
     killall
     ffmpeg
     diff-so-fancy
-    nurl
+    nurl  # fetch sha256 for packages
+    jq    # used by workspace_aware_switch
   ];
 }

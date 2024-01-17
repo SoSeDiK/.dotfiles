@@ -2,11 +2,17 @@
 
 {
   # Fonts are nice to have
+  # List installed fonts: fc-list
   fonts.packages = with pkgs; [
     # Load only specified nerdfonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     iosevka
     font-awesome
+    (callPackage ./apple-fonts { }) # Mostly for use by Firefox theme
+  ];
+
+  environment.systemPackages = with pkgs; [
+    p7zip # 7z; also used to build apple-fonts, but is useful overall
   ];
 
   # Enable custom fonts dir ($XDG_DATA_HOME/fonts --> ~/.local/share/fonts)
@@ -33,6 +39,4 @@
       symbolsFile = ./layouts/ruu.xkb;
     };
   };
-
-  # List installed fonts: fc-list
 }

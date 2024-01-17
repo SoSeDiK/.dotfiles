@@ -84,8 +84,18 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Firefox Nightly
+    firefox-nightly1.url = "github:calbrecht/f4s-firefox-nightly";
+    firefox-nightly1.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-nightly2.url = "github:nix-community/flake-firefox-nightly";
+    firefox-nightly2.inputs.nixpkgs.follows = "nixpkgs";
+
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
