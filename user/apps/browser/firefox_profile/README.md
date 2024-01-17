@@ -35,3 +35,6 @@ Or you can type Services.appinfo.platformBuildID in the browser toolbox console 
 **Additional context**
 Add any other context about the problem here.
 
+
+
+For the nixpkgs' `firefox` I'm appending to `buildCommand` via `overrideAttrs`, but `firefox-nightly-bin` consists entirely of symlinks to `firefox-nightly-bin-unwrapped`, including the binary files (which is not the case for `firefox`), so my approach didn't work there

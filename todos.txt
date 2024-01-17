@@ -36,6 +36,8 @@ List of things to do:
     - Exiting app (e.g. via tray -> close) that is placed in extra workspace makes the extra workspace show up and block the view
     - Fix unlinking nvidia GPU
     - Support printing things (as in printer)
+    - Applying themes on the fly
+        - nwg-look
 
 
 # Tracked issues (- isssue * workaround/note)

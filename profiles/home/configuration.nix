@@ -51,11 +51,6 @@
     ];
   };
 
-  environment.variables = {
-    XCURSOR_SIZE = "24";
-    XCURSOR_THEME = "Bibata-Modern-Ice";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;

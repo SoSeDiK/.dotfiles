@@ -13,45 +13,45 @@ ln -sf $parentOutputDir/chrome_extras $outputDir/chrome_extras
 # Any extra scripts wanted from JS folder
 # Note: extra scripts have to be removed manually upon uninstalaling!
 extraScripts=(
-    # extensionOptionsPanel.uc.js               # Extension Options Panel
-    # verticalTabsPane.uc.js                    # Vertical Tabs Pane
-    # aboutUserChrome.sys.mjs                   # about:userchrome
-    # aboutCfg.uc.js                            # about:cfg
-    # appMenuAboutConfigButton.uc.js            # App Menu about:config Button
-    # appMenuMods.uc.js                         # App Menu Mods
-    # allTabsMenuExpansionPack.uc.js            # All Tabs Menu Expansion Pack
-    # atoolboxButton.uc.js                      # Toolbox Button
-    # bookmarksPopupShadowRoot.uc.js            # Bookmarks Popup Mods
-    # clearDownloadsButton.uc.js                # Clear Downloads Panel Button
-    # contextMenuMods.uc.js                     # Context Menu Mods
-    # copyCurrentUrlHotkey.uc.js                # Copy Current URL Hotkey; Ctrl+Alt+C
-    # debugExtensionInToolbarContextMenu.uc.js  # Debug Extension in Toolbar Context Menu
-    # eyedropperButton.uc.js                    # Eyedropper Button
-    # fluentRevealTabs.uc.js                    # Fluent Reveal Tabs
-    # fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
-    # enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
-    # letCtrlWClosePinnedTabs.uc.js             # Let Ctrl+W Close Pinned Tabs
-    # openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs
-    openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black
-    # openLinkInUnloadedTab.uc.js               # Open Link in Unloaded Tab (context menu item)
-    # privateTabs.uc.js                         # Private Tabs
-    # screenshotPageActionButton.uc.js          # Screenshot Page Action Button
-    # searchSelectionShortcut.uc.js             # Search Selection Keyboard Shortcut
-    # tabContextMenuNavigation.uc.js            # Tab Context Menu Navigation
-    # tabThumbnailTooltip.uc.js                 # Tab Thumbnail Tooltip
-    # tabTooltipNavButtons.uc.js                # Tab Tooltip Navigation Buttons
-    # toggleMenubarHotkey.uc.js                 # Toggle Menubar Hotkey
-    # trackingProtectionMiddleClickToggle.uc.js # Tracking Protection Middle Click Toggle
-    # animateContextMenus.uc.js                 # Animate Context Menus
-    # recentlyClosedTabsContextMenu.uc.js       # Undo Recently Closed Tabs in Tab Context Menu
-    # unreadTabMods.uc.js                       # Unread Tab Mods
-    # urlbarContainerColor.uc.js                # Urlbar Container Color Indicator
-    # urlbarMouseWheelScroll.uc.js              # Scroll Urlbar with Mousewheel
-    # urlbarViewScrollSelect.uc.js              # Scroll Urlbar Results with Mousewheel
-    # pinTabHotkey.uc.js                        # Pin Tab Hotkey
-    # windowDragHotkey.uc.js                    # Window Drag Hotkey; Alt + Shift + LMB
-    # customHintProvider.uc.js                  # Custom Hint Provider
-    # miscMods.uc.js                            # Misc. Mods
+    extensionOptionsPanel.uc.js               # Extension Options Panel
+    verticalTabsPane.uc.js                    # Vertical Tabs Pane
+    aboutUserChrome.sys.mjs                   # about:userchrome
+    aboutCfg.uc.js                            # about:cfg
+    appMenuAboutConfigButton.uc.js            # App Menu about:config Button
+    appMenuMods.uc.js                         # App Menu Mods
+    allTabsMenuExpansionPack.uc.js            # All Tabs Menu Expansion Pack
+    atoolboxButton.uc.js                      # Toolbox Button
+    bookmarksPopupShadowRoot.uc.js            # Bookmarks Popup Mods
+    clearDownloadsButton.uc.js                # Clear Downloads Panel Button
+    contextMenuMods.uc.js                     # Context Menu Mods
+    copyCurrentUrlHotkey.uc.js                # Copy Current URL Hotkey; Ctrl+Alt+C
+    debugExtensionInToolbarContextMenu.uc.js  # Debug Extension in Toolbar Context Menu
+    eyedropperButton.uc.js                    # Eyedropper Button
+    fluentRevealTabs.uc.js                    # Fluent Reveal Tabs
+    fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
+    enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
+    letCtrlWClosePinnedTabs.uc.js             # Let Ctrl+W Close Pinned Tabs
+    openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs
+    # openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black
+    openLinkInUnloadedTab.uc.js               # Open Link in Unloaded Tab (context menu item)
+    privateTabs.uc.js                         # Private Tabs
+    screenshotPageActionButton.uc.js          # Screenshot Page Action Button
+    searchSelectionShortcut.uc.js             # Search Selection Keyboard Shortcut
+    tabContextMenuNavigation.uc.js            # Tab Context Menu Navigation
+    tabThumbnailTooltip.uc.js                 # Tab Thumbnail Tooltip
+    tabTooltipNavButtons.uc.js                # Tab Tooltip Navigation Buttons
+    toggleMenubarHotkey.uc.js                 # Toggle Menubar Hotkey
+    trackingProtectionMiddleClickToggle.uc.js # Tracking Protection Middle Click Toggle
+    animateContextMenus.uc.js                 # Animate Context Menus
+    recentlyClosedTabsContextMenu.uc.js       # Undo Recently Closed Tabs in Tab Context Menu
+    unreadTabMods.uc.js                       # Unread Tab Mods
+    urlbarContainerColor.uc.js                # Urlbar Container Color Indicator
+    urlbarMouseWheelScroll.uc.js              # Scroll Urlbar with Mousewheel
+    urlbarViewScrollSelect.uc.js              # Scroll Urlbar Results with Mousewheel
+    pinTabHotkey.uc.js                        # Pin Tab Hotkey
+    windowDragHotkey.uc.js                    # Window Drag Hotkey; Alt + Shift + LMB
+    customHintProvider.uc.js                  # Custom Hint Provider
+    miscMods.uc.js                            # Misc. Mods
 )
 # Skipped:
 # Bookmarks Menu & Button Shortcuts
