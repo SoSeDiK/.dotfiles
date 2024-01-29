@@ -29,7 +29,7 @@ extraScripts=(
     eyedropperButton.uc.js                    # Eyedropper Button
     fluentRevealTabs.uc.js                    # Fluent Reveal Tabs
     fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
-    enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
+    # enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
     letCtrlWClosePinnedTabs.uc.js             # Let Ctrl+W Close Pinned Tabs
     openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs
     # openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black

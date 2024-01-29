@@ -8,6 +8,7 @@ List of things to do:
         - Fix not loading during version missmatch :/
         - Lenovo integration
         - Mute (microphone) indicator
+        - Fix battery percentage (0.01232421427246827%)
     - Theming!
 
 - Browsing
@@ -25,7 +26,7 @@ List of things to do:
     - linux-wallpaperengine not working
 
 - Misc
-    - Mouse poll rate chaning via software
+    - Mouse poll rate changing via software
     - Lenovo not saving options due to read-only system
     - Find out why VS Code crashes when using Ozone Wayland flag
     - Find out why virt-manager started crashing in Wayland mode

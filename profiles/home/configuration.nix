@@ -55,7 +55,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "networkmanager" "wheel" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "games" ]; # TODO games group is needed for piper
     packages = with pkgs; [];
   };
 

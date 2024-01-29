@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, username, ... }:
 
 {
   imports = [
@@ -31,5 +31,10 @@
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     gvfs
+    # Non-libs
+    pyprland # "app overlays"
   ];
+
+  # Pyprland config file
+  home.file."/home/${username}/.config/hypr/pyprland.toml".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.dotfiles/user/wm/hyprland/hypr/extra/pyprland.toml";
 }

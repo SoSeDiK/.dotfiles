@@ -28,9 +28,17 @@ in {
   programs.firefox = {
     enable = true;
     package = firefox-nightly;
+    # package = pkgs.latest.firefox-nightly-bin;
   };
 
-  nixpkgs.overlays = [
+  nixpkgs.overlays =
+  let
+    # Change this to a rev sha to pin
+    moz-rev = "master";
+    moz-url = builtins.fetchTarball { url = "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz"; sha256 = "sha256-+gi59LRWRQmwROrmE1E2b3mtocwueCQqZ60CwLG+gbg="; };
+    nightlyOverlay = (import "${moz-url}/firefox-overlay.nix");
+  in [
+    # nightlyOverlay
     # (final: prev: {
     #   firefox = import (
     #     builtins.fetchTarball {
