@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./dbus.nix      # sharing options between apps
-    ./keyring.nix   # keeping passwords / sessions
-    ./pipewire.nix  # sound management
+    ./dbus.nix # sharing options between apps
+    ./keyring.nix # keeping passwords / sessions
+    ./pipewire.nix # sound management
     ./fonts.nix
   ];
 
@@ -16,8 +16,10 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
     displayManager.gdm = {
       enable = true;
       wayland = true;

@@ -30,6 +30,7 @@
   };
 
   home.packages = with pkgs; [
+    nixpkgs-fmt # formatter for codium
     cinnamon.nemo-with-extensions         # file manager
   ];
 

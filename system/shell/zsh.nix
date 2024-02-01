@@ -4,6 +4,7 @@ let
   shellAliases = {
     "..." = "cd ../..";
     ver = "~/.dotfiles/system/shell/scripts/ver.sh";
+    reboot = "systemctl reboot";
     update = "~/.dotfiles/system/shell/scripts/update_flake.sh";
     updates = "~/.dotfiles/system/shell/scripts/update_system.sh";
     updateu = "~/.dotfiles/system/shell/scripts/update_home.sh";
@@ -16,7 +17,8 @@ let
     killhypr = "~/.dotfiles/user/wm/hyprland/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
   };
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     thefuck
   ];

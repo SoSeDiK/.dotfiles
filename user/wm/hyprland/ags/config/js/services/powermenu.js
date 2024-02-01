@@ -20,7 +20,7 @@ class PowerMenu extends Service {
         [this.#cmd, this.#title] = {
             'sleep': ['systemctl suspend', 'Sleep'],
             'reboot': ['systemctl reboot', 'Reboot'],
-            'logout': ['killhypr', 'Log Out'],
+            'logout': ['pkill Hyprland', 'Log Out'],
             'shutdown': ['shutdown now', 'Shutdown'],
         }[action];
 

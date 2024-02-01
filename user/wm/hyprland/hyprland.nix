@@ -17,7 +17,7 @@
     extraConfig = (builtins.readFile ./hypr/hyprland.conf);
     plugins = [
       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
     ];
   };
 
@@ -32,7 +32,7 @@
     xdg-desktop-portal-hyprland
     gvfs
     # Non-libs
-    pyprland # "app overlays"
+    #pyprland # "app overlays"
   ];
 
   # Pyprland config file
