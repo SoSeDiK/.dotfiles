@@ -11,7 +11,7 @@
   xdg.mime = {
     enable = true;
     defaultApplications = {
-      "inode/directory" = [ "nautilus.desktop" ];
+      "inode/directory" = [ "nautilus.desktop" ]; # TODO doesn't work? https://github.com/NixOS/nixpkgs/issues/259239
     };
   };
 
