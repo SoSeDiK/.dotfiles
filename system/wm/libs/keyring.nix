@@ -8,12 +8,19 @@
     gnome.file-roller
   ];
 
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = [ "nautilus.desktop" ];
+    };
+  };
+
   services.gnome.gnome-keyring = {
     enable = true;
   };
 
   # Needed for GNOME services outside of GNOME Desktop
-  services.dbus.packages = [pkgs.gcr];
+  services.dbus.packages = [ pkgs.gcr ];
 
   # Enable keyring on login
   security.pam.services.gdm.enableGnomeKeyring = true;
@@ -31,6 +38,6 @@
 
   services.xserver = {
     libinput.enable = true;
-    excludePackages = [pkgs.xterm];
+    excludePackages = [ pkgs.xterm ];
   };
 }
