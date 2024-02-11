@@ -14,5 +14,6 @@
     vlc
     obs-studio
     libreoffice-qt
+    whatsapp-for-linux
   ];
 }
