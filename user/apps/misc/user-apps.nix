@@ -13,8 +13,6 @@
     gimp-with-plugins
     vlc
     obs-studio
-    libratbag
-    piper
     libreoffice-qt
   ];
 }

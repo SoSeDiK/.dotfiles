@@ -133,8 +133,10 @@ in
     preStart =
       ''
         mkdir -p /var/lib/libvirt/vgabios
-      
         ln -sf /home/${username}/.dotfiles/patched.rom /var/lib/libvirt/vgabios/patched.rom
+
+        # Workaround "missing" modules.alias
+        ln -sf /run/booted-system/kernel-modules/lib/modules /lib
       '';
   };
 
