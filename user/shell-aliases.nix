@@ -17,6 +17,7 @@ let
     unlinkgpu = "sudo ~/.dotfiles/system/apps/virtualization/hooks/vfio_gpu.sh";
     killhypr = "~/.dotfiles/user/wm/hyprland/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
+    runwm = "~/.dotfiles/user/shell/scripts/connect-via-looking-glass.sh";
     neofetch = "fastfetch";
   };
 in

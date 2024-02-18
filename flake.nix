@@ -40,7 +40,6 @@
       system = "x86_64-linux";
 
       wm = "hyprland"; # one of the ./system/wm
-      browser = "firefox"; # one of the ./user/apps/browser
       term = "kitty"; # one of the ./user/apps/terminal
       editor = "nano";
 
@@ -87,7 +86,6 @@
             inherit dotfilesDir;
             inherit name;
             inherit username;
-            inherit browser;
             inherit term;
             inherit editor;
           };

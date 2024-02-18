@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, gtkThemeFromScheme, wm, browser, term, editor, ... }:
+{ inputs, config, lib, pkgs, profileName, wm, editor, ... }:
 
 let
   inherit (import ./options.nix)
@@ -12,20 +12,18 @@ in
     # Universal defaults
     ../../user
 
+    # Misc profile-specific thingies
+    (./. + "../../../user/profile/${profileName}.nix")
+
+    # Apps needing extra settings
+    ../../user/apps/discord
+    ../../user/apps/github-desctop.nix
+
     (./. + "../../../user/wm/${wm}/${wm}.nix")
-    (./. + "../../../user/apps/browser/${browser}.nix")
-    (./. + "../../../user/apps/browser/edge.nix") # Secondary browser :)
 
     ../../user/shell/cli-collection.nix
-    ../../user/shell/shell-aliases.nix
 
-    ../../user/apps/misc/flatpak.nix
-    ../../user/apps/misc/wallpapers.nix
-    ../../user/apps/misc/user-apps.nix
     ../../user/apps/virtualization/virtualization.nix
-
-    ../../user/apps/social/discord.nix
-    ../../user/apps/social/telegram.nix
   ];
 
   home.username = username;
@@ -70,19 +68,18 @@ in
 
   home.sessionVariables = {
     EDITOR = editor;
-    TERM = term;
-    BROWSER = browser;
 
     # Since I'm on NVIDIA...
     WLR_NO_HARDWARE_CURSORS = 1;
   };
 
+  programs.home-manager.enable = true;
+
+  # Since using standalone home-manager
   nix = {
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
-
-  programs.home-manager.enable = true;
 
   # Allow unfree software
   nixpkgs.config.allowUnfree = true;

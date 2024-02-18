@@ -62,4 +62,8 @@ in
       tab_bar_background #${palette.base00}
     '';
   };
+
+  home.sessionVariables = {
+    TERM = "kitty";
+  };
 }
