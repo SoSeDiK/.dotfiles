@@ -33,6 +33,11 @@ in
   # Enable Printer & Scanner Support
   printer = false;
 
+  # Peripherals
+  piper = false;
+  openrazer = true;
+
   # Enable apps
   flatpak = true;
+  steam = true;
 }

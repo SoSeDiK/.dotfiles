@@ -11,28 +11,25 @@ in
     ./hardware.nix # Include the results of the hardware scan.
     nixos-hardware.nixosModules.lenovo-legion-15arh05h
 
-    # Universal defaults
-    ../../system/default.nix
-
-    # Profile-specific thingies
-    ../../system/steam.nix
-    ../../system/lenovo-legion.nix
-    # Misc profile-specific thingies
-    (./. + "../../../system/profile/${profileName}.nix")
-
-
+    # Hardware-specific modules
     ../../system/hardware/battery.nix
     ../../system/hardware/bluetooth.nix
     ../../system/hardware/brightness.nix
 
-    ../../system/shell/zsh.nix
+    # Universal defaults
+    ../../system/default.nix
 
-    ../../system/ahh.nix
-    ../../system/apps/misc/devtools.nix
-    ../../system/apps/misc/gnome-disks.nix
-    ../../system/apps/virtualization/virtualization.nix
+    # Profile-specific thingies
+    ../../system/lenovo-legion.nix
 
-    (./. + "../../../system/wm/${wm}.nix")
+    # Misc profile-specific thingies
+    (./. + "../../../system/profile/${profileName}.nix")
+
+    ../../system/shell/zsh.nix # TODO
+
+    ../../system/apps/virtualization/virtualization.nix # TODO
+
+    (./. + "../../../system/wm/${wm}.nix") # TODO
   ];
 
   # Enable networking
@@ -99,19 +96,6 @@ in
     zip
     unzip
   ];
-
-  environment.sessionVariables = rec {
-    XDG_CACHE_HOME = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME = "$HOME/.local/share";
-    XDG_STATE_HOME = "$HOME/.local/state";
-
-    # Not officially in the specification
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = [
-      "${XDG_BIN_HOME}"
-    ];
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

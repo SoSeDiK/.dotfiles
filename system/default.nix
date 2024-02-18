@@ -5,9 +5,13 @@
     ./boot.nix
     ./display-manager.nix
     ./flatpak.nix
+    ./gnome-disks.nix
     ./ntp.nix # Time sync
+    ./openrazer.nix
+    ./piper.nix
     ./pipewire.nix # Sound management
     ./polkit.nix
     ./printer.nix
+    ./steam.nix
   ];
 }
