@@ -4,7 +4,10 @@
   # Apps
   home.packages = with pkgs; [
     cinnamon.nemo-with-extensions # file manager
-    gnome.file-roller
+    libsForQt5.ark
+    libsForQt5.dolphin
+    xfce.thunar
+    xfce.thunar-archive-plugin
     direnv
     gimp-with-plugins
     obs-studio

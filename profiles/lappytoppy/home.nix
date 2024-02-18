@@ -12,6 +12,9 @@ in
     # Universal defaults
     ../../user
 
+    # WM
+    ../../user/hyprland
+
     # Misc profile-specific thingies
     (./. + "../../../user/profile/${profileName}.nix")
 
@@ -20,8 +23,6 @@ in
     ../../user/apps/firefox
     ../../user/apps/codium.nix
     ../../user/apps/github-desktop.nix
-
-    (./. + "../../../user/wm/hyprland/hyprland.nix") # TODO
 
     ../../user/apps/virtualization/virtualization.nix # TODO
   ];

@@ -15,7 +15,7 @@
     rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
     linkgpu = "sudo ~/.dotfiles/system/apps/virtualization/hooks/nvidia_gpu.sh";
     unlinkgpu = "sudo ~/.dotfiles/system/apps/virtualization/hooks/vfio_gpu.sh";
-    killhypr = "~/.dotfiles/user/wm/hyprland/hypr/scripts/exit_hypr.sh";
+    killhypr = "~/.dotfiles/user/hyprland/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
     runwm = "~/.dotfiles/user/files/scripts/connect-via-looking-glass.sh";
     neofetch = "fastfetch";

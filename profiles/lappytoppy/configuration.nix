@@ -19,6 +19,9 @@ in
     # Universal defaults
     ../../system
 
+    # WM
+    ../../system/hyprland
+
     # Profile-specific thingies
     ../../system/lenovo-legion.nix
 
@@ -26,8 +29,6 @@ in
     (./. + "../../../system/profile/${profileName}.nix")
 
     ../../system/apps/virtualization/virtualization.nix # TODO
-
-    (./. + "../../../system/wm/hyprland.nix") # TODO
   ];
 
   # Enable networking

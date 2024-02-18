@@ -1,48 +1,54 @@
 List of things to do:
 
 - Chore
-    - Remake files structure ^^
-    - zsh settings
-    - ags
-        - Per-monitor workspaces
-        - Fix not loading during version mismatch :/
-        - Lenovo integration
-        - Mute (microphone) indicator
-        - Fix battery percentage (0.01232421427246827%)
-    - Theming!
+
+  - Remake files structure ^^
+  - zsh settings
+  - ags
+    - Per-monitor workspaces
+    - Fix not loading during version mismatch :/
+    - Lenovo integration
+    - Mute (microphone) indicator
+    - Fix battery percentage (0.01232421427246827%)
+  - Theming!
 
 - Browsing
-    - Better Firefox vertical tabs layout
-    - Find a way to make per-workspace bookmarks
+
+  - Better Firefox vertical tabs layout
+  - Find a way to make per-workspace bookmarks
 
 - Usability
-    - Image viewer
-    - Image editor
-    - Screenshots tooling
-    - GUI Wi-Fi (or, well, Network) manager
+
+  - Image viewer
+  - Image editor
+  - Screenshots tooling
+  - GUI Wi-Fi (or, well, Network) manager
 
 - System
-    - Simple wallpaper picker
-    - linux-wallpaperengine not working
+
+  - Simple wallpaper picker
+  - linux-wallpaperengine not working
 
 - Misc
-    - Mouse poll rate changing via software
-    - Lenovo not saving options due to read-only system
-    - Find out why VS Code crashes when using Ozone Wayland flag
-    - Find out why virt-manager started crashing in Wayland mode
-    - Fix screenshots folder
-    - Fix github desktop error on startup
-    - Don't link edge.nix if edge is default browser
-    - Telegram not playing some animations while in extra workspace?
-    - Exiting app (e.g. via tray -> close) that is placed in extra workspace makes the extra workspace show up and block the view
-    - Fix unlinking nvidia GPU
-    - Support printing things (as in printer)
-    - Applying themes on the fly
-        - nwg-look
+  - Mouse poll rate changing via software
+  - Lenovo not saving options due to read-only system
+  - Find out why VS Code crashes when using Ozone Wayland flag
+  - Find out why virt-manager started crashing in Wayland mode
+  - Fix screenshots folder
+  - Fix github desktop error on startup
+  - Don't link edge.nix if edge is default browser
+  - Telegram not playing some animations while in extra workspace?
+  - Exiting app (e.g. via tray -> close) that is placed in extra workspace makes the extra workspace show up and block the view
+  - Fix unlinking nvidia GPU
+  - Support printing things (as in printer)
+  - Applying themes on the fly
+    - nwg-look
 
+# Tracked issues (- issue \* workaround/note)
 
-# Tracked issues (- issue * workaround/note)
 - https://github.com/hyprwm/Hyprland/issues/3558
-    * Using exit_hypr script to kill Hyprland
+  - Using exit_hypr script to kill Hyprland
 - https://github.com/hyprwm/Hyprland/issues/4375
-    * Using workspace_aware_switch script
+  - Using workspace_aware_switch script
+- https://github.com/NixOS/nixpkgs/issues/259239
+  - Coping

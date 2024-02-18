@@ -2,11 +2,14 @@
 
 {
   imports = [
+    ./fonts
     ./boot.nix
     ./cli-collection.nix
+    ./dbus.nix
     ./display-manager.nix
     ./flatpak.nix
     ./gnome-disks.nix
+    ./keyring.nix
     ./nh.nix
     ./ntp.nix # Time sync
     ./openrazer.nix
