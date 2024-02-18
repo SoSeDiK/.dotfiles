@@ -6,6 +6,7 @@ pushd ~/.dotfiles
 git add .
 rm -f ~/.zshrc
 rm -f ~/.config/mimeapps.list
+rm -f ~/.local/share/applications/mimeapps.list
 rm -f ~/.config/user-dirs.dirs
 # home-manager switch --flake .#lappytoppy
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then

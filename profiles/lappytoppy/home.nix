@@ -17,7 +17,8 @@ in
 
     # Apps needing extra settings
     ../../user/apps/discord
-    ../../user/apps/github-desctop.nix
+    ../../user/apps/firefox
+    ../../user/apps/github-desktop.nix
 
     (./. + "../../../user/wm/${wm}/${wm}.nix")
 
