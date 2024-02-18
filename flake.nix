@@ -63,24 +63,24 @@
     in
     {
       nixosConfigurations = {
-        system = nixpkgs.lib.nixosSystem {
+        lappytoppy = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
-            inherit (import ./profiles/home/options.nix) username;
+            inherit (import ./profiles/lappytoppy/options.nix) username; # TODO
             inherit nixos-hardware;
-            profileName = "home";
+            profileName = "lappytoppy";
           };
           modules = [
-            (./profiles/home/configuration.nix)
+            (./profiles/lappytoppy/configuration.nix)
             #impermanence.nixosModules.impermanence TODO
           ];
         };
       };
       homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
+        lappytoppy = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            profileName = "home";
+            profileName = "lappytoppy";
             inherit inputs;
             inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
             inherit wm;
@@ -92,7 +92,7 @@
             inherit editor;
           };
           modules = [
-            (./profiles/home/home.nix)
+            (./profiles/lappytoppy/home.nix)
           ];
         };
       };

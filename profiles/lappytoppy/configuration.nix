@@ -25,8 +25,6 @@ in
     # Misc profile-specific thingies
     (./. + "../../../system/profile/${profileName}.nix")
 
-    #../../system/shell/zsh.nix # TODO
-
     ../../system/apps/virtualization/virtualization.nix # TODO
 
     (./. + "../../../system/wm/hyprland.nix") # TODO
