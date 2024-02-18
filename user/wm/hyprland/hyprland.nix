@@ -3,13 +3,13 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ../../apps/terminal/kitty.nix    # terminal
-    ./ags/ags.nix                    # task bar and many other things
-    ./rofi/rofi.nix                  # app/task launcher
-    ./cliphist/cliphist.nix          # clipboard history
-    ./screenshots/satty.nix          # screenshots
-    ./emoji-picker/rofimoji.nix      # emoji picker
-    ./misc/monitors.nix              # monitors managements
+
+    ./ags/ags.nix # task bar and many other things
+    ./rofi/rofi.nix # app/task launcher
+    ./cliphist/cliphist.nix # clipboard history
+    ./screenshots/satty.nix # screenshots
+    ./emoji-picker/rofimoji.nix # emoji picker
+    ./misc/monitors.nix # monitors managements
   ];
 
   wayland.windowManager.hyprland = {

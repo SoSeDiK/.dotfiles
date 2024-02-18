@@ -3,7 +3,7 @@
 #  - Pull the script from sersorrel directly
 #  - Use python3.withPackages > writePython3Bin
 #  - Copy + alter discord's .desktop file
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.programs.discord;
@@ -21,20 +21,22 @@ let
     ${(pkgs.discord.override { withVencord = true; })}/bin/discord "$@"
   '';
 
-  wrappedDiscord = pkgs.runCommand "discord" {} ''
+  wrappedDiscord = pkgs.runCommand "discord" { } ''
     mkdir -p $out/share/applications $out/bin
     ln -s ${wrapperScript} $out/bin/discord
     ${pkgs.gnused}/bin/sed 's!Exec=.*!Exec=${wrapperScript}!g' ${(pkgs.discord.override { withVencord = true; })}/share/applications/discord.desktop > $out/share/applications/discord.desktop
   '';
-in {
+in
+{
   options.programs.discord = {
     enable = lib.mkEnableOption "Discord";
     wrapDiscord = lib.mkEnableOption "wrap Discord to patch and enable Krisp audio support";
   };
 
   config = lib.mkIf (cfg.enable) {
-    home.packages = if cfg.wrapDiscord
-                      then [ wrappedDiscord ]
-                      else [ (pkgs.discord.override { withVencord = true; }) ];
+    home.packages =
+      if cfg.wrapDiscord
+      then [ wrappedDiscord ]
+      else [ (pkgs.discord.override { withVencord = true; }) ];
   };
 }

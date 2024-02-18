@@ -5,7 +5,7 @@
   # List installed fonts: fc-list
   fonts.packages = with pkgs; [
     # Load only specified nerdfonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
     iosevka
     font-awesome
     (callPackage ./apple-fonts { }) # Mostly for use by Firefox theme

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, profileName, ... }:
+{ config, lib, pkgs, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) steam; in
 lib.mkIf (steam == true) {

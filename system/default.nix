@@ -13,5 +13,6 @@
     ./polkit.nix
     ./printer.nix
     ./steam.nix
+    ./zsh.nix
   ];
 }

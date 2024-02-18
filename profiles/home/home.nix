@@ -1,21 +1,24 @@
-{ config, pkgs, lib, inputs, wm, email, browser, term, editor, ... }:
+{ inputs, config, lib, pkgs, gtkThemeFromScheme, wm, browser, term, editor, ... }:
 
 let
   inherit (import ./options.nix)
     name username
-    homeDir;
+    homeDir theme;
 in
 {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
+
+    # Universal defaults
+    ../../user
+
     (./. + "../../../user/wm/${wm}/${wm}.nix")
     (./. + "../../../user/apps/browser/${browser}.nix")
     (./. + "../../../user/apps/browser/edge.nix") # Secondary browser :)
-    (./. + "../../../user/apps/terminal/${term}.nix")
 
     ../../user/shell/cli-collection.nix
     ../../user/shell/shell-aliases.nix
 
-    ../../user/apps/misc/git.nix
     ../../user/apps/misc/flatpak.nix
     ../../user/apps/misc/wallpapers.nix
     ../../user/apps/misc/user-apps.nix
@@ -24,6 +27,22 @@ in
     ../../user/apps/social/discord.nix
     ../../user/apps/social/telegram.nix
   ];
+
+  home.username = username;
+  home.homeDirectory = homeDir;
+
+  # Set The Colorscheme
+  colorScheme = inputs.nix-colors.colorSchemes."${theme}";
+
+  # Create XDG Dirs
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+  };
+
+  ###
 
   # Set default cursor
   # Also needs «dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Modern-Ice'"» executed for some apps
@@ -68,17 +87,15 @@ in
     WLR_NO_HARDWARE_CURSORS = 1;
   };
 
-  programs.home-manager.enable = true;
-
   nix = {
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  programs.home-manager.enable = true;
 
-  home.username = username;
-  home.homeDirectory = homeDir;
+  # Allow unfree software
+  nixpkgs.config.allowUnfree = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05"; # tldr: Do not change :)

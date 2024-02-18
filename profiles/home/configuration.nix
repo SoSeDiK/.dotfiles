@@ -17,7 +17,7 @@ in
     ../../system/hardware/brightness.nix
 
     # Universal defaults
-    ../../system/default.nix
+    ../../system
 
     # Profile-specific thingies
     ../../system/lenovo-legion.nix
@@ -25,11 +25,11 @@ in
     # Misc profile-specific thingies
     (./. + "../../../system/profile/${profileName}.nix")
 
-    ../../system/shell/zsh.nix # TODO
+    #../../system/shell/zsh.nix # TODO
 
     ../../system/apps/virtualization/virtualization.nix # TODO
 
-    (./. + "../../../system/wm/${wm}.nix") # TODO
+    (./. + "../../../system/wm/hyprland.nix") # TODO
   ];
 
   # Enable networking

@@ -53,8 +53,6 @@
       # (!) Make sure to change in new setup!
       name = "SoSeDiK";
       username = "sosedik";
-      email = "mrsosedik@gmail.com";
-      hostname = "lappytoppy";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -69,13 +67,12 @@
           specialArgs = {
             inherit inputs;
             inherit (import ./profiles/home/options.nix) username;
-            inherit wm;
             inherit nixos-hardware;
             profileName = "home";
           };
           modules = [
             (./profiles/home/configuration.nix)
-            #impermanence.nixosModules.impermanence
+            #impermanence.nixosModules.impermanence TODO
           ];
         };
       };
@@ -85,11 +82,11 @@
           extraSpecialArgs = {
             profileName = "home";
             inherit inputs;
+            inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
             inherit wm;
             inherit dotfilesDir;
             inherit name;
             inherit username;
-            inherit email;
             inherit browser;
             inherit term;
             inherit editor;
@@ -101,6 +98,3 @@
       };
     };
 }
-
-
-

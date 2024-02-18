@@ -6,16 +6,20 @@ let
   homeDir = "/home/${username}";
 in
 {
-  # User Variables
+  # User variables
   name = "${name}";
   username = "${username}";
   hostname = "${hostname}";
+
+  # Options
+  theme = "atelier-cave";
+  shell = "zsh"; # bash/zsh
 
   homeDir = "${homeDir}";
   flakeDir = "${homeDir}/.dotfiles";
 
   # Git
-  gitUsername = "${username}";
+  gitUsername = "${name}";
   gitEmail = "mrsosedik@gmail.com";
 
   # System settings
