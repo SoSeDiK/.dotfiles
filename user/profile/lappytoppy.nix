@@ -3,6 +3,7 @@
 {
   # Apps
   home.packages = with pkgs; [
+    cinnamon.nemo-with-extensions # file manager
     gnome.file-roller
     direnv
     gimp-with-plugins

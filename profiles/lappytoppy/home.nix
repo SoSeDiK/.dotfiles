@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, profileName, wm, editor, ... }:
+{ inputs, config, lib, pkgs, profileName, ... }:
 
 let
   inherit (import ./options.nix)
@@ -18,11 +18,12 @@ in
     # Apps needing extra settings
     ../../user/apps/discord
     ../../user/apps/firefox
+    ../../user/apps/codium.nix
     ../../user/apps/github-desktop.nix
 
-    (./. + "../../../user/wm/${wm}/${wm}.nix")
+    (./. + "../../../user/wm/hyprland/hyprland.nix") # TODO
 
-    ../../user/apps/virtualization/virtualization.nix
+    ../../user/apps/virtualization/virtualization.nix # TODO
   ];
 
   home.username = username;
@@ -39,38 +40,9 @@ in
     };
   };
 
-  ###
-
-  home.packages = with pkgs; [
-    nixpkgs-fmt # formatter for codium
-    cinnamon.nemo-with-extensions # file manager
-  ];
-
-  # yeah.... custom heyboards are managed by env :/
+  # Let system handle keyboards
   # https://nixos.wiki/wiki/Keyboard_Layout_Customization
   home.keyboard = null;
-
-  # Also has "password-store": "gnome" added to ~/.vscode/argv.json
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      arrterian.nix-env-selector
-    ];
-    # userSettings = {
-    #     "window.titleBarStyle" = "custom";  # https://github.com/microsoft/vscode/issues/181533
-    #     # User settings
-    #     "editor.wordWrap" = "on";
-    # };
-  };
-
-  home.sessionVariables = {
-    EDITOR = editor;
-
-    # Since I'm on NVIDIA...
-    WLR_NO_HARDWARE_CURSORS = 1;
-  };
 
   programs.home-manager.enable = true;
 

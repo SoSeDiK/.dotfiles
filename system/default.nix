@@ -3,6 +3,7 @@
 {
   imports = [
     ./boot.nix
+    ./cli-collection.nix
     ./display-manager.nix
     ./flatpak.nix
     ./gnome-disks.nix
