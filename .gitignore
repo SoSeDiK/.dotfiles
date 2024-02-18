@@ -1,1 +1,6 @@
+# VS Code files
 .vscode
+
+# Firefox files
+user/apps/firefox/firefox_profile/chrome/.ExtensionStylesheetLoader
+user/apps/firefox/firefox_profile/chrome/.SearchSelectionShortcut
