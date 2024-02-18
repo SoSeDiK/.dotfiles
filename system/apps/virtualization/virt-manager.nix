@@ -35,7 +35,6 @@ in
       "${platform}_iommu=on"
       "iommu=pt"
       "kvm.ignore_msrs=1"
-      # "mousepoll=48" # 125Hz; games lag with high poll rate, and passing USB mouse is worse :/
     ];
     extraModprobeConfig = "options vfio-pci ids=${builtins.concatStringsSep "," vfioIds}"; # TODO uncomment for vfio
   };

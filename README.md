@@ -5,7 +5,7 @@ List of things to do:
     - zsh settings
     - ags
         - Per-monitor workspaces
-        - Fix not loading during version missmatch :/
+        - Fix not loading during version mismatch :/
         - Lenovo integration
         - Mute (microphone) indicator
         - Fix battery percentage (0.01232421427246827%)
@@ -41,7 +41,7 @@ List of things to do:
         - nwg-look
 
 
-# Tracked issues (- isssue * workaround/note)
+# Tracked issues (- issue * workaround/note)
 - https://github.com/hyprwm/Hyprland/issues/3558
     * Using exit_hypr script to kill Hyprland
 - https://github.com/hyprwm/Hyprland/issues/4375

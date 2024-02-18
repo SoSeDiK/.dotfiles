@@ -10,4 +10,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
+  # Enable ALSA sound
+  sound.enable = true;
 }

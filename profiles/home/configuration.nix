@@ -1,28 +1,90 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ inputs, config, pkgs, nixos-hardware, profileName, wm, ... }:
 
-{ config, pkgs, inputs, wm, name, username, hostname, timezone, locale, timeLocale, ... }:
-
+let
+  inherit (import ./options.nix)
+    name username hostname
+    sysTimezone sysLocale sysExtraLocale;
+in
 {
   imports = [
-    ../../system/hardware-configuration.nix # Include the results of the hardware scan.
+    # Hardware
+    ./hardware.nix # Include the results of the hardware scan.
+    nixos-hardware.nixosModules.lenovo-legion-15arh05h
+
+    # Universal defaults
+    ../../system/default.nix
+
+    # Profile-specific thingies
+    ../../system/steam.nix
+    ../../system/lenovo-legion.nix
+    # Misc profile-specific thingies
+    (./. + "../../../system/profile/${profileName}.nix")
+
 
     ../../system/hardware/battery.nix
     ../../system/hardware/bluetooth.nix
     ../../system/hardware/brightness.nix
-    ../../system/hardware/lenovo.nix
 
     ../../system/shell/zsh.nix
 
-    ../../system/apps/polkit/polkit.nix
+    ../../system/ahh.nix
     ../../system/apps/misc/devtools.nix
-    ../../system/apps/misc/flatpak.nix
     ../../system/apps/misc/gnome-disks.nix
     ../../system/apps/virtualization/virtualization.nix
 
     (./. + "../../../system/wm/${wm}.nix")
   ];
+
+  # Enable networking
+  networking.hostName = hostname;
+  networking.networkmanager.enable = true;
+
+  # Set your time zone
+  time.timeZone = sysTimezone;
+
+  # Select internationalisation properties
+  i18n.defaultLocale = sysLocale;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = sysExtraLocale;
+    LC_IDENTIFICATION = sysExtraLocale;
+    LC_MEASUREMENT = sysExtraLocale;
+    LC_MONETARY = sysExtraLocale;
+    LC_NAME = sysExtraLocale;
+    LC_NUMERIC = sysExtraLocale;
+    LC_PAPER = sysExtraLocale;
+    LC_TELEPHONE = sysExtraLocale;
+    LC_TIME = sysExtraLocale;
+  };
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.${username} = {
+    isNormalUser = true;
+    description = name;
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [ ];
+  };
+
+  # Optimization settings and garbage collection automation
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  ###
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -51,61 +113,6 @@
     ];
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${username} = {
-    isNormalUser = true;
-    description = name;
-    extraGroups = [ "networkmanager" "wheel" "kvm" ];
-    packages = with pkgs; [ ];
-  };
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # Boot animation
-  boot.plymouth.enable = true;
-  # Hide boot logs (untill playmouth can take over stage 1)
-  boot = {
-    consoleLogLevel = 0;
-    initrd.verbose = false;
-    kernelParams = [
-      "quiet"
-      "splash"
-    ];
-  };
-
-  # boot.kernelPackages = pkgs.linuxPackages_latest; # NOTE: if switching, also needs change in lenovo.nix
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-  # Networking
-  networking.hostName = hostname;
-  networking.networkmanager.enable = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Set your time zone.
-  time.timeZone = timezone;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = locale;
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = timeLocale;
-    LC_IDENTIFICATION = timeLocale;
-    LC_MEASUREMENT = timeLocale;
-    LC_MONETARY = timeLocale;
-    LC_NAME = timeLocale;
-    LC_NUMERIC = timeLocale;
-    LC_PAPER = timeLocale;
-    LC_TELEPHONE = timeLocale;
-    LC_TIME = timeLocale;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -113,7 +120,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

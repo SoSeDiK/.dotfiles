@@ -1,5 +1,11 @@
-{ config, pkgs, lib, inputs, wm, name, username, email, browser, term, editor, ... }: {
+{ config, pkgs, lib, inputs, wm, email, browser, term, editor, ... }:
 
+let
+  inherit (import ./options.nix)
+    name username
+    homeDir;
+in
+{
   imports = [
     (./. + "../../../user/wm/${wm}/${wm}.nix")
     (./. + "../../../user/apps/browser/${browser}.nix")
@@ -31,7 +37,7 @@
 
   home.packages = with pkgs; [
     nixpkgs-fmt # formatter for codium
-    cinnamon.nemo-with-extensions         # file manager
+    cinnamon.nemo-with-extensions # file manager
   ];
 
   # yeah.... custom heyboards are managed by env :/
@@ -72,7 +78,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.username = username;
-  home.homeDirectory = "/home/" + username;
+  home.homeDirectory = homeDir;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05"; # tldr: Do not change :)

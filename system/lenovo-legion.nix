@@ -1,10 +1,6 @@
-{ config, pkgs, nixos-hardware, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [
-    nixos-hardware.nixosModules.lenovo-legion-15arh05h
-  ];
-
   environment.systemPackages = with pkgs; [
     lenovo-legion
     linuxKernel.packages.linux_xanmod_latest.lenovo-legion-module
