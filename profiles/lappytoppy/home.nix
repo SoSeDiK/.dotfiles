@@ -22,8 +22,6 @@ in
 
     (./. + "../../../user/wm/${wm}/${wm}.nix")
 
-    ../../user/shell/cli-collection.nix
-
     ../../user/apps/virtualization/virtualization.nix
   ];
 

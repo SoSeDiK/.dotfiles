@@ -20,7 +20,7 @@ lib.mkIf (shell == "zsh") {
       bindkey '^[[1;3C' forward-word                  # Key Alt + Right
       bindkey '^[[H' beginning-of-line                # Key Home
       bindkey '^[[F' end-of-line                      # Key End
-      fastfetch
+      neofetch
       if [ -f $HOME/.zshrc-personal ]; then
         source $HOME/.zshrc-personal
       fi
