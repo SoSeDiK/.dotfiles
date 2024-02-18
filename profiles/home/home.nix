@@ -44,16 +44,6 @@ in
 
   ###
 
-  # Set default cursor
-  # Also needs «dconf write /org/gnome/desktop/interface/cursor-theme "'Bibata-Modern-Ice'"» executed for some apps
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-  };
-
   home.packages = with pkgs; [
     nixpkgs-fmt # formatter for codium
     cinnamon.nemo-with-extensions # file manager

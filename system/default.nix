@@ -6,6 +6,7 @@
     ./display-manager.nix
     ./flatpak.nix
     ./gnome-disks.nix
+    ./nh.nix
     ./ntp.nix # Time sync
     ./openrazer.nix
     ./piper.nix
