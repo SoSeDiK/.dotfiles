@@ -10,7 +10,7 @@ let
       ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
     '';
   });
-  firefox-nightly = (inputs.firefox-nightly2.packages.${pkgs.system}.firefox-nightly-bin).overrideAttrs (oldAttrs: {
+  firefox-nightly-temp = (inputs.firefox-nightly2.packages.${pkgs.system}.firefox-nightly-bin).overrideAttrs (oldAttrs: {
     # Add support for https://github.com/MrOtherGuy/fx-autoconfig
     buildCommand = (oldAttrs.buildCommand or "") + ''
       firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
@@ -20,7 +20,7 @@ let
       ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
     '';
   });
-  #ama = inputs.firefox-nightly.legacyPackages.${pkgs.system}.firefox-nightly;
+  #ama = inputs.firefox-nightly1.legacyPackages.${pkgs.system}.firefox-nightly;
 in
 {
   home.packages = with pkgs; [
@@ -28,8 +28,7 @@ in
   ];
   programs.firefox = {
     enable = true;
-    package = firefox-nightly;
-    # package = pkgs.latest.firefox-nightly-bin;
+    package = firefox-nightly-temp;
   };
 
   nixpkgs.overlays =
@@ -91,8 +90,6 @@ in
     "x-scheme-handler/https" = "firefox.desktop";
     "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
-
-    "x-scheme-handler/x-github-desktop-dev-auth" = "github-desktop"; # TODO should probably be in github desktop package?
   };
 
   home.sessionVariables = {
