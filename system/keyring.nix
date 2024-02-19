@@ -2,14 +2,12 @@
 
 {
   # Keeping passwords / sessions
+  services.gnome.gnome-keyring.enable = true;
+
   environment.systemPackages = with pkgs; [
     glib
     gedit
   ];
-
-  services.gnome.gnome-keyring = {
-    enable = true;
-  };
 
   # Needed for GNOME services outside of GNOME Desktop
   services.dbus.packages = [ pkgs.gcr ];
