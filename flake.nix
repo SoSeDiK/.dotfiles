@@ -15,6 +15,8 @@
     nix-colors.url = "github:misterio77/nix-colors";
     impermanence.url = "github:nix-community/impermanence";
 
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+
     # Firefox Nightly
     firefox-nightly1.url = "github:calbrecht/f4s-firefox-nightly";
     firefox-nightly1.inputs.nixpkgs.follows = "nixpkgs";
@@ -35,23 +37,9 @@
     ags.url = "github:Aylur/ags";
   };
 
-  outputs = inputs@{ nixpkgs, nixos-hardware, home-manager, impermanence, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, impermanence, ... } @ inputs:
     let
       system = "x86_64-linux";
-
-      wm = "hyprland"; # one of the ./system/wm
-      term = "kitty"; # one of the ./user/apps/terminal
-      editor = "nano";
-
-      # Options
-      timezone = "Europe/Kyiv";
-      locale = "en_US.UTF-8";
-      timeLocale = "uk_UA.UTF-8";
-      dotfilesDir = "~/.dotfiles";
-
-      # (!) Make sure to change in new setup!
-      name = "SoSeDiK";
-      username = "sosedik";
 
       pkgs = import nixpkgs {
         inherit system;
@@ -64,10 +52,10 @@
       nixosConfigurations = {
         lappytoppy = nixpkgs.lib.nixosSystem {
           specialArgs = {
+            profileName = "lappytoppy";
             inherit inputs;
             inherit (import ./profiles/lappytoppy/options.nix) username; # TODO
             inherit nixos-hardware;
-            profileName = "lappytoppy";
           };
           modules = [
             (./profiles/lappytoppy/configuration.nix)
@@ -81,13 +69,8 @@
           extraSpecialArgs = {
             profileName = "lappytoppy";
             inherit inputs;
+            inherit (import ./profiles/lappytoppy/options.nix) username; # TODO
             inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
-            inherit wm;
-            inherit dotfilesDir;
-            inherit name;
-            inherit username;
-            inherit term;
-            inherit editor;
           };
           modules = [
             (./profiles/lappytoppy/home.nix)

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Helpful to read output when debugging
-set -x
+#set -x
 
 # Load the config file with our environmental variables
 VIRSH_GPU_VIDEO=pci_0000_01_00_0
@@ -14,15 +14,19 @@ unload_module() {
     if lsmod | grep -q $module_name; then
         echo "Module $module_name is currently in use."
 
-        # Get PIDs of processes using the module
-        local pids=$(lsof | awk -v mod="$module_name" '$0~mod {print $2}')
+        # Get PIDs and process names of processes using the module
+        local processes=$(lsof | awk -v mod="$module_name" '$0~mod {print $2, $1}')
 
-        if [ -n "$pids" ]; then
-            echo "Processes using $module_name: $pids"
+        if [ -n "$processes" ]; then
+            echo "Processes using $module_name:"
+            echo "$processes"
             
+            # Extract PIDs for killing processes
+            local pids=$(echo "$processes" | awk '{print $1}')
+
             # Kill the processes
             echo "Killing processes using $module_name..."
-            kill -9 $pids
+            #kill -9 $pids
         else
             echo "No processes found using $module_name."
         fi

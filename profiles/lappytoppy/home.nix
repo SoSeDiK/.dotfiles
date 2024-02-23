@@ -23,6 +23,7 @@ in
     ../../user/apps/firefox
     ../../user/apps/codium.nix
     ../../user/apps/github-desktop.nix
+    ../../user/apps/spotify.nix
 
     ../../user/apps/virtualization/virtualization.nix # TODO
   ];

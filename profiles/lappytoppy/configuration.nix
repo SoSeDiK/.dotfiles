@@ -1,15 +1,18 @@
-{ inputs, config, pkgs, nixos-hardware, profileName, wm, ... }:
+{ inputs, config, pkgs, nixos-hardware, profileName, ... }:
 
 let
   inherit (import ./options.nix)
     name username hostname
-    sysTimezone sysLocale sysExtraLocale;
+    sysTimezone sysLocale sysExtraLocale
+    theme;
 in
 {
   imports = [
     # Hardware
     ./hardware.nix # Include the results of the hardware scan.
     nixos-hardware.nixosModules.lenovo-legion-15arh05h
+
+    inputs.nix-colors.homeManagerModules.default
 
     # Hardware-specific modules
     ../../system/hardware/battery.nix
@@ -30,6 +33,9 @@ in
 
     ../../system/apps/virtualization/virtualization.nix # TODO
   ];
+
+  # Set The Colorscheme
+  colorScheme = inputs.nix-colors.colorSchemes."${theme}";
 
   # Enable networking
   networking.hostName = hostname;

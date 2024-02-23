@@ -18,6 +18,5 @@
     killhypr = "~/.dotfiles/user/hyprland/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
     runwm = "~/.dotfiles/user/files/scripts/connect-via-looking-glass.sh";
-    neofetch = "fastfetch";
   };
 }

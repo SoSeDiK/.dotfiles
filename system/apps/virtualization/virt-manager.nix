@@ -40,7 +40,7 @@ in
   };
 
   # NVIDIA settings
-  services.xserver.videoDrivers = [ "nvidia" ]; # "amdgpu"
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
   # https://github.com/TLATER/dotfiles/blob/master/nixos-config/yui/nvidia
   hardware.nvidia = {
     # The current stable nvidia driver is utterly broken. Use

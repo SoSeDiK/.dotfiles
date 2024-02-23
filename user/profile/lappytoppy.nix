@@ -19,8 +19,10 @@
     loupe # image viewer
     # Dev
     jetbrains.idea-community
+    filezilla
     # Gaming
-    prismlauncher
+    cartridges # Game launcher
+    prismlauncher # Minecraft launcher
     # Social
     telegram-desktop
     whatsapp-for-linux
@@ -28,5 +30,8 @@
     microsoft-edge
     # Misc
     linux-wallpaperengine
+    # Fun
+    cmatrix # Matrix in terminal
+    cava # Audio visualizer in terminal
   ];
 }
