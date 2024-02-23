@@ -1,31 +1,32 @@
-{ pkgs, config, inputs, username, ... }:
+{ pkgs, config, inputs, profileName, ... }:
 
 let
+  inherit (import ../../../profiles/${profileName}/options.nix) homeDir flakeDir;
   profile = "w2uqqpwc.default"; # «xxxxxxxx.profile_name» profile in ~/.mozilla/firefix/
   firefox-base = (pkgs.firefox).overrideAttrs (oldAttrs: {
     # Add support for https://github.com/MrOtherGuy/fx-autoconfig
     buildCommand = (oldAttrs.buildCommand or "") + ''
       firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
     '';
   });
   firefox-nightly-temp = (inputs.firefox-nightly2.packages.${pkgs.system}.firefox-nightly-bin).overrideAttrs (oldAttrs: {
     # Add support for https://github.com/MrOtherGuy/fx-autoconfig
     buildCommand = (oldAttrs.buildCommand or "") + ''
       firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
       mkdir -p $firefoxDir/browser/defaults/preferences
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
     '';
   });
   firefox-nightly = (pkgs.latest.firefox-nightly-bin).overrideAttrs (oldAttrs: {
     # Add support for https://github.com/MrOtherGuy/fx-autoconfig
     buildCommand = (oldAttrs.buildCommand or "") + ''
       firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
-      ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
+      ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
     '';
   });
   #ama = inputs.firefox-nightly1.legacyPackages.${pkgs.system}.firefox-nightly;
@@ -55,10 +56,10 @@ in
     #       # Add support for https://github.com/MrOtherGuy/fx-autoconfig
     #       buildCommand = (oldAttrs.buildCommand or "") + ''
     #         firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-    #         ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
-    #         ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
+    #         ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
+    #         ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
     #         mkdir -p $firefoxDir/browser/defaults/preferences
-    #         ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
+    #         ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
     #       '';
     #     });
     #   })
@@ -67,22 +68,19 @@ in
     #     # Add support for https://github.com/MrOtherGuy/fx-autoconfig
     #     buildCommand = (oldAttrs.buildCommand or "") + ''
     #       firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-    #       ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
-    #       ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
+    #       ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/config.js $firefoxDir/config.js
+    #       ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/defaults/pref/config-prefs.js
     #       mkdir -p $firefoxDir/browser/defaults/preferences
-    #       ln -sf /home/${username}/.dotfiles/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
+    #       ln -sf ${flakeDir}/user/apps/firefox/firefox_profile/userChromeJS/defaults/pref/config-prefs.js $firefoxDir/browser/defaults/preferences/config-prefs.js
     #     '';
     #   });
     # })
   ];
 
   # Symlink userChrome profile settings
-  home.file."/home/${username}/.mozilla/firefox/${profile}/chrome".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.dotfiles/user/apps/firefox/firefox_profile/chrome";
+  home.file."${homeDir}/.mozilla/firefox/${profile}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   # Symlink user.js settings
-  xdg.configFile."/home/${username}/.mozilla/firefox/${profile}/user.js".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.dotfiles/user/apps/firefox/firefox_profile/user.js";
-
-  xdg.mime.enable = true;
-  xdg.mimeApps.enable = true;
+  xdg.configFile."${homeDir}/.mozilla/firefox/${profile}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
 
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {

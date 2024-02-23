@@ -1,5 +1,9 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, profileName, ... }:
 
+let
+  theme = config.colorScheme.palette;
+  inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
+in
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -31,4 +35,17 @@
     xdg-desktop-portal-hyprland
     gvfs
   ];
+
+  # Generate some dynamic options
+  home.activation = {
+    styles = ''
+      # echo "Your content goes here" > ${flakeDir}/user/hyrpland/hypr/generated.conf
+      cat > ${flakeDir}/user/hyprland/hypr/generated.conf <<EOF
+      general {
+        col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
+        col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg
+      }
+      EOF
+    '';
+  };
 }

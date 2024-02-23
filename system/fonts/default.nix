@@ -1,5 +1,8 @@
-{ config, pkgs, username, ... }:
+{ config, pkgs, profileName, ... }:
 
+let
+  inherit (import ../../profiles/${profileName}/options.nix) username homeDir flakeDir;
+in
 {
   # Fonts are nice to have
   # List installed fonts: fc-list
@@ -17,11 +20,11 @@
     preStart =
       ''
         # Just in case. Could be deleted, and copy fails in that case.
-        mkdir -p /home/${username}/.local/share/fonts
+        mkdir -p ${homeDir}/.local/share/fonts
         # Copy custom fonts
-        cp -r /home/${username}/.dotfiles/system/fonts/fonts/* /home/${username}/.local/share/fonts
+        cp -r ${flakeDir}/system/fonts/fonts/* ${homeDir}/.local/share/fonts
         # Fix fonts owner from root back to the user
-        chown -R ${username}:users /home/${username}/.local/share/fonts
+        chown -R ${username}:users ${homeDir}/.local/share/fonts
       '';
   };
 

@@ -69,7 +69,6 @@
           extraSpecialArgs = {
             profileName = "lappytoppy";
             inherit inputs;
-            inherit (import ./profiles/lappytoppy/options.nix) username; # TODO
             inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
           };
           modules = [

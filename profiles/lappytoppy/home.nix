@@ -2,7 +2,7 @@
 
 let
   inherit (import ./options.nix)
-    name username
+    username
     homeDir theme;
 in
 {
@@ -41,6 +41,10 @@ in
       createDirectories = true;
     };
   };
+
+  # Enable mime apps
+  xdg.mime.enable = true;
+  xdg.mimeApps.enable = true;
 
   # Let system handle keyboards
   # https://nixos.wiki/wiki/Keyboard_Layout_Customization

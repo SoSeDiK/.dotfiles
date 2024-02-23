@@ -15,6 +15,8 @@ in
     ../../system/hardware/battery.nix
     ../../system/hardware/bluetooth.nix
     ../../system/hardware/brightness.nix
+    ../../system/hardware/amd-gpu.nix
+    ../../system/hardware/nvidia-amd-gpu.nix
 
     # Universal defaults
     ../../system

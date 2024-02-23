@@ -1,0 +1,90 @@
+{ pkgs, config, lib, profileName, ... }:
+
+let
+  inherit (import ../../profiles/${profileName}/options.nix) gpuType;
+  # System's CPU (either "amd" or "intel")
+  platform = "amd";
+  # The IOMMU ids for GPU passthrough
+  vfioIds = [ "10de:1f95" "10de:10fa" ];
+in
+lib.mkIf ("${gpuType}" == "nvidia") {
+  # Configure kernel options to make sure IOMMU & KVM support is on.
+  # GPU kernel modules can be switched by scripts in ./hooks
+  boot = {
+    kernelModules = [
+      "kvm-${platform}"
+      "amdgpu"
+
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_drm"
+      "nvidia_uvm"
+    ];
+    kernelParams = [
+      "${platform}_iommu=on"
+      "iommu=pt"
+      "kvm.ignore_msrs=1"
+    ];
+  };
+
+  # NVIDIA settings
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  # https://github.com/TLATER/dotfiles/blob/master/nixos-config/yui/nvidia
+  hardware.nvidia = {
+    # The current stable nvidia driver is utterly broken. Use
+    # production for now to work around stuff like this:
+    # https://forums.developer.nvidia.com/t/535-86-05-low-framerate-vulkan-apps-stutter-under-wayland-xwayland/26147
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+    modesetting.enable = true;
+    # Power management is required to get nvidia GPUs to behave on
+    # suspend, due to firmware bugs. Aren't nvidia great?
+    powerManagement.enable = true;
+    open = true;
+  };
+  boot.extraModprobeConfig =
+    "options nvidia "
+    + lib.concatStringsSep " " [
+      # nvidia assume that by default your CPU does not support PAT,
+      # but this is effectively never the case in 2023
+      "NVreg_UsePageAttributeTable=1"
+      # This may be a noop, but it's somewhat uncertain
+      "NVreg_EnablePCIeGen3=1"
+      # This is sometimes needed for ddc/ci support, see
+      # https://www.ddcutil.com/nvidia/
+      #
+      # Current monitor does not support it, but this is useful for
+      # the future
+      "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100"
+      # When (if!) I get another nvidia GPU, check for resizeable bar
+      # settings
+    ];
+  environment.variables = {
+    # Required to run the correct GBM backend for nvidia GPUs on wayland
+    GBM_BACKEND = "nvidia-drm";
+    # Apparently, without this nouveau may attempt to be used instead
+    # (despite it being blacklisted)
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # Hardware cursors are currently broken on nvidia (invisible on external monitors)
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # See https://github.com/elFarto/nvidia-vaapi-driver#configuration
+    NVD_BACKEND = "direct";
+  };
+  # Replace a glFlush() with a glFinish() - this prevents stuttering
+  # and glitching in all kinds of circumstances for the moment.
+  #
+  # Apparently I'm waiting for "explicit sync" support, which needs to
+  # land as a wayland thing. I've seen this work reasonably with VRR
+  # before, but emacs continued to stutter, so for now this is
+  # staying.
+  nixpkgs.overlays = [
+    (_: final: {
+      wlroots_0_16 = final.wlroots_0_16.overrideAttrs (_: {
+        patches = [
+          ./wlroots-nvidia.patch
+          ./wlroots-screenshare.patch
+        ];
+      });
+    })
+  ];
+  # NVIDIA END
+}

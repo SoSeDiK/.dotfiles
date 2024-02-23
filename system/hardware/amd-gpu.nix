@@ -1,12 +1,38 @@
 { pkgs, config, lib, profileName, ... }:
 
-let inherit (import ../../profiles/${profileName}/options.nix) gpuType; in
+let
+  inherit (import ../../profiles/${profileName}/options.nix) gpuType;
+  # System's CPU (either "amd" or "intel")
+  platform = "amd";
+  # The IOMMU ids for GPU passthrough
+  vfioIds = [ "10de:1f95" "10de:10fa" ];
+in
 lib.mkIf ("${gpuType}" == "amd") {
+  # Configure kernel options to make sure IOMMU & KVM support is on.
+  # GPU kernel modules can be switched by scripts in ./hooks
+  boot = {
+    kernelModules = [
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
+
+      "kvm-${platform}"
+      "amdgpu"
+    ];
+    kernelParams = [
+      "${platform}_iommu=on"
+      "iommu=pt"
+      "kvm.ignore_msrs=1"
+    ];
+    extraModprobeConfig = "options vfio-pci ids=${builtins.concatStringsSep "," vfioIds}"; # TODO uncomment for vfio
+  };
+
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # OpenGL
   hardware.opengl = {
