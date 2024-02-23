@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pushd ~/.dotfiles/system/shell/scripts
+pushd ~/.dotfiles/user/files/scripts
 source ./update_flake.sh
 if [ $? -ne 0 ]; then
   echo "Something went wrong updating flake."

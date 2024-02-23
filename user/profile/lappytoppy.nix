@@ -1,5 +1,16 @@
 { config, pkgs, ... }:
 
+let
+  linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
+    src = pkgs.fetchFromGitHub {
+      owner = "Almamu";
+      repo = "linux-wallpaperengine";
+      # upstream lacks versioned releases
+      rev = "e28780562bdf8bcb2867cca7f79b2ed398130eb9";
+      hash = "sha256-VvrYOh/cvWxDx9dghZV5dcOrfMxjVCzIGhVPm9d7P2g=";
+    };
+  });
+in
 {
   # Apps
   home.packages = with pkgs; [
@@ -29,9 +40,13 @@
     # Chromium brower of choice
     microsoft-edge
     # Misc
-    linux-wallpaperengine
+    #linux-wallpaperengine # requires insecure freeimage-unstable-2021-11-01
     # Fun
     cmatrix # Matrix in terminal
     cava # Audio visualizer in terminal
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    #"freeimage-unstable-2021-11-01" # linux-wallpaperengine
   ];
 }

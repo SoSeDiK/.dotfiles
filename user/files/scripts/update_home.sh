@@ -8,7 +8,7 @@ rm -f ~/.zshrc
 rm -f ~/.config/mimeapps.list
 rm -f ~/.local/share/applications/mimeapps.list
 rm -f ~/.config/user-dirs.dirs
-# home-manager switch --flake .#lappytoppy
+# home-manager switch --flake .#lappytoppy --show-trace
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
   nh home switch --nom --configuration "$hostname" --update
 else
