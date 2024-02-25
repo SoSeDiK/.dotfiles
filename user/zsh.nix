@@ -2,6 +2,11 @@
 
 let inherit (import ../profiles/${profileName}/options.nix) shell; in
 lib.mkIf (shell == "zsh") {
+  home.packages = with pkgs; [
+    zoxide
+    fzf
+  ];
+
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
@@ -25,6 +30,8 @@ lib.mkIf (shell == "zsh") {
         source $HOME/.zshrc-personal
       fi
       eval "$(starship init zsh)"
+      export _ZO_EXCLUDE_DIRS='$HOME:/nix/store/*'
+      eval "$(zoxide init zsh --cmd cd)"
     '';
     initExtraFirst = ''
       HISTFILE=~/.histfile
