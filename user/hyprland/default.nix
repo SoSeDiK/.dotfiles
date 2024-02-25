@@ -37,15 +37,20 @@ in
   ];
 
   # Generate some dynamic options
-  home.activation = {
-    styles = ''
-      # echo "Your content goes here" > ${flakeDir}/user/hyrpland/hypr/generated.conf
-      cat > ${flakeDir}/user/hyprland/hypr/generated.conf <<EOF
-      general {
-        col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
-        col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg
-      }
-      EOF
-    '';
-  };
+  home.file."${flakeDir}/user/hyprland/hypr/generated.conf".text = ''
+    general {
+      col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
+      col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg
+    }
+  '';
+  # home.activation = {
+  #   styles = ''
+  #     cat > ${flakeDir}/user/hyprland/hypr/generated.conf <<EOF
+  #     general {
+  #       col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
+  #       col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg
+  #     }
+  #     EOF
+  #   '';
+  # };
 }

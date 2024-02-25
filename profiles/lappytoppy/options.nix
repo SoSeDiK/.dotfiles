@@ -12,7 +12,7 @@ in
   hostname = "${hostname}";
 
   # Options
-  theme = "atelier-cave";
+  theme = "da-one-sea"; # "atelier-cave"; # https://github.com/tinted-theming/home
   shell = "zsh"; # bash/zsh
 
   homeDir = "${homeDir}";

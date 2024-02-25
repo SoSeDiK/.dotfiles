@@ -2,18 +2,15 @@ List of things to do:
 
 - Chore
 
-  - Remake files structure ^^
-  - zsh settings
   - ags
     - Per-monitor workspaces
-    - Fix not loading during version mismatch :/
     - Lenovo integration
-    - Mute (microphone) indicator
     - Fix battery percentage (0.01232421427246827%)
   - Theming!
 
 - Browsing
 
+  - Firefox Nightly..........
   - Better Firefox vertical tabs layout
   - Find a way to make per-workspace bookmarks
 
@@ -30,19 +27,18 @@ List of things to do:
   - linux-wallpaperengine not working
 
 - Misc
-  - Mouse poll rate changing via software
+
   - Lenovo not saving options due to read-only system
-  - Find out why VS Code crashes when using Ozone Wayland flag
   - Find out why virt-manager started crashing in Wayland mode
+    - Seems to be amdgpu only issue
   - Fix screenshots folder
   - Fix github desktop error on startup
-  - Don't link edge.nix if edge is default browser
   - Telegram not playing some animations while in extra workspace?
+    - Seems to be "fixed" by disabling power-saving mode in Telegram
   - Exiting app (e.g. via tray -> close) that is placed in extra workspace makes the extra workspace show up and block the view
   - Fix unlinking nvidia GPU
-  - Support printing things (as in printer)
   - Applying themes on the fly
-    - nwg-look
+    - nwg-look?
 
 # Tracked issues (- issue \* workaround/note)
 
