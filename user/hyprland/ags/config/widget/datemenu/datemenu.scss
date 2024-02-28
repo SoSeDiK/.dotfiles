@@ -42,12 +42,12 @@ window#datemenu .datemenu {
 
   .notifications {
     .header {
-      font-family: "NeoFont";
       margin-bottom: $spacing;
       margin-right: $spacing;
 
       > label {
         margin-left: $radius * 0.5;
+        font-family: "NeoFont";
       }
 
       button {
