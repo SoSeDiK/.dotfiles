@@ -2,6 +2,9 @@
 
 let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 {
+  # Allow running unpatched binaries
+  programs.nix-ld.enable = true;
+
   # Services
   services.fstrim.enable = true;
   services.teamviewer.enable = true;
