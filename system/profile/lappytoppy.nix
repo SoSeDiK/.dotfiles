@@ -1,4 +1,4 @@
-{ config, pkgs, profileName, ... }:
+{ inputs, config, pkgs, profileName, ... }:
 
 let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 {

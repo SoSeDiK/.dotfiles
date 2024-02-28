@@ -13,9 +13,9 @@ echo "Rebuilding NixOS System…"
 
 # Fancy nh way
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh os switch --nom --update
+  nh os switch --nom --update &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 else
-  nh os switch --nom
+  nh os switch --nom &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
 fi
 
 gen=$(nixos-rebuild list-generations | grep current)
