@@ -21,9 +21,9 @@ echo "Rebuilding Home Manager…"
 
 # Fancy nh way
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh home switch --nom --configuration "$hostname" --update &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+  nh home switch --nom --configuration "$hostname" --update
 else
-  nh home switch --nom --configuration "$hostname" &>nixos-switch.log || (cat nixos-switch.log | grep --color error && false)
+  nh home switch --nom --configuration "$hostname"
 fi
 
 popd

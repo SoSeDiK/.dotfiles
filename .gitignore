@@ -7,3 +7,4 @@ user/apps/firefox/firefox_profile/chrome/.SearchSelectionShortcut
 
 # Logs
 nixos-switch.log
+hm-switch.log
