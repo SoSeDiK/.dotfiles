@@ -8,7 +8,7 @@ in
   # List installed fonts: fc-list
   fonts.packages = with pkgs; [
     # Load only specified nerdfonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Ubuntu" ]; })
     font-awesome
     (callPackage ./apple-fonts { }) # Mostly for use by Firefox theme
   ];

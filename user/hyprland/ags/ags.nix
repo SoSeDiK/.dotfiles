@@ -5,14 +5,25 @@ let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
   imports = [ inputs.ags.homeManagerModules.default ];
 
   home.packages = with pkgs; [
-    (python311.withPackages (p: [ p.python-pam ]))
-    sassc
-    inotify-tools
+    # Building dependencies
+    which
+    cage
+    bun
+    dart-sass
+    # Theme dependencies
+    fd
+    wf-recorder
+    wl-clipboard
+    gtk3
   ];
 
   programs.ags = {
     enable = true;
     configDir = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/hyprland/ags/config";
-    extraPackages = [ pkgs.libsoup_3 ];
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
   };
 }
