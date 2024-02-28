@@ -18,7 +18,4 @@ else
   nh os switch --nom
 fi
 
-gen=$(nixos-rebuild list-generations | grep current)
-git commit -am "$gen"
-
 popd

@@ -22,4 +22,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+gen=$(nixos-rebuild list-generations | grep current)
+git commit -am "$gen"
+
 popd

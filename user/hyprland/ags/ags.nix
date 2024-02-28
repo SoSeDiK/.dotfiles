@@ -1,6 +1,6 @@
 { inputs, config, pkgs, profileName, ... }:
 
-let inherit (import ../../../profiles/${profileName}/options.nix) username; in
+let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
 {
   imports = [ inputs.ags.homeManagerModules.default ];
 
@@ -12,7 +12,7 @@ let inherit (import ../../../profiles/${profileName}/options.nix) username; in
 
   programs.ags = {
     enable = true;
-    configDir = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.dotfiles/user/hyprland/ags/config";
+    configDir = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/hyprland/ags/config";
     extraPackages = [ pkgs.libsoup_3 ];
   };
 }
