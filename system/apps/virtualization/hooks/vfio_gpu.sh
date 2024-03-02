@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
+
 # Helpful to read output when debugging
 #set -x
+export DISPLAY=:0
 
 # Load the config file with our environmental variables
 VIRSH_GPU_VIDEO=pci_0000_01_00_0
 VIRSH_GPU_AUDIO=pci_0000_01_00_1
-#source ~/.dotfiles/system/apps/virtualization/hooks/kvm.conf
+
+# nvidia-smi | grep 'python' | awk '{ print $3 }' | xargs -n1 kill -9
 
 unload_module() {
     local module_name=$1
@@ -15,7 +18,7 @@ unload_module() {
         echo "Module $module_name is currently in use."
 
         # Get PIDs and process names of processes using the module
-        local processes=$(lsof | awk -v mod="$module_name" '$0~mod {print $2, $1}')
+        local processes=$(lsof -n -c $module_name 2>/dev/null | awk '!/\/$/ && NR>1 {print $2, $1, $9}' | sort -u)
 
         if [ -n "$processes" ]; then
             echo "Processes using $module_name:"
@@ -26,7 +29,8 @@ unload_module() {
 
             # Kill the processes
             echo "Killing processes using $module_name..."
-            #kill -9 $pids
+            echo "[ $pids ]"
+            kill -9 $pids
         else
             echo "No processes found using $module_name."
         fi
@@ -39,31 +43,23 @@ unload_module() {
     fi
 }
 
-# Stop display manager (seems to not work without this)
-#systemctl stop display-manager.service
+# Stop display manager to release GPU (seems to not work without this)
+# systemctl stop display-manager.service
 
-# Unbind VT consoles
-# echo 0 > /sys/class/vtconsole/vtcon0/bind
-# Some machines might have more than 1 virtual console. Add a line for each corresponding VTConsole
-# echo 0 > /sys/class/vtconsole/vtcon1/bind
-
-# Unbind EFI-Framebuffer
-# echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind # needed?
-
-# Unload all Nvidia drivers
+# Unload Nvidia drivers
 unload_module nvidia_drm
 unload_module nvidia_modeset
 unload_module nvidia_uvm
 unload_module nvidia
 
-# Re-Bind GPU to VFIO Driver
-virsh nodedev-reattach $VIRSH_GPU_VIDEO
-virsh nodedev-reattach $VIRSH_GPU_AUDIO
-
-# Load VFIO kernel module
+# Load VFIO kernel modules
 modprobe vfio
 modprobe vfio_pci
 modprobe vfio_iommu_type1
 
-# Restart Display Manager
-#systemctl start display-manager.service
+# Detach GPU to VFIO Driver
+virsh nodedev-detach $VIRSH_GPU_VIDEO
+virsh nodedev-detach $VIRSH_GPU_AUDIO
+
+# Start display manager on new GPU
+# systemctl start display-manager.service
