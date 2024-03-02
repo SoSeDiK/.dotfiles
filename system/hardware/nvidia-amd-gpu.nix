@@ -1,18 +1,14 @@
 { pkgs, config, lib, profileName, ... }:
 
 let
-  inherit (import ../../profiles/${profileName}/options.nix) gpuType;
-  # System's CPU (either "amd" or "intel")
-  platform = "amd";
-  # The IOMMU ids for GPU passthrough
-  vfioIds = [ "10de:1f95" "10de:10fa" ];
+  inherit (import ../../profiles/${profileName}/options.nix) cpuType gpuType;
 in
 lib.mkIf ("${gpuType}" == "nvidia") {
   # Configure kernel options to make sure IOMMU & KVM support is on.
   # GPU kernel modules can be switched by scripts in ./hooks
   boot = {
     kernelModules = [
-      "kvm-${platform}"
+      "kvm-${cpuType}"
       "amdgpu"
 
       "nvidia"
@@ -21,7 +17,7 @@ lib.mkIf ("${gpuType}" == "nvidia") {
       "nvidia_uvm"
     ];
     kernelParams = [
-      "${platform}_iommu=on"
+      "${cpuType}_iommu=on"
       "iommu=pt"
       "kvm.ignore_msrs=1"
     ];

@@ -1,4 +1,8 @@
-{ config, pkgs, username, ... }:
+{ pkgs, config, profileName, ... }:
+
+let
+  inherit (import ../../../profiles/${profileName}/options.nix) username;
+in
 {
   environment.systemPackages = with pkgs; [
     distrobox

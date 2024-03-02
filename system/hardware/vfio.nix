@@ -1,9 +1,7 @@
 { pkgs, config, lib, profileName, ... }:
 
 let
-  inherit (import ../../profiles/${profileName}/options.nix) cpuType gpuType;
-  # The IOMMU ids for GPU passthrough
-  vfioIds = [ "10de:1f95" "10de:10fa" ];
+  inherit (import ../../profiles/${profileName}/options.nix) cpuType gpuType vfioIds;
 in
 lib.mkIf ("${gpuType}" == "amd") {
   # Configure kernel options to make sure IOMMU & KVM support is on.

@@ -54,7 +54,6 @@
           specialArgs = {
             profileName = "lappytoppy";
             inherit inputs;
-            inherit (import ./profiles/lappytoppy/options.nix) username; # TODO
             inherit nixos-hardware;
           };
           modules = [

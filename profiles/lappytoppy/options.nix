@@ -28,8 +28,9 @@ in
   sysExtraLocale = "uk_UA.UTF-8"; # Time/date/currency/etc. locale
 
   # System hardware
-  cpuType = "amd";
-  gpuType = "amd";
+  cpuType = "amd"; # System's CPU (either "amd" or "intel")
+  gpuType = "amd"; # System's GPU (either "amd" or "nvidia")
+  vfioIds = [ "10de:1f95" "10de:10fa" ]; # The IOMMU ids for GPU passthrough
 
   # Enable NTP
   ntp = true;
