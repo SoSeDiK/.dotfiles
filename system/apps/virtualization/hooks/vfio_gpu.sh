@@ -17,23 +17,32 @@ unload_module() {
     if lsmod | grep -q $module_name; then
         echo "Module $module_name is currently in use."
 
-        # Get PIDs and process names of processes using the module
-        local processes=$(lsof -n -c $module_name 2>/dev/null | awk '!/\/$/ && NR>1 {print $2, $1, $9}' | sort -u)
-
-        if [ -n "$processes" ]; then
-            echo "Processes using $module_name:"
-            echo "$processes"
-            
-            # Extract PIDs for killing processes
-            local pids=$(echo "$processes" | awk '{print $1}')
-
-            # Kill the processes
+        # Get PIDs of processes using the module
+        pids=$(fuser -v /dev/$module_name[0-9]* | awk '{print $0}')
+        if [ -n "$pids" ]; then
             echo "Killing processes using $module_name..."
             echo "[ $pids ]"
             kill -9 $pids
         else
             echo "No processes found using $module_name."
         fi
+
+        # Get PIDs and process names of processes using the module
+        # local processes=$(lsof -n -c $module_name 2>/dev/null | awk '!/\/$/ && NR>1 {print $2, $1, $9}' | sort -u)
+        # if [ -n "$processes" ]; then
+        #     echo "Processes using $module_name:"
+        #     echo "$processes"
+            
+        #     # Extract PIDs for killing processes
+        #     local pids=$(echo "$processes" | awk '{print $1}')
+
+        #     # Kill the processes
+        #     echo "Killing processes using $module_name..."
+        #     echo "[ $pids ]"
+        #     #kill -9 $pids
+        # else
+        #     echo "No processes found using $module_name."
+        # fi
 
         # Unload the module
         echo "Unloading $module_name..."
@@ -43,7 +52,7 @@ unload_module() {
     fi
 }
 
-# Stop display manager to release GPU (seems to not work without this)
+# Stop display manager to release GPU
 # systemctl stop display-manager.service
 
 # Unload Nvidia drivers

@@ -9,6 +9,9 @@ set -x
 VIRSH_GPU_VIDEO=pci_0000_01_00_0
 VIRSH_GPU_AUDIO=pci_0000_01_00_1
 
+# Stop display manager to release GPU
+# systemctl stop display-manager.service
+
 # Unload VFIO-PCI Kernel Driver
 # Nothing is using secondary GPU, so it's safe to just load it
 modprobe -r vfio_pci
@@ -27,3 +30,6 @@ modprobe nvidia
 #modprobe nvidia_modeset
 modprobe nvidia_drm modeset=0
 modprobe nvidia_uvm
+
+# Start display manager on new GPU
+# systemctl start display-manager.service

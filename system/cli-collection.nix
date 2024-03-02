@@ -7,6 +7,7 @@
     btop
     pciutils
     lsof
+    psmisc # used by vfio to have command: fuser
     toybox
     wget
     curl
