@@ -2,6 +2,11 @@
 
 let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 {
+  # Profile-specific apps
+  environment.systemPackages = with pkgs; [
+    heroic
+  ];
+
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
 
