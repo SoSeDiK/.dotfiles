@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Script removes old US.CSS files, old copies new ones instead
+# Script removes old US.CSS files, and copies new ones instead
 # US.CSS source: https://github.com/aminomancer/uc.css.js
 inputDir=~/Downloads/uc.css.js-master
-outputDir=./chrome
+outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
 
 preserveScripts=()
 
@@ -27,6 +27,7 @@ extraScripts=(
     copyCurrentUrlHotkey.uc.js                # Copy Current URL Hotkey; Ctrl+Alt+C
     debugExtensionInToolbarContextMenu.uc.js  # Debug Extension in Toolbar Context Menu
     eyedropperButton.uc.js                    # Eyedropper Button
+    invertPDFButton.sys.mjs                   # Invert PDF Button
     fluentRevealTabs.uc.js                    # Fluent Reveal Tabs
     fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
     # enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
@@ -36,10 +37,10 @@ extraScripts=(
     openLinkInUnloadedTab.uc.js               # Open Link in Unloaded Tab (context menu item)
     privateTabs.uc.js                         # Private Tabs
     screenshotPageActionButton.uc.js          # Screenshot Page Action Button
-    searchSelectionShortcut.uc.js             # Search Selection Keyboard Shortcut
+    searchSelectionShortcut.sys.mjs             # Search Selection Keyboard Shortcut
     tabContextMenuNavigation.uc.js            # Tab Context Menu Navigation
     tabThumbnailTooltip.uc.js                 # Tab Thumbnail Tooltip
-    tabTooltipNavButtons.uc.js                # Tab Tooltip Navigation Buttons
+    # tabTooltipNavButtons.uc.js                # Tab Tooltip Navigation Buttons
     toggleMenubarHotkey.uc.js                 # Toggle Menubar Hotkey
     trackingProtectionMiddleClickToggle.uc.js # Tracking Protection Middle Click Toggle
     animateContextMenus.uc.js                 # Animate Context Menus
@@ -104,7 +105,7 @@ fi
 
 # Copy required JS files
 files=(
-    extensionStylesheetLoader.uc.js                     # Extension Stylesheet Loader
+    extensionStylesheetLoader.sys.mjs                     # Extension Stylesheet Loader
     findbarMods.uc.js                                   # Findbar Mods
     fixTitlebarTooltips.uc.js                           # Fix Titlebar Button Tooltips
     floatingSidebarResizer.uc.js                        # Floating Sidebar Resizer

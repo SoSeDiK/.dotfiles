@@ -15,8 +15,7 @@
 }
 
 .urlbarView-no-wrap > span:not([title], [label]):empty,
-.urlbarView-url:not([title], [label]):empty,
-.urlbarView:not([actionoverride]) .urlbarView-row[type="switchtab"] > .urlbarView-row-inner > .urlbarView-url {
+.urlbarView-url:not([title], [label]):empty {
   display: none;
 }
 
@@ -454,9 +453,9 @@ by underlining them (requires urlbarMods.uc.js) */
 
 .urlbarView-row-inner,
 .urlbarView-no-wrap {
-  display: flex;
+  display: inline-flex;
   flex-wrap: nowrap;
-  align-items: end;
+  align-items: center !important;
   justify-content: start;
   column-gap: calc(var(--urlbar-icon-padding) + 2px);
 }
@@ -627,7 +626,7 @@ by underlining them (requires urlbarMods.uc.js) */
 }
 
 .urlbarView-row[type="switchtab"][selected] .urlbarView-title strong {
-  color: var(--lwt-toolbar-field-color);
+  color: var(--toolbar-field-color);
 }
 
 .urlbarView-row[has-action] .urlbarView-title[isurl] strong,
@@ -637,7 +636,7 @@ by underlining them (requires urlbarMods.uc.js) */
 .urlbarView-row .urlbarView-tag strong {
   font-weight: var(--urlbar-result-strong-font-weight, 500) !important;
   font-style: normal !important;
-  color: var(--lwt-toolbar-field-color);
+  color: var(--toolbar-field-color);
 }
 
 .urlbarView-row[rich-suggestion] > .urlbarView-row-inner > .urlbarView-row-body > .urlbarView-row-body-description,
@@ -659,7 +658,7 @@ by underlining them (requires urlbarMods.uc.js) */
 
 .urlbarView-row[rich-suggestion][selected] > .urlbarView-row-inner > .urlbarView-row-body .urlbarView-action,
 .urlbarView-row[sponsored] > .urlbarView-row-inner[selected] > .urlbarView-no-wrap > .urlbarView-action {
-  color: var(--lwt-toolbar-field-color) !important;
+  color: var(--toolbar-field-color) !important;
   opacity: 1 !important;
 }
 
