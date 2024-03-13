@@ -33,13 +33,22 @@ let
 in
 {
   home.packages = with pkgs; [
-    firefox-base
+    # firefox-base
+    (firefox.override {
+      extraPrefsFiles = [
+        (builtins.fetchurl {
+          url = "https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/master/program/config.js";
+          sha256 = "1mx679fbc4d9x4bnqajqx5a95y1lfasvf90pbqkh9sm3ch945p40";
+        })
+      ];
+    })
   ];
-  programs.firefox = {
-    enable = true;
-    # package = firefox-nightly;
-    package = inputs.firefox-nightly2.packages.${pkgs.system}.firefox-nightly-bin;
-  };
+  # programs.firefox = {
+  #   enable = false;
+  #   package = firefox-base;
+  #   # package = firefox-nightly;
+  #   #package = inputs.firefox-nightly2.packages.${pkgs.system}.firefox-nightly-bin;
+  # };
 
   nixpkgs.overlays = [
     # (final: prev: {

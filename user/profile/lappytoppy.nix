@@ -9,6 +9,10 @@ let
       rev = "e28780562bdf8bcb2867cca7f79b2ed398130eb9";
       hash = "sha256-VvrYOh/cvWxDx9dghZV5dcOrfMxjVCzIGhVPm9d7P2g=";
     };
+    buildInputs = oldAttrs.buildInputs ++ [
+      # pkgs.wayland-scanner
+      pkgs.wayland-utils
+    ];
   });
 in
 {
@@ -40,13 +44,13 @@ in
     # Chromium brower of choice
     microsoft-edge
     # Misc
-    #linux-wallpaperengine # requires insecure freeimage-unstable-2021-11-01
+    linux-wallpaperengine # requires insecure freeimage-unstable-2021-11-01
     # Fun
     cmatrix # Matrix in terminal
     cava # Audio visualizer in terminal
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    #"freeimage-unstable-2021-11-01" # linux-wallpaperengine
+    "freeimage-unstable-2021-11-01" # linux-wallpaperengine
   ];
 }

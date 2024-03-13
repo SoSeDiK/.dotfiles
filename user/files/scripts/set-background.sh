@@ -25,4 +25,5 @@ screenshot_dest=~/.cache/wallpaper_dump.png
 pkill -f linux-wallpaperengine
 
 # --screen-root doesn't work; workaround via hyprwinwrap is used instead
+# linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id --screen-root eDP-1
 linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id & # --screen-root eDP-1
