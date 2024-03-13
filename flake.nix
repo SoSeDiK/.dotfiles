@@ -18,10 +18,8 @@
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
     # Firefox Nightly
-    firefox-nightly1.url = "github:calbrecht/f4s-firefox-nightly";
-    firefox-nightly1.inputs.nixpkgs.follows = "nixpkgs";
-    firefox-nightly2.url = "github:nix-community/flake-firefox-nightly";
-    firefox-nightly2.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+    firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland";
