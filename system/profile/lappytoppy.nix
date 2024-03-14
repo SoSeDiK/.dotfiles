@@ -5,32 +5,9 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
   # Profile-specific apps
   environment.systemPackages = with pkgs; [
     heroic
-    warp-terminal
+    #warp-terminal
     scrcpy
-    # (stdenv.mkDerivation {
-    #   name = "firefoxWithAutoconfig";
-    #   src = inputs.firefox-nightly2.packages.${pkgs.system}.firefox-nightly-bin; # if you specified the package a different way, replace it here
-    #   buildPhase = ''
-    #     mkdir $out
-    #     cp -r * $out/
-    #     firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-    #     echo 'pref("general.config.filename", "mozilla.cfg");' >> "$firefoxDir/defaults/pref/autoconfig.js"
-    #     echo 'pref("general.config.obscure_value", 0);' >> "$firefoxDir/defaults/pref/autoconfig.js"
-    #     cp ${builtins.fetchurl {  
-    #       url = "https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/master/program/config.js";
-    #       sha256 = "1mx679fbc4d9x4bnqajqx5a95y1lfasvf90pbqkh9sm3ch945p40";
-    #     }} $firefoxDir/mozilla.cfg;
-    #   '';
-    # })
   ];
-
-  # programs.firefox = {
-  #   enable = true;
-  #   autoConfig = builtins.readFile (builtins.fetchurl {
-  #     url = "https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/master/program/config.js";
-  #     sha256 = "1mx679fbc4d9x4bnqajqx5a95y1lfasvf90pbqkh9sm3ch945p40";
-  #   });
-  # };
 
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
@@ -52,7 +29,7 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
       # });
       # config = '' config /home/sosedik/Downloads/srv0.zaborona-help_maxroutes.ovpn '';
       updateResolvConf = true;
-      autoStart = true;
+      autoStart = false;
     };
   };
 

@@ -8,18 +8,16 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-colors.url = "github:misterio77/nix-colors";
     impermanence.url = "github:nix-community/impermanence";
 
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
     # Firefox Nightly
-    firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
-    firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
+    firefox-nightly = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland";
@@ -27,10 +25,11 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-    split-monitor-workspaces = {
-      url = "github:bivsk/split-monitor-workspaces/bivsk";
-      inputs.hyprland.follows = "hyprland";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    shadower.url = "github:n3oney/shadower";
 
     ags.url = "github:Aylur/ags";
   };

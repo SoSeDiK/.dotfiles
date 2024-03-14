@@ -21,9 +21,9 @@ echo "Rebuilding Home Manager…"
 
 # Fancy nh way
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh home switch --nom --configuration "$hostname" --update
+  nh home switch --configuration "$hostname" --update
 else
-  nh home switch --nom --configuration "$hostname"
+  nh home switch --configuration "$hostname"
 fi
 
 popd

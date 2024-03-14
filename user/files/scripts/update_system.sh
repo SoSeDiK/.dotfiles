@@ -13,9 +13,9 @@ echo "Rebuilding NixOS System…"
 
 # Fancy nh way
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh os switch --nom --update
+  nh os switch --update
 else
-  nh os switch --nom
+  nh os switch
 fi
 
 popd

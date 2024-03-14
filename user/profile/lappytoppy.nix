@@ -24,7 +24,7 @@ in
     xfce.thunar
     xfce.thunar-archive-plugin
     direnv
-    gimp-with-plugins
+    gimp #gimp-with-plugins
     obs-studio
     libreoffice-qt
     # Utils
