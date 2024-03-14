@@ -6,10 +6,6 @@ outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
 
 preserveScripts=()
 
-# Symlink to chrome extras
-parentOutputDir=$(readlink -f "$outputDir"/..)
-ln -sf $parentOutputDir/chrome_extras $outputDir/chrome_extras
-
 # Any extra scripts wanted from JS folder
 # Note: extra scripts have to be removed manually upon uninstalaling!
 extraScripts=(
@@ -71,9 +67,12 @@ fi
 
 # Just in case
 mkdir -p $outputDir
+# Remove all old files and directories
+rm -rf "$outputDir"/*
 
-rm -rf $outputDir/.ExtensionStylesheetLoader
-rm -rf $outputDir/.SearchSelectionShortcut
+# Symlink to chrome extras
+parentOutputDir=$(readlink -f "$outputDir"/..)
+ln -sf $parentOutputDir/chrome_extras $outputDir/chrome_extras
 
 # Copy required folders
 files=("CSS" "resources" "utils")
@@ -82,26 +81,24 @@ for file in "${files[@]}"; do
     cp -r "${inputDir}/${file}" "${outputDir}"
 done
 
-# Copy required files
-files=(uc-app-menu.css uc-bookmarks.css uc-context-menu-icons.css uc-context-menus.css uc-ctrl-tab.css uc-extensions.css uc-findbar.css uc-fullscreen.css uc-globals.css uc-misc.css uc-navbar.css uc-panels.css uc-popups.css uc-search-mode-icons.css uc-search-one-offs.css uc-sidebar.css uc-tabs-bar.css uc-tabs.css uc-unified-extensions.css uc-urlbar.css uc-urlbar-results.css uc-variables.css userChrome.ag.css userChrome.au.css userChrome.css userContent.css)
-for file in "${files[@]}"; do
-    rm -f "${outputDir}/${file}"
-    cp "${inputDir}/${file}" "${outputDir}"
-done
+# Copy .css files
+cp "$inputDir"/*.css "$outputDir"
 
 # Write custom custom-chrome.css
-if [ ! -e "$outputDir/custom-chrome.css" ]; then
-    echo "@import url(chrome_extras/custom-chrome.css);" > "$outputDir/custom-chrome.css"
-fi
+echo -e "@import url(chrome_extras/custom-chrome.css);\n" | cat - "$outputDir/custom-chrome.css" > temp && mv temp "$outputDir/custom-chrome.css"
+# Write custom custom-content.css
+echo -e "@import url(../../../chrome_extras/custom-content.css);\n" | cat - "$outputDir/resources/in-content/custom-content.css" > temp && mv temp "$outputDir/resources/in-content/custom-content.css"
 
-# Remove old scripts
-if [ -d "$outputDir/JS" ]; then
-    for file in "$outputDir/JS"/*; do
-        if [[ ! " ${preserveScripts[@]} " =~ " $file " ]]; then
-            rm -f $file
-        fi
-    done
-fi
+# Comment out some of the css variables to support Adaptive Tab Bar Colour
+replacements=(
+    "--lwt-"
+    "--toolbar-color"
+    "--toolbar-bgcolor"
+)
+for pattern in "${replacements[@]}"; do
+    sed -i "s/\(.*${pattern}.*;\)/\/\* \1 \*\//g" "$outputDir/uc-variables.css"
+done
+
 
 # Copy required JS files
 files=(
