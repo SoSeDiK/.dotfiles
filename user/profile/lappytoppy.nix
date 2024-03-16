@@ -38,6 +38,7 @@ in
     # Gaming
     cartridges # Game launcher
     prismlauncher # Minecraft launcher
+    r2modman # Lethal Company mod manager
     # Social
     telegram-desktop
     whatsapp-for-linux

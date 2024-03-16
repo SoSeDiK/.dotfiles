@@ -10,9 +10,8 @@ List of things to do:
 
 - Browsing
 
-  - Firefox Nightly..........
   - Better Firefox vertical tabs layout
-  - Find a way to make per-workspace bookmarks
+  - Find a way to make per-workspace bookmarks and pinned tabs
 
 - Usability
 

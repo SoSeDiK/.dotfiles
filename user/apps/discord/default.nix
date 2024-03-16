@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./krisp.nix   # https://github.com/NixOS/nixpkgs/issues/195512
+    ./krisp.nix # https://github.com/NixOS/nixpkgs/issues/195512
   ];
 
   programs.discord = {
