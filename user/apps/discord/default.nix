@@ -5,8 +5,12 @@
     ./krisp.nix # https://github.com/NixOS/nixpkgs/issues/195512
   ];
 
+  home.packages = with pkgs; [
+    vesktop
+  ];
+
   programs.discord = {
-    enable = true;
-    wrapDiscord = true;
+    enable = false;
+    wrapDiscord = false;
   };
 }
