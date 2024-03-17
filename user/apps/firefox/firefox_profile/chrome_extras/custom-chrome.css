@@ -8,27 +8,3 @@
 :root[vertical-tabs] #TabsToolbar {
   /* display: none; */
 }
-
-@media (prefers-color-scheme: dark) { :root {
-  /* --ui-secondary-bg: Canvas !important;
-  --uc-toolbar-bgcolor: Canvas !important; */
-}}
-@media (prefers-color-scheme: light) { :root {
-  /* --ui-secondary-bg: Canvas !important;
-  --uc-toolbar-bgcolor: Canvas !important; */
-}}
-
-/* https://github.com/easonwong-de/Adaptive-Tab-Bar-Colour */
-#sidebar-box *,
-#urlbar-background,
-#navigator-toolbox {
-  transition: background-color .5s cubic-bezier(0, 0, 0, 1);
-}
-.tab-background {
-  transition: background-color .5s cubic-bezier(0, 0, 0, 1);
-  box-shadow: none !important;
-  background-image: none !important;
-}
-.tab-background[selected] {
-  background-color: var(--tab-selected-bgcolor) !important;
-}

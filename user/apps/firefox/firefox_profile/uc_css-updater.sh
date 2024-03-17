@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Script removes old US.CSS files, and copies new ones instead
 # US.CSS source: https://github.com/aminomancer/uc.css.js
-inputDir=~/Downloads/uc.css.js-master
 outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
 
 preserveScripts=()
@@ -59,6 +58,15 @@ extraScripts=(
 # Concise Update Banner Labels
 # Backspace Panel Navigation
 
+# Download latest uc.css.js
+parentOutputDir=$(readlink -f "$outputDir"/..)
+pushd $parentOutputDir
+rm -f master.zip
+rm -rf uc.css.js-master
+curl -LO https://github.com/aminomancer/uc.css.js/archive/refs/heads/master.zip
+unzip master.zip
+inputDir=./uc.css.js-master
+
 # Check if source folder exists
 if [ ! -d "$inputDir" ]; then
     echo "Error: Directory '$inputDir' does not exist. Exiting."
@@ -71,7 +79,6 @@ mkdir -p $outputDir
 rm -rf "$outputDir"/*
 
 # Symlink to chrome extras
-parentOutputDir=$(readlink -f "$outputDir"/..)
 ln -sf $parentOutputDir/chrome_extras $outputDir/chrome_extras
 
 # Copy required folders
@@ -89,15 +96,15 @@ echo -e "@import url(chrome_extras/custom-chrome.css);\n" | cat - "$outputDir/cu
 # Write custom custom-content.css
 echo -e "@import url(../../../chrome_extras/custom-content.css);\n" | cat - "$outputDir/resources/in-content/custom-content.css" > temp && mv temp "$outputDir/resources/in-content/custom-content.css"
 
-# Comment out some of the css variables to support Adaptive Tab Bar Colour
-replacements=(
-    "--lwt-"
-    "--toolbar-color"
-    "--toolbar-bgcolor"
-)
-for pattern in "${replacements[@]}"; do
-    sed -i "s/\(.*${pattern}.*;\)/\/\* \1 \*\//g" "$outputDir/uc-variables.css"
-done
+# # Commenting out some of the css variables
+# replacements=(
+#     "--lwt-"
+#     "--toolbar-color"
+#     "--toolbar-bgcolor"
+# )
+# for pattern in "${replacements[@]}"; do
+#     sed -i "s/\(.*${pattern}.*;\)/\/\* \1 \*\//g" "$outputDir/uc-variables.css"
+# done
 
 
 # Copy required JS files
@@ -139,3 +146,9 @@ files=("${extraScripts[@]}")
 for file in "${files[@]}"; do
     cp "${inputDir}/JS/${file}" "${outputDir}/JS"
 done
+
+# Remove leftover files
+rm -f master.zip
+rm -rf uc.css.js-master
+
+popd
