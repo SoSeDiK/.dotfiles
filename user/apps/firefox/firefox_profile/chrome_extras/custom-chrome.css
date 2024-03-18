@@ -6,5 +6,5 @@
 }
 
 :root[vertical-tabs] #TabsToolbar {
-  /* display: none; */
+  display: none;
 }
