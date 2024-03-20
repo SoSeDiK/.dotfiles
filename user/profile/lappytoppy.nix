@@ -5,12 +5,11 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "Almamu";
       repo = "linux-wallpaperengine";
-      # upstream lacks versioned releases
+      # Upstream lacks versioned releases
       rev = "e28780562bdf8bcb2867cca7f79b2ed398130eb9";
       hash = "sha256-VvrYOh/cvWxDx9dghZV5dcOrfMxjVCzIGhVPm9d7P2g=";
     };
     buildInputs = oldAttrs.buildInputs ++ [
-      # pkgs.wayland-scanner
       pkgs.wayland-utils
     ];
   });
@@ -40,6 +39,7 @@ in
     prismlauncher # Minecraft launcher
     r2modman # Lethal Company mod manager
     # Social
+    vesktop # Discord client
     telegram-desktop
     whatsapp-for-linux
     # Chromium brower of choice

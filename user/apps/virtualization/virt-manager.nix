@@ -2,20 +2,21 @@
 
 {
   home.packages = with pkgs; [
-#     libvirt
-#     virt-manager
-#     qemu
-#     qemu_kvm
-#     uefi-run
-#     lxc
+    # TODO
+    #     libvirt
+    #     virt-manager
+    #     qemu
+    #     qemu_kvm
+    #     uefi-run
+    #     lxc
     # swtpm
     # OVMFFull
 
-#     # Filesystems
-#     dosfstools
+    #     # Filesystems
+    #     dosfstools
   ];
 
-#   home.file.".config/libvirt/qemu.conf".text = ''
-# nvram = ["/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd"]
-#   '';
+  #   home.file.".config/libvirt/qemu.conf".text = ''
+  # nvram = ["/run/libvirt/nix-ovmf/OVMF_CODE.fd:/run/libvirt/nix-ovmf/OVMF_VARS.fd"]
+  #   '';
 }

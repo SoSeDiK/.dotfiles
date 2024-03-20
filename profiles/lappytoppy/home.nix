@@ -19,13 +19,12 @@ in
     (./. + "../../../user/profile/${profileName}.nix")
 
     # Apps needing extra settings
-    ../../user/apps/discord
     ../../user/apps/firefox
     ../../user/apps/codium.nix
     ../../user/apps/github-desktop.nix
     ../../user/apps/spotify.nix
 
-    ../../user/apps/virtualization/virtualization.nix # TODO
+    ../../user/apps/virtualization
   ];
 
   home.username = username;
