@@ -10,7 +10,7 @@ lib.mkIf (shell == "zsh") {
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     historySubstringSearch.enable = true;
     initExtra = ''
       zstyle ":completion:*" menu select

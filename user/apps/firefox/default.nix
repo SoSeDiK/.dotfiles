@@ -1,9 +1,9 @@
 { pkgs, config, inputs, profileName, ... }:
 
 let
-  inherit (import ../../../profiles/${profileName}/options.nix) homeDir flakeDir;
+  inherit (import ../../../profiles/${profileName}/options.nix) homeDir flakeDir username;
 
-  profile = "w2uqqpwc.default"; # «xxxxxxxx.profile_name» profile in ~/.mozilla/firefix/
+  defaultProfileName = username;
 
   # Firefox Nightly with https://github.com/MrOtherGuy/fx-autoconfig
   firefox-nightly = (
@@ -38,12 +38,29 @@ in
   programs.firefox = {
     enable = true;
     package = firefox-nightly;
+    profiles = {
+      # Default profile
+      "${defaultProfileName}" = {
+        id = 0;
+        name = defaultProfileName;
+        path = "${defaultProfileName}";
+        isDefault = true;
+      };
+      # Used by private browser overlay
+      private = {
+        id = 1;
+        name = "private";
+        path = "private";
+      };
+    };
   };
 
   # Symlink userChrome profile settings
-  home.file."${homeDir}/.mozilla/firefox/${profile}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/${defaultProfileName}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/private/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   # Symlink user.js settings
-  xdg.configFile."${homeDir}/.mozilla/firefox/${profile}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/${defaultProfileName}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/private/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
 
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {
@@ -55,7 +72,7 @@ in
   };
 
   home.sessionVariables = {
-    BROWSER = "firefox";
-    DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+    BROWSER = "firefox-nightly";
+    DEFAULT_BROWSER = "${firefox-nightly}/bin/firefox";
   };
 }
