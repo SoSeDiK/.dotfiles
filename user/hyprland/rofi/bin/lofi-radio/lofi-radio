@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+# Import Current Theme
+DIR="$HOME/.dotfiles/user/hyprland/rofi"
+THEME="simple"
+RASI="$DIR/themes/$THEME/radio.rasi"
+RADIO_LOGOS="$DIR/bin/lofi-radio"
+
+# Radio command
+command="rofi -dmenu -i \
+      -theme ${RASI} \
+      -show-icons \
+      -hover-select -me-select-entry '' -me-accept-entry MousePrimary \
+      -matching fuzzy"
+
+
+notification() {
+  local name="$1"
+  local icon="${2:-}"
+  notify-send -i "$RADIO_LOGOS/$icon" "Lofi Stream" "Now Playing: $name"
+}
+
+addRadio() {
+  local name="$1"
+  local icon="${2:-}"
+  local index=$((++i))
+  printf "%d. %s\0icon\x1f$RADIO_LOGOS/%s\n" "$index" "$name" "$icon"
+}
+
+menu() {
+  addRadio "Lofi Girl" "lofi-girl.jpg"
+  addRadio "Chillhop Radio" "chillhop-radio.jpg"
+  addRadio "Box Lofi" "box-lofi.jpg"
+  addRadio "The Bootleg Boy" "the-bootleg-boy.jpg"
+  addRadio "Radio Spinner" "radio-spinner.jpg"
+  addRadio "SmoothChill" "smoothchill.jpg"
+  addRadio "Fasetya" "fasetya.jpg"
+}
+
+main() {
+  choice=$(menu | eval ${command} | cut -d. -f1)
+
+  case $choice in
+    1)
+      notification "Lofi Girl" "lofi-girl.jpg"
+      mpv "https://play.streamafrica.net/lofiradio"
+      return
+      ;;
+    2)
+      notification "Chillhop Radio" "chillhop-radio.jpg"
+      mpv "http://stream.zeno.fm/fyn8eh3h5f8uv"
+      return
+      ;;
+    3)
+      notification "Box Lofi" "box-lofi.jpg"
+      mpv "http://stream.zeno.fm/f3wvbbqmdg8uv"
+      return
+      ;;
+    4)
+      notification "The Bootleg Boy" "the-bootleg-boy.jpg"
+      mpv "http://stream.zeno.fm/0r0xa792kwzuv"
+      return
+      ;;
+    5)
+      notification "Radio Spinner" "radio-spinner.jpg"
+      mpv "https://live.radiospinner.com/lofi-hip-hop-64"
+      return
+      ;;
+    6)
+      notification "SmoothChill" "smoothchill.jpg"
+      mpv "https://media-ssl.musicradio.com/SmoothChill"
+      return
+      ;;
+    7)
+      notification "Fasetya" "fasetya.jpg"
+      mpv --shuffle --ytdl-raw-options="cookies=/tmp/cookies.txt" --vid=no "https://www.youtube.com/playlist\?list\=PLusoefCj_Mkn6dRQMc3MxUGFHLeYT4y49"
+      return
+      ;;
+  esac
+}
+
+pkill -f http && notify-send "Lofi Stream" "Lofi Radio stopped" || main

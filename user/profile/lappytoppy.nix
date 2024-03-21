@@ -49,8 +49,9 @@ in
     vesktop # Discord client
     telegram-desktop
     whatsapp-for-linux
-    # Chromium brower of choice
+    # Extra browsers
     microsoft-edge
+    tor-browser
     # Misc
     linux-wallpaperengine # requires insecure freeimage-unstable-2021-11-01
     # Fun

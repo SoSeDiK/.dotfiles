@@ -18,7 +18,6 @@ List of things to do:
 
   - Image viewer
   - Image editor
-  - Screenshots tooling
   - GUI Wi-Fi (or, well, Network) manager
 
 - System

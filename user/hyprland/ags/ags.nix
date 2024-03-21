@@ -15,6 +15,8 @@ let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
     wf-recorder
     wl-clipboard
     gtk3
+    # Utils
+    hyprpicker
   ];
 
   programs.ags = {
