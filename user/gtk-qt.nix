@@ -44,5 +44,4 @@
       package = pkgs.adwaita-qt;
     };
   };
-
 }

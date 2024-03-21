@@ -18,24 +18,26 @@ let
       pkgs.wayland-protocols
     ];
   });
+  imageViewer = "org.gnome.Loupe.desktop";
 in
 {
   # Apps
   home.packages = with pkgs; [
+    (callPackage ../apps/sigma.nix { }) # file manager
+    (callPackage ../apps/sigma-v2.nix { }) # file manager
     cinnamon.nemo-with-extensions # file manager
-    libsForQt5.ark
-    libsForQt5.dolphin
-    xfce.thunar
-    xfce.thunar-archive-plugin
+    libsForQt5.ark # archiver
     direnv
     gimp #gimp-with-plugins
-    obs-studio
     libreoffice-qt
     # Utils
     qalculate-qt
     mission-center # Windows-like process manager
+    fsearch # fast search
+    # Media
     vlc
     loupe # image viewer
+    obs-studio
     # Dev
     jetbrains.idea-community
     filezilla
@@ -58,6 +60,23 @@ in
 
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "nemo.desktop";
+    "image/png" = imageViewer;
+    "image/apng" = imageViewer;
+    "image/jpeg" = imageViewer; # + .jpg
+    "image/pjpeg" = imageViewer; # + .jpg
+    "image/jxl" = imageViewer;
+    "image/gif" = imageViewer;
+    "image/webp" = imageViewer;
+    "image/svg+xml" = imageViewer; # .svg
+    "image/x-icon" = imageViewer; # .ico
+    "image/avif" = imageViewer;
+    "image/bmp" = imageViewer;
+    "image/tiff" = imageViewer; # + .tif
+    "image/x-tiff" = imageViewer; # + .tif
+  };
+  xdg.mimeApps.associations.added = {
+    "application/x-portable-anymap" = imageViewer; # .pnm
+    "image/x-portable-anymap" = imageViewer; # .pnm
   };
 
   nixpkgs.config.permittedInsecurePackages = [
