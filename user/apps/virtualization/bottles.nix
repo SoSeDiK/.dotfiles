@@ -5,5 +5,4 @@
     bottles
     lutris
   ];
-
 }

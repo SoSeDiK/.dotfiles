@@ -45,5 +45,3 @@ List of things to do:
   - Using exit_hypr script to kill Hyprland
 - https://github.com/hyprwm/Hyprland/issues/4375
   - Using workspace_aware_switch script
-- https://github.com/NixOS/nixpkgs/issues/259239
-  - Coping

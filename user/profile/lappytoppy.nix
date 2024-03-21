@@ -56,6 +56,10 @@ in
     cava # Audio visualizer in terminal
   ];
 
+  xdg.mimeApps.defaultApplications = {
+    "inode/directory" = "nemo.desktop";
+  };
+
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01" # linux-wallpaperengine
   ];

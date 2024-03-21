@@ -33,6 +33,7 @@ let
       replaceSymlink "firefox-bin"
     '';
   });
+  desktopEntry = "firefox.desktop";
 in
 {
   programs.firefox = {
@@ -64,11 +65,17 @@ in
 
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {
-    "text/html" = "firefox.desktop";
-    "x-scheme-handler/http" = "firefox.desktop";
-    "x-scheme-handler/https" = "firefox.desktop";
-    "x-scheme-handler/about" = "firefox.desktop";
-    "x-scheme-handler/unknown" = "firefox.desktop";
+    "text/html" = desktopEntry;
+    "x-scheme-handler/http" = desktopEntry;
+    "x-scheme-handler/https" = desktopEntry;
+    "x-scheme-handler/about" = desktopEntry;
+    "x-scheme-handler/unknown" = desktopEntry;
+    "application/x-extension-htm" = desktopEntry;
+    "application/x-extension-html" = desktopEntry;
+    "application/x-extension-shtml" = desktopEntry;
+    "application/xhtml+xml" = desktopEntry;
+    "application/x-extension-xhtml" = desktopEntry;
+    "application/x-extension-xht" = desktopEntry;
   };
 
   home.sessionVariables = {

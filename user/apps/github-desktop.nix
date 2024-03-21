@@ -7,6 +7,6 @@
   ];
 
   xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/x-github-desktop-dev-auth" = "github-desktop";
+    "x-scheme-handler/x-github-desktop-dev-auth" = "github-desktop.desktop";
   };
 }
