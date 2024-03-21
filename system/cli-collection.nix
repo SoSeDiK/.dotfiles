@@ -9,6 +9,7 @@
     lsof
     psmisc # used by vfio to have command: fuser
     toybox
+    mpv
     wget
     curl
     git

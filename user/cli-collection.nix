@@ -6,7 +6,6 @@
     neofetch
     killall
     ffmpeg
-    diff-so-fancy
     nurl # fetch sha256 for packages
     jq # used by workspace_aware_switch
   ];

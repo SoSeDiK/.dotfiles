@@ -12,6 +12,7 @@ List of things to do:
 
   - Better Firefox vertical tabs layout
   - Find a way to make per-workspace bookmarks and pinned tabs
+    - Different profiles maybe?
 
 - Usability
 
@@ -23,14 +24,13 @@ List of things to do:
 - System
 
   - Simple wallpaper picker
-  - linux-wallpaperengine not working
+    - Could bump some into rofi?
 
 - Misc
 
   - Lenovo not saving options due to read-only system
   - Find out why virt-manager started crashing in Wayland mode
     - Seems to be amdgpu only issue
-  - Fix screenshots folder
   - Fix github desktop error on startup
   - Telegram not playing some animations while in extra workspace?
     - Seems to be "fixed" by disabling power-saving mode in Telegram

@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  # Compile Wallpaper Engine with Wayland
   linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
     src = pkgs.fetchFromGitHub {
       owner = "Almamu";
@@ -9,8 +10,12 @@ let
       rev = "e28780562bdf8bcb2867cca7f79b2ed398130eb9";
       hash = "sha256-VvrYOh/cvWxDx9dghZV5dcOrfMxjVCzIGhVPm9d7P2g=";
     };
+    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+      pkgs.wayland-scanner
+    ];
     buildInputs = oldAttrs.buildInputs ++ [
-      pkgs.wayland-utils
+      pkgs.wayland
+      pkgs.wayland-protocols
     ];
   });
 in

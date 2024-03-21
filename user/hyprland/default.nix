@@ -9,7 +9,7 @@ in
     inputs.hyprland.homeManagerModules.default
 
     ./ags/ags.nix # task bar and many other things
-    ./rofi/rofi.nix # app/task launcher
+    ./rofi # app/task launcher
     ./cliphist/cliphist.nix # clipboard history
     ./emoji-picker/rofimoji.nix # emoji picker
     ./misc/monitors.nix # monitors managements

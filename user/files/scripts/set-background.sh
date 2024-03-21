@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Test IDs: 859663165 2985464274
+# Test IDs: 859663165 2985464274 2931446135
 
 # Check if the first argument is provided
 if [ -n "$1" ]; then
@@ -14,7 +14,7 @@ if [ -n "$1" ]; then
 else
     # Default background
     echo "No argument provided, using default wallpaper"
-    background_id=2931446135
+    background_id=2985464274
 fi
 
 assets_dir=~/Data/SteamLibrary/steamapps/common/wallpaper_engine/assets
@@ -24,6 +24,4 @@ screenshot_dest=~/.cache/wallpaper_dump.png
 # Kill old running instance
 pkill -f linux-wallpaperengine
 
-# --screen-root doesn't work; workaround via hyprwinwrap is used instead
-# linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id --screen-root eDP-1
-linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id & # --screen-root eDP-1
+linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id --screen-root eDP-1 &
