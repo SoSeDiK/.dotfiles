@@ -1,7 +1,7 @@
 { pkgs, config, gtkThemeFromScheme, ... }:
 
 let
-  cursorSize = 24;
+  # (!) Note: GDM's cursor is handled separately, and should be changed alongside!
   cursorName = "Bibata-Modern-Ice";
   hyprCursorPath = ./Bibata-Modern-Ice.tar.gz;
   cursorPackage = (pkgs.bibata-cursors).overrideAttrs (oldAttrs: {
@@ -9,6 +9,7 @@ let
       tar -xvf ${hyprCursorPath} -C $out/share/icons
     '';
   });
+  cursorSize = 24;
 in
 {
   home.pointerCursor = {
@@ -20,7 +21,9 @@ in
   };
 
   dconf.settings = {
-    "/org/gnome/desktop/interface" = { cursor-theme = cursorName; };
+    "org/gnome/desktop/interface" = {
+      cursor-theme = cursorName;
+    };
   };
 
   home.sessionVariables = {

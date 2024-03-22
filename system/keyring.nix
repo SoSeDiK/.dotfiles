@@ -4,6 +4,10 @@
   # Keeping passwords / sessions
   services.gnome.gnome-keyring.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    gnome.dconf-editor
+  ];
+
   # Needed for GNOME services outside of GNOME Desktop
   services.dbus.packages = [ pkgs.gcr ];
 
