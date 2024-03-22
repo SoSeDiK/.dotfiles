@@ -3,7 +3,6 @@ let
   name = "SoSeDiK";
   username = "sosedik";
   hostname = "lappytoppy";
-  homeDir = "/home/${username}";
 in
 {
   # User variables
@@ -15,8 +14,8 @@ in
   theme = "da-one-sea"; # "atelier-cave"; # https://github.com/tinted-theming/home
   shell = "zsh"; # bash/zsh
 
-  homeDir = "${homeDir}";
-  flakeDir = "${homeDir}/.dotfiles";
+  homeDir = "/home/${username}";
+  flakeDir = "/home/${username}/.dotfiles";
 
   # Git
   gitUsername = "${name}";
