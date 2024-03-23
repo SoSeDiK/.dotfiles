@@ -7,6 +7,9 @@ lib.mkIf (openrazer == true) {
     polychromatic # Front-end control
   ];
 
-  hardware.openrazer.enable = true;
-  hardware.openrazer.users = [ username ];
+  hardware.openrazer = {
+    enable = true;
+    users = [ username ];
+    mouseBatteryNotifier = false;
+  };
 }

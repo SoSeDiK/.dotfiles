@@ -73,7 +73,7 @@ main() {
       ;;
     7)
       notification "Fasetya" "fasetya.jpg"
-      mpv --shuffle --ytdl-raw-options="cookies=/tmp/cookies.txt" --vid=no "https://www.youtube.com/playlist\?list\=PLusoefCj_Mkn6dRQMc3MxUGFHLeYT4y49"
+      mpv --shuffle --ytdl-raw-options="cookies=/tmp/cookies.txt" --vid=no "https://www.youtube.com/playlist?list=PLusoefCj_Mkn6dRQMc3MxUGFHLeYT4y49"
       return
       ;;
   esac

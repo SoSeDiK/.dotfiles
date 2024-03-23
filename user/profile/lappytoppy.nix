@@ -45,6 +45,7 @@ in
     cartridges # Game launcher
     prismlauncher # Minecraft launcher
     r2modman # Lethal Company mod manager
+    plasma-workspace # Provides package for xembed-sni-proxy; required for WINE apps to display tray icon properly (e.g. Blish HUD)
     # Social
     vesktop # Discord client
     telegram-desktop
@@ -58,6 +59,9 @@ in
     cmatrix # Matrix in terminal
     cava # Audio visualizer in terminal
   ];
+
+  # Allows Blish HUD to run
+  services.xembed-sni-proxy.enable = true;
 
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "nemo.desktop";
