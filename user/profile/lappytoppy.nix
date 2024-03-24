@@ -28,14 +28,14 @@ in
     cinnamon.nemo-with-extensions # file manager
     libsForQt5.ark # archiver
     direnv
-    gimp #gimp-with-plugins
+    (gimp-with-plugins.override { plugins = with gimpPlugins; [ ]; })
     libreoffice-qt
     # Utils
     qalculate-qt
     mission-center # Windows-like process manager
     fsearch # fast search
     # Media
-    vlc
+    vlc # video player
     loupe # image viewer
     obs-studio
     # Dev
