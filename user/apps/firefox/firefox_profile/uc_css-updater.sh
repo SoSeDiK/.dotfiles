@@ -3,6 +3,9 @@
 # US.CSS source: https://github.com/aminomancer/uc.css.js
 outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
 
+# In test mode, there's no cleanup
+testMode=false
+
 preserveScripts=()
 
 # Any extra scripts wanted from JS folder
@@ -25,17 +28,17 @@ extraScripts=(
     invertPDFButton.sys.mjs                   # Invert PDF Button
     fluentRevealTabs.uc.js                    # Fluent Reveal Tabs
     fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
-    # enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
+    ## enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
     letCtrlWClosePinnedTabs.uc.js             # Let Ctrl+W Close Pinned Tabs
     openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs
-    # openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black
+    ## openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black
     openLinkInUnloadedTab.uc.js               # Open Link in Unloaded Tab (context menu item)
     privateTabs.uc.js                         # Private Tabs
     screenshotPageActionButton.uc.js          # Screenshot Page Action Button
     searchSelectionShortcut.sys.mjs             # Search Selection Keyboard Shortcut
     tabContextMenuNavigation.uc.js            # Tab Context Menu Navigation
     tabThumbnailTooltip.uc.js                 # Tab Thumbnail Tooltip
-    # tabTooltipNavButtons.uc.js                # Tab Tooltip Navigation Buttons
+    ## tabTooltipNavButtons.uc.js                # Tab Tooltip Navigation Buttons
     toggleMenubarHotkey.uc.js                 # Toggle Menubar Hotkey
     trackingProtectionMiddleClickToggle.uc.js # Tracking Protection Middle Click Toggle
     animateContextMenus.uc.js                 # Animate Context Menus
@@ -61,10 +64,10 @@ extraScripts=(
 # Download latest uc.css.js
 parentOutputDir=$(readlink -f "$outputDir"/..)
 pushd $parentOutputDir
-rm -f master.zip
-rm -rf uc.css.js-master
-curl -LO https://github.com/aminomancer/uc.css.js/archive/refs/heads/master.zip
-unzip master.zip
+if [ ! -d "uc.css.js-master" ]; then
+    curl -LO https://github.com/aminomancer/uc.css.js/archive/refs/heads/master.zip
+    unzip master.zip
+fi
 inputDir=./uc.css.js-master
 
 # Check if source folder exists
@@ -148,7 +151,9 @@ for file in "${files[@]}"; do
 done
 
 # Remove leftover files
-rm -f master.zip
-rm -rf uc.css.js-master
+if [ "$testMode" = false ]; then
+    rm -f master.zip
+    rm -rf uc.css.js-master
+fi
 
 popd

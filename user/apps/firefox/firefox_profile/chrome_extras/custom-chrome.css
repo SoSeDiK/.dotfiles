@@ -1,4 +1,5 @@
 
+
 /* us.css.js overrides */
 /* Custom find text count color */
 :root {
@@ -6,5 +7,5 @@
 }
 
 :root[vertical-tabs] #TabsToolbar {
-  display: none;
+  /* display: none; */
 }

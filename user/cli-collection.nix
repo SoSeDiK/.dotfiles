@@ -7,6 +7,12 @@
     killall
     ffmpeg
     nurl # fetch sha256 for packages
-    jq # used by workspace_aware_switch
   ];
+
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      mpris
+    ];
+  };
 }
