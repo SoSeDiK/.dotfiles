@@ -23,6 +23,9 @@ in
         cursor-theme = cursorName;
         show-battery-percentage = true;
       };
+      "org/gnome/desktop/peripherals/touchpad" = {
+        tap-to-click = true;
+      };
     };
   }];
   users.users.gdm.packages = with pkgs; [
