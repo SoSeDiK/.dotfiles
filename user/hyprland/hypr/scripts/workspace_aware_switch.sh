@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 SPECIAL=`hyprctl monitors -j | jq .[0][\"specialWorkspace\"][\"name\"]`
 
 SPECIAL=${SPECIAL//\"/}

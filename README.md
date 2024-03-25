@@ -34,11 +34,26 @@ List of things to do:
   - Applying themes on the fly
     - nwg-look?
 
+- Maybes
+  - https://github.com/JustTemmie/steam-presence
+    - Displaying custom apps in Vesktop
+  - https://github.com/GloriousEggroll/proton-ge-custom
+    - Auto packaging
+
 # Tracked issues (- issue \* workaround/note)
 
 - https://github.com/hyprwm/Hyprland/issues/3558
+  # Hyprland hangs on exit
   - Using exit_hypr script to kill Hyprland
 - https://github.com/hyprwm/Hyprland/issues/4375
+  # Switching workspace does not close special workspace
   - Using workspace_aware_switch script
 - https://gitlab.gnome.org/GNOME/file-roller/-/issues/4
+  # Archive manager doesn't support drag & drop
   - Waiting...
+- https://github.com/hyprwm/Hyprland/issues/2319
+  # Clipboard isn't synced with Steam/WINE apps
+  - Using xclip & script: wl-paste -t text -w sh -c 'v=$(cat); cmp -s <(xclip -selection clipboard -o) <<< "$v" || xclip -selection clipboard <<< "$v"'
+- https://github.com/Alexays/Waybar/issues/1127
+  # Wine system tray integration
+  - Using plasma-workspace's xembed-sni-proxy;
