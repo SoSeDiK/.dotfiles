@@ -12,6 +12,7 @@ in
     looking-glass-client
     freerdp
     virtiofsd
+    samba
   ];
 
   # Add a file for looking-glass to use later. This will allow for viewing the guest VM's screen in a
@@ -30,10 +31,15 @@ in
       "virbr0"
     ];
     qemu = {
+      package = pkgs.qemu_full;
       ovmf.enable = true;
       ovmf.packages = [ pkgs.OVMFFull.fd ];
       swtpm.enable = true;
-      #runAsRoot = false;
+      verbatimConfig = ''
+        security_default_confied = 0
+        seccomp_sandbox = 0
+        security_driver = "none"
+      '';
     };
     # TODO figure out how this works
     # hooks.qemu = {

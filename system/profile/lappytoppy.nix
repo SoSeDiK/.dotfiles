@@ -1,6 +1,6 @@
 { inputs, config, pkgs, profileName, ... }:
 
-let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
+let inherit (import ../../profiles/${profileName}/options.nix) homeDir username; in
 {
   # Profile-specific apps
   environment.systemPackages = with pkgs; [
@@ -34,13 +34,13 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
   };
 
   # Mount data disk
-  # fileSystems."${homeDir}/Data" = {
-  #   device = "/dev/sda1";
-  #   fsType = "ntfs-3g";
-  #   options = [
-  #     "rw"
-  #     "uid=1000"
-  #     "allow_other" # allow non-root access
-  #   ];
-  # };
+  fileSystems."${homeDir}/Data" = {
+    device = "/dev/sda2";
+    fsType = "ntfs-3g";
+    options = [
+      "rw"
+      "uid=1000"
+      "allow_other" # allow non-root access
+    ];
+  };
 }

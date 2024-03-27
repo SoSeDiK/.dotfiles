@@ -10,6 +10,7 @@
     jmtpfs # MTP mounting
     udisks
     gnome.gnome-disk-utility # GUI wrapper for udisks
+    gparted
 
     # extra disk tools
     ventoy-full

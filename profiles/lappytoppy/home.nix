@@ -20,7 +20,7 @@ in
 
     # Apps needing extra settings
     ../../user/apps/firefox
-    ../../user/apps/codium.nix
+    ../../user/apps/codium
     ../../user/apps/github-desktop.nix
     ../../user/apps/spotify.nix
 
