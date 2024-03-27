@@ -8,17 +8,17 @@ in
   # GPU kernel modules can be switched by scripts in ./hooks
   boot = {
     kernelModules = [
-      "vfio_pci"
-      "vfio"
-      "vfio_iommu_type1"
+      # "vfio_pci"
+      # "vfio"
+      # "vfio_iommu_type1"
 
       "kvm-${cpuType}"
       "amdgpu"
 
-      # "nvidia"
+      "nvidia"
       # "nvidia_modeset"
-      # "nvidia_drm"
-      # "nvidia_uvm"
+      "nvidia_drm modeset=0"
+      "nvidia_uvm"
     ];
     kernelParams = [
       "${cpuType}_iommu=on"
