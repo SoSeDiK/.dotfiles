@@ -57,3 +57,9 @@ List of things to do:
 - https://github.com/Alexays/Waybar/issues/1127
   # Wine system tray integration
   - Using plasma-workspace's xembed-sni-proxy;
+- https://github.com/microsoft/vscode/issues/187338
+  # VSCode fails identifying gnome-keyring
+  - Manually forcing it to use "gnome-libsecret" as password store
+- https://github.com/virt-manager/virt-manager/issues/156
+  # virt-manager does not support easy folder sharing
+  - Using samba server that auto starts & closes during VM workflow

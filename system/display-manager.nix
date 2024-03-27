@@ -26,6 +26,9 @@ in
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
       };
+      "org/gnome/desktop/peripherals/keyboard" = {
+        numlock-state = true;
+      };
     };
   }];
   users.users.gdm.packages = with pkgs; [

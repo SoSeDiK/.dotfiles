@@ -12,7 +12,7 @@ in
     looking-glass-client
     freerdp
     virtiofsd
-    samba
+    samba # used to share a folder to VM | \\10.0.2.4\qemu
   ];
 
   # Add a file for looking-glass to use later. This will allow for viewing the guest VM's screen in a

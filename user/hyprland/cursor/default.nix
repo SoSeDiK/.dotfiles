@@ -26,8 +26,8 @@ in
     };
   };
 
-  # home.sessionVariables = {
-  #   HYPRCURSOR_SIZE = cursorSize;
-  #   HYPRCURSOR_THEME = cursorName;
-  # };
+  home.sessionVariables = {
+    HYPRCURSOR_SIZE = cursorSize;
+    HYPRCURSOR_THEME = cursorName;
+  };
 }
