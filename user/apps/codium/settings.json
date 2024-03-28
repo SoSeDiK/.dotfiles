@@ -25,7 +25,7 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "One Dark Pro Darker",
   "cSpell.language": "en,uk,ru",
   "editor.fontFamily": "'FiraCode Nerd Font'",
   "editor.largeFileOptimizations": false

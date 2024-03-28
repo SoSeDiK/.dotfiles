@@ -8,9 +8,10 @@
     pciutils
     lsof
     psmisc # used by vfio to have command: fuser
-    toybox
+    coreutils-full
     bc # basic calculator
     jq # json parser
+    file
     wget
     curl
     git

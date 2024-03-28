@@ -34,11 +34,9 @@ in
   colorScheme = inputs.nix-colors.colorSchemes."${theme}";
 
   # Create XDG Dirs
-  xdg = {
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-    };
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
   };
 
   # Enable mime apps

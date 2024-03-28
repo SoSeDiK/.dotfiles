@@ -10,6 +10,12 @@ in
     extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       arrterian.nix-env-selector
+      ms-python.python
+      zhuangtongfa.material-theme
+      waderyan.gitblame
+      esbenp.prettier-vscode
+      streetsidesoftware.code-spell-checker # language packs are installed manually
+      ms-vscode.hexeditor
     ];
   };
 

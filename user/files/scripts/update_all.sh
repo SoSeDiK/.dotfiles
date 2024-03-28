@@ -22,6 +22,6 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-source ./update_commit.sh --update
+# source ./update_commit.sh --update
 
 popd

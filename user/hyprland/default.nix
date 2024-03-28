@@ -37,6 +37,13 @@ in
     gvfs
   ];
 
+  home.sessionVariables = {
+    GDK_BACKEND = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+  };
+
   # Generate some dynamic options
   home.file."${flakeDir}/user/hyprland/hypr/generated.conf".text = ''
     general {

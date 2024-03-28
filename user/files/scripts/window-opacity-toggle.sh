@@ -16,7 +16,12 @@ get_window_address() {
 calculate_alpha() {
     local current_alpha="$1"
     local increment="$2"
-    local new_alpha=$(awk -v current="$current_alpha" -v incr="$increment" 'BEGIN { new_alpha = current + incr; if (new_alpha < 0) { new_alpha = 0 } else if (new_alpha > 1) { new_alpha = 1 } printf "%.2f", new_alpha }')
+    # Check if increment is absolute or relative
+    if [[ "$increment" == *"+"* || "$increment" == *"-"* ]]; then
+        local new_alpha=$(awk -v current="$current_alpha" -v incr="$increment" 'BEGIN { new_alpha = current + incr; if (new_alpha < 0) { new_alpha = 0 } else if (new_alpha > 1) { new_alpha = 1 } printf "%.2f", new_alpha }')
+    else
+        local new_alpha=$(awk -v incr="$increment" 'BEGIN { if (incr < 0) { new_alpha = 0 } else if (incr > 1) { new_alpha = 1 } else { new_alpha = incr } printf "%.2f", new_alpha }')
+    fi
     echo "$new_alpha"
 }
 

@@ -1,7 +1,3 @@
-onfiguration {
-  show-icons: true;
-}
-
 textbox {
   vertical-align:   0.5;
   horizontal-align: 0.5;
@@ -23,11 +19,8 @@ element {
   orientation: vertical;
 }
 
-element-icon {
-  size: 96px;
-}
-
 element-text {
   vertical-align:   0.5;
   horizontal-align: 0.5;
+  font:            "FiraCode Nerd Font 24";
 }
