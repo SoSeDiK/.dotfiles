@@ -12,9 +12,13 @@ lib.mkIf (steam == true) {
   systemd.services.libvirtd = {
     preStart =
       ''
+        # Make sure ~/Games exists
         gamesDir=${homeDir}/Games
-        linkDir=$gamesDir/Steam
         mkdir -p $gamesDir
+        chown -R ${username}:users $gamesDir
+
+        # Create symlink for Steam games
+        linkDir=$gamesDir/Steam
         ln -sf ${homeDir}/.local/share/Steam/steamapps/common $linkDir
         chown -R ${username}:users $linkDir
       '';

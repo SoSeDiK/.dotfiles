@@ -12,4 +12,8 @@
   };
   # Enable ALSA sound
   sound.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    easyeffects
+  ];
 }

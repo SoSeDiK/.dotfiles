@@ -28,5 +28,12 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "cSpell.language": "en,uk,ru",
   "editor.fontFamily": "'FiraCode Nerd Font'",
-  "editor.largeFileOptimizations": false
+  "editor.largeFileOptimizations": false,
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": { "command": ["nixpkgs-fmt"] }
+    }
+  }
 }

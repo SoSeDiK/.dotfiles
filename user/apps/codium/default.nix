@@ -20,7 +20,8 @@ in
   };
 
   home.packages = with pkgs; [
-    nixpkgs-fmt # nix formatter for codium
+    nil # nix auto completion
+    nixpkgs-fmt # nix formatter
   ];
 
   home.file.".config/VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/codium/settings.json";

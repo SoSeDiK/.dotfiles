@@ -8,7 +8,6 @@ in
 {
   environment.systemPackages = with pkgs; [
     swtpm
-    OVMFFull
     looking-glass-client
     freerdp
     virtiofsd
@@ -31,9 +30,14 @@ in
       "virbr0"
     ];
     qemu = {
-      package = pkgs.qemu_full;
+      package = pkgs.qemu_kvm;
       ovmf.enable = true;
-      ovmf.packages = [ pkgs.OVMFFull.fd ];
+      ovmf.packages = [
+        (pkgs.OVMF.override {
+          secureBoot = true;
+          tpmSupport = true;
+        }).fd
+      ];
       swtpm.enable = true;
       verbatimConfig = ''
         security_default_confied = 0
