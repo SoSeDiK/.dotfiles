@@ -1,7 +1,12 @@
 { inputs, config, pkgs, profileName, ... }:
 
-let inherit (import ../../profiles/${profileName}/options.nix) homeDir username; in
+let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 {
+  # Profile-specific imports
+  imports = [
+    ../dev/jdk
+  ];
+
   # Profile-specific apps
   environment.systemPackages = with pkgs; [
     heroic

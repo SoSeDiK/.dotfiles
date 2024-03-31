@@ -1,10 +1,8 @@
 # Source: https://gist.github.com/robbins/dccf1238e971973a6a963b04c486c099
-{
-  lib,
-  stdenv,
-  fetchurl,
-  unzip,
-  p7zip
+{ lib
+, stdenv
+, fetchurl
+, p7zip
 }:
 
 stdenv.mkDerivation rec {

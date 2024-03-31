@@ -39,7 +39,7 @@ in
     loupe # image viewer
     obs-studio
     # Dev
-    jetbrains.idea-community
+    jetbrains-toolbox
     filezilla
     # Gaming
     cartridges # Game launcher
