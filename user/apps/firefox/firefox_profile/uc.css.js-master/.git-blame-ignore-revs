@@ -1,0 +1,16 @@
+# .git-blame-ignore-revs
+
+# Run this command to always ignore formatting commits in `git blame`
+# git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Formatting update
+1d4efe35538c71a7ea72b25e2c9f683e28918457
+
+# 3.1.8: formatting changes. see commit notes.
+093fe3a8d53ea742ea06e7ad5d4557c568ae7d71
+
+# Add update URLs to every script!
+cc9f1c508b37c03ec31d04d7cb195d8f05d41f44
+
+# style: update eslint and prettier config, format
+4b88c640699608e999cb48f0629202100972558f

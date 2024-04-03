@@ -1,7 +1,7 @@
 { pkgs, config, inputs, profileName, ... }:
 
 let
-  inherit (import ../../../profiles/${profileName}/options.nix) homeDir flakeDir username;
+  inherit (import ../../../profiles/${profileName}/options.nix) flakeDir username;
 
   defaultProfileName = username;
 
@@ -39,6 +39,7 @@ in
   programs.firefox = {
     enable = true;
     package = firefox-nightly;
+    nativeMessagingHosts = [ (pkgs.callPackage ./firefox-profile-switcher-connector.nix { }) ];
     profiles = {
       # Default profile
       "${defaultProfileName}" = {
@@ -53,15 +54,23 @@ in
         name = "private";
         path = "private";
       };
+      # Separate instance for games
+      gaming = {
+        id = 2;
+        name = "gaming";
+        path = "gaming";
+      };
     };
   };
 
   # Symlink userChrome profile settings
   home.file.".mozilla/firefox/${defaultProfileName}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   home.file.".mozilla/firefox/private/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/gaming/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   # Symlink user.js settings
   home.file.".mozilla/firefox/${defaultProfileName}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
   home.file.".mozilla/firefox/private/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/gaming/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
 
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {
@@ -78,8 +87,15 @@ in
     "application/x-extension-xht" = desktopEntry;
   };
 
+  # Hint Firefox Profile Switcher the binary location
+  xdg.configFile = {
+    "firefoxprofileswitcher/config.json".text = ''
+      {"browser_binary": "${firefox-nightly}/bin/firefox-nightly"}
+    '';
+  };
+
   home.sessionVariables = {
     BROWSER = "firefox-nightly";
-    DEFAULT_BROWSER = "${firefox-nightly}/bin/firefox";
+    DEFAULT_BROWSER = "${firefox-nightly}/bin/firefox-nightly";
   };
 }

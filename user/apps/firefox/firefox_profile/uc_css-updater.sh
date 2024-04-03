@@ -4,7 +4,7 @@
 outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
 
 # In test mode, there's no cleanup
-testMode=false
+testMode=true
 
 preserveScripts=()
 
@@ -81,9 +81,6 @@ mkdir -p $outputDir
 # Remove all old files and directories
 rm -rf "$outputDir"/*
 
-# Symlink to chrome extras
-ln -sf $parentOutputDir/chrome_extras $outputDir/chrome_extras
-
 # Copy required folders
 files=("CSS" "resources" "utils")
 for file in "${files[@]}"; do
@@ -94,10 +91,14 @@ done
 # Copy .css files
 cp "$inputDir"/*.css "$outputDir"
 
+# Symlink to chrome extras
+ln -sf $parentOutputDir/chrome_extras $outputDir/chrome_extras
+ln -sf $parentOutputDir/chrome_extras $outputDir/resources/in-content/chrome_extras
+
 # Write custom custom-chrome.css
 echo -e "@import url(chrome_extras/custom-chrome.css);\n" | cat - "$outputDir/custom-chrome.css" > temp && mv temp "$outputDir/custom-chrome.css"
 # Write custom custom-content.css
-echo -e "@import url(../../../chrome_extras/custom-content.css);\n" | cat - "$outputDir/resources/in-content/custom-content.css" > temp && mv temp "$outputDir/resources/in-content/custom-content.css"
+echo -e "@import url(chrome_extras/custom-content.css);\n" | cat - "$outputDir/resources/in-content/custom-content.css" > temp && mv temp "$outputDir/resources/in-content/custom-content.css"
 
 # # Commenting out some of the css variables
 # replacements=(
@@ -118,7 +119,7 @@ files=(
     floatingSidebarResizer.uc.js                        # Floating Sidebar Resizer
     autoHideNavbarSupport.uc.js                         # Auto-hide Navbar Support
     hideTrackingProtectionIconOnCustomNewTabPage.uc.js  # Hide Tracking Protection Icon on Custom New Tab Page
-    navbarToolbarButtonSlider.uc.js                     # Navbar Toolbar Button Slider
+    # navbarToolbarButtonSlider.uc.js                     # Navbar Toolbar Button Slider
     oneClickOneOffSearchButtons.uc.js                   # One-click One-off Search Buttons
     removeSearchEngineAliasFormatting.uc.js             # Remove Search Engine Alias Formatting
     restoreTabSoundButton.uc.js                         # Restore pre-Proton Tab Sound Button
@@ -136,7 +137,7 @@ files=(
     urlbarNotificationIconsOpenStatus.uc.js             # Add [open] Status to Urlbar Notification Icons
     autocompletePopupStyler.uc.js                       # Autocomplete Popup Styler
     userChromeAgentAuthorSheetLoader.uc.js              # Agent/Author Sheet Loader
-    userChromeDevtoolsSheetLoader.uc.js                 # Browser Toolbox Stylesheet Loader
+    userChromeDevtoolsSheetLoader.uc.js                 # Browser Toolbox Stylesheet Loader # TODO currently is not integrated
     osDetector.uc.js                                    # OS Detector
 )
 mkdir -p $outputDir/JS

@@ -13,6 +13,7 @@ List of things to do:
   - Better Firefox vertical tabs layout
   - Find a way to make per-workspace bookmarks and pinned tabs
     - Different profiles maybe?
+  - Declarative extensions
 
 - Usability
 
@@ -35,10 +36,13 @@ List of things to do:
     - nwg-look?
 
 - Maybes
+
   - https://github.com/JustTemmie/steam-presence
     - Displaying custom apps in Vesktop
+
+- Things I did manually
   - https://github.com/GloriousEggroll/proton-ge-custom
-    - Auto packaging
+  - GW 2: Blish HUD & ArcDPS & Wine-Discord-Bridge
 
 # Tracked issues (- issue \* workaround/note)
 

@@ -479,11 +479,11 @@ user_pref("apz.gtk.pangesture.pixel_delta_mode_multiplier", 10);
 // Only slide right side of toolbar
 user_pref("userChrome.toolbarSlider.wrapButtonsRelativeToUrlbar", "after"); // after/before/all
 // Allow up to X icons for a slider
-user_pref("userChrome.toolbarSlider.width", 30);
+user_pref("userChrome.toolbarSlider.width", 50);
 // Exclude some items from the slider
 user_pref(
   "userChrome.toolbarSlider.excludeButtons",
-  '["downloads-button", "simple-tab-groups_drive4ik-browser-action"]'
+  '["downloads-button", "simple-tab-groups_drive4ik-browser-action", "_446900e4-71c2-419f-a6a7-df9c091e268b_-BAP", "multithreaded-download-manager_qw_linux-2g64_local-BAP", "ublock0_raymondhill_net-BAP", "addon_darkreader_org-BAP", "_8d1582b2-ff2a-42e0-ba40-42f4ebfe921b_-BAP"]' // Downloads, Simple Tab Groups, Bitwarder, Multithreaded Download Manager, uBlock Origin, Dark Reader, Notifier for GitHub
 );
 // Exclude flexible space from slider
 user_pref("userChrome.toolbarSlider.excludeFlexibleSpace", true);

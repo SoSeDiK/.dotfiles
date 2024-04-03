@@ -1,4 +1,4 @@
-@import url(../../../chrome_extras/custom-content.css);
+@import url(chrome_extras/custom-content.css);
 
 /* a stylesheet for custom user rules. this way you can customize the theme,
 and when you update you can preserve your modifications by just updating everything except this file. */
