@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# Import Current Theme
+DIR="$HOME/.dotfiles/user/hyprland/rofi"
+THEME="simple"
+RASI="$DIR/themes/$THEME/firefox.rasi"
+
+# Radio command
+command="rofi -dmenu -i \
+      -theme ${RASI} \
+      -hover-select -me-select-entry '' -me-accept-entry MousePrimary \
+      -matching fuzzy"
+
+
+addProfile() {
+  printf "$1\n"
+}
+
+menu() {
+  addProfile "󰄛 default"
+  addProfile "󱊈 work"
+  addProfile " private"
+  addProfile "󱜆 movies"
+  addProfile "󰊗 gaming"
+}
+
+choice=$(menu | eval ${command} | cut -d. -f1)
+
+# Split by the first space
+choice="${choice#* }"
+
+case "$choice" in
+    "")
+        exit 1
+        ;;
+    "private")
+        firefox-nightly -new-instance -P $choice --name firefox-nightly-$choice --private-window
+        ;;
+    *)
+        firefox-nightly -new-instance -P $choice --name firefox-nightly-$choice
+        ;;
+esac

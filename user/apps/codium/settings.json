@@ -35,5 +35,6 @@
     "nil": {
       "formatting": { "command": ["nixpkgs-fmt"] }
     }
-  }
+  },
+  "editor.mouseWheelZoom": true
 }

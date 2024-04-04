@@ -41,6 +41,8 @@ in
           # This is sometimes needed for ddc/ci support, see
           # https://www.ddcutil.com/nvidia/
           "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100"
+          # Preserve video memory after suspend
+          "NVreg_PreserveVideoMemoryAllocations=1"
         ];
   };
 
@@ -68,7 +70,8 @@ in
     # suspend, due to firmware bugs. Aren't NVIDIA great?
     powerManagement.enable = true;
     # Enable open source NVIDIA kernel module
-    open = true;
+    # TODO: actually, disable for now: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/472
+    open = false;
   };
 
   environment.variables = {
