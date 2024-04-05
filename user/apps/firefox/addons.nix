@@ -1,0 +1,3 @@
+{ buildFirefoxXpiAddon, lib }:
+
+{ }

@@ -54,7 +54,7 @@ in
     microsoft-edge
     tor-browser
     # Misc
-    linux-wallpaperengine # requires insecure freeimage-unstable-2021-11-01
+    linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
     # Fun
     cmatrix # Matrix in terminal
     cava # Audio visualizer in terminal

@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nur.url = "github:nix-community/NUR"; # Nix User Repository
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +35,7 @@
     ags.url = "github:Aylur/ags";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, impermanence, ... } @ inputs:
+  outputs = { nixpkgs, nixos-hardware, nur, home-manager, impermanence, ... } @ inputs:
     let
       system = "x86_64-linux";
 
@@ -54,6 +55,7 @@
             inherit nixos-hardware;
           };
           modules = [
+            nur.nixosModules.nur
             (./profiles/lappytoppy/configuration.nix)
             #impermanence.nixosModules.impermanence TODO
           ];
@@ -68,6 +70,7 @@
             inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
           };
           modules = [
+            nur.nixosModules.nur
             (./profiles/lappytoppy/home.nix)
           ];
         };

@@ -18,8 +18,8 @@ addProfile() {
 
 menu() {
   addProfile "󰄛 default"
-  addProfile "󱊈 work"
   addProfile " private"
+  addProfile "󱊈 work"
   addProfile "󱜆 movies"
   addProfile "󰊗 gaming"
 }
@@ -32,6 +32,9 @@ choice="${choice#* }"
 case "$choice" in
     "")
         exit 1
+        ;;
+    "default")
+        firefox-nightly -new-instance
         ;;
     "private")
         firefox-nightly -new-instance -P $choice --name firefox-nightly-$choice --private-window

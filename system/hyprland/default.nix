@@ -4,13 +4,17 @@
   environment.systemPackages = with pkgs; [
     libnotify
     libsecret
+    hyprland-protocols
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
+    xdg-utils
+    gvfs
   ];
 
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gtk
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk # Used for file picker
     ];
   };
 

@@ -25,18 +25,6 @@ in
     ];
   };
 
-  home.packages = with pkgs; [
-    # Libs
-    hyprland-protocols
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    gvfs
-  ];
-
   home.sessionVariables = {
     GDK_BACKEND = "wayland";
     QT_QPA_PLATFORM = "wayland";
