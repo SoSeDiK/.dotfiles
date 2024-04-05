@@ -27,11 +27,9 @@ List of things to do:
 - Misc
 
   - Lenovo not saving options due to read-only system
-  - Fix github desktop error on startup
   - Telegram not playing some animations while in extra workspace?
     - Seems to be "fixed" by disabling power-saving mode in Telegram
   - Exiting app (e.g. via tray -> close) that is placed in extra workspace makes the extra workspace show up and block the view
-  - Fix unlinking nvidia GPU
   - Applying themes on the fly
     - nwg-look?
 
