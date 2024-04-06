@@ -91,8 +91,8 @@ in
     selector = "rofi -dmenu -i -p 'Open With: '"
     term_exec_args = '-e'
 
+    # GW 2 thingies
     [[handlers]]
-    # GW 2 wiki
     exec = '${flakeDir}/user/files/scripts/firefox-open.sh gaming "%u"'
     regexes = [
       '(https://)?.*guildwars2\.com.*',
@@ -100,7 +100,12 @@ in
       '(https://)?gw2crafts\.net.*',
       '(https://)?blishhud\.com.*'
     ]
-  ''; # https://wiki.guildwars2.com/wiki/API:API_key
+
+    # Any other http & https URL since handlr is a default handler for them
+    [[handlers]]
+    exec = '${flakeDir}/user/files/scripts/firefox-open.sh default "%u"'
+    regexes = ['^(http|https)://.*\..+$']
+  '';
 
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01" # linux-wallpaperengine

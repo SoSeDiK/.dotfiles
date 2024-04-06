@@ -94,6 +94,7 @@ let
   # YouTube Auto Like
   binaryName = "firefox-nightly";
   desktopEntry = "${binaryName}.desktop";
+  linksHandler = "handlr.desktop"; # Links are handled via handlr to workaround xdg-open in isolated envs
 in
 {
   programs.firefox = {
@@ -143,8 +144,8 @@ in
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {
     "text/html" = desktopEntry;
-    "x-scheme-handler/http" = desktopEntry;
-    "x-scheme-handler/https" = desktopEntry;
+    "x-scheme-handler/http" = linksHandler;
+    "x-scheme-handler/https" = linksHandler;
     "x-scheme-handler/about" = desktopEntry;
     "x-scheme-handler/unknown" = desktopEntry;
     "application/x-extension-htm" = desktopEntry;
