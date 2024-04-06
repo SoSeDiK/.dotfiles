@@ -92,7 +92,8 @@ let
   # Imageye
   # Multithreaded Download Manager
   # YouTube Auto Like
-  desktopEntry = "firefox-nightly.desktop";
+  binaryName = "firefox-nightly";
+  desktopEntry = "${binaryName}.desktop";
 in
 {
   programs.firefox = {
@@ -155,14 +156,12 @@ in
   };
 
   # Hint Firefox Profile Switcher the binary location
-  xdg.configFile = {
-    "firefoxprofileswitcher/config.json".text = ''
-      {"browser_binary": "${firefox-nightly}/bin/firefox-nightly"}
-    '';
-  };
+  xdg.configFile."firefoxprofileswitcher/config.json".text = ''
+    {"browser_binary": "${firefox-nightly}/bin/${binaryName}"}
+  '';
 
   home.sessionVariables = {
-    BROWSER = "firefox-nightly";
-    DEFAULT_BROWSER = "${firefox-nightly}/bin/firefox-nightly";
+    BROWSER = "${binaryName}";
+    DEFAULT_BROWSER = "${firefox-nightly}/bin/${binaryName}";
   };
 }

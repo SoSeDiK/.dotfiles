@@ -5,6 +5,7 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
   # Profile-specific imports
   imports = [
     ../dev/jdk
+    inputs.nix-index-database.nixosModules.nix-index
   ];
 
   # Profile-specific apps
@@ -16,6 +17,10 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
+
+  # Run software via , (comma) without installing it
+  programs.nix-index-database.comma.enable = true;
+  programs.command-not-found.enable = false;
 
   # Services
   services.fstrim.enable = true;

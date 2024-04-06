@@ -7,5 +7,5 @@ let inherit (import ../../../profiles/${profileName}/options.nix) username homeD
     nwg-displays
   ];
 
-  xdg.configFile."${homeDir}/.config/hypr/monitors.conf".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/hyprland/hypr/monitors.conf";
+  xdg.configFile."hypr/monitors.conf".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/hyprland/hypr/monitors.conf";
 }

@@ -7,7 +7,9 @@
     hyprland-protocols
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
-    xdg-utils
+    handlr-regex # xdg-open replacement; handle URLs/files apps
+    (writeShellScriptBin "xdg-open" "handlr open \"$@\"") # Proxy xdg-open to handlr
+    (writeShellScriptBin "xterm" "handlr launch x-scheme-handler/terminal -- \"$@\"") # Proxy xterm to handlr
     gvfs
   ];
 
@@ -16,12 +18,13 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk # Used for file picker
     ];
+    xdgOpenUsePortal = true;
   };
 
-  # Fix apps running through xdg-desktop-portal-gtk (Flatpak/Steam's Proton) not being able to open links
-  # For testing: NIXOS_XDG_OPEN_USE_PORTAL=1 xdg-open http://localhost
+  # Fix apps running through xdg-open not being able to open links/apps
+  # TODO waiting on https://github.com/NixOS/nixpkgs/pull/298896
   systemd.user.extraConfig = ''
-    DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"
+    DefaultEnvironment="PATH=$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin:/run/wrappers/bin"
   '';
 
   programs.hyprland = {

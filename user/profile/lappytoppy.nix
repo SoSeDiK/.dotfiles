@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, profileName, ... }:
 
 let
+  inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
   # Compile Wallpaper Engine with Wayland
   linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
     src = pkgs.fetchFromGitHub {
@@ -83,6 +84,23 @@ in
     "application/x-portable-anymap" = imageViewer; # .pnm
     "image/x-portable-anymap" = imageViewer; # .pnm
   };
+
+  # Custom handlr rules
+  xdg.configFile."handlr/handlr.toml".text = ''
+    enable_selector = false
+    selector = "rofi -dmenu -i -p 'Open With: '"
+    term_exec_args = '-e'
+
+    [[handlers]]
+    # GW 2 wiki
+    exec = '${flakeDir}/user/files/scripts/firefox-open.sh gaming "%u"'
+    regexes = [
+      '(https://)?.*guildwars2\.com.*',
+      '(https://)?gw2efficiency\.com.*',
+      '(https://)?gw2crafts\.net.*',
+      '(https://)?blishhud\.com.*'
+    ]
+  ''; # https://wiki.guildwars2.com/wiki/API:API_key
 
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01" # linux-wallpaperengine

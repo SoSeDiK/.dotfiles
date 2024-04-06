@@ -12,6 +12,7 @@ git add .
 rm -f ~/.zshrc
 rm -f ~/.config/mimeapps.list
 rm -f ~/.local/share/applications/mimeapps.list
+rm -f ~/.config/handlr/handlr.toml
 rm -f ~/.config/user-dirs.dirs
 rm -f ~/.mozilla/firefox/profiles.ini
 
