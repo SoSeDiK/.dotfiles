@@ -86,26 +86,29 @@ in
   };
 
   # Custom handlr rules
-  xdg.configFile."handlr/handlr.toml".text = ''
-    enable_selector = false
-    selector = "rofi -dmenu -i -p 'Open With: '"
-    term_exec_args = '-e'
-
-    # GW 2 thingies
-    [[handlers]]
-    exec = '${flakeDir}/user/files/scripts/firefox-open.sh gaming "%u"'
-    regexes = [
-      '(https://)?.*guildwars2\.com.*',
-      '(https://)?gw2efficiency\.com.*',
-      '(https://)?gw2crafts\.net.*',
-      '(https://)?blishhud\.com.*'
-    ]
-
-    # Any other http & https URL since handlr is a default handler for them
-    [[handlers]]
-    exec = '${flakeDir}/user/files/scripts/firefox-open.sh default "%u"'
-    regexes = ['^(http|https)://.*\..+$']
-  '';
+  xdg.configFile."handlr/handlr.toml".source =
+    (pkgs.formats.toml { }).generate "handlr-config" {
+      enable_selector = false;
+      selector = "rofi -dmenu -i -p 'Open With: '";
+      term_exec_args = "";
+      handlers = [
+        # GW 2 thingies
+        {
+          exec = "${flakeDir}/user/files/scripts/firefox-open.sh gaming %u";
+          regexes = [
+            "(https://)?.*guildwars2\.com.*"
+            "(https://)?gw2efficiency\.com.*"
+            "(https://)?gw2crafts\.net.*"
+            "(https://)?blishhud\.com.*"
+          ];
+        }
+        # Any other http & https URLs since handlr is a default handler for them
+        {
+          exec = "${flakeDir}/user/files/scripts/firefox-open.sh default %u";
+          regexes = [ "^(http|https)://.*\..+$" ];
+        }
+      ];
+    };
 
   nixpkgs.config.permittedInsecurePackages = [
     "freeimage-unstable-2021-11-01" # linux-wallpaperengine

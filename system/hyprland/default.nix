@@ -15,7 +15,7 @@
       mimeTypes = [ "x-scheme-handler/http" "x-scheme-handler/https" ];
       terminal = true;
     })
-    (writeShellScriptBin "xdg-open" "handlr open \"$@\"") # Proxy xdg-open to handlr
+    (lib.hiPrio (writeShellScriptBin "xdg-open" "handlr open \"$@\"")) # Proxy xdg-open to handlr
     (writeShellScriptBin "xterm" "handlr launch x-scheme-handler/terminal -- \"$@\"") # Proxy xterm to handlr
     gvfs
   ];
