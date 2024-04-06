@@ -13,6 +13,7 @@ rm -f ~/.zshrc
 rm -f ~/.config/mimeapps.list
 rm -f ~/.local/share/applications/mimeapps.list
 rm -f ~/.config/handlr/handlr.toml
+rm -f ~/.config/cava/config
 rm -f ~/.config/user-dirs.dirs
 rm -f ~/.mozilla/firefox/profiles.ini
 

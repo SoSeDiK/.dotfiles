@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
+    ./audio.nix
     ./bash.nix
     ./cli-collection.nix
     ./git.nix

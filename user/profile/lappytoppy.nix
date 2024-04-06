@@ -29,7 +29,7 @@ in
     cinnamon.nemo-with-extensions # file manager
     libsForQt5.ark # archiver
     direnv
-    (gimp-with-plugins.override { plugins = with gimpPlugins; [ ]; })
+    (gimp-with-plugins.override { plugins = with gimpPlugins; [ ]; }) # Yes, I know using GIMP with plugins without plugins is dumb
     libreoffice-qt
     # Utils
     qalculate-qt
@@ -45,6 +45,7 @@ in
     # Gaming
     cartridges # Game launcher
     prismlauncher # Minecraft launcher
+    osu-lazer-bin
     r2modman # Lethal Company mod manager
     plasma-workspace # Provides package for xembed-sni-proxy; required for WINE apps to display tray icon properly (e.g. Blish HUD)
     # Social
@@ -58,7 +59,6 @@ in
     linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
     # Fun
     cmatrix # Matrix in terminal
-    cava # Audio visualizer in terminal
   ];
 
   # Allows Blish HUD to run

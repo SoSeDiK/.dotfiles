@@ -6,4 +6,4 @@ SPECIAL=${SPECIAL//\"/}
 
 [ $SPECIAL ] && hyprctl dispatch togglespecialworkspace ${SPECIAL:8}
 
-hyprctl dispatch workspace $1
+hyprctl dispatch split:workspace $1
