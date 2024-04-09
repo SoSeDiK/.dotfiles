@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -18,6 +18,7 @@
     ./polkit.nix
     ./printer.nix
     ./steam.nix
+    ./bash.nix
     ./zsh.nix
   ];
 }

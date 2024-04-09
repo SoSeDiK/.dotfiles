@@ -1,6 +1,6 @@
 { config, pkgs, profileName, ... }:
 
-let inherit (import ../../../profiles/${profileName}/options.nix) username homeDir flakeDir; in
+let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
 {
   home.packages = with pkgs; [
     wlr-randr # dependency

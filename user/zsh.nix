@@ -1,4 +1,4 @@
-{ config, lib, pkgs, profileName, ... }:
+{ lib, pkgs, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) shell; in
 lib.mkIf (shell == "zsh") {
@@ -12,6 +12,19 @@ lib.mkIf (shell == "zsh") {
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
     historySubstringSearch.enable = true;
+    enableCompletion = false; # Using zsh-autocomplete instead
+    plugins = [
+      {
+        name = "zsh-autocomplete";
+        src = pkgs.zsh-autocomplete;
+        file = "share/zsh-autocomplete/zsh-autocomplete.plugin.zsh";
+      }
+      {
+        name = "nix-zsh-completions";
+        src = pkgs.nix-zsh-completions;
+        file = "share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+      }
+    ];
     initExtra = ''
       zstyle ":completion:*" menu select
       zstyle ":completion:*" matcher-list "" "m:{a-z0A-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"

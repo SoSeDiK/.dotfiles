@@ -1,8 +1,8 @@
-{ inputs, config, pkgs, profileName, ... }:
+{ inputs, config, pkgs, lib, profileName, ... }:
 
 let
   theme = config.colorScheme.palette;
-  inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
+  inherit (import ../../profiles/${profileName}/options.nix) homeDir flakeDir;
 in
 {
   imports = [
@@ -19,7 +19,16 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    extraConfig = (builtins.readFile ./hypr/hyprland.conf);
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
+      patches = previousAttrs.patches ++ [
+        # ../../system/hyprland/patches/patch1.patch
+      ];
+    });
+    systemd.variables = [ "--all" ];
+    extraConfig = ''
+      source = ${flakeDir}/user/hyprland/hypr/hyprland.conf
+    '';
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
@@ -34,7 +43,7 @@ in
   };
 
   # Generate some dynamic options
-  home.file."${flakeDir}/user/hyprland/hypr/generated.conf".text = ''
+  xdg.configFile."hypr/generated.conf".text = ''
     general {
       col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
       col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg
@@ -48,5 +57,10 @@ in
         col.inactive = rgba(${theme.base00}cc)
       }
     }
+  '';
+
+  # Separate config for dev environment
+  xdg.configFile."hypr/hyprlandd.conf".text = ''
+    source = ${flakeDir}/user/hyprland/hypr/hyprlandd.conf
   '';
 }

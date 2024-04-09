@@ -8,14 +8,23 @@ in
     enable = true;
     package = pkgs.vscodium-fhs;
     extensions = with pkgs.vscode-extensions; [
+      # UI / Visual
+      zhuangtongfa.material-theme # One Dark Pro
+      streetsidesoftware.code-spell-checker # language packs are installed manually
+      esbenp.prettier-vscode
+      # GitHub
+      waderyan.gitblame
+      # Utils
+      ms-vscode.hexeditor
+      # Nix
       jnoortheen.nix-ide
       arrterian.nix-env-selector
+      # Python
       ms-python.python
-      zhuangtongfa.material-theme
-      waderyan.gitblame
-      esbenp.prettier-vscode
-      streetsidesoftware.code-spell-checker # language packs are installed manually
-      ms-vscode.hexeditor
+      # C/C++ dev
+      ms-vscode.cpptools
+      ms-vscode.cpptools-extension-pack
+      llvm-vs-code-extensions.vscode-clangd
     ];
   };
 
@@ -24,6 +33,10 @@ in
     nixpkgs-fmt # nix formatter
   ];
 
-  home.file.".config/VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/codium/settings.json";
-  home.file.".config/VSCodium/User/keybindings.json".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/codium/keybindings.json";
+  xdg.mimeApps.defaultApplications = {
+    "text/x-patch" = "codium.desktop"; # .patch
+  };
+
+  xdg.configFile."VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/codium/settings.json";
+  xdg.configFile."VSCodium/User/keybindings.json".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/codium/keybindings.json";
 }

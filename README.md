@@ -68,3 +68,6 @@ List of things to do:
 - https://github.com/flatpak/xdg-desktop-portal-gtk/issues/440
   # xdg-desktop-portal-gtk is unable to open links in default browser
   - DefaultEnvironment workaround: https://github.com/flatpak/xdg-desktop-portal-gtk/issues/440#issuecomment-1900520919
+- https://github.com/nix-community/home-manager/issues/2562
+  # zsh auto completions do not work for home-manager apps
+  - Manually importing auto completions path

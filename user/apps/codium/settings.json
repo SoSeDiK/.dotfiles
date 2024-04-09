@@ -9,7 +9,6 @@
     "nix": true
   },
   "window.titleBarStyle": "custom",
-  "editor.formatOnSave": true,
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -36,5 +35,7 @@
       "formatting": { "command": ["nixpkgs-fmt"] }
     }
   },
-  "editor.mouseWheelZoom": true
+  "editor.mouseWheelZoom": true,
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "editor.formatOnSave": true
 }

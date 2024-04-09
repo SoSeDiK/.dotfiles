@@ -4,14 +4,15 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 {
   # Profile-specific imports
   imports = [
+    # Java dev
     ../dev/jdk
+    # Misc
     inputs.nix-index-database.nixosModules.nix-index
   ];
 
   # Profile-specific apps
   environment.systemPackages = with pkgs; [
     heroic
-    warp-terminal
     scrcpy
   ];
 

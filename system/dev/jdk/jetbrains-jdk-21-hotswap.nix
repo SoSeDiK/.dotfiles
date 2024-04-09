@@ -59,7 +59,7 @@ let
     hotswapAgentVersion = "1.4.2-SNAPSHOT";
     hotswapAgent = fetchurl {
       url = "https://github.com/HotswapProjects/HotswapAgent/releases/download/${hotswapAgentVersion}/hotswap-agent-${hotswapAgentVersion}.jar";
-      hash = "sha256-mEXwMMk85eq5I0Yd88RrmFvxsuOQgTmoVcFeeWrGFH0=";
+      hash = "sha256-6NeanYp+RWawziPS4iRuocTH+8sJVdxABYVm0lC8rqQ=";
     };
 
     BOOT_JDK = openjdk21.home;

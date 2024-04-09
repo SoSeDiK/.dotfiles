@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -28,15 +28,14 @@
     xdgOpenUsePortal = true;
   };
 
-  # Fix apps running through xdg-open not being able to open links/apps
-  # TODO waiting on https://github.com/NixOS/nixpkgs/pull/298896
-  systemd.user.extraConfig = ''
-    DefaultEnvironment="PATH=$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin:/run/wrappers/bin"
-  '';
-
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
+      patches = previousAttrs.patches ++ [
+        # ./patches/patch1.patch
+      ];
+    });
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
     xwayland = {
       enable = true;

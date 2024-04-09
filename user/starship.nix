@@ -1,11 +1,8 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # Starship Prompt
-  programs.starship = {
-    enable = true;
-    package = pkgs.starship;
-  };
+  programs.starship.enable = true;
 
-  home.file.".config/starship.toml".source = ./files/starship.toml;
+  xdg.configFile."starship.toml".source = ./files/starship.toml;
 }

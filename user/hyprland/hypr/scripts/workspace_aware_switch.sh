@@ -6,4 +6,8 @@ SPECIAL=${SPECIAL//\"/}
 
 [ $SPECIAL ] && hyprctl dispatch togglespecialworkspace ${SPECIAL:8}
 
-hyprctl dispatch split:workspace $1
+res=$(hyprctl dispatch split:workspace $1)
+# In case update broke the plugin
+if [[ "$res" == "Invalid dispatcher" ]]; then
+    hyprctl dispatch workspace $1
+fi

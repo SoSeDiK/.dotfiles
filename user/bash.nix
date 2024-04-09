@@ -1,11 +1,15 @@
-{ config, lib, pkgs, profileName, ... }:
+{ pkgs, ... }:
 
-let inherit (import ../profiles/${profileName}/options.nix) flakeDir shell; in
-lib.mkIf (shell == "bash") {
+{
+  home.packages = with pkgs; [
+    bash-completion
+  ];
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
     initExtra = ''
+      source ~/.nix-profile/share/bash-completion/bash_completion
       neofetch
       if [ -f $HOME/.bashrc-personal ]; then
         source $HOME/.bashrc-personal
