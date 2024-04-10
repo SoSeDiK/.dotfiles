@@ -1,4 +1,4 @@
-{ pkgs, config, gtkThemeFromScheme, ... }:
+{ pkgs, ... }:
 
 let
   # (!) Note: GDM's cursor is handled separately, and should be changed alongside!

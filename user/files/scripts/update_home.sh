@@ -15,6 +15,7 @@ rm -f ~/.local/share/applications/mimeapps.list
 rm -f ~/.config/handlr/handlr.toml
 rm -f ~/.config/cava/config
 rm -f ~/.config/user-dirs.dirs
+rm -f ~/.config/fastfetch/config.jsonc
 rm -f ~/.mozilla/firefox/profiles.ini
 
 echo "Rebuilding Home Manager…"

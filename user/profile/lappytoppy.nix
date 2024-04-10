@@ -1,4 +1,4 @@
-{ config, pkgs, profileName, ... }:
+{ inputs, pkgs, profileName, ... }:
 
 let
   inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
@@ -45,11 +45,12 @@ in
     # Gaming
     cartridges # Game launcher
     prismlauncher # Minecraft launcher
-    osu-lazer-bin
+    inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin # osu!
     r2modman # Lethal Company mod manager
     plasma-workspace # Provides package for xembed-sni-proxy; required for WINE apps to display tray icon properly (e.g. Blish HUD)
     # Social
     vesktop # Discord client
+    inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
     telegram-desktop
     whatsapp-for-linux
     # Extra browsers

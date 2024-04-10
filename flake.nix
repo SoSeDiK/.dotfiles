@@ -19,6 +19,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
     impermanence.url = "github:nix-community/impermanence";
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
     # Firefox Nightly
@@ -29,17 +30,19 @@
 
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland";
+    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    hyprcursor.url = "github:hyprwm/hyprcursor";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit";
       inputs.hyprland.follows = "hyprland";
     };
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
     };
 
     shadower.url = "github:n3oney/shadower";
