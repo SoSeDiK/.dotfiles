@@ -1,4 +1,4 @@
-{ config, lib, pkgs, profileName, ... }:
+{ lib, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) steam homeDir username; in
 lib.mkIf (steam == true) {
@@ -7,6 +7,8 @@ lib.mkIf (steam == true) {
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
+
+  programs.gamescope.enable = true;
 
   # Create symlink for Steam games
   # I don't know a better way...

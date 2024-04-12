@@ -1,8 +1,8 @@
-{ inputs, config, pkgs, lib, profileName, ... }:
+{ inputs, config, pkgs, profileName, ... }:
 
 let
   theme = config.colorScheme.palette;
-  inherit (import ../../profiles/${profileName}/options.nix) homeDir flakeDir;
+  inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
 in
 {
   imports = [
@@ -30,8 +30,9 @@ in
       source = ${flakeDir}/user/hyprland/hypr/hyprland.conf
     '';
     plugins = [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+      inputs.hyprspace.packages.${pkgs.system}.Hyprspace
     ];
   };
 

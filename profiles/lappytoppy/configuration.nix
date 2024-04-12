@@ -1,4 +1,4 @@
-{ pkgs, nixos-hardware, profileName, ... }:
+{ inputs, pkgs, nixos-hardware, profileName, ... }:
 
 let
   inherit (import ./options.nix)
@@ -10,6 +10,9 @@ in
     # Hardware
     ./hardware.nix # Include the results of the hardware scan.
     nixos-hardware.nixosModules.lenovo-legion-15arh05h
+
+    # Secrets!
+    ./sops.nix
 
     # Hardware-specific modules
     ../../system/hardware/battery.nix

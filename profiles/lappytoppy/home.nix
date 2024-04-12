@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, profileName, ... }:
+{ inputs, pkgs, profileName, ... }:
 
 let
   inherit (import ./options.nix)

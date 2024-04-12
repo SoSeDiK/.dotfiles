@@ -15,6 +15,13 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Secrets management
+    sops-nix.url = "github:Mic92/sops-nix";
 
     nix-colors.url = "github:misterio77/nix-colors";
     impermanence.url = "github:nix-community/impermanence";
@@ -42,6 +49,10 @@
     };
     hyprsplit = {
       url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
 

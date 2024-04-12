@@ -1,4 +1,5 @@
-// Source: https://github.com/end-4/dots-hyprland/blob/main/.config/hypr/shaders/drugs.frag
+// applies waving effect and purple/pink tint (https://discord.com/channels/635612648934735892/1088009063306100756/1088079193042071603) r/unixporn discord
+
 precision highp float;
 varying vec2 v_texcoord;
 uniform sampler2D tex;

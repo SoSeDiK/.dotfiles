@@ -1,4 +1,4 @@
-{ config, pkgs, profileName, ... }:
+{ profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) gitUsername gitEmail; in
 {

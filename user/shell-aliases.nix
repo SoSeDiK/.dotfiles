@@ -1,4 +1,4 @@
-{ config, pkgs, profileName, ... }:
+{ profileName, ... }:
 
 let
   inherit (import ../profiles/${profileName}/options.nix) flakeDir;
@@ -13,7 +13,8 @@ in
     updateu = "${flakeDir}/user/files/scripts/update_home.sh";
     updatec = "${flakeDir}/user/files/scripts/update_commit.sh";
     updatea = "${flakeDir}/user/files/scripts/update_all.sh";
-    gccleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+    #gccleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+    gccleanup = "nh clean all";
     wallpaper = "${flakeDir}/user/files/scripts/set-background.sh";
     hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
     rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";

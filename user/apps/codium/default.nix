@@ -31,7 +31,14 @@ in
   home.packages = with pkgs; [
     nil # nix auto completion
     nixpkgs-fmt # nix formatter
+    # C/C++
+    cmake
+    clang-tools
   ];
+
+  home.sessionVariables = {
+    EDITOR = "codium";
+  };
 
   xdg.mimeApps.defaultApplications = {
     "text/x-patch" = "codium.desktop"; # .patch

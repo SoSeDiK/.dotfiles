@@ -1,11 +1,20 @@
-{ config, pkgs, profileName, ... }:
+{ inputs, pkgs, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) flakeDir; in
 {
-  # https://github.com/viperML/nh
-  environment.systemPackages = with pkgs; [
-    nh
+  environment.systemPackages = [
+    inputs.nh.packages.${pkgs.system}.default
   ];
+
+  imports = [
+    inputs.nh.nixosModules.default
+  ];
+
+  nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+  };
 
   environment.variables = {
     FLAKE = "${flakeDir}";
