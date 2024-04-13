@@ -37,7 +37,7 @@ in
   ];
 
   home.sessionVariables = {
-    EDITOR = "codium";
+    EDITOR = "codium --wait";
   };
 
   xdg.mimeApps.defaultApplications = {

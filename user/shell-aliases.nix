@@ -23,5 +23,6 @@ in
     killhypr = "${flakeDir}/user/hyprland/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
     runwm = "${flakeDir}/user/files/scripts/connect-via-looking-glass.sh";
+    fixspotify = "rm -rf ~/.cache/spofity"; # sometimes it refuces to relaunch when it's running in bg
   };
 }

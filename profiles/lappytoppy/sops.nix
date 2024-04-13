@@ -19,11 +19,11 @@ in
 
   # Provide github token to not get API rate limit
   nix.extraOptions = ''
-    !include "${config.sops.secrets.nixAccessToken.path}"
+    !include ${config.sops.secrets.nixAccessTokens.path}
   '';
 
   # Actual secrets
-  sops.secrets.nixAccessToken = {
+  sops.secrets.nixAccessTokens = {
     mode = "0440";
     group = config.users.groups.keys.name;
   };
