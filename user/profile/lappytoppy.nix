@@ -38,7 +38,8 @@ in
     # Media
     vlc # video player
     loupe # image viewer
-    obs-studio
+    obs-studio # video recorder
+    stremio # video streaming
     # Dev
     jetbrains-toolbox
     filezilla

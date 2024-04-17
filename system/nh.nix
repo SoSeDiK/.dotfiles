@@ -1,16 +1,8 @@
-{ inputs, pkgs, profileName, ... }:
+{ profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) flakeDir; in
 {
-  environment.systemPackages = [
-    inputs.nh.packages.${pkgs.system}.default
-  ];
-
-  imports = [
-    inputs.nh.nixosModules.default
-  ];
-
-  nh = {
+  programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 5";

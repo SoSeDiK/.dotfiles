@@ -27,4 +27,5 @@ in
     mode = "0440";
     group = config.users.groups.keys.name;
   };
+  sops.secrets.tailscaleAuthKey = { };
 }

@@ -27,6 +27,9 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
   services.fstrim.enable = true;
   services.teamviewer.enable = true;
 
+  services.tailscale.enable = true;
+  services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
+
   programs.openvpn3.enable = true;
   services.openvpn.servers = {
     zaborona = {
