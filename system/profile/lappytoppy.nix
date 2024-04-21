@@ -13,7 +13,6 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
   # Profile-specific apps
   environment.systemPackages = with pkgs; [
     heroic
-    scrcpy
   ];
 
   # Allow running unpatched binaries

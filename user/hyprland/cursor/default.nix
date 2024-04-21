@@ -3,10 +3,10 @@
 let
   # (!) Note: GDM's cursor is handled separately, and should be changed alongside!
   cursorName = "Bibata-Modern-Ice";
-  hyprCursorPath = ./Bibata-Modern-Ice.tar.xz;
+  hyprCursorPath = ./Bibata-Modern-Ice.tar.gz;
   cursorPackage = (pkgs.bibata-cursors).overrideAttrs (oldAttrs: {
     installPhase = oldAttrs.installPhase + ''
-      tar -xvf ${hyprCursorPath} -C $out/share/icons
+      tar -xvf ${hyprCursorPath} -C $out/share/icons/${cursorName}
     '';
   });
   cursorSize = 24;

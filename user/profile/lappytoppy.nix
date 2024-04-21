@@ -24,8 +24,8 @@ in
 {
   # Apps
   home.packages = with pkgs; [
-    (callPackage ../apps/sigma.nix { }) # file manager
-    (callPackage ../apps/sigma-v2.nix { }) # file manager
+    # (callPackage ../apps/sigma.nix { }) # file manager
+    # (callPackage ../apps/sigma-v2.nix { }) # file manager
     cinnamon.nemo-with-extensions # file manager
     libsForQt5.ark # archiver
     direnv

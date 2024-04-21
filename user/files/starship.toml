@@ -44,10 +44,10 @@ min_time = 1
 ## SECOND LINE/ROW: Prompt
 # Somethere at the beginning
 [battery]
-charging_symbol = ""
+charging_symbol = "󰂄"
 disabled = true
-discharging_symbol = ""
-full_symbol = ""
+discharging_symbol = "󰠑"
+full_symbol = "󰁹"
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 disabled = false
@@ -118,7 +118,7 @@ symbol = " "
 symbol = " "
 
 [nim]
-symbol = " "
+symbol = "󰆥 "
 
 [nix_shell]
 symbol = " "
@@ -127,7 +127,7 @@ symbol = " "
 symbol = " "
 
 [package]
-symbol = " "
+symbol = "󰏗 "
 
 [perl]
 symbol = " "

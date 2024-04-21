@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -37,11 +37,12 @@
           "keyColor": "white",
           "type": "kernel"
         },
-        {
-          "key": " Packages",
-          "keyColor": "blue",
-          "type": "packages"
-        },
+        // Takes too long to fetch
+        // {
+        //   "key": " Packages",
+        //   "keyColor": "blue",
+        //   "type": "packages"
+        // },
         {
           "key": "󰅐 Uptime  ",
           "keyColor": "green",
@@ -49,7 +50,7 @@
         },
         {
           "key": " DE      ",
-          "keyColor": "light_blue",
+          "keyColor": "bright_blue",
           "type": "wm"
         },
         {

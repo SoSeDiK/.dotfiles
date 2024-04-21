@@ -9,6 +9,9 @@ in
   imports = [
     inputs.nix-colors.homeManagerModules.default
 
+    # Secrets!
+    ./sops-home.nix
+
     # Universal defaults
     ../../user
 

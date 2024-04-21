@@ -1,4 +1,4 @@
-{ inputs, pkgs, nixos-hardware, profileName, ... }:
+{ pkgs, nixos-hardware, profileName, ... }:
 
 let
   inherit (import ./options.nix)
@@ -12,7 +12,7 @@ in
     nixos-hardware.nixosModules.lenovo-legion-15arh05h
 
     # Secrets!
-    ./sops.nix
+    ./sops-system.nix
 
     # Hardware-specific modules
     ../../system/hardware/battery.nix

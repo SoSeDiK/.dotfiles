@@ -6,8 +6,10 @@
     libsecret
     inputs.hyprcursor.packages.${pkgs.system}.hyprcursor
     hyprland-protocols
+    # KDE/Qt stuff
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
+    # ===
     handlr-regex # xdg-open replacement; handle URLs/files apps
     (makeDesktopItem {
       name = "handlr";
