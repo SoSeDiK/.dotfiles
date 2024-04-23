@@ -10,10 +10,9 @@
     sops
   ];
 
-  # TODO does this even work?
   sops = {
-    defaultSymlinkPath = "/run/secrets"; # /run/user/1000/secrets
-    defaultSecretsMountPoint = "/run/secrets.d";
+    defaultSymlinkPath = "/run/user/1000/secrets";
+    defaultSecretsMountPoint = "/run/user/1000/secrets.d";
   };
 
   sops.secrets.nixAccessTokens = { };

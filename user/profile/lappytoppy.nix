@@ -63,6 +63,9 @@ in
     cmatrix # Matrix in terminal
   ];
 
+  # Gaming
+  programs.mangohud.enable = true;
+
   # Allows Blish HUD to run
   services.xembed-sni-proxy.enable = true;
 

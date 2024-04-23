@@ -15,6 +15,9 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
     heroic
   ];
 
+  # Gaming
+  programs.gamemode.enable = true;
+
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
 
