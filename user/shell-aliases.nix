@@ -13,6 +13,7 @@ in
     updateu = "${flakeDir}/user/files/scripts/update_home.sh";
     updatec = "${flakeDir}/user/files/scripts/update_commit.sh";
     updatea = "${flakeDir}/user/files/scripts/update_all.sh";
+    gw2update = "${flakeDir}/user/files/scripts/update-gw-2-stuff.sh";
     #gccleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
     gccleanup = "nh clean all";
     wallpaper = "${flakeDir}/user/files/scripts/set-background.sh";

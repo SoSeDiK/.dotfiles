@@ -19,6 +19,12 @@ let
       pkgs.wayland-protocols
     ];
   });
+  # Only pull xembed-sni-proxy from plasma-workspace
+  # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
+  xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
+    mkdir -p $out/bin
+    ln -s ${pkgs.plasma-workspace}/bin/xembedsniproxy $out/bin
+  '';
   imageViewer = "org.gnome.Loupe.desktop";
 in
 {
@@ -48,7 +54,6 @@ in
     prismlauncher # Minecraft launcher
     inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin # osu!
     r2modman # Lethal Company mod manager
-    plasma-workspace # Provides package for xembed-sni-proxy; required for WINE apps to display tray icon properly (e.g. Blish HUD)
     # Social
     vesktop # Discord client
     inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
@@ -61,6 +66,7 @@ in
     linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
     # Fun
     cmatrix # Matrix in terminal
+    ollama # AI!
   ];
 
   # Gaming
@@ -68,6 +74,7 @@ in
 
   # Allows Blish HUD to run
   services.xembed-sni-proxy.enable = true;
+  services.xembed-sni-proxy.package = xembed-sni-proxy;
 
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "nemo.desktop";
