@@ -31,6 +31,7 @@ in
     '';
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
       inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
       # inputs.hyprspace.packages.${pkgs.system}.Hyprspace
     ];

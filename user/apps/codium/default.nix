@@ -42,6 +42,7 @@ in
 
   xdg.mimeApps.defaultApplications = {
     "text/x-patch" = "codium.desktop"; # .patch
+    "text/x-java" = "codium.desktop"; # .patch
   };
 
   xdg.configFile."VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/codium/settings.json";

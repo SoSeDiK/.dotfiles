@@ -1,5 +1,0 @@
-{
-  "extends": "@parcel/config-default",
-  // Don't add hashes to output files, so the references stay constant.
-  "namers": ["parcel-namer-hashless", "..."]
-}

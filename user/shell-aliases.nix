@@ -6,6 +6,7 @@ in
 {
   home.shellAliases = {
     "..." = "cd ../..";
+    gw = "./gradlew";
     ver = "${flakeDir}/user/files/scripts/ver.sh";
     reboot = "systemctl reboot";
     update = "${flakeDir}/user/files/scripts/update_flake.sh";

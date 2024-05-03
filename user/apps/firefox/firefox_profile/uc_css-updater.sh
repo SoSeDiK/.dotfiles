@@ -4,12 +4,11 @@
 outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
 
 # In test mode, there's no cleanup
-testMode=true
+testMode=false
 
 preserveScripts=()
 
 # Any extra scripts wanted from JS folder
-# Note: extra scripts have to be removed manually upon uninstalaling!
 extraScripts=(
     extensionOptionsPanel.uc.js               # Extension Options Panel
     verticalTabsPane.uc.js                    # Vertical Tabs Pane
