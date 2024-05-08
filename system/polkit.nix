@@ -7,10 +7,6 @@
     polkit_gnome
   ];
 
-  environment.variables = {
-    POLKIT_BIN = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  };
-
   # Start polkit with system - needed for apps requesting root access
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -26,6 +22,7 @@
     };
   };
 
+  # Automatically grant some permissions
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (

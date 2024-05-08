@@ -1,4 +1,4 @@
-{ config, pkgs, profileName, ... }:
+{ pkgs, profileName, ... }:
 
 let
   inherit (import ../../profiles/${profileName}/options.nix) username homeDir flakeDir;
@@ -17,6 +17,7 @@ in
   fonts.fontDir.enable = true;
   # Copy custom fonts
   systemd.services.libvirtd = {
+    # TODO better way
     preStart =
       ''
         # Just in case. Could be deleted, and copy fails in that case.

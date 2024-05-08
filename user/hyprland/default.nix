@@ -19,19 +19,19 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
-      patches = previousAttrs.patches ++ [
-        # ../../system/hyprland/patches/patch1.patch
-      ];
-    });
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
+    #   patches = previousAttrs.patches ++ [
+    #     # ../../system/hyprland/patches/patch1.patch
+    #   ];
+    # });
     systemd.variables = [ "--all" ];
     extraConfig = ''
       source = ${flakeDir}/user/hyprland/hypr/hyprland.conf
     '';
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
       inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
       # inputs.hyprspace.packages.${pkgs.system}.Hyprspace
     ];

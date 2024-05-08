@@ -48,7 +48,9 @@ in
     stremio # video streaming
     # Dev
     jetbrains-toolbox
+    androidStudioPackages.beta
     filezilla
+    postman
     # Gaming
     cartridges # Game launcher
     prismlauncher # Minecraft launcher

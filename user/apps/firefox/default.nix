@@ -41,10 +41,10 @@ let
       replaceSymlink "firefox-bin"
     '';
   });
-  # addons = builtins.removeAttrs
-  #   (pkgs.callPackage ./addons.nix {
-  #     inherit (config.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
-  #   }) [ "override" "overrideDerivation" ];
+  addons = builtins.removeAttrs
+    (pkgs.callPackage ./addons.nix {
+      inherit (config.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
+    }) [ "override" "overrideDerivation" ];
   coreAddons = with config.nur.repos.rycee.firefox-addons; [
     # Bearable browsing
     ublock-origin
@@ -52,17 +52,24 @@ let
     # Some privacy?
     privacy-badger
     decentraleyes
+    # Access inaccessible
+    censor-tracker
     # Password manager
     bitwarden
-    # Tabs management
-    multi-account-containers # split tabs into containers
-    simple-tab-groups # tabs grouping
+    # Downloads
+    addons.mdm-enhanced
+    addons.imageye_image_downloader
     # General Enhancers
     darkreader # don't burn the eyes
     indie-wiki-buddy # provide better wikis
+    hover-zoom-plus # enlarge image on hover
     search-by-image # search images with different search engines
     side-view # open page in sidebar
     tampermonkey # scripts manager
+    addons.betterviewer # better image viewer
+    addons.dont-accept-webp # prefer jpej/png over webp/avif
+    # Reddit
+    addons.load-reddit-images-directly
     # Twitch
     betterttv
     # Steam
@@ -71,27 +78,25 @@ let
     sponsorblock
     return-youtube-dislikes
     enhancer-for-youtube
+    addons.youtube_auto_like
     # GitHub
     lovely-forks
     enhanced-github
     refined-github
     octolinker
-    notifier-for-github
+  ];
+  tabsAddons = with config.nur.repos.rycee.firefox-addons; [
+    # Tabs management
+    simple-tab-groups # tabs grouping
+    addons.stg-plugin-group-notes # tab group notes
   ];
   homeAddons = with config.nur.repos.rycee.firefox-addons; [
     # Tabs management
+    multi-account-containers # split tabs into containers
     profile-switcher # in-browser profile switching
     # GitHub
     notifier-for-github
   ];
-  # BetterViewer
-  # Don't "Accept" image/webp
-  # Bypass Paywalls Clean
-  # Imagus
-  # Load Reddit Images Directly
-  # Imageye
-  # Multithreaded Download Manager
-  # YouTube Auto Like
   binaryName = "firefox-nightly";
   desktopEntry = "${binaryName}.desktop";
   linksHandler = "handlr.desktop"; # Links are handled via handlr to workaround xdg-open in isolated envs
@@ -108,24 +113,35 @@ in
         name = defaultProfileName;
         path = "${defaultProfileName}";
         isDefault = true;
+        extensions = coreAddons ++ tabsAddons ++ homeAddons;
       };
       # Used by private browser overlay
       private = {
         id = 1;
         name = "private";
         path = "private";
-      };
-      # Separate instance for games
-      movies = {
-        id = 2;
-        name = "movies";
-        path = "movies";
         extensions = coreAddons;
       };
-      gaming = {
+      # Separate instance for games
+      work = {
+        id = 2;
+        name = "work";
+        path = "work";
+        extensions = coreAddons ++ tabsAddons;
+      };
+      # Separate instance for movies
+      movies = {
         id = 3;
+        name = "movies";
+        path = "movies";
+        extensions = coreAddons ++ tabsAddons;
+      };
+      # Separate instance for games
+      gaming = {
+        id = 4;
         name = "gaming";
         path = "gaming";
+        extensions = coreAddons ++ tabsAddons;
       };
     };
   };
@@ -133,11 +149,13 @@ in
   # Symlink userChrome profile settings
   home.file.".mozilla/firefox/${defaultProfileName}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   home.file.".mozilla/firefox/private/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/work/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   home.file.".mozilla/firefox/movies/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   home.file.".mozilla/firefox/gaming/chrome".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/chrome";
   # Symlink user.js settings
   home.file.".mozilla/firefox/${defaultProfileName}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
   home.file.".mozilla/firefox/private/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/work/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
   home.file.".mozilla/firefox/movies/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
   home.file.".mozilla/firefox/gaming/user.js".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/apps/firefox/firefox_profile/user.js";
 

@@ -33,12 +33,12 @@
 
   programs.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
-      patches = previousAttrs.patches ++ [
-        # ./patches/patch1.patch
-      ];
-    });
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
+    #   patches = previousAttrs.patches ++ [
+    #     # ./patches/patch1.patch
+    #   ];
+    # });
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     xwayland = {
       enable = true;

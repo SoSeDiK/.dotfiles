@@ -32,7 +32,7 @@
     };
 
     # Hyprland & plugins
-    hyprland.url = "github:hyprwm/Hyprland"; # TODO unpin when plugins update
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     hyprcursor.url = "github:hyprwm/hyprcursor";
     hyprland-plugins = {

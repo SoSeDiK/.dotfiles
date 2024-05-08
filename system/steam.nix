@@ -1,11 +1,15 @@
-{ lib, profileName, ... }:
+{ pkgs, lib, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) steam homeDir username; in
 lib.mkIf (steam == true) {
   programs.steam = {
     enable = true;
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+    ];
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
   };
 
   programs.gamescope.enable = true;
