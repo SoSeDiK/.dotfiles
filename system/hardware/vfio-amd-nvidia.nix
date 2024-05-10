@@ -80,8 +80,6 @@ in
     # Apparently, without this nouveau may attempt to be used instead
     # (despite it being blacklisted)
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # Hardware cursors are currently broken on NVIDIA (invisible on external monitors)
-    WLR_NO_HARDWARE_CURSORS = "1";
     # See https://github.com/elFarto/nvidia-vaapi-driver#configuration
     NVD_BACKEND = "direct";
   };
