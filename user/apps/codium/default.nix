@@ -41,6 +41,7 @@ in
   };
 
   xdg.mimeApps.defaultApplications = {
+    "text/plain" = "codium.desktop";
     "text/x-patch" = "codium.desktop"; # .patch
     "text/x-java" = "codium.desktop"; # .patch
   };
