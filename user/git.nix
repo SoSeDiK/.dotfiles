@@ -10,6 +10,7 @@ let inherit (import ../profiles/${profileName}/options.nix) gitUsername gitEmail
     diff-so-fancy.enable = true;
     extraConfig = {
       init.defaultBranch = "master";
+      http.postBuffer = 1048576000;
     };
   };
 }
