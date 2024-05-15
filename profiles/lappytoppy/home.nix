@@ -1,4 +1,4 @@
-{ inputs, pkgs, profileName, ... }:
+{ inputs, profileName, ... }:
 
 let
   inherit (import ./options.nix)
@@ -7,6 +7,7 @@ let
 in
 {
   imports = [
+    inputs.nur.nixosModules.nur
     inputs.nix-colors.homeManagerModules.default
 
     # Secrets!
@@ -46,20 +47,7 @@ in
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
 
-  # Let system handle keyboards
-  # https://nixos.wiki/wiki/Keyboard_Layout_Customization
-  home.keyboard = null;
-
   programs.home-manager.enable = true;
-
-  # Since using standalone home-manager
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
-
-  # Allow unfree software
-  nixpkgs.config.allowUnfree = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05"; # tldr: Do not change :)

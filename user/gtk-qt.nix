@@ -1,5 +1,8 @@
-{ pkgs, config, gtkThemeFromScheme, ... }:
+{ inputs, pkgs, config, ... }:
 
+let
+  nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
+in
 {
   # Theme GTK
   gtk = {
@@ -11,7 +14,7 @@
     };
     theme = {
       name = "${config.colorScheme.slug}";
-      package = gtkThemeFromScheme { scheme = config.colorScheme; };
+      package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
     };
     iconTheme = {
       name = "Papirus-Dark";

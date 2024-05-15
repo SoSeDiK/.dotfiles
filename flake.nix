@@ -3,7 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/NUR"; # Nix User Repository
 
     home-manager = {
@@ -20,8 +22,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     nix-colors.url = "github:misterio77/nix-colors";
-    impermanence.url = "github:nix-community/impermanence";
-
     nix-gaming.url = "github:fufexan/nix-gaming";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
@@ -58,41 +58,32 @@
 
   outputs = { nixpkgs, nixos-hardware, nur, home-manager, impermanence, ... } @ inputs:
     let
-      system = "x86_64-linux";
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
+      profileName = "lappytoppy";
+      inherit (import ./profiles/${profileName}/options.nix) username;
     in
     {
       nixosConfigurations = {
         lappytoppy = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            profileName = "lappytoppy";
             inherit inputs;
             inherit nixos-hardware;
+            inherit profileName;
           };
           modules = [
             nur.nixosModules.nur
             (./profiles/lappytoppy/configuration.nix)
-            #impermanence.nixosModules.impermanence TODO
-          ];
-        };
-      };
-      homeConfigurations = {
-        lappytoppy = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            profileName = "lappytoppy";
-            inherit inputs;
-            inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
-          };
-          modules = [
-            nur.nixosModules.nur
-            (./profiles/lappytoppy/home.nix)
+            #impermanence.nixosModules.impermanence TODO impermanence
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit profileName;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+              home-manager.users.${username} = import ./profiles/${profileName}/home.nix;
+            }
           ];
         };
       };

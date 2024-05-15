@@ -59,4 +59,9 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
       "allow_other" # allow non-root access
     ];
   };
+
+  # For some reason home-manager as module can't specify this
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01" # linux-wallpaperengine
+  ];
 }

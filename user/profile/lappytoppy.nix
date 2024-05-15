@@ -2,7 +2,7 @@
 
 let
   inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
-  # Compile Wallpaper Engine with Wayland
+  # Compile Wallpaper Engine with Wayland support
   linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
     src = pkgs.fetchFromGitHub {
       owner = "Almamu";
