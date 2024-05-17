@@ -15,14 +15,14 @@
   # Boot animation
   boot.plymouth.enable = true;
   # Hide boot logs (untill plymouth can take over stage 1)
-  boot = {
-    consoleLogLevel = 0;
-    initrd.verbose = false;
-    kernelParams = [
-      "quiet"
-      "splash"
-    ];
-  };
+  #  boot = {
+  #    consoleLogLevel = 0;
+  #    initrd.verbose = false;
+  #    kernelParams = [
+  #      "quiet"
+  #      "splash"
+  #    ];
+  #  };
 
   # boot.kernelPackages = pkgs.linuxPackages_latest; # NOTE: if switching, also needs change in lenovo.nix
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;

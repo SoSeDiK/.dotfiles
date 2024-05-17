@@ -5,7 +5,7 @@ TOGGLE=/tmp/.toggle
 if [ ! -e $TOGGLE ]; then
     touch $TOGGLE
     hyprctl keyword debug:damage_tracking false
-    hyprctl keyword decoration:screen_shader "~/.dotfiles/user/hyprland/hypr/shaders/light_crt.frag"
+    hyprctl keyword decoration:screen_shader "~/.dotfiles/user/hyprland/hypr/shaders/test.frag"
     hyprctl keyword general:cursor_inactive_timeout 1
     # hyprctl keyword general:gaps_in 0
     # hyprctl keyword general:gaps_out 0
