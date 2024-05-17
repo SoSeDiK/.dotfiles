@@ -16,15 +16,18 @@ in
   # Enable custom fonts dir ($XDG_DATA_HOME/fonts --> ~/.local/share/fonts)
   fonts.fontDir.enable = true;
   # Copy custom fonts
-  system.activationScripts.customFonts =
-    ''
-      # Just in case. Could be deleted, and copy fails in that case.
-      mkdir -p ${homeDir}/.local/share/fonts
-      # Copy custom fonts
-      cp -r ${flakeDir}/system/fonts/fonts/* ${homeDir}/.local/share/fonts
-      # Fix fonts owner from root back to the user
-      chown -R ${username}:users ${homeDir}/.local/share/fonts
-    '';
+  systemd.services.libvirtd = {
+    # TODO better way
+    preStart =
+      ''
+        # Just in case. Could be deleted, and copy fails in that case.
+        mkdir -p ${homeDir}/.local/share/fonts
+        # Copy custom fonts
+        cp -r ${flakeDir}/system/fonts/fonts/* ${homeDir}/.local/share/fonts
+        # Fix fonts owner from root back to the user
+        chown -R ${username}:users ${homeDir}/.local/share/fonts
+      '';
+  };
 
   # Add custom keyboard layout (ruu)
   console.useXkbConfig = true;

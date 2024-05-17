@@ -11,7 +11,6 @@
     ./phone-link.nix
     ./shell-aliases.nix
     ./starship.nix
-    ./swaylock.nix
     ./bash.nix
     ./zsh.nix
   ];

@@ -16,19 +16,21 @@ lib.mkIf (steam == true) {
 
   # Create symlink for Steam games
   # I don't know a better way...
-  system.activationScripts.steamGameDirLink =
-    ''
-      gamesDir=${homeDir}/Games
-      linkDir=$gamesDir/Steam
+  systemd.services.libvirtd = {
+    preStart =
+      ''
+        gamesDir=${homeDir}/Games
+        linkDir=$gamesDir/Steam
 
-      if [ -L "$linkDir" ]; then
-          exit 0
-      fi
+        if [ -L "$linkDir" ]; then
+            exit 0
+        fi
 
-      mkdir -p $gamesDir
-      chown -R ${username}:users $gamesDir
+        mkdir -p $gamesDir
+        chown -R ${username}:users $gamesDir
 
-      ln -sf ${homeDir}/.local/share/Steam/steamapps/common $linkDir
-      chown -R ${username}:users $linkDir
-    '';
+        ln -sf ${homeDir}/.local/share/Steam/steamapps/common $linkDir
+        chown -R ${username}:users $linkDir
+      '';
+  };
 }

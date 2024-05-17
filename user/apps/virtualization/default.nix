@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # Various packages related to virtualization, compatibility and sandboxing

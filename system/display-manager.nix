@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   cursorName = "Bibata-Modern-Ice"; # Should be synced with home-manager's cursor
@@ -31,7 +31,7 @@ in
       };
     };
   }];
-  users.users.gdm.packages = with pkgs; [
+  users.users.gdm.packages = [
     cursorPackage
   ];
 }
