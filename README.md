@@ -38,10 +38,6 @@ List of things to do:
   - https://github.com/JustTemmie/steam-presence
     - Displaying custom apps in Vesktop
 
-- Things I did manually
-  - https://github.com/GloriousEggroll/proton-ge-custom
-  - GW 2: Blish HUD & ArcDPS & Wine-Discord-Bridge
-
 # Tracked issues (- issue \* workaround/note)
 
 - https://github.com/hyprwm/Hyprland/issues/3558

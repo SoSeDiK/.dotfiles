@@ -18,7 +18,7 @@ extraScripts=(
     atoolboxButton.uc.js                      # Toolbox Button
     bookmarksPopupShadowRoot.uc.js            # Bookmarks Popup Mods
     clearDownloadsButton.uc.js                # Clear Downloads Panel Button
-    ## contextMenuMods.uc.js                     # Context Menu Mods # TODO broken
+    ## contextMenuMods.uc.js                     # Context Menu Mods | Makes search not only with Google
     copyCurrentUrlHotkey.uc.js                # Copy Current URL Hotkey; Ctrl+Alt+C
     debugExtensionInToolbarContextMenu.uc.js  # Debug Extension in Toolbar Context Menu
     eyedropperButton.uc.js                    # Eyedropper Button
@@ -27,7 +27,7 @@ extraScripts=(
     fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
     ## enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
     letCtrlWClosePinnedTabs.uc.js             # Let Ctrl+W Close Pinned Tabs
-    #openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs # TODO broken
+    openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs
     ## openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black
     openLinkInUnloadedTab.uc.js               # Open Link in Unloaded Tab (context menu item)
     privateTabs.uc.js                         # Private Tabs
