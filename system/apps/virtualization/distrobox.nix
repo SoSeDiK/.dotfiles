@@ -7,6 +7,7 @@ in
   environment.systemPackages = with pkgs; [
     distrobox
     boxbuddy
+    podman-compose
   ];
 
   virtualisation.podman = {
