@@ -12,11 +12,8 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
 
   # Profile-specific apps
   environment.systemPackages = with pkgs; [
-    heroic
+    qdirstat
   ];
-
-  # Gaming
-  programs.gamemode.enable = true;
 
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;

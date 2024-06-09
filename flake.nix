@@ -81,7 +81,7 @@
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupFileExtension = "hmbackup";
               home-manager.users.${username} = import ./profiles/${profileName}/home.nix;
             }
           ];

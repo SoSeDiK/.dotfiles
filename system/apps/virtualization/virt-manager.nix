@@ -1,4 +1,4 @@
-{ config, lib, pkgs, profileName, ... }:
+{ config, pkgs, profileName, ... }:
 
 let
   inherit (import ../../../profiles/${profileName}/options.nix) username flakeDir;
@@ -30,7 +30,7 @@ in
       "virbr0"
     ];
     qemu = {
-      package = pkgs.qemu_kvm;
+      package = pkgs.qemu_full; # kvm & smbd are needed
       ovmf.enable = true;
       ovmf.packages = [
         (pkgs.OVMF.override {

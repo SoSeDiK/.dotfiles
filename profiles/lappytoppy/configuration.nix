@@ -79,7 +79,7 @@ in
       ];
     };
     gc = {
-      automatic = true;
+      automatic = false; # Handled by nh
       dates = "weekly";
       options = "--delete-older-than 7d";
     };

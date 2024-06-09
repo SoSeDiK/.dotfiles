@@ -8,6 +8,7 @@
     ./dbus.nix
     ./display-manager.nix
     ./flatpak.nix
+    ./gaming.nix
     ./gnome-disks.nix
     ./keyring.nix
     ./nh.nix
