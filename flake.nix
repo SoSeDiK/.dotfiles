@@ -21,7 +21,7 @@
     # Secrets management
     sops-nix.url = "github:Mic92/sops-nix";
 
-    nix-colors.url = "github:misterio77/nix-colors";
+    stylix.url = "github:danth/stylix";
     nix-gaming.url = "github:fufexan/nix-gaming";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
 
@@ -62,7 +62,7 @@
     ags.url = "github:Aylur/ags";
   };
 
-  outputs = { nixpkgs, nixos-hardware, nur, home-manager, impermanence, ... } @ inputs:
+  outputs = { nixpkgs, nixos-hardware, nur, home-manager, stylix, impermanence, ... } @ inputs:
     let
       profileName = "lappytoppy";
       inherit (import ./profiles/${profileName}/options.nix) username;
@@ -77,9 +77,10 @@
           };
           modules = [
             nur.nixosModules.nur
+            home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
             (./profiles/lappytoppy/configuration.nix)
             #impermanence.nixosModules.impermanence TODO impermanence
-            home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {
                 inherit inputs;

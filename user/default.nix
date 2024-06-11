@@ -11,6 +11,7 @@
     ./phone-link.nix
     ./shell-aliases.nix
     ./starship.nix
+    ./stylix.nix
     ./bash.nix
     ./zsh.nix
   ];

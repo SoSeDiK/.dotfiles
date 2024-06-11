@@ -7,8 +7,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "Almamu";
       repo = "linux-wallpaperengine";
-      # Upstream lacks versioned releases
-      rev = "e28780562bdf8bcb2867cca7f79b2ed398130eb9";
+      rev = "4bc52050341b8bceb01f2b2f1ccfd6500b7f3b78";
       hash = "sha256-VvrYOh/cvWxDx9dghZV5dcOrfMxjVCzIGhVPm9d7P2g=";
     };
     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
@@ -30,9 +29,6 @@ in
 {
   # Apps
   home.packages = with pkgs; [
-    # (callPackage ../apps/sigma.nix { }) # file manager
-    # (callPackage ../apps/sigma-v2.nix { }) # file manager
-    cinnamon.nemo-with-extensions # file manager
     libsForQt5.ark # archiver
     direnv
     gimp
@@ -80,7 +76,7 @@ in
   services.xembed-sni-proxy.package = xembed-sni-proxy;
 
   xdg.mimeApps.defaultApplications = {
-    "inode/directory" = "nemo.desktop";
+    "inode/directory" = "nautilus.desktop";
     "image/png" = imageViewer;
     "image/apng" = imageViewer;
     "image/jpeg" = imageViewer; # + .jpg

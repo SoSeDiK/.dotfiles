@@ -8,7 +8,6 @@ in
 {
   imports = [
     inputs.nur.nixosModules.nur
-    inputs.nix-colors.homeManagerModules.default
 
     # Secrets!
     ./sops-home.nix
@@ -33,9 +32,6 @@ in
 
   home.username = username;
   home.homeDirectory = homeDir;
-
-  # Set The Colorscheme
-  colorScheme = inputs.nix-colors.colorSchemes."${theme}";
 
   # Create XDG Dirs
   xdg.userDirs = {
