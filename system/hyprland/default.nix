@@ -40,9 +40,7 @@
     #   ];
     # });
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-    xwayland = {
-      enable = true;
-    };
+    xwayland.enable = true;
   };
 
   nix = {
