@@ -58,7 +58,7 @@ in
   };
 
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   # Configure NVIDIA-specific things
   # https://github.com/TLATER/dotfiles/blob/master/nixos-config/yui/nvidia
