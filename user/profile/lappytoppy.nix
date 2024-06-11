@@ -35,7 +35,7 @@ in
     cinnamon.nemo-with-extensions # file manager
     libsForQt5.ark # archiver
     direnv
-    (gimp-with-plugins.override { plugins = with gimpPlugins; [ ]; }) # Yes, I know using GIMP with plugins without plugins is dumb
+    gimp
     libreoffice-qt
     # Utils
     qalculate-qt
@@ -48,8 +48,8 @@ in
     stremio # video streaming
     qbittorrent-qt5 # torrents
     # Dev
-    jetbrains-toolbox
-    androidStudioPackages.beta
+    jetbrains.idea-community
+    android-studio
     filezilla
     postman
     # Gaming

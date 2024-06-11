@@ -31,6 +31,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Jetbrains JDK 21
+    jetbrains = {
+      url = "github:BananchickPasha/jbr-wayland-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprland & plugins
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # &rev= to pin commit
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";

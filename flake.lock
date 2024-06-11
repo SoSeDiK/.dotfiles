@@ -223,11 +223,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1718119131,
-        "narHash": "sha256-iW2ChkE+8pnOPQjsOGtppAe9UyZ41JpP6WTQrD14r9Q=",
+        "lastModified": 1718128194,
+        "narHash": "sha256-ElvRwujUvoycMCNBsi8AVGuVQedFosMW+6CHYgjidaE=",
         "ref": "refs/heads/main",
-        "rev": "1c388e52fb71b116d728830f31883f0ef0e6cf17",
-        "revCount": 4801,
+        "rev": "e1b05f8eafd8cd3e7e9197fa1db92391174b9206",
+        "revCount": 4803,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -443,11 +443,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1718069160,
-        "narHash": "sha256-t0M3IFH4KflL6QzVVnvnHYGKX2T3NdtPSO+aZsbcAPQ=",
+        "lastModified": 1718128723,
+        "narHash": "sha256-5ZKlbRRoAGi4mlP6jUEGpcgx8LEYzF8ukzsz9FMo9V8=",
         "owner": "shezdy",
         "repo": "hyprsplit",
-        "rev": "d3792010a2faf983f61bc614807104a7c5888256",
+        "rev": "38102b8f81e1d48e1c96728513cc663fffe034fc",
         "type": "github"
       },
       "original": {
@@ -518,6 +518,26 @@
       "original": {
         "owner": "nix-community",
         "repo": "impermanence",
+        "type": "github"
+      }
+    },
+    "jetbrains": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1717450916,
+        "narHash": "sha256-lBjOYXKoHUQkTXVC+SXszOT5vkqYWaI0r29V8711mYk=",
+        "owner": "BananchickPasha",
+        "repo": "jbr-wayland-nix",
+        "rev": "235988bc0426af7723fd2abd6865c0253e8d3858",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BananchickPasha",
+        "repo": "jbr-wayland-nix",
         "type": "github"
       }
     },
@@ -880,6 +900,7 @@
         "hyprspace": "hyprspace",
         "hyprsplit": "hyprsplit",
         "impermanence": "impermanence",
+        "jetbrains": "jetbrains",
         "nix-colors": "nix-colors",
         "nix-gaming": "nix-gaming",
         "nix-index-database": "nix-index-database",
