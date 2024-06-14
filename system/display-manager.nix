@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  cursorName = "Bibata-Modern-Ice"; # Should be synced with home-manager's cursor
+  cursorName = "Bibata-Modern-Ice"; # Should be synced with stylix's cursor
   cursorPackage = pkgs.bibata-cursors;
 in
 {

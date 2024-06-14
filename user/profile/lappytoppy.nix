@@ -3,21 +3,21 @@
 let
   inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
   # Compile Wallpaper Engine with Wayland support
-  linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
-    src = pkgs.fetchFromGitHub {
-      owner = "Almamu";
-      repo = "linux-wallpaperengine";
-      rev = "4bc52050341b8bceb01f2b2f1ccfd6500b7f3b78";
-      hash = "sha256-VvrYOh/cvWxDx9dghZV5dcOrfMxjVCzIGhVPm9d7P2g=";
-    };
-    nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
-      pkgs.wayland-scanner
-    ];
-    buildInputs = oldAttrs.buildInputs ++ [
-      pkgs.wayland
-      pkgs.wayland-protocols
-    ];
-  });
+  # linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
+  #   src = pkgs.fetchFromGitHub {
+  #     owner = "Almamu";
+  #     repo = "linux-wallpaperengine";
+  #     rev = "4bc52050341b8bceb01f2b2f1ccfd6500b7f3b78";
+  #     hash = "sha256-t89L1aZtmZJosjKVFuwmKFfz8cImN7kl5QAdvKDgjeY=";
+  #   };
+  #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
+  #     pkgs.wayland-scanner
+  #   ];
+  #   buildInputs = oldAttrs.buildInputs ++ [
+  #     pkgs.wayland
+  #     pkgs.wayland-protocols
+  #   ];
+  # });
   # Only pull xembed-sni-proxy from plasma-workspace
   # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
   xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
@@ -62,7 +62,8 @@ in
     microsoft-edge
     tor-browser
     # Misc
-    linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
+    #linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
+    smile # emoji picker
     # Fun
     cmatrix # Matrix in terminal
     ollama # AI!
