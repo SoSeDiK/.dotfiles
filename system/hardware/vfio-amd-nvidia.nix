@@ -69,9 +69,6 @@ in
     # Power management is required to get NVIDIA GPUs to behave on
     # suspend, due to firmware bugs. Aren't NVIDIA great?
     powerManagement.enable = true;
-    # Enable open source NVIDIA kernel module
-    # TODO: actually, disable for now: https://github.com/NVIDIA/open-gpu-kernel-modules/issues/472
-    open = false;
   };
 
   environment.variables = {

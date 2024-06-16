@@ -7,8 +7,8 @@ let
   #   src = pkgs.fetchFromGitHub {
   #     owner = "Almamu";
   #     repo = "linux-wallpaperengine";
-  #     rev = "4bc52050341b8bceb01f2b2f1ccfd6500b7f3b78";
-  #     hash = "sha256-t89L1aZtmZJosjKVFuwmKFfz8cImN7kl5QAdvKDgjeY=";
+  #     rev = "6c27d9411585d75187042ce6918ddefe3a6e2656";
+  #     hash = "sha256-bZlMHlNKSydh9eGm5cFSEtv/RV9sA5ABs99uurblBZY=";
   #   };
   #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
   #     pkgs.wayland-scanner
@@ -62,7 +62,7 @@ in
     microsoft-edge
     tor-browser
     # Misc
-    #linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
+    # linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
     smile # emoji picker
     # Fun
     cmatrix # Matrix in terminal

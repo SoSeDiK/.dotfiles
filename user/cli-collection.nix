@@ -30,8 +30,8 @@
 
   programs.mpv = {
     enable = true;
-    # scripts = with pkgs.mpvScripts; [ # TODO broken
-    #   mpris
-    # ];
+    scripts = with pkgs.mpvScripts; [
+      mpris
+    ];
   };
 }

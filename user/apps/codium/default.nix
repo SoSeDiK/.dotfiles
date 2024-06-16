@@ -32,8 +32,8 @@ in
     nil # nix auto completion
     nixpkgs-fmt # nix formatter
     # C/C++
-    cmake
-    clang-tools
+    # cmake
+    # clang-tools
   ];
 
   home.sessionVariables = {

@@ -13,6 +13,7 @@ in
     updates = "${flakeDir}/user/files/scripts/update_system.sh";
     updatec = "${flakeDir}/user/files/scripts/update_commit.sh";
     gw2update = "${flakeDir}/user/files/scripts/update-gw-2-stuff.sh";
+    uccssupdate = "${flakeDir}/user/apps/firefox/firefox_profile/uc_css-updater.sh";
     #gccleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
     gccleanup = "nh clean all";
     wallpaper = "${flakeDir}/user/files/scripts/set-background.sh";
