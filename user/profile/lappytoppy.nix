@@ -51,11 +51,11 @@ in
     # Gaming
     cartridges # Game launcher
     prismlauncher # Minecraft launcher
-    inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin # osu!
+    inputs.nix-gaming.packages.${system}.osu-lazer-bin # osu!
     r2modman # Lethal Company mod manager
     # Social
     vesktop # Discord client
-    inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+    inputs.nix-gaming.packages.${system}.wine-discord-ipc-bridge
     telegram-desktop
     whatsapp-for-linux
     # Extra browsers

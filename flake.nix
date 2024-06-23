@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-pinned.url = "github:NixOS/nixpkgs/master"; # Sometimes things break # inputs.nixpkgs-pinned.legacyPackages.x86_64-linux.
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     impermanence.url = "github:nix-community/impermanence";
@@ -28,12 +29,6 @@
     # Firefox Nightly
     firefox-nightly = {
       url = "github:nix-community/flake-firefox-nightly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Jetbrains JDK 21
-    jetbrains = {
-      url = "github:BananchickPasha/jbr-wayland-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
