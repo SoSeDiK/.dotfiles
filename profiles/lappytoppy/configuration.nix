@@ -39,6 +39,9 @@ in
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
+  # Use Cloudflare's and Google's DNS servers
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+
   # Set your time zone
   time.timeZone = sysTimezone;
 

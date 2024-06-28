@@ -1,4 +1,4 @@
-{ config, lib, options, profileName, ... }:
+{ lib, options, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) ntp; in
 lib.mkIf (ntp == true) {

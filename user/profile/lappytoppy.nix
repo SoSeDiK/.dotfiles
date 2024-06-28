@@ -49,7 +49,6 @@ in
     filezilla
     postman
     # Gaming
-    cartridges # Game launcher
     prismlauncher # Minecraft launcher
     inputs.nix-gaming.packages.${system}.osu-lazer-bin # osu!
     r2modman # Lethal Company mod manager
