@@ -11,7 +11,7 @@ in
   hostname = "${hostname}";
 
   # Options
-  theme = "da-one-sea"; # "atelier-cave"; # https://github.com/tinted-theming/home
+  theme = "da-one-sea"; # https://github.com/tinted-theming/home
   shell = "zsh"; # bash/zsh
 
   homeDir = "/home/${username}";

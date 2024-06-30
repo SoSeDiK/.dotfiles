@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Collection of useful (or fun) CLI apps
   environment.systemPackages = with pkgs; [
     zenith-nvidia
-    btop
+    nvtopPackages.full
     pciutils
     lsof
     psmisc # used by vfio to have command: fuser

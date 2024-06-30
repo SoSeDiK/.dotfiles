@@ -16,14 +16,17 @@ in
       "amdgpu"
 
       "nvidia"
-      # "nvidia_modeset"
-      "nvidia_drm modeset=0"
+      "nvidia_modeset"
+      "nvidia_drm"
       "nvidia_uvm"
     ];
     kernelParams = [
+      # VFIO
       "${cpuType}_iommu=on"
       "iommu=pt"
       "kvm.ignore_msrs=1"
+      # Nvidia
+      "nvidia-drm.fbdev=1"
     ];
     extraModprobeConfig =
       # VFIO
@@ -41,8 +44,6 @@ in
           # This is sometimes needed for ddc/ci support, see
           # https://www.ddcutil.com/nvidia/
           "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100"
-          # Preserve video memory after suspend
-          "NVreg_PreserveVideoMemoryAllocations=1"
         ];
   };
 
@@ -61,42 +62,25 @@ in
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
 
   # Configure NVIDIA-specific things
-  # https://github.com/TLATER/dotfiles/blob/master/nixos-config/yui/nvidia
+  # https://github.com/TLATER/dotfiles/blob/master/nixos-config/hosts/yui/nvidia/default.nix
   hardware.nvidia = {
-    # Prefer production nvidia driver
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
     # Power management is required to get NVIDIA GPUs to behave on
     # suspend, due to firmware bugs. Aren't NVIDIA great?
     powerManagement.enable = true;
+
+    prime = {
+      amdgpuBusId = lib.mkForce "PCI:5:0:0";
+      nvidiaBusId = lib.mkForce "PCI:1:0:0";
+    };
   };
 
   environment.variables = {
     # Required to run the correct GBM backend for NVIDIA GPUs on wayland
-    GBM_BACKEND = "nvidia-drm";
+    # GBM_BACKEND = "nvidia-drm";
     # Apparently, without this nouveau may attempt to be used instead
     # (despite it being blacklisted)
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # See https://github.com/elFarto/nvidia-vaapi-driver#configuration
-    NVD_BACKEND = "direct";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
-
-  # Note: comment and patches from https://github.com/TLATER/dotfiles/blob/master/nixos-config/yui/nvidia
-  # Replace a glFlush() with a glFinish() - this prevents stuttering
-  # and glitching in all kinds of circumstances for the moment.
-  #
-  # Apparently I'm waiting for "explicit sync" support, which needs to
-  # land as a wayland thing. I've seen this work reasonably with VRR
-  # before, but emacs continued to stutter, so for now this is
-  # staying.
-  nixpkgs.overlays = [
-    (_: final: {
-      wlroots_0_16 = final.wlroots_0_16.overrideAttrs (_: {
-        patches = [
-          ./patches/wlroots-nvidia.patch
-          ./patches/wlroots-screenshare.patch
-        ];
-      });
-    })
-  ];
 }

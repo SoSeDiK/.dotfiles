@@ -2,7 +2,6 @@
 
 let
   inherit (import ../profiles/${profileName}/options.nix) theme;
-  # (!) Note: GDM's cursor is handled separately, and should be changed alongside!
   cursorName = "Bibata-Modern-Ice";
   hyprCursorPath = ./profile/Bibata-Modern-Ice.tar.gz;
 in

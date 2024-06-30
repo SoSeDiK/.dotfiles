@@ -1,6 +1,6 @@
 { inputs, config, pkgs, profileName, ... }:
 
-let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
+let inherit (import ../../profiles/${profileName}/options.nix) homeDir username; in
 {
   # Profile-specific imports
   imports = [
@@ -21,6 +21,10 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir; in
   # Run software via , (comma) without installing it
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
+
+  # Wayland auto clicker workaround
+  programs.ydotool.enable = true;
+  users.users.${username}.extraGroups = [ "${config.programs.ydotool.group}" ];
 
   # Services
   services.fstrim.enable = true;

@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, profileName, ... }:
 
 let
-  cursorName = "Bibata-Modern-Ice"; # Should be synced with stylix's cursor
-  cursorPackage = pkgs.bibata-cursors;
+  inherit (import ../profiles/${profileName}/options.nix) username;
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
 in
 {
   services.xserver = {
@@ -11,27 +12,30 @@ in
       layout = "us";
       variant = "";
     };
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${tuigreet} --time --greeting \"Access restricted. High-profile personnel only. Authorization required.\" --remember --remember-session --sessions ${hyprland-session}";
+        user = "${username}";
+      };
     };
   };
 
-  programs.dconf.profiles.gdm.databases = [{
-    settings = {
-      "org/gnome/desktop/interface" = {
-        cursor-theme = cursorName;
-        show-battery-percentage = true;
-      };
-      "org/gnome/desktop/peripherals/touchpad" = {
-        tap-to-click = true;
-      };
-      "org/gnome/desktop/peripherals/keyboard" = {
-        numlock-state = true;
-      };
-    };
-  }];
-  users.users.gdm.packages = [
-    cursorPackage
-  ];
+  # this is a life saver.
+  # literally no documentation about this anywhere.
+  # might be good to write about this...
+  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
 }

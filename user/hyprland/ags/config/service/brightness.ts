@@ -2,7 +2,8 @@ import { bash, dependencies, sh } from "lib/utils";
 
 if (!dependencies("brightnessctl")) App.quit();
 
-const get = (args: string) => Number(Utils.exec(`brightnessctl ${args}`));
+const get = (args: string) =>
+  Number(Utils.exec(`brightnessctl ${args} --device amdgpu_bl1`));
 const screen = await bash`ls -w1 /sys/class/backlight | head -1`;
 const kbd = await bash`ls -w1 /sys/class/leds | head -1`;
 

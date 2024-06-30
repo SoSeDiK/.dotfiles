@@ -1,4 +1,4 @@
-{ config, lib, pkgs, profileName, ... }:
+{ lib, pkgs, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) flatpak; in
 lib.mkIf (flatpak == true) {
