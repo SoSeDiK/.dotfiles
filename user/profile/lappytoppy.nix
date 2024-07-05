@@ -7,7 +7,7 @@ let
   #   src = pkgs.fetchFromGitHub {
   #     owner = "Almamu";
   #     repo = "linux-wallpaperengine";
-  #     rev = "6c27d9411585d75187042ce6918ddefe3a6e2656";
+  #     rev = "4bc52050341b8bceb01f2b2f1ccfd6500b7f3b78";
   #     hash = "sha256-bZlMHlNKSydh9eGm5cFSEtv/RV9sA5ABs99uurblBZY=";
   #   };
   #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
@@ -34,7 +34,7 @@ in
     gimp
     libreoffice-qt
     # Utils
-    qalculate-qt
+    #qalculate-qt # TODO fails to biild?..
     mission-center # Windows-like process manager
     fsearch # fast search
     # Media
