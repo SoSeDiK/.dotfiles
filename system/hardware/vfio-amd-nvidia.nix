@@ -15,10 +15,10 @@ in
       "kvm-${cpuType}"
       "amdgpu"
 
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_drm"
-      "nvidia_uvm"
+      # "nvidia"
+      # "nvidia_modeset"
+      # "nvidia_drm"
+      # "nvidia_uvm"
     ];
     kernelParams = [
       # VFIO

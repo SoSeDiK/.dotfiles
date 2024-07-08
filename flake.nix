@@ -5,6 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # nixpkgs-pinned.url = "github:NixOS/nixpkgs/master"; # Sometimes things break # inputs.nixpkgs-pinned.legacyPackages.x86_64-linux.
 
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/NUR"; # Nix User Repository
@@ -24,7 +29,10 @@
 
     stylix.url = "github:danth/stylix";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Firefox Nightly
     firefox-nightly = {
@@ -57,7 +65,7 @@
     ags.url = "github:Aylur/ags";
   };
 
-  outputs = { nixpkgs, nixos-hardware, nur, home-manager, stylix, impermanence, ... } @ inputs:
+  outputs = { nixpkgs, lix-module, nixos-hardware, nur, home-manager, stylix, impermanence, ... } @ inputs:
     let
       profileName = "lappytoppy";
       inherit (import ./profiles/${profileName}/options.nix) username;
@@ -71,6 +79,7 @@
             inherit profileName;
           };
           modules = [
+            lix-module.nixosModules.default
             nur.nixosModules.nur
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix

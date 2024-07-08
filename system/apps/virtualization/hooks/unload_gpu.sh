@@ -2,8 +2,7 @@
 
 # Helpful to read output when debugging
 set -x
-
-# Note: apps can be launched with NVIDIA GPU via nvidia-offload %app%
+export DISPLAY=:0
 
 # Load the config file with our environmental variables
 VIRSH_GPU_VIDEO=pci_0000_01_00_0
@@ -12,21 +11,20 @@ VIRSH_GPU_AUDIO=pci_0000_01_00_1
 # Stop display manager to release GPU
 # systemctl stop display-manager.service
 
+# Unload Nvidia drivers
+modprobe -r nvidia_drm
+modprobe -r nvidia_modeset
+modprobe -r nvidia_uvm
+modprobe -r nvidia
+
 # Unload VFIO-PCI Kernel Driver
-# Nothing is using secondary GPU, so it's safe to just load it
 modprobe -r vfio_pci
 modprobe -r vfio_iommu_type1
 modprobe -r vfio
 
-# Re-Bind GPU to Nvidia Driver
-virsh nodedev-reattach $VIRSH_GPU_VIDEO
-virsh nodedev-reattach $VIRSH_GPU_AUDIO
-
-# Load nvidia drivers
-modprobe nvidia
-modprobe nvidia_modeset
-modprobe nvidia_drm
-modprobe nvidia_uvm
+# Detach GPU
+virsh nodedev-detach $VIRSH_GPU_VIDEO
+virsh nodedev-detach $VIRSH_GPU_AUDIO
 
 # Start display manager on new GPU
 # systemctl start display-manager.service

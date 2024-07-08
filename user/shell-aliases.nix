@@ -20,7 +20,8 @@ in
     hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
     rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
     linkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/nvidia_gpu.sh";
-    unlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/vfio_gpu.sh";
+    unlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/unload_gpu.sh";
+    virtlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/vfio_gpu.sh";
     killhypr = "${flakeDir}/user/hyprland/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
     runwm = "${flakeDir}/user/files/scripts/connect-via-looking-glass.sh";

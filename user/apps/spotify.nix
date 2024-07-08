@@ -2,11 +2,11 @@
 
 let
   spicetify-nix = inputs.spicetify-nix;
-  spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
 in
 {
   imports = [
-    spicetify-nix.homeManagerModule
+    spicetify-nix.homeManagerModules.default
   ];
 
   programs.spicetify = {
@@ -15,18 +15,21 @@ in
     colorScheme = "mocha";
 
     enabledCustomApps = with spicePkgs.apps; [
-      new-releases
-      lyrics-plus
+      newReleases
+      lyricsPlus
+      marketplace # Can't install from it, but it's there for browsing
     ];
 
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       fullAppDisplayMod
-      shuffle # shuffle+ (special characters are sanitized out of ext names)
+      popupLyrics
+      shuffle # shuffle+ (special characters are sanitized out of extension names)
       seekSong
       copyToClipboard
       hidePodcasts
       history
+      listPlaylistsWithSong
     ];
   };
 }
