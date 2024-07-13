@@ -76,7 +76,7 @@ in
   services.xembed-sni-proxy.package = xembed-sni-proxy;
 
   xdg.mimeApps.defaultApplications = {
-    "inode/directory" = "nautilus.desktop";
+    "inode/directory" = "org.gnome.Nautilus.desktop";
     "image/png" = imageViewer;
     "image/apng" = imageViewer;
     "image/jpeg" = imageViewer; # + .jpg

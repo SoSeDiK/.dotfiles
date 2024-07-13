@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, profileName, ... }:
+{ inputs, config, lib, pkgs, profileName, ... }:
 
 let inherit (import ../../profiles/${profileName}/options.nix) homeDir username; in
 {
@@ -32,6 +32,9 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
 
   services.tailscale.enable = true;
   services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
+
+  # Disabled by libvirt, required to normally run Android Studio emulators
+  systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
 
   programs.openvpn3.enable = true;
   services.openvpn.servers = {
