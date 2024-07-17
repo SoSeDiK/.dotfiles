@@ -25,6 +25,7 @@ let
     ln -s ${pkgs.plasma-workspace}/bin/xembedsniproxy $out/bin
   '';
   imageViewer = "org.gnome.Loupe.desktop";
+  videoPlayer = "mpv.desktop";
 in
 {
   # Apps
@@ -34,11 +35,10 @@ in
     gimp
     libreoffice-qt
     # Utils
-    #qalculate-qt # TODO fails to biild?..
+    qalculate-qt
     mission-center # Windows-like process manager
     fsearch # fast search
     # Media
-    vlc # video player
     loupe # image viewer
     obs-studio # video recorder
     stremio # video streaming
@@ -68,6 +68,18 @@ in
     ollama # AI!
   ];
 
+  # Video player
+  programs.mpv = {
+    enable = true;
+    scripts = with pkgs.mpvScripts; [
+      uosc # UI
+      mpris
+      thumbfast
+      autoload
+      memo
+    ];
+  };
+
   # Gaming
   programs.mangohud.enable = true;
 
@@ -77,6 +89,7 @@ in
 
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "org.gnome.Nautilus.desktop";
+    # Images
     "image/png" = imageViewer;
     "image/apng" = imageViewer;
     "image/jpeg" = imageViewer; # + .jpg
@@ -90,6 +103,14 @@ in
     "image/bmp" = imageViewer;
     "image/tiff" = imageViewer; # + .tif
     "image/x-tiff" = imageViewer; # + .tif
+    # Videos
+    "video/x-matroska" = videoPlayer; # .mkv
+    "video/avi" = videoPlayer;
+    "video/x-msvideo" = videoPlayer; # .avi
+    "video/mp4" = videoPlayer;
+    "video/mpeg" = videoPlayer;
+    "video/ogg" = videoPlayer;
+    "video/webm" = videoPlayer;
   };
   xdg.mimeApps.associations.added = {
     "application/x-portable-anymap" = imageViewer; # .pnm

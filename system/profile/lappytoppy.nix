@@ -33,6 +33,31 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
   services.tailscale.enable = true;
   services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
 
+  # Shared network folder
+  services.samba = {
+    enable = true;
+    enableNmbd = false;
+    enableWinbindd = false;
+    openFirewall = true;
+    extraConfig = ''
+      map to guest = Bad User
+      load printers = no
+      log file = /var/log/samba/client.%I
+      log level = 2
+    '';
+    shares.lovely = {
+      path = "${homeDir}/Data/Share";
+      comment = "Ah, lovely";
+      writable = "yes";
+      public = "yes";
+      "guest only" = "yes";
+      "force user" = "${username}";
+      "force group" = "users";
+      "create mask" = "777";
+      "directory mask" = "777";
+    };
+  };
+
   # Disabled by libvirt, required to normally run Android Studio emulators
   systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
 
@@ -43,11 +68,6 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
         url = "https://zaborona.help/openvpn-client-config/srv0.zaborona-help_maxroutes.ovpn";
         sha256 = "8b3f7d06bf7d55dfae4499b87dff3106517b648d74a5ae5ab977f4b5a164241c";
       });
-      # config = builtins.readFile (pkgs.fetchurl {
-      #   url = "https://zaborona.help/openvpn-client-config/srv0.zaborona-help-UDP-no-encryption_maxroutes.ovpn";
-      #   sha256 = "b8984ae1b360887e29f99c67cd15dfce107d3c0ed507cd78f7ae14531162873a";
-      # });
-      # config = '' config /home/sosedik/Downloads/srv0.zaborona-help_maxroutes.ovpn '';
       updateResolvConf = true;
       autoStart = false;
     };
