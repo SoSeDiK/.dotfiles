@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/.dotfiles/user/shell/scripts/start-win-wm.sh
+source ~/.dotfiles/user/files/scripts/start-win-wm.sh
 sleep 20
 xfreerdp -grab-keyboard /v:192.168.122.192 /u:SoSeDiK /p:PASSWORD /size:100% /d: /dynamic-resolution /audio-mode:1 /gfx-h264:avc444 +gfx-progressive +auto-reconnect /auto-reconnect-max-retries:20 &
 exit
