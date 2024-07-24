@@ -18,6 +18,7 @@ let
   #     pkgs.wayland-protocols
   #   ];
   # });
+  mkMpvScript = path: pkgs.mpvScripts.callPackage path { };
   # Only pull xembed-sni-proxy from plasma-workspace
   # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
   xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
@@ -77,6 +78,8 @@ in
       thumbfast
       autoload
       memo
+      (mkMpvScript ./../files/mpvScripts/simple-undo.nix)
+      (mkMpvScript ./../files/mpvScripts/skip-to-silence.nix)
     ];
   };
 
