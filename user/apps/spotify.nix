@@ -22,7 +22,7 @@ in
 
     enabledExtensions = with spicePkgs.extensions; [
       adblock
-      fullAppDisplayMod
+      # fullAppDisplayMod
       popupLyrics
       shuffle # shuffle+ (special characters are sanitized out of extension names)
       seekSong

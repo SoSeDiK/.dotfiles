@@ -27,6 +27,8 @@ in
       "kvm.ignore_msrs=1"
       # Nvidia
       "nvidia-drm.fbdev=1"
+      # Extras
+      "acpi_backlight=native" # let integrated gpu control the backlight
     ];
     extraModprobeConfig =
       # VFIO

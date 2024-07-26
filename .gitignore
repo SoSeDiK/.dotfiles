@@ -5,6 +5,10 @@
 user/apps/firefox/firefox_profile/chrome/.ExtensionStylesheetLoader
 user/apps/firefox/firefox_profile/chrome/.SearchSelectionShortcut
 
+# AGS types
+user/hyprland/ags/config/types
+user/hyprland/ags/config3
+
 # Logs
 nixos-switch.log
 hm-switch.log

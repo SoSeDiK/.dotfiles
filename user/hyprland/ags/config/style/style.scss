@@ -1,0 +1,81 @@
+$fg: #ffffff;
+
+* {
+  font-size: 13pt;
+  font-family: "Ubuntu Nerd Font";
+  padding: 0 0;
+  margin: 0 0;
+}
+
+.media_play label {
+  font-size: 9pt;
+}
+
+.audio_widget {
+  color: #f096ae;
+}
+
+.battery {
+  color: #b5e2ee;
+}
+
+.profile.active {
+  color: #c6ce8f;
+}
+
+.bar {
+  background-color: #171717;
+}
+
+.simple_box {
+  margin: 4px -2px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background-color: #242437;
+
+  &:hover {
+    background-color: #46475a;
+  }
+}
+
+.time {
+  font-weight: bold;
+  color: #f2bddd;
+}
+
+.no_initial_bg {
+  background-color: transparent;
+  &:hover {
+    background-color: #5b5d7e;
+  }
+}
+
+.workspaces {
+  label {
+    font-size: 0;
+    border-radius: 50%;
+    background-color: transparentize($fg, 0.8);
+    min-width: 6pt;
+    min-height: 6pt;
+    margin: 0 1pt;
+
+    &.occupied {
+      background-color: transparentize($fg, 0.2);
+      min-width: 8pt;
+      min-height: 8pt;
+      margin: 0 0;
+    }
+
+    &.active {
+      background-color: transparentize(#48a0e6, 0.2);
+      border-radius: 35%;
+      min-width: 15pt;
+      min-height: 12pt;
+      margin: 0 0;
+    }
+  }
+}
+
+.tray_item {
+  padding: 0 8px;
+}

@@ -1,11 +1,8 @@
-import { bash, dependencies, sh } from "lib/utils";
-
-if (!dependencies("brightnessctl")) App.quit();
-
-const get = (args: string) =>
-  Number(Utils.exec(`brightnessctl ${args} --device amdgpu_bl1`));
-const screen = await bash`ls -w1 /sys/class/backlight | head -1`;
-const kbd = await bash`ls -w1 /sys/class/leds | head -1`;
+const get = (args: string) => Number(Utils.exec(`brightnessctl ${args}`));
+const screen = await Utils.execAsync(
+  "bash -c ls -w1 /sys/class/backlight | head -1"
+);
+const kbd = await Utils.execAsync("bash -c ls -w1 /sys/class/leds | head -1");
 
 class Brightness extends Service {
   static {
@@ -34,7 +31,7 @@ class Brightness extends Service {
   set kbd(value) {
     if (value < 0 || value > this.#kbdMax) return;
 
-    sh(`brightnessctl -d ${kbd} s ${value} -q`).then(() => {
+    Utils.execAsync(`brightnessctl -d ${kbd} s ${value} -q`).then(() => {
       this.#kbd = value;
       this.changed("kbd");
     });
@@ -45,7 +42,7 @@ class Brightness extends Service {
 
     if (percent > 1) percent = 1;
 
-    sh(
+    Utils.execAsync(
       `brightnessctl set ${Math.floor(percent * 100)}% -q --device amdgpu_bl1`
     ).then(() => {
       this.#screen = percent;
