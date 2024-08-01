@@ -99,18 +99,32 @@ function BatteryLabel() {
 
 export function BatteryMenu() {
   const brightnessSlider = Widget.Slider({
+    class_names: ["simple_slider", "brightness_slider"],
     draw_value: false,
     hexpand: true,
     value: brightness.bind("screen"),
     onChange: ({ value }) => (brightness.screen = value),
   });
 
+  const kbBrightness = Widget.Box({
+    child: Widget.Button({
+      class_names: ["kb_brightness", "no_initial_bg"],
+      onClicked: () => (brightness.kbd = brightness.kbd == 1 ? 0 : 1),
+      child: Widget.Label({
+        css: "padding: 4px;",
+        label: brightness.bind("kbd").as((v) => (v == 1 ? "󰌌" : "󰥻")),
+      }),
+    }),
+  });
+
   const brightnessView = Widget.Box({
     class_name: "brightness",
     spacing: 8,
     children: [
+      kbBrightness,
       Widget.Button({
-        css: "padding: 0 8px;",
+        css: "padding: 4px;",
+        class_name: "no_initial_bg",
         vpack: "center",
         child: Widget.Label({ label: "󰃠" }),
         onClicked: () => (brightness.screen = 0),

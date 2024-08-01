@@ -1,4 +1,4 @@
-{ config, lib, pkgs, profileName, ... }:
+{ lib, pkgs, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) username printer; in
 lib.mkIf (printer == true) {

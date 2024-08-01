@@ -7,6 +7,55 @@ $fg: #ffffff;
   margin: 0 0;
 }
 
+.active_app {
+  color: #d5aacb;
+}
+
+.simple_slider {
+  slider {
+    min-height: 0px;
+    min-width: 10px;
+    background-color: transparent;
+    border-width: 0px;
+    box-shadow: 0 0;
+
+    &:hover {
+      background-color: white;
+      border-width: 3px;
+      box-shadow: 0 0 0 5px white;
+    }
+  }
+  trough {
+    border-radius: 10px;
+    background-color: #555970;
+    box-shadow: 0 0 0 2px black;
+
+    &:hover {
+      background-color: #6e728b;
+      box-shadow: 0 0 0 2px rgb(32, 32, 32);
+    }
+  }
+  highlight {
+    min-height: 10px;
+    min-width: 10px;
+    border-radius: 10px;
+    background-color: #6bb8ff;
+
+    &:hover {
+      background-color: #6aaceb;
+    }
+  }
+}
+
+.volume_slider {
+  highlight {
+    background-color: #e99eab;
+    &:hover {
+      background-color: #fcbfc9;
+    }
+  }
+}
+
 .media_play label {
   font-size: 9pt;
 }
@@ -51,7 +100,7 @@ $fg: #ffffff;
 }
 
 .workspaces {
-  label {
+  .workspace {
     font-size: 0;
     border-radius: 50%;
     background-color: transparentize($fg, 0.8);
@@ -74,8 +123,72 @@ $fg: #ffffff;
       margin: 0 0;
     }
   }
+
+  .special {
+    padding: 0 4px;
+    background-color: transparentize(#7e9beb, 0.2);
+    border-radius: 35%;
+  }
 }
 
 .tray_item {
   padding: 0 8px;
+}
+
+window.notification-popups box.notifications {
+  padding: 0.5em;
+}
+
+.icon {
+  min-width: 68px;
+  min-height: 68px;
+  margin-right: 1em;
+}
+
+.icon image {
+  font-size: 58px;
+  /* to center the icon */
+  margin: 5px;
+  color: rgb(48, 37, 37);
+}
+
+.icon box {
+  min-width: 68px;
+  min-height: 68px;
+  border-radius: 7px;
+}
+
+.notification {
+  min-width: 350px;
+  border-radius: 11px;
+  padding: 1em;
+  margin: 0.5em;
+  border: 1px solid rgb(33, 33, 33);
+  background-color: rgb(42, 40, 40);
+}
+
+.notification.critical {
+  border: 1px solid lightcoral;
+}
+
+.title {
+  color: rgb(240, 229, 229);
+  font-size: 1.4em;
+}
+
+.body {
+  color: rgb(205, 190, 190);
+}
+
+.actions .action-button {
+  margin: 0 0.4em;
+  margin-top: 0.8em;
+}
+
+.actions .action-button:first-child {
+  margin-left: 0;
+}
+
+.actions .action-button:last-child {
+  margin-right: 0;
 }

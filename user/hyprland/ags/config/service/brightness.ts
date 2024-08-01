@@ -1,8 +1,10 @@
 const get = (args: string) => Number(Utils.exec(`brightnessctl ${args}`));
 const screen = await Utils.execAsync(
-  "bash -c ls -w1 /sys/class/backlight | head -1"
+  "bash -c 'ls -w1 /sys/class/backlight | head -1'"
 );
-const kbd = await Utils.execAsync("bash -c ls -w1 /sys/class/leds | head -1");
+const kbd = await Utils.execAsync(
+  "bash -c 'ls -w1 /sys/class/leds | grep kbd | head -1'"
+);
 
 class Brightness extends Service {
   static {
@@ -42,12 +44,12 @@ class Brightness extends Service {
 
     if (percent > 1) percent = 1;
 
-    Utils.execAsync(
-      `brightnessctl set ${Math.floor(percent * 100)}% -q --device amdgpu_bl1`
-    ).then(() => {
-      this.#screen = percent;
-      this.changed("screen");
-    });
+    Utils.execAsync(`brightnessctl set ${Math.floor(percent * 100)}% -q`).then(
+      () => {
+        this.#screen = percent;
+        this.changed("screen");
+      }
+    );
   }
 
   constructor() {

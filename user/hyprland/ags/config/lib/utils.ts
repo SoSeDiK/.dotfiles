@@ -38,3 +38,9 @@ export const openMenu = (window: string) => {
   closeAllMenus(window);
   App.toggleWindow(window);
 };
+
+export function capitalize(word: string) {
+  if (!word) return word;
+  if (word.length > 1 && word[1].toUpperCase() === word[1]) return word;
+  return word[0].toUpperCase() + word.substring(1).toLowerCase();
+}

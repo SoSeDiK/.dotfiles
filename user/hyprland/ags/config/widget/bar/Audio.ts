@@ -1,6 +1,7 @@
 import PopupWindow from "widget/misc/PopupWindow";
 import { MprisPlayer } from "types/service/mpris";
 import { openMenu } from "lib/utils";
+import { Stream } from "types/service/audio";
 
 const audio = await Service.import("audio");
 const mpris = await Service.import("mpris");
@@ -143,6 +144,76 @@ function AudioWidget() {
 }
 
 export const AudioMenu = () => {
+  const AppVolume = (app: Stream) =>
+    Widget.Box({
+      class_name: "app_volume",
+      vertical: true,
+      spacing: 8,
+      visible: audio.bind("apps").as((a) => a.length > 0),
+      children: [
+        Widget.Box({
+          spacing: 8,
+          children: [
+            Widget.Button({
+              css: "padding: 0 4px;",
+              class_name: "no_initial_bg",
+              onPrimaryClick: () => (app.is_muted = !app.is_muted),
+              child: Widget.Icon({
+                icon: app.bind("icon_name").as((v) => {
+                  if (v && v !== "audio") return v;
+                  if (app.name) return app.name + "-symbolic";
+                  return "audio-x-generic-symbolic";
+                }),
+              }),
+            }),
+            Widget.Box({
+              vertical: true,
+              spacing: 8,
+              children: [
+                Widget.Label({
+                  hpack: "start",
+                  max_width_chars: 35,
+                  truncate: "end",
+                  wrap: true,
+                  label: Utils.merge(
+                    [
+                      app.bind("name"),
+                      app.bind("description"),
+                      app.bind("is_muted"),
+                    ],
+                    (name, desc, muted) => {
+                      var label = name || "Audio";
+                      if (muted) label += " 󰝟";
+                      if (desc) label += " - " + desc;
+                      return label;
+                    }
+                  ),
+                }),
+                Widget.Box({
+                  spacing: 8,
+                  children: [
+                    Widget.Slider({
+                      class_names: ["simple_slider", "volume_slider"],
+                      hexpand: true,
+                      draw_value: false,
+                      value: app.bind("volume"),
+                      onChange: ({ value }) => (app.volume = value),
+                    }),
+                    Widget.Label({
+                      vpack: "end",
+                    }).hook(app, (self) => {
+                      const vol = Math.floor(app.volume * 100);
+                      self.label = vol + "%";
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    });
+
   const audioSlider = Widget.Box({
     css: "background-color: #1b1b29; padding: 16px; border-radius: 10px;",
     vertical: true,
@@ -167,7 +238,6 @@ export const AudioMenu = () => {
         spacing: 8,
         children: [
           Widget.Button({
-            vpack: "end",
             class_names: ["no_initial_bg"],
             onClicked: () => (audio.speaker.is_muted = !audio.speaker.is_muted),
             child: Widget.Label().hook(audio.speaker, (self) => {
@@ -188,6 +258,7 @@ export const AudioMenu = () => {
                 self.label = audio.speaker.description || "Unkown Speaker";
               }),
               Widget.Slider({
+                class_names: ["simple_slider", "volume_slider"],
                 hexpand: true,
                 draw_value: false,
                 onChange: ({ value }) => (audio.speaker.volume = value),
@@ -205,6 +276,16 @@ export const AudioMenu = () => {
             self.label = vol + "%";
           }),
         ],
+      }),
+      Widget.Separator(),
+      Widget.Label({
+        label: "Apps",
+        hpack: "start",
+      }),
+      Widget.Box({
+        vertical: true,
+        spacing: 8,
+        children: audio.bind("apps").as((app) => app.map(AppVolume)),
       }),
     ],
   });

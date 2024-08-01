@@ -66,7 +66,7 @@ in
     smile # emoji picker
     # Fun
     cmatrix # Matrix in terminal
-    ollama # AI!
+    # ollama # AI!
   ];
 
   # Video player

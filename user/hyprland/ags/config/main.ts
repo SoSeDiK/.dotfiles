@@ -1,16 +1,19 @@
 import { forMonitors } from "lib/utils";
+import ActiveApp from "widget/bar/ActiveApp";
 import { MediaWidget, AudioWidget, AudioMenu } from "widget/bar/Audio";
 import BatteryLabel, { BatteryMenu } from "widget/bar/Battery";
+import KbLayout from "widget/bar/KbLayout";
 import Power, { PowerMenu } from "widget/bar/Power";
 import SysTray from "widget/bar/SysTray";
 import Time from "widget/bar/Time";
-import Workspaces from "widget/bar/Workspaces";
+import { Workspaces } from "widget/bar/Workspaces";
+import Notifications, { NotificationPopups } from "widget/Notifications";
 
-function Left() {
+function Left(monitor: number) {
   return Widget.Box({
     css: "padding: 0 5px;",
     spacing: 8,
-    children: [Workspaces()],
+    children: [Workspaces(monitor), ActiveApp()],
   });
 }
 
@@ -18,7 +21,7 @@ function Center() {
   return Widget.Box({
     css: "padding: 0 5px;",
     spacing: 8,
-    children: [Time(), MediaWidget()],
+    children: [KbLayout(), Time(), MediaWidget()],
   });
 }
 
@@ -27,11 +30,17 @@ function Right() {
     css: "padding: 0 5px;",
     hpack: "end",
     spacing: 8,
-    children: [SysTray(), AudioWidget(), BatteryLabel(), Power()],
+    children: [
+      SysTray(),
+      AudioWidget(),
+      BatteryLabel(),
+      Notifications(),
+      Power(),
+    ],
   });
 }
 
-const Bar = (monitor) =>
+const Bar = (monitor: number) =>
   Widget.Window({
     monitor,
     name: `bar${monitor}`,
@@ -39,7 +48,7 @@ const Bar = (monitor) =>
     anchor: ["top", "left", "right"],
     exclusivity: "exclusive",
     child: Widget.CenterBox({
-      start_widget: Left(),
+      start_widget: Left(monitor),
       center_widget: Center(),
       end_widget: Right(),
     }),
@@ -65,6 +74,7 @@ App.config({
   windows: () => [
     ...forMonitors(Bar),
     // More!
+    NotificationPopups(0),
     AudioMenu(),
     BatteryMenu(),
     PowerMenu(),
