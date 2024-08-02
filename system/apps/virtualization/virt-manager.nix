@@ -30,9 +30,7 @@ in
       "virbr0"
     ];
     qemu = {
-      package = pkgs.qemu.override {
-        smbdSupport = true;
-      };
+      package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
       ovmf.enable = true;
       ovmf.packages = [
         (pkgs.OVMF.override {
