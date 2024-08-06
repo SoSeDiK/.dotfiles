@@ -55,7 +55,6 @@ void main() {
   vec2 uv = v_texcoord;
   // comment out to disable barrel distortion.
   // if cursor is misaligned - enable software cursor rendering
-  // by setting envvar: run "export WLR_NO_HARDWARE_CURSORS=1"
   // before launching Hyprland
   uv = curve(uv);
   vec4 pixColor = texture2D(tex, uv);

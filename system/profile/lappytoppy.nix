@@ -58,9 +58,6 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
     };
   };
 
-  # Disabled by libvirt, required to normally run Android Studio emulators
-  systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
-
   programs.openvpn3.enable = true;
   services.openvpn.servers = {
     zaborona = {

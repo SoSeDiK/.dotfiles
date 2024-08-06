@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   boot.supportedFilesystems = [ "ntfs" ];
@@ -9,7 +9,7 @@
     ntfs3g # ntfs support
     jmtpfs # MTP mounting
     udisks
-    gnome.gnome-disk-utility # GUI wrapper for udisks
+    gnome-disk-utility # GUI wrapper for udisks
     gparted
 
     # extra disk tools

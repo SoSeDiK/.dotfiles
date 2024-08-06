@@ -63,7 +63,7 @@ in
       '';
   };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
   # Workaround missing secure boot EFI options

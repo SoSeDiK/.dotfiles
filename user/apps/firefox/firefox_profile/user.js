@@ -463,6 +463,8 @@ user_pref("userChrome.css.mac-ui-fonts", true);
  * START: MY OVERRIDES                                                      *
  ****************************************************************************/
 
+// Custom values
+
 // BETTERFOX Overrides
 // Save downloads to default folder
 user_pref("browser.download.useDownloadDir", true);

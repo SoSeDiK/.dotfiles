@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    gnome.nautilus
+    nautilus
   ];
 
   programs.nautilus-open-any-terminal = {

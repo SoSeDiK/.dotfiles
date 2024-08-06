@@ -18,7 +18,15 @@ in
     enable = true;
     settings = {
       default_session = {
-        command = "${tuigreet} --time --greeting \"Access restricted. High-profile personnel only. Authorization required.\" --remember --remember-session --sessions ${hyprland-session}";
+        command = ''
+          ${tuigreet} \
+          --sessions ${hyprland-session} \
+          --time \
+          --remember \
+          --remember-session \
+          --remember-user-session \
+          --greeting "Access restricted. High-profile personnel only. Authorization required."
+        '';
         user = "${username}";
       };
     };
