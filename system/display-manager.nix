@@ -23,7 +23,6 @@ in
           --sessions ${hyprland-session} \
           --time \
           --remember \
-          --remember-session \
           --remember-user-session \
           --greeting "Access restricted. High-profile personnel only. Authorization required."
         '';

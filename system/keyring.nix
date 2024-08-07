@@ -12,7 +12,7 @@
   services.dbus.packages = [ pkgs.gcr ];
 
   # Enable keyring on login
-  # security.pam.services.gdm.enableGnomeKeyring = true;
+  # security.pam.services.greetd.enableGnomeKeyring = true;
 
   programs = {
     dconf.enable = true;
