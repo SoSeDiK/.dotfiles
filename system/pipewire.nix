@@ -16,11 +16,9 @@
   # Don't control camera from pipewire
   # https://www.reddit.com/r/linux/comments/1em8biv/psa_pipewire_has_been_halving_your_battery_life/
   services.pipewire.wireplumber.extraConfig = {
-    "disable-camera" = {
+    "10-disable-camera" = {
       "wireplumber.profiles" = {
-        main = {
-          "monitor.libcamera" = "disabled";
-        };
+        main."monitor.libcamera" = "disabled";
       };
     };
   };

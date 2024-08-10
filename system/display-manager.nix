@@ -26,10 +26,12 @@ in
           --remember-user-session \
           --greeting "Access restricted. High-profile personnel only. Authorization required."
         '';
-        user = "${username}";
+        user = "greetd";
       };
     };
   };
+
+  users.users.${username}.extraGroups = [ "greetd" ];
 
   # this is a life saver.
   # literally no documentation about this anywhere.
