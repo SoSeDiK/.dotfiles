@@ -26,7 +26,7 @@ in
           --remember-user-session \
           --greeting "Access restricted. High-profile personnel only. Authorization required."
         '';
-        user = "greetd";
+        user = username;
       };
     };
   };
