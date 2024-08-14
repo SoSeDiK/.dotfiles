@@ -464,6 +464,7 @@ user_pref("userChrome.css.mac-ui-fonts", true);
  ****************************************************************************/
 
 // Custom values
+user_pref("middlemouse.paste", false);
 
 // BETTERFOX Overrides
 // Save downloads to default folder
