@@ -39,6 +39,7 @@ in
     qalculate-qt
     mission-center # Windows-like process manager
     fsearch # fast search
+    cpu-x # PC Info
     # Media
     loupe # image viewer
     obs-studio # video recorder
@@ -53,6 +54,7 @@ in
     prismlauncher # Minecraft launcher
     inputs.nix-gaming.packages.${system}.osu-lazer-bin # osu!
     r2modman # Lethal Company mod manager
+    space-cadet-pinball # Good Old Pinball
     # Social
     vesktop # Discord client
     inputs.nix-gaming.packages.${system}.wine-discord-ipc-bridge

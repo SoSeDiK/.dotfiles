@@ -41,17 +41,20 @@ let
       replaceSymlink "firefox-bin"
     '';
   });
-  addons = builtins.removeAttrs
-    (pkgs.callPackage ./addons.nix {
-      inherit (config.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
-    }) [ "override" "overrideDerivation" ];
+  # addons = builtins.removeAttrs
+  #   (pkgs.callPackage ./addons.nix {
+  #     inherit (config.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
+  #   }) [ "override" "overrideDerivation" ];
+  addons = inputs.firefox-addons.packages.${pkgs.system};
   coreAddons = with config.nur.repos.rycee.firefox-addons; [
     # Bearable browsing
     ublock-origin
     istilldontcareaboutcookies
+    skip-redirect
     # Some privacy?
     privacy-badger
-    decentraleyes
+    localcdn
+    canvasblocker
     # Access inaccessible
     censor-tracker
     # Password manager
@@ -67,7 +70,6 @@ let
     side-view # open page in sidebar
     tampermonkey # scripts manager
     addons.betterviewer # better image viewer
-    addons.dont-accept-webp # prefer jpej/png over webp/avif
     # Reddit
     addons.load-reddit-images-directly
     # Twitch

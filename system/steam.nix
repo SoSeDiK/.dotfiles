@@ -12,6 +12,8 @@ lib.mkIf (steam == true) {
     gamescopeSession.enable = true;
   };
 
+  hardware.steam-hardware.enable = true;
+
   programs.gamescope.enable = true;
 
   # Create symlink for Steam games

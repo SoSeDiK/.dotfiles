@@ -33,6 +33,13 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
   services.tailscale.enable = true;
   services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
 
+  # iPad as second screen
+  programs.weylus = {
+    enable = true;
+    openFirewall = true;
+    users = [ username ];
+  };
+
   # Shared network folder
   services.samba = {
     enable = true;
