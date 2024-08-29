@@ -66,6 +66,7 @@ in
   # Configure NVIDIA-specific things
   # https://github.com/TLATER/dotfiles/blob/master/nixos-config/hosts/yui/nvidia/default.nix
   hardware.nvidia = {
+    open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
     # Power management is required to get NVIDIA GPUs to behave on

@@ -2,7 +2,7 @@
   description = "SoSeDiK's NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     # nixpkgs-pinned.url = "github:NixOS/nixpkgs/master"; # Sometimes things break # inputs.nixpkgs-pinned.legacyPackages.x86_64-linux.
 
