@@ -29,7 +29,7 @@ function getPlayIcon(status: string | null) {
 }
 
 function MediaWidget() {
-  const player: MprisPlayer | null = mpris?.players[0];
+  const player: MprisPlayer | null = mpris?.getPlayer("spotify");
 
   const prevButton = Widget.Button({
     css: "padding-left: 4px;",
