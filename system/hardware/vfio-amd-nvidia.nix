@@ -30,23 +30,21 @@ in
       # Extras
       "acpi_backlight=native" # let integrated gpu control the backlight
     ];
-    extraModprobeConfig =
+    extraModprobeConfig = lib.concatStringsSep "\n" [
       # VFIO
-      "options vfio-pci ids=${builtins.concatStringsSep "," vfioIds}"
+      "options vfio-pci ids=${lib.concatStringsSep "," vfioIds}"
       # Nvidia
-      + "options nvidia "
-      + lib.concatStringsSep
-        " "
-        [
-          # nvidia assumes that by default your CPU does not support PAT,
-          # but this is effectively never the case in 2024
-          "NVreg_UsePageAttributeTable=1"
-          # This may be a noop, but it's somewhat uncertain
-          "NVreg_EnablePCIeGen3=1"
-          # This is sometimes needed for ddc/ci support, see
-          # https://www.ddcutil.com/nvidia/
-          "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100"
-        ];
+      ("options nvidia " + lib.concatStringsSep " " [
+        # nvidia assumes that by default your CPU does not support PAT,
+        # but this is effectively never the case in 2024
+        "NVreg_UsePageAttributeTable=1"
+        # This may be a noop, but it's somewhat uncertain
+        "NVreg_EnablePCIeGen3=1"
+        # This is sometimes needed for ddc/ci support, see
+        # https://www.ddcutil.com/nvidia/
+        "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100"
+      ])
+    ];
   };
 
   systemd.tmpfiles.rules = [
@@ -55,7 +53,7 @@ in
 
   # OpenGL
   hardware.graphics = {
-    ## amdvlk: an open-source Vulkan driver from AMD
+    # amdvlk: an open-source Vulkan driver from AMD
     extraPackages = [ pkgs.amdvlk ];
     extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };
