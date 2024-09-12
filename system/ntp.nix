@@ -1,3 +1,6 @@
+###
+# Network Time Protocol
+###
 { lib, options, profileName, ... }:
 
 let inherit (import ../profiles/${profileName}/options.nix) ntp; in

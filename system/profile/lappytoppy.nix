@@ -43,25 +43,27 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
   # Shared network folder
   services.samba = {
     enable = true;
-    enableNmbd = false;
-    enableWinbindd = false;
+    nmbd.enable = false;
+    winbindd.enable = false;
     openFirewall = true;
-    extraConfig = ''
-      map to guest = Bad User
-      load printers = no
-      log file = /var/log/samba/client.%I
-      log level = 2
-    '';
-    shares.lovely = {
-      path = "${homeDir}/Data/Share";
-      comment = "Ah, lovely";
-      writable = "yes";
-      public = "yes";
-      "guest only" = "yes";
-      "force user" = "${username}";
-      "force group" = "users";
-      "create mask" = "777";
-      "directory mask" = "777";
+    settings = {
+      global = {
+        "map to guest" = "Bad User";
+        "load printers" = "no";
+        "log file" = "/var/log/samba/client.%I";
+        "log level" = "2";
+      };
+      "lovely" = {
+        "path" = "${homeDir}/Data/Share";
+        "comment" = "Ah, lovely";
+        "writable" = "yes";
+        "public" = "yes";
+        "guest only" = "yes";
+        "force user" = "${username}";
+        "force group" = "users";
+        "create mask" = "777";
+        "directory mask" = "777";
+      };
     };
   };
 

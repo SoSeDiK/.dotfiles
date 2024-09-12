@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./security/sudo.nix
     ./fonts
     ./boot.nix
     ./cli-collection.nix
@@ -21,7 +22,6 @@
     ./printer.nix
     ./steam.nix
     ./stylix.nix
-    ./bash.nix
     ./zsh.nix
   ];
 }

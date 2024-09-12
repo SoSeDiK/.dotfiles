@@ -42,6 +42,6 @@ in
   openrazer = true;
 
   # Enable apps
-  flatpak = true;
+  flatpak = false;
   steam = true;
 }

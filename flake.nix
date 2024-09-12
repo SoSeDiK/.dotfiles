@@ -93,7 +93,7 @@
             nur.nixosModules.nur
             home-manager.nixosModules.home-manager
             stylix.nixosModules.stylix
-            (./profiles/lappytoppy/configuration.nix)
+            (./profiles/${profileName}/configuration.nix)
             #impermanence.nixosModules.impermanence TODO impermanence
             {
               home-manager.extraSpecialArgs = {
