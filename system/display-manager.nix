@@ -1,7 +1,6 @@
-{ inputs, pkgs, profileName, ... }:
+{ inputs, pkgs, ... }:
 
 let
-  inherit (import ../profiles/${profileName}/options.nix) username;
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
 in

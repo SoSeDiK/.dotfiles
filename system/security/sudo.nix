@@ -10,7 +10,7 @@ in
 {
   security.sudo = {
     enable = true;
-    # Deafault sudo pacckebt, but with printing insults on incorrect password
+    # Default sudo packet, but with printing insults on incorrect password
     package = pkgs.sudo.override { withInsults = true; };
 
     # Enable sudo only for wheel users

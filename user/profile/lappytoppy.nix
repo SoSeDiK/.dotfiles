@@ -40,6 +40,7 @@ in
     mission-center # Windows-like process manager
     fsearch # fast search
     cpu-x # PC Info
+    fontforge
     # Media
     loupe # image viewer
     obs-studio # video recorder
