@@ -62,6 +62,8 @@ let
     # Downloads
     addons.mdm-enhanced
     addons.imageye_image_downloader
+    # PWA (Progressive Web App) support
+    pwas-for-firefox
     # General Enhancers
     darkreader # don't burn the eyes
     indie-wiki-buddy # provide better wikis
@@ -107,7 +109,10 @@ in
   programs.firefox = {
     enable = true;
     package = firefox-nightly;
-    nativeMessagingHosts = [ (pkgs.callPackage ./firefox-profile-switcher-connector.nix { }) ];
+    nativeMessagingHosts = with pkgs; [
+      (callPackage ./firefox-profile-switcher-connector.nix { })
+      firefoxpwa
+    ];
     profiles = {
       # Default profile
       "${defaultProfileName}" = {

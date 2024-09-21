@@ -98,6 +98,10 @@ function Notification(n) {
   );
 }
 
+function isBlacklisted(app_name: string) {
+  return app_name === "Spotify";
+}
+
 export function NotificationPopups(monitor: number = 0) {
   const list = Widget.Box({
     vertical: true,
@@ -108,7 +112,10 @@ export function NotificationPopups(monitor: number = 0) {
     if (notifications.dnd) return;
 
     const n = notifications.getNotification(id);
-    if (n) list.children = [Notification(n), ...list.children];
+    if (!n) return;
+    if (isBlacklisted(n.app_name)) return;
+
+    list.children = [Notification(n), ...list.children];
   }
 
   function onDismissed(_, id: number) {
