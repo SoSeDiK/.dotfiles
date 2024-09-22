@@ -46,7 +46,7 @@ xkb_symbols "ruu" {
 	key <AD12> { [ Cyrillic_hardsign, Cyrillic_HARDSIGN,  Ukrainian_yi,         Ukrainian_YI  ] };
 
 	key <AC02> { [     Cyrillic_yeru,     Cyrillic_YERU,   Ukrainian_i,          Ukrainian_I  ] };
-	key <AC05> { [       Cyrillic_pe,       Cyrillic_PE,         U20BD,                U20B4  ] }; // ruble, hryvnia
+	key <AC05> { [       Cyrillic_er,       Cyrillic_ER,         U20BD,                U20B4  ] }; // ruble, hryvnia
 	key <AC11> { [        Cyrillic_e,        Cyrillic_E,  Ukrainian_ie,         Ukrainian_IE  ] };
 	key <BKSL> { [             slash,               bar,     backslash,            brokenbar  ] };
 
@@ -56,7 +56,6 @@ xkb_symbols "ruu" {
 	key <AB08> { [       Cyrillic_be,       Cyrillic_BE,  guillemotleft,  doublelowquotemark  ] };
 	key <AB09> { [       Cyrillic_yu,       Cyrillic_YU, guillemotright, leftdoublequotemark  ] };
 	key <AB10> { [            period,             comma,          ellipsis,            slash  ] };
-	key <AC05> { [      Cyrillic_pe,      Cyrillic_PE,  U2DEB  ] };
 
 	include "level3(ralt_switch)"
 };

@@ -3,7 +3,6 @@
 let
   inherit (import ../profiles/${profileName}/options.nix) theme;
   cursorName = "Bibata-Modern-Ice";
-  hyprCursorPath = ./profile/Bibata-Modern-Ice.tar.gz;
 in
 {
   stylix = {
@@ -16,11 +15,7 @@ in
     cursor = {
       size = 24;
       name = cursorName;
-      package = (pkgs.bibata-cursors).overrideAttrs (oldAttrs: {
-        installPhase = oldAttrs.installPhase + ''
-          tar -xvf ${hyprCursorPath} -C $out/share/icons/${cursorName}
-        '';
-      });
+      package = pkgs.bibata-cursors;
     };
 
     fonts = {

@@ -92,6 +92,6 @@ let inherit (import ../../profiles/${profileName}/options.nix) homeDir username;
 
   # For some reason home-manager as module can't specify this
   nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-unstable-2021-11-01" # linux-wallpaperengine
+    # "freeimage-unstable-2021-11-01" # linux-wallpaperengine
   ];
 }

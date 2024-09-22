@@ -3,21 +3,7 @@
 let
   inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
   # Compile Wallpaper Engine with Wayland support
-  # linux-wallpaperengine = (pkgs.linux-wallpaperengine).overrideAttrs (oldAttrs: {
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "Almamu";
-  #     repo = "linux-wallpaperengine";
-  #     rev = "4bc52050341b8bceb01f2b2f1ccfd6500b7f3b78";
-  #     hash = "sha256-bZlMHlNKSydh9eGm5cFSEtv/RV9sA5ABs99uurblBZY=";
-  #   };
-  #   nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [
-  #     pkgs.wayland-scanner
-  #   ];
-  #   buildInputs = oldAttrs.buildInputs ++ [
-  #     pkgs.wayland
-  #     pkgs.wayland-protocols
-  #   ];
-  # });
+  # linux-wallpaperengine = pkgs.callPackage ../../pkgs/linux-wallpaperengine { };
   mkMpvScript = path: pkgs.mpvScripts.callPackage path { };
   # Only pull xembed-sni-proxy from plasma-workspace
   # Required for WINE apps to display tray icon properly (e.g. Blish HUD)

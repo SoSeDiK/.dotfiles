@@ -23,7 +23,6 @@ in
     #     # ../../system/hyprland/patches/patch1.patch
     #   ];
     # });
-    systemd.variables = [ "--all" ];
     extraConfig = ''
       source = ${flakeDir}/user/hyprland/hypr/hyprland.conf
     '';
@@ -34,6 +33,14 @@ in
       inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
       # inputs.hyprspace.packages.${pkgs.system}.Hyprspace
     ];
+
+    systemd = {
+      variables = [ "--all" ];
+      extraCommands = [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
   };
 
   home.sessionVariables = {
@@ -49,6 +56,9 @@ in
       theme = config.lib.stylix.colors;
     in
     ''
+      # Auto Generated
+      # env = AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
+
       general {
         col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
         col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg

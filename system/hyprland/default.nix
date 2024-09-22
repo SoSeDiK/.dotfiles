@@ -9,7 +9,6 @@
     # KDE/Qt stuff
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
-    adwaita-qt # Qt theme
     # ===
     handlr-regex # xdg-open replacement; handle URLs/files apps
     (makeDesktopItem {
@@ -24,10 +23,6 @@
     (writeShellScriptBin "xterm" "handlr launch x-scheme-handler/terminal -- \"$@\"") # Proxy xterm to handlr
     gvfs
   ];
-
-  environment.sessionVariables = {
-    QT_STYLE_OVERRIDE = "adwaita-dark";
-  };
 
   xdg.portal = {
     enable = true;

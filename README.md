@@ -1,13 +1,9 @@
-ln -sf /dev/dri/by-path/pci-0000:05:00.0-card $HOME/.config/hypr/card
-
 List of things to do:
 
 - Chore
 
   - ags
     - Per-monitor workspaces
-    - Lenovo integration
-    - Fix battery percentage (0.01232421427246827%)
   - Theming!
 
 - Browsing
