@@ -1,7 +1,8 @@
-{ pkgs, profileName, ... }:
+{ pkgs, ... }:
 
 let
-  inherit (import ../../profiles/${profileName}/options.nix) username homeDir flakeDir;
+  appleFonts = pkgs.callPackage ./apple-fonts { };
+  neofont = pkgs.callPackage ./fonts/neofont.nix { };
 in
 {
   # Fonts are nice to have
@@ -10,31 +11,19 @@ in
     # Load only specified nerdfonts
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Ubuntu" ]; })
     font-awesome
-    (callPackage ./apple-fonts { }) # Mostly for use by Firefox theme
+    appleFonts # Mostly for use by Firefox theme
+    neofont
   ];
 
   # Enable custom fonts dir ($XDG_DATA_HOME/fonts --> ~/.local/share/fonts)
   fonts.fontDir.enable = true;
-  # Copy custom fonts
-  systemd.services.libvirtd = {
-    # TODO better way
-    preStart =
-      ''
-        # Just in case. Could be deleted, and copy fails in that case.
-        mkdir -p ${homeDir}/.local/share/fonts
-        # Copy custom fonts
-        cp -r ${flakeDir}/system/fonts/fonts/* ${homeDir}/.local/share/fonts
-        # Fix fonts owner from root back to the user
-        chown -R ${username}:users ${homeDir}/.local/share/fonts
-      '';
-  };
 
   # Add custom keyboard layout (ruu)
   console.useXkbConfig = true;
   services.xserver = {
     xkb.extraLayouts.ruu = {
       description = "Russian-Ukrainian United keyboard layout";
-      languages = [ "ru" ];
+      languages = [ "rus" "ukr" "bel" ];
       symbolsFile = ./layouts/ruu.xkb;
     };
   };

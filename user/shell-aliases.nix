@@ -1,7 +1,7 @@
-{ profileName, ... }:
+{ ... }:
 
 let
-  inherit (import ../profiles/${profileName}/options.nix) flakeDir;
+  flakeDir = "/home/sosedik/.dotfiles";
 in
 {
   home.shellAliases = {

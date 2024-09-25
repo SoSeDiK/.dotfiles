@@ -6,7 +6,6 @@
     ./cli-collection.nix
     ./git.nix
     ./gtk-qt.nix
-    ./kitty.nix
     ./neofetch.nix
     ./phone-link.nix
     ./shell-aliases.nix

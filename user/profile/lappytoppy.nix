@@ -1,7 +1,6 @@
-{ inputs, pkgs, profileName, ... }:
+{ inputs, pkgs, self, ... }:
 
 let
-  inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
   # Compile Wallpaper Engine with Wayland support
   # linux-wallpaperengine = pkgs.callPackage ../../pkgs/linux-wallpaperengine { };
   mkMpvScript = path: pkgs.mpvScripts.callPackage path { };
@@ -118,7 +117,7 @@ in
       handlers = [
         # GW 2 thingies
         {
-          exec = "${flakeDir}/user/files/scripts/firefox-open.sh gaming %u";
+          exec = "${self}/user/files/scripts/firefox-open.sh gaming %u";
           regexes = [
             "(https://)?.*guildwars2\.com.*"
             "(https://)?gw2efficiency\.com.*"
@@ -128,7 +127,7 @@ in
         }
         # Any other http & https URLs since handlr is a default handler for them
         {
-          exec = "${flakeDir}/user/files/scripts/firefox-open.sh default %u";
+          exec = "${self}/user/files/scripts/firefox-open.sh default %u";
           regexes = [ "^(http|https)://.*\..+$" ];
         }
       ];

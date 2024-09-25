@@ -3,7 +3,6 @@
 set -e
 pushd ~/.dotfiles
 
-git diff -U0 *.nix
 git add .
 
 echo "Rebuilding NixOS System…"

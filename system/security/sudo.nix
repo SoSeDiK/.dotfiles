@@ -1,9 +1,6 @@
-###
-# Enables sudo with insults,
-# and only allows wheel users to use it
-###
 { lib, pkgs, ... }:
 
+# sudo with insults
 let
   inherit (lib) mkForce mkDefault;
 in

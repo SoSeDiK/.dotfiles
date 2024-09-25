@@ -1,6 +1,5 @@
-{ inputs, config, pkgs, profileName, ... }:
+{ inputs, config, pkgs, self, ... }:
 
-let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
 {
   imports = [ inputs.ags.homeManagerModules.default ];
 
@@ -21,7 +20,7 @@ let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
 
   programs.ags = {
     enable = true;
-    configDir = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/hyprland/ags/config";
+    configDir = config.lib.file.mkOutOfStoreSymlink "${self}/user/hyprland/ags/config";
     extraPackages = with pkgs; [
       gtksourceview
       webkitgtk

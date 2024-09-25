@@ -1,8 +1,5 @@
-{ inputs, config, pkgs, profileName, ... }:
+{ inputs, config, pkgs, self, ... }:
 
-let
-  inherit (import ../../profiles/${profileName}/options.nix) flakeDir;
-in
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -24,7 +21,7 @@ in
     #   ];
     # });
     extraConfig = ''
-      source = ${flakeDir}/user/hyprland/hypr/hyprland.conf
+      source = ${self}/user/hyprland/hypr/hyprland.conf
     '';
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
@@ -52,9 +49,6 @@ in
       theme = config.lib.stylix.colors;
     in
     ''
-      # Auto Generated
-      # env = AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0
-
       general {
         col.active_border = rgba(${theme.base0C}ff) rgba(${theme.base0D}ff) rgba(${theme.base0B}ff) rgba(${theme.base0E}ff) 45deg
         col.inactive_border = rgba(${theme.base00}cc) rgba(${theme.base01}cc) 45deg
@@ -72,6 +66,6 @@ in
 
   # Separate config for dev environment
   xdg.configFile."hypr/hyprlandd.conf".text = ''
-    source = ${flakeDir}/user/hyprland/hypr/hyprlandd.conf
+    source = ${self}/user/hyprland/hypr/hyprlandd.conf
   '';
 }

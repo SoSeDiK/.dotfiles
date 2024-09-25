@@ -1,6 +1,9 @@
-{ profileName, ... }:
+{ ... }:
 
-let inherit (import ../profiles/${profileName}/options.nix) gitUsername gitEmail; in
+let
+  gitUsername = "SoSeDiK";
+  gitEmail = "mrsosedik@gmail.com";
+in
 {
   programs.git = {
     enable = true;

@@ -1,7 +1,8 @@
-{ pkgs, config, lib, profileName, ... }:
+{ pkgs, config, lib, ... }:
 
 let
-  inherit (import ../../profiles/${profileName}/options.nix) cpuType vfioIds;
+  cpuType = "amd"; # System's CPU (either "amd" or "intel")
+  vfioIds = [ "10de:1f95" "10de:10fa" ]; # The IOMMU ids for GPU passthrough
 in
 {
   # Configure kernel options to make sure IOMMU & KVM support is on.
@@ -70,18 +71,10 @@ in
     # Power management is required to get NVIDIA GPUs to behave on
     # suspend, due to firmware bugs. Aren't NVIDIA great?
     powerManagement.enable = true;
-
-    prime = {
-      amdgpuBusId = lib.mkForce "PCI:5:0:0";
-      nvidiaBusId = lib.mkForce "PCI:1:0:0";
-    };
   };
 
   environment.variables = {
     # Required to run the correct GBM backend for NVIDIA GPUs on wayland
     # GBM_BACKEND = "nvidia-drm";
-    # Apparently, without this nouveau may attempt to be used instead
-    # (despite it being blacklisted)
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 }

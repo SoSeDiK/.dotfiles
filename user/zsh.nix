@@ -1,7 +1,6 @@
-{ lib, pkgs, profileName, ... }:
+{ pkgs, ... }:
 
-let inherit (import ../profiles/${profileName}/options.nix) shell; in
-lib.mkIf (shell == "zsh") {
+{
   home.packages = with pkgs; [
     fzf
   ];

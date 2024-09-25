@@ -1,11 +1,10 @@
-{ config, pkgs, profileName, ... }:
+{ config, pkgs, self, ... }:
 
-let inherit (import ../../../profiles/${profileName}/options.nix) flakeDir; in
 {
   home.packages = with pkgs; [
     wlr-randr # dependency
     nwg-displays
   ];
 
-  xdg.configFile."hypr/monitors.conf".source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/user/hyprland/hypr/monitors.conf";
+  xdg.configFile."hypr/monitors.conf".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/hyprland/hypr/monitors.conf";
 }
