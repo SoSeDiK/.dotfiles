@@ -18,6 +18,7 @@ in
       newReleases
       lyricsPlus
       marketplace # Can't install from it, but it's there for browsing
+      historyInSidebar
     ];
 
     enabledExtensions = with spicePkgs.extensions; [
@@ -29,6 +30,7 @@ in
       copyToClipboard
       hidePodcasts
       history
+      betterGenres
       listPlaylistsWithSong
     ];
   };
