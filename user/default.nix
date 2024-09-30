@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./audio.nix
     ./cli-collection.nix
     ./git.nix
     ./gtk-qt.nix

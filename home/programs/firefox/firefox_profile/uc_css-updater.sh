@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script removes old US.CSS files, and copies new ones instead
 # US.CSS source: https://github.com/aminomancer/uc.css.js
-outputDir=~/.dotfiles/user/apps/firefox/firefox_profile/chrome
+outputDir=~/.dotfiles/home/programs/firefox/firefox_profile/chrome
 
 # In test mode, there's no cleanup
 testMode=false
@@ -110,7 +110,7 @@ echo -e "@import url(chrome_extras/custom-content.css);\n" | cat - "$outputDir/r
 
 # Copy required JS files
 files=(
-    extensionStylesheetLoader.sys.mjs                     # Extension Stylesheet Loader
+    extensionStylesheetLoader.sys.mjs                   # Extension Stylesheet Loader
     findbarMods.uc.js                                   # Findbar Mods
     fixTitlebarTooltips.uc.js                           # Fix Titlebar Button Tooltips
     floatingSidebarResizer.uc.js                        # Floating Sidebar Resizer

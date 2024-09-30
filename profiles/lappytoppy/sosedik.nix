@@ -1,4 +1,4 @@
-{ inputs, config, osConfig, lib, self, ... }:
+{ inputs, config, osConfig, lib, self, pkgs, ... }:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -12,6 +12,12 @@ in
     # Terminal
     "${self}/home/terminal/programs/kitty.nix"
 
+    # Programs
+    "${self}/home/programs/codium"
+    "${self}/home/programs/firefox"
+    "${self}/home/programs/github-desktop.nix"
+    "${self}/home/programs/spicetify.nix"
+
     # Secrets!
     "${self}/secrets/sops-home.nix"
 
@@ -23,15 +29,16 @@ in
 
     # Misc profile-specific thingies
     ("${self}/user/profile/lappytoppy.nix")
-
-    # Apps needing extra settings
-    "${self}/user/apps/firefox"
-    "${self}/user/apps/codium"
-    "${self}/user/apps/github-desktop.nix"
-    "${self}/user/apps/spotify.nix"
-
-    "${self}/user/apps/virtualization"
   ];
+
+  # User apps
+  home.packages = with pkgs; [
+    bottles
+    helvum # Audio
+  ];
+
+  # Equalizer
+  services.easyeffects.enable = true;
 
   # Create symlink for Steam games
   home.file."Games/Steam" = lib.mkIf osConfig.programs.steam.enable {

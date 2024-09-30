@@ -12,6 +12,8 @@ $fg: #ffffff;
 }
 
 .simple_slider {
+  min-width: 200px;
+
   slider {
     min-height: 0px;
     min-width: 10px;

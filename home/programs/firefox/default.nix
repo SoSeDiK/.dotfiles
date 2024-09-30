@@ -1,7 +1,7 @@
 { pkgs, config, inputs, self, ... }:
 
 let
-  username = "sosedik";
+  username = config.home.username;
   defaultProfileName = username;
 
   # Firefox Nightly with https://github.com/MrOtherGuy/fx-autoconfig
@@ -32,10 +32,7 @@ let
       replaceSymlink "firefox-bin"
     '';
   });
-  # addons = builtins.removeAttrs
-  #   (pkgs.callPackage ./addons.nix {
-  #     inherit (config.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
-  #   }) [ "override" "overrideDerivation" ];
+  # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons
   addons = inputs.firefox-addons.packages.${pkgs.system};
   coreAddons = with config.nur.repos.rycee.firefox-addons; [
     # Bearable browsing
@@ -145,17 +142,17 @@ in
   };
 
   # Symlink userChrome profile settings
-  home.file.".mozilla/firefox/${defaultProfileName}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/private/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/work/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/movies/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/gaming/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/${defaultProfileName}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/private/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/work/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/movies/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/chrome";
+  home.file.".mozilla/firefox/gaming/chrome".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/chrome";
   # Symlink user.js settings
-  home.file.".mozilla/firefox/${defaultProfileName}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/private/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/work/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/movies/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/gaming/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/user/apps/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/${defaultProfileName}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/private/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/work/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/movies/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/user.js";
+  home.file.".mozilla/firefox/gaming/user.js".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/firefox/firefox_profile/user.js";
 
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {

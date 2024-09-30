@@ -21,6 +21,12 @@ in
       # "nvidia_drm"
       # "nvidia_uvm"
     ];
+    blacklistedKernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_drm"
+      "nvidia_uvm"
+    ];
     kernelParams = [
       # VFIO
       "${cpuType}_iommu=on"

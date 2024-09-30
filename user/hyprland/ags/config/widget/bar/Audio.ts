@@ -17,7 +17,7 @@ const AUDIO_WINDOW = "AudioMenu";
 const dispatchMusicWorkspace = () =>
   hyprland.messageAsync(`dispatch togglespecialworkspace music`);
 
-function getPlayIcon(status: string | null) {
+function getPlayIcon(status: string | undefined) {
   switch (status) {
     case "Playing":
       return PAUSE_ICON;
@@ -81,8 +81,10 @@ function MediaWidget() {
           const value = player?.position / player?.length;
           self.value = value > 0 ? value : 0;
         }
-        self.hook(player, update);
-        self.hook(player, update, "position");
+        if (player != null) {
+          self.hook(player, update);
+          self.hook(player, update, "position");
+        }
         self.poll(1000, update);
       },
     }),
@@ -96,9 +98,11 @@ function MediaWidget() {
       children: [prevButton, playButton, nextButton],
     }),
     setup: (self) => {
-      self.hook(player, () => {
-        self.tooltip_text = player?.identity || null;
-      });
+      if (player != null) {
+        self.hook(player, () => {
+          self.tooltip_text = player?.identity || null;
+        });
+      }
     },
   });
 }
@@ -194,7 +198,6 @@ export const AudioMenu = () => {
                   children: [
                     Widget.Slider({
                       class_names: ["simple_slider", "volume_slider"],
-                      hexpand: true,
                       draw_value: false,
                       value: app.bind("volume"),
                       onChange: ({ value }) => (app.volume = value),
@@ -255,11 +258,10 @@ export const AudioMenu = () => {
                 truncate: "end",
                 wrap: true,
               }).hook(audio.speaker, (self) => {
-                self.label = audio.speaker.description || "Unkown Speaker";
+                self.label = audio.speaker.description || "Unknown Speaker";
               }),
               Widget.Slider({
                 class_names: ["simple_slider", "volume_slider"],
-                hexpand: true,
                 draw_value: false,
                 onChange: ({ value }) => (audio.speaker.volume = value),
                 setup: (self) =>
