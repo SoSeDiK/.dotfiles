@@ -231,11 +231,11 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
-        "lastModified": 1726153070,
-        "narHash": "sha256-HO4zgY0ekfwO5bX0QH/3kJ/h4KvUDFZg8YpkNwIbg1U=",
+        "lastModified": 1727826117,
+        "narHash": "sha256-K5ZLCyfO/Zj9mPFldf3iwS6oZStJcU4tSpiXTMYaaL0=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "bcef6817a8b2aa20a5a6dbb19b43e63c5bf8619a",
+        "rev": "3d04084d54bedc3d6b8b736c70ef449225c361b1",
         "type": "github"
       },
       "original": {
@@ -421,11 +421,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1727716354,
-        "narHash": "sha256-AHmAwoKiujnws5OxjNQVhpOTXS/9YuL8KaFqFXuwNmk=",
+        "lastModified": 1727821604,
+        "narHash": "sha256-hNw5J6xatedqytYowx0mJKgctjA4lQARZFdgnzM2RpM=",
         "owner": "hyprwm",
         "repo": "hyprcursor",
-        "rev": "6b4131ee523bf2cf863c1e3366da54f40cd77474",
+        "rev": "d60e1e01e6e6633ef1c87148b9137cc1dd39263d",
         "type": "github"
       },
       "original": {
@@ -897,11 +897,11 @@
         "nixpkgs-lib": "nixpkgs-lib"
       },
       "locked": {
-        "lastModified": 1727611937,
-        "narHash": "sha256-VTtaGRJGFWQzQd7u7iHUJiUUyMbJ3Jcv/ZsXlBXw0Ok=",
+        "lastModified": 1727710043,
+        "narHash": "sha256-NpTnTg8oOVvntlTi/t8BUe5msrMmkiZFiOW22fc7B+g=",
         "owner": "nix-community",
         "repo": "lib-aggregate",
-        "rev": "74c775886c8f89a0af4743a9144c5bbd04125725",
+        "rev": "d03a5f88a345d26ca13918071d42dcc960233183",
         "type": "github"
       },
       "original": {
@@ -1036,14 +1036,14 @@
     },
     "nixpkgs-lib_2": {
       "locked": {
-        "lastModified": 1725233747,
-        "narHash": "sha256-Ss8QWLXdr2JCBPcYChJhz4xJm+h/xjl4G0c0XlP6a74=",
+        "lastModified": 1727825735,
+        "narHash": "sha256-0xHYkMkeLVQAMa7gvkddbPqpxph+hDzdu1XdGPJR+Os=",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
+        "url": "https://github.com/NixOS/nixpkgs/archive/fb192fec7cc7a4c26d51779e9bab07ce6fa5597a.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/356624c12086a18f2ea2825fed34523d60ccc4e3.tar.gz"
+        "url": "https://github.com/NixOS/nixpkgs/archive/fb192fec7cc7a4c26d51779e9bab07ce6fa5597a.tar.gz"
       }
     },
     "nixpkgs-lib_3": {
@@ -1220,11 +1220,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1727715040,
-        "narHash": "sha256-7Hx6fSxrK8RzBQb6TIT9EIgiO6EmcyDgtd6RdySdcks=",
+        "lastModified": 1727826706,
+        "narHash": "sha256-Xr8a4d0fQgp/kA32GrlO1/Bh4ZHyIifFaqq/ivpvMRo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "019d628649b0b8bc8edded2648512746d6de59c4",
+        "rev": "4d9f4dcec2598c8cf6878522b69e230086c2175a",
         "type": "github"
       },
       "original": {
@@ -1284,11 +1284,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1727423009,
-        "narHash": "sha256-+4B/dQm2EnORIk0k2wV3aHGaE0WXTBjColXjj7qWh10=",
+        "lastModified": 1727734513,
+        "narHash": "sha256-i47LQwoGCVQq4upV2YHV0OudkauHNuFsv306ualB/Sw=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "127a96f49ddc377be6ba76964411bab11ae27803",
+        "rev": "3198a242e547939c5e659353551b0668ec150268",
         "type": "github"
       },
       "original": {
@@ -1305,11 +1305,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1727669861,
-        "narHash": "sha256-Qb9DGXner4NnvSfO6IdvqoNgg8jUkIz7i8l+PSDviDk=",
+        "lastModified": 1727756255,
+        "narHash": "sha256-C+Gmw5CsUXel9T/UYA+QEJPjF8m+2clv3uiKEVCSkNs=",
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
-        "rev": "ec53a68450d888d245dbf0d4b0f9365217d0ed5d",
+        "rev": "f190dd954b30e6830939fb764cac85c773846435",
         "type": "github"
       },
       "original": {
@@ -1335,11 +1335,11 @@
         "tinted-tmux": "tinted-tmux"
       },
       "locked": {
-        "lastModified": 1727635018,
-        "narHash": "sha256-WSc/MF4dUeB2UPMznXYv4LeKK/ulD4xsufdN/L5PoL4=",
+        "lastModified": 1727723275,
+        "narHash": "sha256-k4HrG8TJQ0RqDS1tlDz71kvWFBNQ7qZI9T5Z0qLR85Y=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "0eea8bcb0f9c3c7638e7ee64f98ed9b4ec716830",
+        "rev": "e7e97059776da7e34b739415a7bc8f80f606b803",
         "type": "github"
       },
       "original": {
@@ -1510,11 +1510,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1727227288,
-        "narHash": "sha256-82fIhNN93zk0vmc5rltsbYJlD96AHzEFY2q1KizLP0A=",
+        "lastModified": 1727823491,
+        "narHash": "sha256-UTjBMSXi0zRwqJD3ig6vH7kDrgtw9dSYFYcPNJ+u65A=",
         "ref": "refs/heads/main",
-        "rev": "5cc1c3f23e2ecc9e03267c097e990d1702416852",
-        "revCount": 730,
+        "rev": "081b45bc5f697b69861899fc5fb8a756ed353736",
+        "revCount": 731,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
