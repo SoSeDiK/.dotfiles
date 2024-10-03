@@ -32,7 +32,7 @@ in
     stremio # video streaming
     qbittorrent-qt5 # torrents
     # Dev
-    jetbrains.idea-community
+    jetbrains.idea-community-bin
     android-studio
     filezilla
     postman

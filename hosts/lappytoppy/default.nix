@@ -82,27 +82,13 @@ in
     inputs.nix-index-database.nixosModules.nix-index
   ];
 
-  # Mount data disk
-  fileSystems."/home/${username}/Data" = {
-    device = "/dev/sda2";
-    fsType = "ntfs-3g";
-    options = [
-      "rw"
-      "uid=1000"
-      "allow_other" # allow non-root access
-    ];
-  };
-
-  # Enable networking
-  networking.hostName = "lappytoppy";
-  networking.networkmanager.enable = true;
-
   # Apps
   environment.systemPackages = with pkgs; [
     # Gaming
     heroic # Epic Games launcher
     # Misc
     qdirstat # Space management
+    teamviewer
   ];
 
   programs.gamemode.enable = true;
@@ -126,7 +112,6 @@ in
 
   # Services
   services.fstrim.enable = true;
-  services.teamviewer.enable = true;
 
   services.tailscale.enable = true;
   services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
@@ -192,6 +177,21 @@ in
     enable = true;
     users = users;
   };
+
+  # Mount data disk
+  fileSystems."/home/${username}/Data" = {
+    device = "/dev/sda2";
+    fsType = "ntfs-3g";
+    options = [
+      "rw"
+      "uid=1000"
+      "allow_other" # allow non-root access
+    ];
+  };
+
+  # Enable networking
+  networking.hostName = "lappytoppy";
+  networking.networkmanager.enable = true;
 
   # TODO Remove once nixos-hardware has 15arh05 model
   hardware.nvidia.prime.amdgpuBusId = lib.mkForce "PCI:5:0:0";
