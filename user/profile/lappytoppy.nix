@@ -30,7 +30,7 @@ in
     loupe # image viewer
     obs-studio # video recorder
     stremio # video streaming
-    qbittorrent-qt5 # torrents
+    qbittorrent # torrents
     # Dev
     jetbrains.idea-community-bin
     android-studio
