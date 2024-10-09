@@ -47,6 +47,7 @@
     hyprland.url = "github:hyprwm/Hyprland"; # &rev= to pin commit
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     hyprcursor.url = "github:hyprwm/hyprcursor";
+    hyprsunset.url = "github:hyprwm/hyprsunset";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";

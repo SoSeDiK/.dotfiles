@@ -5,6 +5,7 @@
     libnotify
     libsecret
     inputs'.hyprcursor.packages.hyprcursor
+    inputs'.hyprsunset.packages.hyprsunset
     hyprland-protocols
     gvfs
   ];
