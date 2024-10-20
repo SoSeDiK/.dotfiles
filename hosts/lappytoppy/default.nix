@@ -150,17 +150,17 @@ in
     };
   };
 
-  programs.openvpn3.enable = true;
-  services.openvpn.servers = {
-    zaborona = {
-      config = builtins.readFile (pkgs.fetchurl {
-        url = "https://zaborona.help/openvpn-client-config/srv0.zaborona-help_maxroutes.ovpn";
-        sha256 = "8b3f7d06bf7d55dfae4499b87dff3106517b648d74a5ae5ab977f4b5a164241c";
-      });
-      updateResolvConf = true;
-      autoStart = false;
-    };
-  };
+  # programs.openvpn3.enable = true; # TODO broken for now
+  # services.openvpn.servers = {
+  #   zaborona = {
+  #     config = builtins.readFile (pkgs.fetchurl {
+  #       url = "https://zaborona.help/openvpn-client-config/srv0.zaborona-help_maxroutes.ovpn";
+  #       sha256 = "8b3f7d06bf7d55dfae4499b87dff3106517b648d74a5ae5ab977f4b5a164241c";
+  #     });
+  #     updateResolvConf = true;
+  #     autoStart = false;
+  #   };
+  # };
 
   # Custom options (from modules)
   programs.openrazer = {

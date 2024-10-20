@@ -1,8 +1,8 @@
-{ inputs, pkgs, self, ... }:
+{ inputs', pkgs, self, ... }:
 
 let
   # Compile Wallpaper Engine with Wayland support
-  # linux-wallpaperengine = pkgs.callPackage ../../pkgs/linux-wallpaperengine { };
+  linux-wallpaperengine = pkgs.callPackage ../../pkgs/linux-wallpaperengine { };
   mkMpvScript = path: pkgs.mpvScripts.callPackage path { };
   # Only pull xembed-sni-proxy from plasma-workspace
   # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
@@ -38,19 +38,18 @@ in
     postman
     # Gaming
     prismlauncher # Minecraft launcher
-    inputs.nix-gaming.packages.${system}.osu-lazer-bin # osu!
     r2modman # Lethal Company mod manager
-    space-cadet-pinball # Good Old Pinball
+    # space-cadet-pinball # Good Old Pinball # TODO Depends on archive.org, which is currently down
     # Social
     vesktop # Discord client
-    inputs.nix-gaming.packages.${system}.wine-discord-ipc-bridge
+    inputs'.nix-gaming.packages.wine-discord-ipc-bridge
     telegram-desktop
     whatsapp-for-linux
     # Extra browsers
     microsoft-edge
     tor-browser
     # Misc
-    # linux-wallpaperengine # TODO requires insecure freeimage-unstable-2021-11-01
+    linux-wallpaperengine # TODO not yet in nixpkgs
     smile # emoji picker
     # Fun
     cmatrix # Matrix in terminal
@@ -132,8 +131,4 @@ in
         }
       ];
     };
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-unstable-2021-11-01" # linux-wallpaperengine
-  ];
 }

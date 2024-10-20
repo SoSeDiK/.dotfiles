@@ -2,7 +2,8 @@
   description = "SoSeDiK's NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # TODO nixos
+    # nixpkgs-pinned.url = "github:NixOS/nixpkgs/master"; # Sometimes things break
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 

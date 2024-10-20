@@ -20,9 +20,13 @@
     #     # ../../system/hyprland/patches/patch1.patch
     #   ];
     # });
+    # TODO unhardcode?
     extraConfig = ''
-      source = ${self}/user/hyprland/hypr/hyprland.conf
+      source = /home/sosedik/.dotfiles/user/hyprland/hypr/hyprland.conf
     '';
+    # extraConfig = ''
+    #   source = ${self}/user/hyprland/hypr/hyprland.conf
+    # '';
     plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
