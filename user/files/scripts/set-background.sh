@@ -24,4 +24,4 @@ screenshot_dest=~/.cache/wallpaper_dump.png
 # Kill old running instance
 pkill -f linux-wallpaperengine
 
-linux-wallpaperengine --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id --screen-root eDP-1 &
+linux-wallpaperengine --no-audio-processing --assets-dir $assets_dir --screenshot $screenshot_dest $workshop_dir/$background_id --screen-root eDP-1 &
