@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    fzf
-  ];
-
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;

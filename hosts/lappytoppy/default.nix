@@ -150,7 +150,11 @@ in
     };
   };
 
-  # programs.openvpn3.enable = true; # TODO broken for now
+  programs.openvpn3.enable = true;
+  # TODO broken in nixpkgs for now
+  programs.openvpn3.package = pkgs.callPackage "${self}/pkgs/openvpn3" {
+    gdbuspp = pkgs.callPackage "${self}/pkgs/openvpn3/gdbuspp.nix" { };
+  };
   # services.openvpn.servers = {
   #   zaborona = {
   #     config = builtins.readFile (pkgs.fetchurl {

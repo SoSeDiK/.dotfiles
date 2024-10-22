@@ -3,15 +3,14 @@
 {
   home.packages = with pkgs; [
     fastfetch
-    (writeShellScriptBin "neofetch" "fastfetch")
+    (writeShellScriptBin "neofetch" "fastfetch") # Proxy neofetch to fastfetch
   ];
 
   xdg.configFile."fastfetch/config.jsonc".text = ''
     {
       "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
       "logo": {
-        // "type": "small"
-        "source": "nixos_small"
+         "type": "small"
       },
       "display": {
         "separator": " \u001b[34m> "
@@ -88,26 +87,4 @@
       ]
     }
   '';
-
-  # xdg.configFile."neofetch/config.conf".text = ''
-  #   print_info() {
-  #       prin "$(color 6)  Made with Love  "
-  #       info underline
-  #       info "$(color 7)  VER" kernel
-  #       info "$(color 2)  UP " uptime
-  #       info "$(color 4)  PKG" packages
-  #       info "$(color 6)  DE " de
-  #       info "$(color 5)  TER" term
-  #       info "$(color 3)  CPU" cpu
-  #       info "$(color 7)  GPU" gpu
-  #       info "$(color 5)  MEM" memory
-  #       prin " "
-  #       prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
-  #   }
-  #   distro_shorthand="on"
-  #   memory_unit="gib"
-  #   cpu_temp="C"
-  #   separator=" $(color 4)>"
-  #   stdout="off"
-  # '';
 }
