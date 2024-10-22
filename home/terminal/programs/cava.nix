@@ -1,13 +1,6 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  # Collection of useful (or fun) CLI apps
-  home.packages = with pkgs; [
-    killall
-    ffmpeg
-    nurl # fetch sha256 for packages
-  ];
-
   # Audio visualizer in terminal
   programs.cava = {
     enable = true;

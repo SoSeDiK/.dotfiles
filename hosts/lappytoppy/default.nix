@@ -113,8 +113,8 @@ in
   # Services
   services.fstrim.enable = true;
 
-  services.tailscale.enable = true;
-  services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
+  # services.tailscale.enable = true; # TODO restore
+  # services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
 
   # iPad as second screen
   programs.weylus = {

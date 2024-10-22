@@ -5,12 +5,14 @@
     let
       inherit (inputs.nixpkgs.lib) nixosSystem;
       inherit (inputs.nixpkgs.lib.lists) concatMap;
+
+      dotAssetsDir = "/home/sosedik/.dotfiles/assets";
     in
     {
       lappytoppy = withSystem "x86_64-linux" (ctx@{ config, inputs', ... }:
         nixosSystem {
           specialArgs = {
-            inherit inputs self inputs';
+            inherit inputs self inputs' dotAssetsDir;
           };
           modules =
             let
@@ -25,7 +27,7 @@
               "${self}/system/programs/home-manager.nix"
               {
                 home-manager.extraSpecialArgs = {
-                  inherit inputs self inputs';
+                  inherit inputs self inputs' dotAssetsDir;
                 };
               }
             ] ++ (concatMap

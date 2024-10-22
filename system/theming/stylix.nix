@@ -14,7 +14,7 @@ in
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
 
     polarity = "dark";
-    image = "${self}/user/assets/wallpaper.png";
+    image = "${self}/assets/wallpaper.png";
 
     cursor = {
       size = 24;

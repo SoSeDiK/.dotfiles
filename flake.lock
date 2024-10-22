@@ -1734,11 +1734,11 @@
         "systems": "systems_9"
       },
       "locked": {
-        "lastModified": 1728166987,
-        "narHash": "sha256-w6dVTguAn9zJ+7aPOhBQgDz8bn6YZ7b56cY8Kg5HJRI=",
+        "lastModified": 1729619827,
+        "narHash": "sha256-CSDXWlKsafGnbGmG5/jrEWtXn8p+jBtComRK8/E9Msc=",
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
-        "rev": "fb9c8d665af0588bb087f97d0f673ddf0d501787",
+        "rev": "05f4271dfc5d4cef9710db654eb1dd9894a16ac0",
         "type": "github"
       },
       "original": {

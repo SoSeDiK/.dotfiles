@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 
 let
   hyprcursorName = "Bibata-Modern-Ice-Hyprcursor";
-  hyprcursorPackage = pkgs.callPackage ../pkgs/bibata-hyprcursor {
+  hyprcursorPackage = pkgs.callPackage "${self}/pkgs/bibata-hyprcursor" {
     variant = "modern";
     baseColor = "#FFFFFF";
     outlineColor = "#000000";

@@ -1,22 +1,24 @@
-{ ... }:
+{ dotAssetsDir, ... }:
 
 let
-  flakeDir = "/home/sosedik/.dotfiles";
+  flakeDir = "/home/sosedik/.dotfiles"; # TODO remove :)
 in
 {
   home.shellAliases = {
     "..." = "cd ../..";
     gw = "./gradlew";
-    ver = "${flakeDir}/user/files/scripts/ver.sh";
+    ver = "${dotAssetsDir}/scripts/ver.sh";
     reboot = "systemctl reboot";
-    update = "${flakeDir}/user/files/scripts/update_system.sh --update";
-    updates = "${flakeDir}/user/files/scripts/update_system.sh";
-    updatec = "${flakeDir}/user/files/scripts/update_commit.sh";
-    gw2update = "${flakeDir}/user/files/scripts/update-gw-2-stuff.sh";
+    # Updating system
+    update = "${dotAssetsDir}/scripts/update_system.sh --update";
+    updates = "${dotAssetsDir}/scripts/update_system.sh";
+    updatec = "${dotAssetsDir}/scripts/update_commit.sh";
+    updatef = "${dotAssetsDir}/scripts/update_flake.sh";
+    # Updating stuff
+    gw2update = "${dotAssetsDir}/scripts/update-gw-2-stuff.sh";
     uccssupdate = "${flakeDir}/home/programs/firefox/firefox_profile/uc_css-updater.sh";
-    #gccleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
     gccleanup = "nh clean all";
-    wallpaper = "${flakeDir}/user/files/scripts/set-background.sh";
+    wallpaper = "${dotAssetsDir}/scripts/set-background.sh";
     hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
     rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
     linkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/nvidia_gpu.sh";

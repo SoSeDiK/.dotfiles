@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Test IDs: 859663165 2985464274 2931446135
 
+assets_dir=~/Data/SteamLibrary/steamapps/common/wallpaper_engine/assets
+workshop_dir=~/Data/SteamLibrary/steamapps/workshop/content/431960
+screenshot_dest=~/.cache/wallpaper_dump.png
+
 # Check if the first argument is provided
 if [ -n "$1" ]; then
     # Check if the argument is a link
@@ -16,10 +20,6 @@ else
     echo "No argument provided, using default wallpaper"
     background_id=2985464274
 fi
-
-assets_dir=~/Data/SteamLibrary/steamapps/common/wallpaper_engine/assets
-workshop_dir=~/Data/SteamLibrary/steamapps/workshop/content/431960
-screenshot_dest=~/.cache/wallpaper_dump.png
 
 # Kill old running instance
 pkill -f linux-wallpaperengine
