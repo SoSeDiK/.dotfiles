@@ -24,9 +24,9 @@ in
     linkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/nvidia_gpu.sh";
     unlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/unload_gpu.sh";
     virtlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/vfio_gpu.sh";
-    killhypr = "${flakeDir}/user/hyprland/hypr/scripts/exit_hypr.sh";
+    killhypr = "${dotAssetsDir}/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
-    runwm = "${flakeDir}/user/files/scripts/connect-via-looking-glass.sh";
+    runwm = "${dotAssetsDir}/scripts/connect-via-looking-glass.sh";
     fixspotify = "rm -rf ~/.cache/spofity"; # sometimes it refuces to relaunch when it's running in bg
   };
 }

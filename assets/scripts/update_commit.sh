@@ -2,7 +2,7 @@
 
 hostname=$(hostname)
 
-pushd ~/.dotfiles/user/files/scripts
+pushd ~/.dotfiles/assets/scripts
 
 gen=$(nixos-rebuild --flake .#$hostname list-generations | grep current)
 #git add .
