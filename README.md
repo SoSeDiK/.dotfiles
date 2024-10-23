@@ -1,5 +1,7 @@
 List of things to do:
 
+https://github.com/Zerodya/hyprfreeze
+
 - Chore
 
   - ags

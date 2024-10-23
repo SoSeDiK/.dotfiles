@@ -1,5 +1,8 @@
-{ inputs, config, pkgs, self, ... }:
+{ inputs, config, pkgs, dotAssetsDir, ... }:
 
+let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+in
 {
   imports = [ inputs.ags.homeManagerModules.default ];
 
@@ -20,7 +23,7 @@
 
   programs.ags = {
     enable = true;
-    configDir = config.lib.file.mkOutOfStoreSymlink "${self}/user/hyprland/ags/config";
+    configDir = mkOutOfStoreSymlink "${dotAssetsDir}/ags";
     extraPackages = with pkgs; [
       gtksourceview
       webkitgtk

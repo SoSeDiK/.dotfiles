@@ -1,7 +1,11 @@
-{ ... }:
+{ inputs', ... }:
 
 {
   security.polkit.enable = true;
+
+  environment.systemPackages = [
+    inputs'.hyprpolkitagent.packages.hyprpolkitagent
+  ];
 
   # Automatically grant some permissions
   security.polkit.extraConfig = ''

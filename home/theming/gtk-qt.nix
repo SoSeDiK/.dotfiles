@@ -9,10 +9,17 @@
       package = pkgs.papirus-icon-theme;
     };
     gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
+      gtk-application-prefer-dark-theme = true;
     };
     gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
+      gtk-application-prefer-dark-theme = true;
     };
+  };
+
+  # Theme QT # TODO Doesn't work :)
+  qt = {
+    enable = true;
+    style.name = "kvantum";
+    platformTheme.name = "qtct";
   };
 }

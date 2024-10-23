@@ -2,8 +2,9 @@
 
 {
   # Keeping passwords / sessions
-  # services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
+  # # Auto start polkit
   # systemd.user.services.polkit-gnome-authentication-agent-1 = {
   #   description = "polkit-gnome-authentication-agent-1";
   #   wantedBy = [ "graphical-session.target" ];
@@ -18,18 +19,12 @@
   #   };
   # };
 
-  # Unlock keyring on login
-  # security.pam.services.greetd.enableGnomeKeyring = true;
+  # Keyrind data visualizer
+  programs.seahorse.enable = true;
 
+  # Storing app settings
+  programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
     dconf-editor
   ];
-
-  # Needed for GNOME services outside of GNOME Desktop
-  services.dbus.packages = [ pkgs.gcr ];
-
-  programs = {
-    dconf.enable = true;
-    seahorse.enable = true;
-  };
 }

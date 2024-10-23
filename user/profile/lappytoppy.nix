@@ -1,9 +1,6 @@
-{ inputs', pkgs, self, ... }:
+{ pkgs, self, ... }:
 
 let
-  # Compile Wallpaper Engine with Wayland support
-  linux-wallpaperengine = pkgs.callPackage ../../pkgs/linux-wallpaperengine { };
-  mkMpvScript = path: pkgs.mpvScripts.callPackage path { };
   # Only pull xembed-sni-proxy from plasma-workspace
   # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
   xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
@@ -14,65 +11,6 @@ let
   videoPlayer = "mpv.desktop";
 in
 {
-  # Apps
-  home.packages = with pkgs; [
-    libsForQt5.ark # archiver
-    direnv
-    gimp
-    libreoffice-qt
-    # Utils
-    qalculate-qt
-    mission-center # Windows-like process manager
-    fsearch # fast search
-    cpu-x # PC Info
-    fontforge
-    # Media
-    loupe # image viewer
-    obs-studio # video recorder
-    stremio # video streaming
-    qbittorrent # torrents
-    # Dev
-    jetbrains.idea-community-bin
-    android-studio
-    filezilla
-    postman
-    # Gaming
-    prismlauncher # Minecraft launcher
-    r2modman # Lethal Company mod manager
-    # space-cadet-pinball # Good Old Pinball # TODO Depends on archive.org, which is currently down
-    # Social
-    vesktop # Discord client
-    inputs'.nix-gaming.packages.wine-discord-ipc-bridge
-    telegram-desktop
-    whatsapp-for-linux
-    # Extra browsers
-    microsoft-edge
-    tor-browser
-    # Misc
-    linux-wallpaperengine # TODO not yet in nixpkgs
-    smile # emoji picker
-    # Fun
-    cmatrix # Matrix in terminal
-    # ollama # AI!
-  ];
-
-  # Video player
-  programs.mpv = {
-    enable = true;
-    scripts = with pkgs.mpvScripts; [
-      uosc # UI
-      mpris
-      thumbfast
-      autoload
-      memo
-      (mkMpvScript ./../files/mpvScripts/simple-undo.nix)
-      (mkMpvScript ./../files/mpvScripts/skip-to-silence.nix)
-    ];
-  };
-
-  # Gaming
-  programs.mangohud.enable = true;
-
   # Allows Blish HUD to run
   services.xembed-sni-proxy.enable = true;
   services.xembed-sni-proxy.package = xembed-sni-proxy;

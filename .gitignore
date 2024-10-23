@@ -2,8 +2,4 @@
 .vscode
 
 # AGS types
-user/hyprland/ags/config/types
-
-# Logs
-nixos-switch.log
-hm-switch.log
+assets/ags/types

@@ -1,38 +1,25 @@
-{ inputs, config, pkgs, self, ... }:
+{ inputs, inputs', config, dotAssetsDir, ... }:
 
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-
-    ./ags/ags.nix # task bar and many other things
-    ./rofi # app/task launcher
-    ./cliphist/cliphist.nix # clipboard history
-    ./emoji-picker/rofimoji.nix # emoji picker
-    ./misc/monitors.nix # monitors managements
-    ./misc/screenshots.nix # screenshots
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    # package = (inputs.hyprland.packages.${pkgs.system}.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
+    package = inputs'.hyprland.packages.hyprland;
+    # package = (inputs'.hyprland.packages.hyprland).overrideAttrs (_finalAttrs: previousAttrs: {
     #   patches = previousAttrs.patches ++ [
     #     # ../../system/hyprland/patches/patch1.patch
     #   ];
     # });
-    # TODO unhardcode?
     extraConfig = ''
-      source = /home/sosedik/.dotfiles/user/hyprland/hypr/hyprland.conf
+      source = ${dotAssetsDir}/hypr/hyprland.conf
     '';
-    # extraConfig = ''
-    #   source = ${self}/user/hyprland/hypr/hyprland.conf
-    # '';
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      inputs.hypr-dynamic-cursors.packages.${pkgs.system}.hypr-dynamic-cursors
-      # inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
-      # inputs.hyprspace.packages.${pkgs.system}.Hyprspace
+      inputs'.hyprland-plugins.packages.hyprexpo
+      inputs'.hyprland-plugins.packages.hyprbars
+      inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors
     ];
 
     systemd = {
@@ -70,6 +57,6 @@
 
   # Separate config for dev environment
   xdg.configFile."hypr/hyprlandd.conf".text = ''
-    source = ${self}/user/hyprland/hypr/hyprlandd.conf
+    source = ${dotAssetsDir}/hypr/hyprlandd.conf
   '';
 }
