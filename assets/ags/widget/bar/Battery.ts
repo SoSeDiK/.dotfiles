@@ -180,7 +180,7 @@ export function BatteryMenu() {
         children: [
           PowerProfile("power-saver", "󰾆", "Quiet", () =>
             Utils.execAsync(
-              "hyprctl dispatch exec ~/.dotfiles/user/hyprland/hypr/scripts/gamemode.sh"
+              "hyprctl dispatch exec ~/.dotfiles/assets/hypr/scripts/gamemode.sh"
             )
           ),
           PowerProfile("balanced", "󰾅", "Balanced", () =>
