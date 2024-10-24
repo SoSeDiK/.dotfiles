@@ -19,7 +19,8 @@
   # Theme QT # TODO Doesn't work :)
   qt = {
     enable = true;
-    style.name = "kvantum";
-    platformTheme.name = "qtct";
+    style.name = "breeze";
+    style.package = pkgs.kdePackages.breeze;
+    platformTheme.name = "qt5ct";
   };
 }

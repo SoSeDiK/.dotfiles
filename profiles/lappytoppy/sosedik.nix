@@ -8,6 +8,7 @@ let
   gitEmail = "mrsosedik@gmail.com";
 
   linux-wallpaperengine = pkgs.callPackage "${self}/pkgs/linux-wallpaperengine" { }; # TODO not yet in nixpkgs
+  hyprfreeze = pkgs.callPackage "${self}/pkgs/hyprfreeze" { };
 
   # Only pull xembed-sni-proxy from plasma-workspace
   # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
@@ -57,6 +58,8 @@ in
 
   # User apps
   home.packages = with pkgs; [
+    inputs'.hyprsunset.packages.hyprsunset
+    hyprfreeze
     rofi-wayland # App/things launcher
     bottles # WINE helper
     helvum # Audio
@@ -85,7 +88,7 @@ in
     # Gaming
     prismlauncher # Minecraft launcher
     r2modman # Lethal Company mod manager
-    # space-cadet-pinball # Good Old Pinball # TODO Depends on archive.org, which is currently down
+    space-cadet-pinball # Good Old Pinball
     # Social
     vesktop # Discord client
     inputs'.nix-gaming.packages.wine-discord-ipc-bridge
