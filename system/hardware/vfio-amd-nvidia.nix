@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  cpuType = "amd"; # System's CPU (either "amd" or "intel")
+  cpuType = "amd";
   vfioIds = [ "10de:1f95" "10de:10fa" ]; # The IOMMU ids for GPU passthrough
 in
 {
@@ -29,7 +29,6 @@ in
     ];
     kernelParams = [
       # VFIO
-      "${cpuType}_iommu=on"
       "iommu=pt"
       "kvm.ignore_msrs=1"
       # Nvidia

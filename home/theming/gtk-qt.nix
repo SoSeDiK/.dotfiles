@@ -16,11 +16,14 @@
     };
   };
 
-  # Theme QT # TODO Doesn't work :)
+  # Theme QT # TODO Doesn't work :')
   qt = {
     enable = true;
-    style.name = "breeze";
-    style.package = pkgs.kdePackages.breeze;
-    platformTheme.name = "qt5ct";
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
+    style.package = with pkgs; [
+      kdePackages.breeze
+      kdePackages.qtstyleplugin-kvantum
+    ];
   };
 }

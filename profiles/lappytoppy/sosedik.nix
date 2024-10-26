@@ -124,7 +124,14 @@ in
   };
 
   # Gaming
-  programs.mangohud.enable = true;
+  programs.mangohud = {
+    enable = true;
+    # https://github.com/flightlessmango/MangoHud/blob/master/data/MangoHud.conf
+    settings = {
+      # Disable / hide the hud by default
+      no_display = true;
+    };
+  };
 
   # Create symlink for Steam games
   home.file."Games/Steam" = lib.mkIf osConfig.programs.steam.enable {

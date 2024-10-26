@@ -100,6 +100,14 @@ in
     flake = "/home/${username}/.dotfiles";
   };
 
+  # TODO remove once in Stylix
+  # https://github.com/NixOS/nixpkgs/pull/349457
+  qt = {
+    enable = true;
+    style = "kvantum";
+    platformTheme = "qt5ct";
+  };
+
   # Use lix
   nix.package = pkgs.lix;
 
