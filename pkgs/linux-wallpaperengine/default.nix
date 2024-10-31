@@ -52,9 +52,38 @@
 , udev
 , libdecor
 , autoPatchelfHook
+, makeWrapper
 ,
 }:
 let
+  rpath = lib.makeLibraryPath [
+    glib
+    nss
+    nspr
+    atk
+    at-spi2-atk
+    libdrm
+    libGL
+    expat
+    libxcb
+    libxkbcommon
+    libX11
+    libXcomposite
+    libXdamage
+    libXext
+    libXfixes
+    libXrandr
+    mesa
+    gtk3
+    pango
+    cairo
+    alsa-lib
+    dbus
+    at-spi2-core
+    cups
+    libxshmfence
+    udev
+  ];
   buildType = "Release";
   platform =
     {
@@ -93,58 +122,31 @@ let
     '';
   };
   buildInputs = [
-    atk
-    glib
-    cairo
     libdecor
     ffmpeg
     libglut
     glew
     glfw
     glm
-    libGL
     libpulseaudio
-    libX11
     libXau
     SDL2_mixer
     libXdmcp
-    libXext
-    libXrandr
     libXpm
     libXxf86vm
     mpv
     lz4
     SDL2
-    nss
-    nspr
-    at-spi2-atk
-    libdrm
-    expat
-    libxcb
-    libxkbcommon
-    libXcomposite
-    libXdamage
-    libXfixes
-    mesa
-    gtk3
-    pango
-    alsa-lib
-    dbus
-    at-spi2-core
-    cups
-    libxshmfence
-    udev
     zlib
     wayland
     wayland-protocols
     egl-wayland
     libffi
     wayland-scanner
+    libXrandr
   ];
-  rpath = lib.makeLibraryPath buildInputs;
 in
 stdenv.mkDerivation {
-  inherit buildInputs;
   pname = "linux-wallpaperengine";
   version = "0-unstable-2024-10-13";
 
@@ -159,24 +161,27 @@ stdenv.mkDerivation {
     cmake
     pkg-config
     autoPatchelfHook
+    makeWrapper
   ];
+
+  inherit buildInputs;
 
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=${buildType}"
     "-DCMAKE_INSTALL_PREFIX=${placeholder "out"}/linux-wallpaperengine"
   ];
 
-  preConfigure = ''
+  postPatch = ''
     patchShebangs .
     mkdir -p third_party/cef/
     ln -s ${cef-bin} third_party/cef/${cef-bin-name}
   '';
 
   preFixup = ''
-    patchelf --set-rpath "${rpath}:${cef-bin}" $out/linux-wallpaperengine/linux-wallpaperengine
-    mkdir $out/bin
-    ln -s $out/linux-wallpaperengine/linux-wallpaperengine $out/bin/linux-wallpaperengine
+    patchelf --set-rpath "${lib.makeLibraryPath buildInputs}:${cef-bin}" $out/linux-wallpaperengine/linux-wallpaperengine
     find $out -exec chmod 755 {} +
+    mkdir $out/bin
+    makeWrapper $out/linux-wallpaperengine/linux-wallpaperengine $out/bin/linux-wallpaperengine
   '';
 
   meta = {

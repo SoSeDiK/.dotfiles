@@ -1,5 +1,8 @@
 { inputs, inputs', config, dotAssetsDir, ... }:
 
+let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+in
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -33,6 +36,8 @@
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
   };
+
+  xdg.configFile."hypr/xdph.conf".source = mkOutOfStoreSymlink "${dotAssetsDir}/hypr/xdph.conf";
 
   # Generate some dynamic options
   xdg.configFile."hypr/generated.conf".text =

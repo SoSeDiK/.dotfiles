@@ -121,6 +121,9 @@ in
   # Services
   services.fstrim.enable = true;
 
+  # For gaming
+  services.zerotierone.enable = true;
+
   # services.tailscale.enable = true; # TODO restore
   # services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
 
