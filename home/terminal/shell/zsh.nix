@@ -7,7 +7,9 @@
     autosuggestion.enable = true;
     historySubstringSearch.enable = true;
     initExtra = ''
-      zstyle ":completion:*" menu select
+      # Do menu-driven completion.
+      zstyle ':completion:*' menu select
+
       zstyle ":completion:*" matcher-list "" "m:{a-z0A-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
 
       # Use all cores in make jobs
