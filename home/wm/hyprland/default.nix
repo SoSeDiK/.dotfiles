@@ -23,6 +23,7 @@ in
       inputs'.hyprland-plugins.packages.hyprexpo
       # inputs'.hyprland-plugins.packages.hyprbars # TODO broken with git
       inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors
+      inputs'.hyprsplit.packages.hyprsplit
     ];
 
     systemd = {

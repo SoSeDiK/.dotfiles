@@ -6,6 +6,7 @@
 {
   imports =
     [
+      # Enables non-free firmware on devices not recognized by `nixos-generate-config`.
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 

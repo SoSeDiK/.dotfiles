@@ -35,6 +35,8 @@ https://github.com/Zerodya/hyprfreeze
 
 - Maybes
 
+  - Symlink /etc/nixos to ~/.dotfiles ?
+
   - https://github.com/JustTemmie/steam-presence
     - Displaying custom apps in Vesktop
 

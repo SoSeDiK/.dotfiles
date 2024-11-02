@@ -44,12 +44,12 @@ class Brightness extends Service {
 
     if (percent > 1) percent = 1;
 
-    Utils.execAsync(`brightnessctl set ${Math.floor(percent * 100)}% -q`).then(
-      () => {
-        this.#screen = percent;
-        this.changed("screen");
-      }
-    );
+    Utils.execAsync(
+      `brightnessctl set ${Math.floor(percent * 100)}% -d ${screen} -q`
+    ).then(() => {
+      this.#screen = percent;
+      this.changed("screen");
+    });
   }
 
   constructor() {

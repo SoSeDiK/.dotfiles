@@ -12,15 +12,10 @@ VIRSH_GPU_AUDIO=pci_0000_01_00_1
 # systemctl stop display-manager.service
 
 # Unload Nvidia drivers
-modprobe -r nvidia_drm
-modprobe -r nvidia_modeset
-modprobe -r nvidia_uvm
-modprobe -r nvidia
+sudo modprobe -r nvidia_drm nvidia_modeset nvidia_uvm nvidia
 
 # Unload VFIO-PCI Kernel Driver
-modprobe -r vfio_pci
-modprobe -r vfio_iommu_type1
-modprobe -r vfio
+modprobe -r vfio_pci vfio_iommu_type1 vfio
 
 # Detach GPU
 virsh nodedev-detach $VIRSH_GPU_VIDEO

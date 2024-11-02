@@ -3,10 +3,9 @@
 {
   environment.systemPackages = with pkgs; [
     lenovo-legion
-    linuxKernel.packages.linux_xanmod_latest.lenovo-legion-module
   ];
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.lenovo-legion-module ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ lenovo-legion-module ];
 
   # Run legion_gui as root
   security.wrappers.legion_gui_with_cap = {

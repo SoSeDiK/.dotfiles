@@ -1,4 +1,4 @@
-{ config, inputs, self, lib, pkgs, ... }:
+{ inputs, self, pkgs, ... }:
 
 let
   users = [ "sosedik" ];
@@ -20,11 +20,11 @@ in
   imports = [
     # Hardware
     ./hardware.nix # Include the results of the hardware scan
-    inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05h
+    # ./hardware-modes.nix
+    inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid
     "${self}/system/hardware/battery.nix"
     "${self}/system/hardware/bluetooth.nix"
     "${self}/system/hardware/lenovo-legion.nix"
-    "${self}/system/hardware/vfio-amd-nvidia.nix"
 
     # Boot
     "${self}/system/boot"
@@ -122,7 +122,7 @@ in
   services.fstrim.enable = true;
 
   # For gaming
-  services.zerotierone.enable = true;
+  # services.zerotierone.enable = true;
 
   # services.tailscale.enable = true; # TODO restore
   # services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
@@ -207,12 +207,6 @@ in
   # Enable networking
   networking.hostName = "lappytoppy";
   networking.networkmanager.enable = true;
-
-  # TODO Remove once nixos-hardware has 15arh05 model
-  hardware.nvidia.prime.amdgpuBusId = lib.mkForce "PCI:5:0:0";
-
-  # Fixup backlight control
-  boot.kernelParams = [ "amdgpu.backlight=0" ];
 
   # Set your time zone
   time.timeZone = sysTimezone;

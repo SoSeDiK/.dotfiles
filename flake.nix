@@ -7,7 +7,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:SoSeDiK/nixos-hardware/lenovo-legion-15arh05"; # TODO upstream
 
     home-manager = {
       url = "github:nix-community/home-manager";

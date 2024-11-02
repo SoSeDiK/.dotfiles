@@ -58,6 +58,7 @@ in
 
   # User apps
   home.packages = with pkgs; [
+    nix-inspect
     inputs'.hyprsunset.packages.hyprsunset
     hyprfreeze
     rofi-wayland # App/things launcher
@@ -149,8 +150,8 @@ in
   xdg.mimeApps.enable = true;
 
   # Allows Blish HUD to run
-  services.xembed-sni-proxy.enable = true;
-  services.xembed-sni-proxy.package = xembed-sni-proxy;
+  # services.xembed-sni-proxy.enable = true; # TODO failing to start
+  # services.xembed-sni-proxy.package = xembed-sni-proxy;
 
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "org.gnome.Nautilus.desktop";

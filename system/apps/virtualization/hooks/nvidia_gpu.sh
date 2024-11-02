@@ -14,19 +14,14 @@ VIRSH_GPU_AUDIO=pci_0000_01_00_1
 
 # Unload VFIO-PCI Kernel Driver
 # Nothing is using secondary GPU, so it's safe to just load it
-modprobe -r vfio_pci
-modprobe -r vfio_iommu_type1
-modprobe -r vfio
+modprobe -r vfio_pci vfio_iommu_type1 vfio
 
 # Re-Bind GPU to Nvidia Driver
 virsh nodedev-reattach $VIRSH_GPU_VIDEO
 virsh nodedev-reattach $VIRSH_GPU_AUDIO
 
 # Load nvidia drivers
-modprobe nvidia
-modprobe nvidia_modeset
-modprobe nvidia_drm
-modprobe nvidia_uvm
+modprobe nvidia nvidia_modeset nvidia_drm nvidia_uvm
 
 # Start display manager on new GPU
 # systemctl start display-manager.service
