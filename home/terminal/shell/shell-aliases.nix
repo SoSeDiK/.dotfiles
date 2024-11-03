@@ -5,7 +5,12 @@ let
 in
 {
   home.shellAliases = {
+    # Moving around
+    ".." = "cd ..";
     "..." = "cd ../..";
+    c = "clear";
+    cc = "cd ~ && clear";
+    # Helpers
     gw = "./gradlew";
     ver = "${dotAssetsDir}/scripts/ver.sh";
     reboot = "systemctl reboot";
@@ -17,13 +22,16 @@ in
     # Updating stuff
     gw2update = "${dotAssetsDir}/scripts/update-gw-2-stuff.sh";
     uccssupdate = "${flakeDir}/home/programs/firefox/firefox_profile/uc_css-updater.sh";
+    # Managing system
+    kys = "shutdown now";
     gccleanup = "nh clean all";
-    wallpaper = "${dotAssetsDir}/scripts/set-background.sh";
-    hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
-    rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
     linkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/nvidia_gpu.sh";
     unlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/unload_gpu.sh";
     virtlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/vfio_gpu.sh";
+    hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
+    rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
+    # Shortcups
+    wallpaper = "${dotAssetsDir}/scripts/set-background.sh";
     killhypr = "${dotAssetsDir}/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
     runwm = "${dotAssetsDir}/scripts/connect-via-looking-glass.sh";

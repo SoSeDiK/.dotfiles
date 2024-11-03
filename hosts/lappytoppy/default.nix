@@ -1,4 +1,4 @@
-{ inputs, self, pkgs, ... }:
+{ config, inputs, self, pkgs, ... }:
 
 let
   users = [ "sosedik" ];
@@ -20,8 +20,7 @@ in
   imports = [
     # Hardware
     ./hardware.nix # Include the results of the hardware scan
-    # ./hardware-modes.nix
-    inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid
+    ./hardware-modes.nix
     "${self}/system/hardware/battery.nix"
     "${self}/system/hardware/bluetooth.nix"
     "${self}/system/hardware/lenovo-legion.nix"
@@ -100,14 +99,6 @@ in
     flake = "/home/${username}/.dotfiles";
   };
 
-  # TODO remove once in Stylix
-  # https://github.com/NixOS/nixpkgs/pull/349457
-  qt = {
-    enable = true;
-    style = "kvantum";
-    platformTheme = "qt5ct";
-  };
-
   # Use lix
   nix.package = pkgs.lix;
 
@@ -124,8 +115,8 @@ in
   # For gaming
   # services.zerotierone.enable = true;
 
-  # services.tailscale.enable = true; # TODO restore
-  # services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
+  services.tailscale.enable = true;
+  services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
 
   # iPad as second screen
   programs.weylus = {
@@ -162,10 +153,6 @@ in
   };
 
   programs.openvpn3.enable = true;
-  # TODO broken in nixpkgs for now
-  programs.openvpn3.package = pkgs.callPackage "${self}/pkgs/openvpn3" {
-    gdbuspp = pkgs.callPackage "${self}/pkgs/openvpn3/gdbuspp.nix" { };
-  };
   # services.openvpn.servers = {
   #   zaborona = {
   #     config = builtins.readFile (pkgs.fetchurl {

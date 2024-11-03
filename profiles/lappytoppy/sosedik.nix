@@ -200,6 +200,14 @@ in
             "(https://)?blishhud\.com.*"
           ];
         }
+        # Terraria
+        {
+          exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+          regexes = [
+            "(https://)?terraria\.wiki\.gg.*"
+            "(https://)?calamitymod\.wiki\.gg.*"
+          ];
+        }
         # Any other http & https URLs since handlr is a default handler for them
         {
           exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";

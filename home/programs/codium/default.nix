@@ -1,5 +1,8 @@
-{ pkgs, config, self, ... }:
+{ pkgs, config, dotAssetsDir, ... }:
 
+let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
+in
 {
   programs.vscode = {
     enable = true;
@@ -40,6 +43,6 @@
     "text/x-java" = "codium.desktop"; # .patch
   };
 
-  xdg.configFile."VSCodium/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/codium/settings.json";
-  xdg.configFile."VSCodium/User/keybindings.json".source = config.lib.file.mkOutOfStoreSymlink "${self}/home/programs/codium/keybindings.json";
+  xdg.configFile."VSCodium/User/settings.json".source = mkOutOfStoreSymlink "${dotAssetsDir}/codium/settings.json";
+  xdg.configFile."VSCodium/User/keybindings.json".source = mkOutOfStoreSymlink "${dotAssetsDir}/codium/keybindings.json";
 }

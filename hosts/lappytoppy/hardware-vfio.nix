@@ -10,9 +10,9 @@ in
       # "kvm-amd" # Loaded by default hardware scan
 
       # Required for passthrough, can be loaded when needed
-      # "vfio_pci"
-      # "vfio"
-      # "vfio_iommu_type1"
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
 
       # "amdgpu" # Loaded by nixos-hardware module
     ];
@@ -24,13 +24,22 @@ in
       "nvidia_uvm"
     ];
     kernelParams = [
-      # VFIO
+      # Enable IOMMU only for passthrough devices
       "iommu=pt"
-      "kvm.ignore_msrs=1"
+      # Ignore guest accesses to unhandled MSRs
+      # "kvm.ignore_msrs=1"
     ];
     extraModprobeConfig = lib.concatStringsSep "\n" [
       # VFIO
       "options vfio-pci ids=${lib.concatStringsSep "," vfioIds}"
     ];
+  };
+
+  # Disable Nvidia features preventing dynamic (un)linking
+  hardware.nvidia = {
+    modesetting.enable = false;
+    prime.offload.enable = false;
+    # Requires offload
+    powerManagement.finegrained = lib.mkForce false;
   };
 }

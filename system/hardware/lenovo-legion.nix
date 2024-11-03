@@ -1,11 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     lenovo-legion
   ];
-
-  boot.extraModulePackages = with config.boot.kernelPackages; [ lenovo-legion-module ];
 
   # Run legion_gui as root
   security.wrappers.legion_gui_with_cap = {

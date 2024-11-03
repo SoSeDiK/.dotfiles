@@ -12,13 +12,6 @@ in
     cage
     bun
     dart-sass
-    # Theme dependencies
-    fd
-    wf-recorder
-    wl-clipboard
-    gtk3
-    # Utils
-    hyprpicker
   ];
 
   programs.ags = {
