@@ -1,6 +1,8 @@
 List of things to do:
 
-https://github.com/Zerodya/hyprfreeze
+https://quickshell.outfoxxed.me/docs/configuration/intro/
+https://github.com/pop-os/pop/issues/2227#issuecomment-1054216955
+https://github.com/MrGlockenspiel/activate-linux
 
 - Chore
 
@@ -42,9 +44,6 @@ https://github.com/Zerodya/hyprfreeze
 
 # Tracked issues (- issue \* workaround/note)
 
-- https://github.com/hyprwm/Hyprland/issues/3558
-  # Hyprland hangs on exit
-  - Using exit_hypr script to kill Hyprland
 - https://github.com/hyprwm/Hyprland/issues/4375
   # Switching workspace does not close special workspace
   - Using workspace_aware_switch script
@@ -63,9 +62,6 @@ https://github.com/Zerodya/hyprfreeze
 - https://github.com/virt-manager/virt-manager/issues/156
   # virt-manager does not support easy folder sharing
   - Using samba server that auto starts & closes during VM workflow
-- https://github.com/flatpak/xdg-desktop-portal-gtk/issues/440
-  # xdg-desktop-portal-gtk is unable to open links in default browser
-  - DefaultEnvironment workaround: https://github.com/flatpak/xdg-desktop-portal-gtk/issues/440#issuecomment-1900520919
 - https://github.com/nix-community/home-manager/issues/2562
   # zsh auto completions do not work for home-manager apps
   - Manually importing auto completions path

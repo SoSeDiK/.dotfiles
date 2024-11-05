@@ -7,14 +7,18 @@ let
   sysTimezone = "Europe/Kyiv";
   sysLocale = "en_US.UTF-8"; # System locale
   sysExtraLocale = "uk_UA.UTF-8"; # Time/date/currency/etc. locale
+
+  userSessionPassword = username: "users/${username}/session";
 in
 {
   # Setup users
   users.users.sosedik = {
     isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.${userSessionPassword "sosedik"}.path;
     description = "SoSeDiK";
     extraGroups = [ "networkmanager" "wheel" ];
   };
+  sops.secrets.${userSessionPassword "sosedik"}.neededForUsers = true;
 
   # Device components
   imports = [

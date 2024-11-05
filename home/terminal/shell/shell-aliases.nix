@@ -32,7 +32,6 @@ in
     rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
     # Shortcups
     wallpaper = "${dotAssetsDir}/scripts/set-background.sh";
-    killhypr = "${dotAssetsDir}/hypr/scripts/exit_hypr.sh";
     renv = "sudo systemctl restart display-manager.service";
     runwm = "${dotAssetsDir}/scripts/connect-via-looking-glass.sh";
     fixspotify = "rm -rf ~/.cache/spofity"; # sometimes it refuces to relaunch when it's running in bg

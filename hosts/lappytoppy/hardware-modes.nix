@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   # Hybrid mode by default
@@ -22,4 +22,11 @@
   specialisation.vfio.configuration = {
     imports = [ ./hardware-vfio.nix ];
   };
+
+  hardware.amdgpu.amdvlk = {
+    enable = true;
+    support32Bit.enable = true;
+  };
+  # amdvlk option overrides this # TODO might be fixed upstream?
+  services.xserver.videoDrivers = lib.mkForce [ "modesetting" "nvidia" ];
 }

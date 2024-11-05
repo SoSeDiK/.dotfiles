@@ -19,6 +19,13 @@ in
       historyInSidebar
     ];
 
+    enabledSnippets = with spicePkgs.snippets; [
+      pointer
+      thickerBars
+      smoothProgressBar
+      removeTopSpacing
+    ];
+
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       # fullAppDisplayMod
