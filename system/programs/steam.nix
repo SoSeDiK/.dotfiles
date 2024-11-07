@@ -3,10 +3,6 @@
 {
   programs.steam = {
     enable = true;
-    # TODO https://github.com/NixOS/nixpkgs/issues/353405
-    package = pkgs.steam.override {
-      extraLibraries = pkgs: [ pkgs.xorg.libxcb ];
-    };
     extraCompatPackages = [
       pkgs.proton-ge-bin
     ];
