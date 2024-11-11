@@ -10,7 +10,7 @@
 /****************************************************************************
  * Betterfox                                                                *
  * "Ad meliora"                                                             *
- * version: 129                                                             *
+ * version: 131                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
  ****************************************************************************/
 
@@ -54,7 +54,6 @@ user_pref("network.predictor.enable-prefetch", false);
 /** EXPERIMENTAL ***/
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
 user_pref("dom.enable_web_task_scheduling", true);
-user_pref("dom.security.sanitizer.enabled", true);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
@@ -69,7 +68,6 @@ user_pref(
   "urlclassifier.features.socialtracking.skipURLs",
   "*.instagram.com, *.twitter.com, *.twimg.com"
 );
-user_pref("network.cookie.sameSite.noneRequiresSecure", true);
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.uitour.enabled", false);
@@ -99,8 +97,6 @@ user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
-user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
 user_pref("browser.urlbar.groupLabels.enabled", false);
 user_pref("browser.formfill.enable", false);
 user_pref("security.insecure_connection_text.enabled", true);
@@ -119,17 +115,15 @@ user_pref("editor.truncate_user_pastes", false);
 /** MIXED CONTENT + CROSS-SITE ***/
 user_pref("security.mixed_content.block_display_content", true);
 user_pref("pdfjs.enableScripting", false);
-user_pref("extensions.postDownloadThirdPartyPrompt", false);
+
+/** EXTENSIONS ***/
+user_pref("extensions.enabledScopes", 5);
 
 /** HEADERS / REFERERS ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
 /** CONTAINERS ***/
 user_pref("privacy.userContext.ui.enabled", true);
-
-/** WEBRTC ***/
-user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
-user_pref("media.peerconnection.ice.default_address_only", true);
 
 /** SAFE BROWSING ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
@@ -193,16 +187,11 @@ user_pref(
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.aboutConfig.showWarning", false);
 user_pref("browser.aboutwelcome.enabled", false);
-user_pref("browser.tabs.tabmanager.enabled", false);
 user_pref("browser.profiles.enabled", true);
 
 /** THEME ADJUSTMENTS ***/
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.compactmode.show", true);
-user_pref("browser.display.focus_ring_on_anything", true);
-user_pref("browser.display.focus_ring_style", 0);
-user_pref("browser.display.focus_ring_width", 0);
-user_pref("layout.css.prefers-color-scheme.content-override", 2);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 user_pref(
   "browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled",
@@ -216,7 +205,6 @@ user_pref("cookiebanners.service.mode.privateBrowsing", 1);
 /** FULLSCREEN NOTICE ***/
 user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("full-screen-api.transition-duration.leave", "0 0");
-user_pref("full-screen-api.warning.delay", -1);
 user_pref("full-screen-api.warning.timeout", 0);
 
 /** URL BAR ***/
@@ -226,6 +214,7 @@ user_pref("browser.urlbar.trending.featureGate", false);
 
 /** NEW TAB PAGE ***/
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
+user_pref("browser.newtabpage.activity-stream.showWeather", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 
 /** POCKET ***/
@@ -255,6 +244,24 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
  ****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
 // Enter your scrolling overrides below this line:
+/****************************************************************************************
+ * OPTION: NATURAL SMOOTH SCROLLING V3 [MODIFIED]                                      *
+ ****************************************************************************************/
+// credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
+// recommended for 120hz+ displays
+// largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("general.smoothScroll", true); // DEFAULT
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
+user_pref("general.smoothScroll.currentVelocityWeighting", "1");
+user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
+user_pref("mousewheel.default.delta_multiplier_y", 300); // 250-400; adjust this number to your liking
 
 /****************************************************************************
  * END: BETTERFOX                                                           *
@@ -468,7 +475,7 @@ user_pref("userChrome.toolbarSlider.width", 50);
 // Exclude some items from the slider
 user_pref(
   "userChrome.toolbarSlider.excludeButtons",
-  '["downloads-button", "simple-tab-groups_drive4ik-browser-action", "_446900e4-71c2-419f-a6a7-df9c091e268b_-BAP", "multithreaded-download-manager_qw_linux-2g64_local-BAP", "ublock0_raymondhill_net-BAP", "addon_darkreader_org-BAP", "_8d1582b2-ff2a-42e0-ba40-42f4ebfe921b_-BAP"]' // Downloads, Simple Tab Groups, Bitwarder, Multithreaded Download Manager, uBlock Origin, Dark Reader, Notifier for GitHub
+  '["downloads-button", "simple-tab-groups_drive4ik-browser-action", "_446900e4-71c2-419f-a6a7-df9c091e268b_-BAP", "multithreaded-download-manager_qw_linux-2g64_local-BAP", "ublock0_raymondhill_net-BAP", "addon_darkreader_org-BAP", "_8d1582b2-ff2a-42e0-ba40-42f4ebfe921b_-BAP"]' // Downloads, Simple Tab Groups, Bitwarden, Multithreaded Download Manager, uBlock Origin, Dark Reader, Notifier for GitHub
 );
 // Exclude flexible space from slider
 user_pref("userChrome.toolbarSlider.excludeFlexibleSpace", true);

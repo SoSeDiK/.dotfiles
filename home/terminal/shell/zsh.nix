@@ -17,20 +17,24 @@
         export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)-1))"
       fi
 
-      bindkey '^[[3~' delete-char                     # Key Del
-      bindkey '^[[5~' beginning-of-buffer-or-history  # Key Page Up
-      bindkey '^[[6~' end-of-buffer-or-history        # Key Page Down
-      bindkey '^[[1;3D' backward-word                 # Key Alt + Left
-      bindkey '^[[1;3C' forward-word                  # Key Alt + Right
-      bindkey '^[[H' beginning-of-line                # Key Home
-      bindkey '^[[F' end-of-line                      # Key End
+      bindkey '^[[A' history-search-backward          # Up arrow        Search backward in history based on current input
+      bindkey '^[[B' history-search-forward           # Down arrow      Search forward in history based on current input
+      bindkey '^[[3~' delete-char                     # Delete key      Delete the character under the cursor
+      bindkey '^[[5~' beginning-of-buffer-or-history  # Page Up         Jump to the first command in history
+      bindkey '^[[6~' end-of-buffer-or-history        # Page Down       Jump to the last command in history
+      bindkey '^[[1;3D' backward-word                 # Alt + Left      Move cursor one word to the left
+      bindkey '^[[1;3C' forward-word                  # Alt + Right     Move cursor one word to the right
+      bindkey '^[[H' beginning-of-line                # Home key        Move cursor to the beginning of the line
+      bindkey '^[[F' end-of-line                      # End key         Move cursor to the end of the line
 
+      # Print system info
       neofetch
     '';
     initExtraFirst = ''
+      # Setup history
       HISTFILE=~/.zsh_history
       HISTSIZE=1000
-      SAVEHIST=1000
+      SAVEHIST=$HISTSIZE
 
       # If a pattern for filename generation has no matches, print an error
       setopt nomatch

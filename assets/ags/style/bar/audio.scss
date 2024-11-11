@@ -1,0 +1,42 @@
+$color: #f096ae;
+
+@use "../_variables.scss" as *;
+
+.Audio {
+  padding: 3px $horizontalMargin;
+  color: $color;
+}
+
+.AudioOptions {
+  .menu_window_box {
+    min-width: 320px;
+  }
+
+  .header {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    padding-left: 5px;
+  }
+
+  .SinkName {
+    padding-left: 10px;
+  }
+
+  .EqualizerButton {
+    padding: 0 4px;
+    background-color: #505366;
+    border-radius: 30%;
+
+    label {
+      font-size: 1.2em;
+    }
+  }
+
+  .MuteButton {
+    padding: 0 4px;
+
+    label {
+      font-size: 1.2em;
+    }
+  }
+}

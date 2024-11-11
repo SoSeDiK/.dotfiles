@@ -1,0 +1,40 @@
+$color: #b5e2ee;
+$activeProfileColor: #c6ce8f;
+
+@use "../_variables.scss" as *;
+
+.Battery {
+  padding: 3px $horizontalMargin;
+  color: $color;
+}
+
+.BatteryOptions {
+  min-width: 280px;
+
+  .Backlight {
+    .KbBacklight {
+      padding: 0 4px;
+      margin-right: 10px;
+      background-color: #505366;
+      border-radius: 30%;
+    }
+
+    label {
+      font-size: 1.2em;
+    }
+  }
+
+  .PowerProfiles {
+    .PowerProfile {
+      .PowerProfileIcon {
+        font-size: 1.2em;
+        padding: 0 4px;
+        margin-right: 10px;
+      }
+
+      .active {
+        color: $activeProfileColor;
+      }
+    }
+  }
+}

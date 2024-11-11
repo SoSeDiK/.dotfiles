@@ -7,11 +7,10 @@ let
   gitUsername = "SoSeDiK";
   gitEmail = "mrsosedik@gmail.com";
 
-  linux-wallpaperengine = pkgs.callPackage "${self}/pkgs/linux-wallpaperengine" { }; # TODO not yet in nixpkgs
   hyprfreeze = pkgs.callPackage "${self}/pkgs/hyprfreeze" { };
 
-  # Only pull xembed-sni-proxy from plasma-workspace
-  # Required for WINE apps to display tray icon properly (e.g. Blish HUD)
+  # Only pull xembed-sni-proxy from plasma-workspace # TODO Find a way to not have to depend on plasma-workspace?
+  # Converts legacy xembed tray icons to SNI onces, required for WINE apps (e.g. Blish HUD)
   xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
     mkdir -p $out/bin
     ln -s ${pkgs.plasma-workspace}/bin/xembedsniproxy $out/bin
@@ -101,6 +100,9 @@ in
     # Misc
     linux-wallpaperengine
     smile # emoji picker
+    pantheon.elementary-iconbrowser # Browsing GTK icons
+    playerctl # Control media player
+    pamixer # Volume control
     # Fun
     cmatrix # Matrix in terminal
   ];
@@ -149,7 +151,7 @@ in
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
 
-  # Allows Blish HUD to run
+  # Allows Blish HUD to show up in tray
   # services.xembed-sni-proxy.enable = true; # TODO failing to start
   # services.xembed-sni-proxy.package = xembed-sni-proxy;
 

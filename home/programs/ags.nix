@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, dotAssetsDir, ... }:
+{ inputs', inputs, config, dotAssetsDir, ... }:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -6,21 +6,22 @@ in
 {
   imports = [ inputs.ags.homeManagerModules.default ];
 
-  home.packages = with pkgs; [
-    # Building dependencies
-    which
-    cage
-    bun
-    dart-sass
-  ];
-
   programs.ags = {
     enable = true;
+    package = inputs'.ags.packages.agsFull;
     configDir = mkOutOfStoreSymlink "${dotAssetsDir}/ags";
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk_4_0
-      accountsservice
+    extraPackages = with inputs'.ags.packages; [
+      apps
+      battery
+      bluetooth
+      cava
+      hyprland
+      mpris
+      network
+      notifd
+      powerprofiles
+      tray
+      wireplumber
     ];
   };
 }

@@ -1,0 +1,16 @@
+@use "../_variables.scss" as *;
+
+.PowerMenu {
+  padding: 3px $horizontalMargin;
+
+  label {
+    margin: 0 3px;
+  }
+}
+
+.PowerOptions {
+  .PowerOptionIcon {
+    font-size: 1.2em;
+    margin-right: 10px;
+  }
+}

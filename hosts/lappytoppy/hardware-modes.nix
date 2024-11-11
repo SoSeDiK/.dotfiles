@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 
 {
   # Hybrid mode by default
@@ -18,15 +18,13 @@
   #   disabledModules = [ inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid ];
   # };
 
-  # VFIO
-  specialisation.vfio.configuration = {
-    imports = [ ./hardware-vfio.nix ];
-  };
+  # # VFIO
+  # specialisation.vfio.configuration = {
+  #   imports = [ ./hardware-vfio.nix ];
+  # };
 
   hardware.amdgpu.amdvlk = {
     enable = true;
     support32Bit.enable = true;
   };
-  # amdvlk option overrides this # TODO might be fixed upstream?
-  services.xserver.videoDrivers = lib.mkForce [ "modesetting" "nvidia" ];
 }

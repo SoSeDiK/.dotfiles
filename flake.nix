@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix?rev=762c07ee10b381bc8e085be5b6c2ec43139f13b0";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -46,7 +46,7 @@
     };
 
     # Hyprland & plugins
-    hyprland.url = "github:hyprwm/Hyprland"; # &rev= to pin commit
+    hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     hyprcursor.url = "github:hyprwm/hyprcursor";
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
@@ -75,7 +75,11 @@
     };
 
     shadower.url = "github:n3oney/shadower";
-    ags.url = "github:Aylur/ags";
+
+    ags = {
+      url = "github:aylur/ags/v2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ flake-parts, ... }:

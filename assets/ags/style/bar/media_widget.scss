@@ -1,0 +1,40 @@
+@use "../_variables.scss" as *;
+
+.Media {
+  padding: 2px $horizontalMargin;
+
+  button {
+    background-color: transparent;
+    &:hover {
+      background-color: #5b5d7e;
+    }
+  }
+
+  .Controls {
+    label {
+      font-size: 12pt;
+    }
+
+    .Previous {
+      padding: 0 6px;
+    }
+
+    .PlayPause {
+      padding: 0 6px;
+    }
+
+    .Next {
+      padding: 0 6px;
+    }
+  }
+
+  .Cover {
+    margin-right: 5px;
+    min-height: 1.2em;
+    min-width: 1.2em;
+    border: 2px solid #353d42;
+    border-radius: 7px;
+    background-position: center;
+    background-size: contain;
+  }
+}

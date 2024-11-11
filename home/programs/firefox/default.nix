@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, self, ... }:
+{ pkgs, config, inputs', self, ... }:
 
 let
   username = config.home.username;
@@ -6,7 +6,7 @@ let
 
   # Firefox Nightly with https://github.com/MrOtherGuy/fx-autoconfig
   firefox-nightly = (
-    (inputs.firefox-nightly.packages.${pkgs.system}.firefox-nightly-bin).override {
+    (inputs'.firefox-nightly.packages.firefox-nightly-bin).override {
       extraPrefsFiles = [
         (builtins.fetchurl {
           url = "https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/master/program/config.js";
@@ -33,7 +33,7 @@ let
     '';
   });
   # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons
-  addons = inputs.firefox-addons.packages.${pkgs.system};
+  addons = inputs'.firefox-addons.packages;
   coreAddons = with config.nur.repos.rycee.firefox-addons; [
     # Bearable browsing
     ublock-origin

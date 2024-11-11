@@ -5,7 +5,7 @@ pushd ~/.dotfiles
 
 git add .
 
-echo "Rebuilding NixOS System…"
+echo "Rebuilding NixOS System… (test mode)"
 
 # Remove old generation home-manager files
 rm -f ~/.zshrc.hmbackup
@@ -17,14 +17,7 @@ rm -f ~/.config/user-dirs.dirs.hmbackup
 rm -f ~/.config/fastfetch/config.jsonc.hmbackup
 rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 
-# The usual way
-# nixos-rebuild --use-remote-sudo switch --flake .#$(hostname) --show-trace
-
-# Fancy nh way
-if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh os switch --update
-else
-  nh os switch
-fi
+# Rebuild without adding a boot entry
+nixos-rebuild --use-remote-sudo test --flake .#$(hostname) --show-trace
 
 popd

@@ -1,21 +1,18 @@
-const get = (args: string) => Number(Utils.exec(`brightnessctl ${args}`));
-const screen = await Utils.execAsync(
-  "bash -c 'ls -w1 /sys/class/backlight | head -1'"
-);
-const kbd = await Utils.execAsync(
-  "bash -c 'ls -w1 /sys/class/leds | grep kbd | head -1'"
-);
+import GObject, { register, property } from "astal/gobject";
+import { monitorFile, readFileAsync } from "astal/file";
+import { exec, execAsync } from "astal/process";
 
-class Brightness extends Service {
-  static {
-    Service.register(
-      this,
-      {},
-      {
-        screen: ["float", "rw"],
-        kbd: ["int", "rw"],
-      }
-    );
+const get = (args: string) => Number(exec(`brightnessctl ${args}`));
+const screen = exec(`bash -c "ls -w1 /sys/class/backlight | head -1"`);
+const kbd = exec(`bash -c 'ls -w1 /sys/class/leds | grep kbd | head -1'`);
+
+@register({ GTypeName: "Brightness" })
+export default class Brightness extends GObject.Object {
+  static instance: Brightness;
+  static get_default() {
+    if (!this.instance) this.instance = new Brightness();
+
+    return this.instance;
   }
 
   #kbdMax = get(`--device ${kbd} max`);
@@ -23,20 +20,23 @@ class Brightness extends Service {
   #screenMax = get("max");
   #screen = get("get") / (get("max") || 1);
 
+  @property(Number)
   get kbd() {
     return this.#kbd;
-  }
-  get screen() {
-    return this.#screen;
   }
 
   set kbd(value) {
     if (value < 0 || value > this.#kbdMax) return;
 
-    Utils.execAsync(`brightnessctl -d ${kbd} s ${value} -q`).then(() => {
+    execAsync(`brightnessctl -d ${kbd} s ${value} -q`).then(() => {
       this.#kbd = value;
-      this.changed("kbd");
+      this.notify("kbd");
     });
+  }
+
+  @property(Number)
+  get screen() {
+    return this.#screen;
   }
 
   set screen(percent) {
@@ -44,11 +44,11 @@ class Brightness extends Service {
 
     if (percent > 1) percent = 1;
 
-    Utils.execAsync(
+    execAsync(
       `brightnessctl set ${Math.floor(percent * 100)}% -d ${screen} -q`
     ).then(() => {
       this.#screen = percent;
-      this.changed("screen");
+      this.notify("screen");
     });
   }
 
@@ -58,18 +58,16 @@ class Brightness extends Service {
     const screenPath = `/sys/class/backlight/${screen}/brightness`;
     const kbdPath = `/sys/class/leds/${kbd}/brightness`;
 
-    Utils.monitorFile(screenPath, async (f) => {
-      const v = await Utils.readFileAsync(f);
+    monitorFile(screenPath, async (f) => {
+      const v = await readFileAsync(f);
       this.#screen = Number(v) / this.#screenMax;
-      this.changed("screen");
+      this.notify("screen");
     });
 
-    Utils.monitorFile(kbdPath, async (f) => {
-      const v = await Utils.readFileAsync(f);
+    monitorFile(kbdPath, async (f) => {
+      const v = await readFileAsync(f);
       this.#kbd = Number(v) / this.#kbdMax;
-      this.changed("kbd");
+      this.notify("kbd");
     });
   }
 }
-
-export default new Brightness();

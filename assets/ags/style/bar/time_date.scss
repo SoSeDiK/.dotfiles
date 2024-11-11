@@ -1,0 +1,39 @@
+$dateBgColor: #d5abcb;
+$dateTextColor: $dateBgColor;
+$timeBgColor: #d5abcb;
+$timeTextColor: $timeBgColor;
+$iconColor: #14141e;
+
+@use "../_variables.scss" as *;
+
+.TimeDate {
+  font-size: 0.9em;
+
+  .DateIcon {
+    font-size: 1.2em;
+    padding: 0 4px;
+    margin-right: 8px;
+    color: $iconColor;
+    background-color: $dateTextColor;
+    border-radius: $radius 0 0 $radius;
+  }
+
+  .DateText {
+    color: $dateTextColor;
+    margin-right: 10px;
+  }
+
+  .TimeIcon {
+    font-size: 1.2em;
+    padding: 0 4px;
+    margin-right: 8px;
+    color: $iconColor;
+    background-color: $timeTextColor;
+    border-radius: $radius 0 0 $radius;
+  }
+
+  .TimeTextBox {
+    color: $dateTextColor;
+    margin-right: $horizontalMargin;
+  }
+}

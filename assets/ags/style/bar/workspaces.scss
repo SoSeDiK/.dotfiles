@@ -1,0 +1,74 @@
+$wsBorder: 2px solid #353d42;
+$wsInactive: transparent;
+$wsActive: #4d5961;
+$wsDisplayed: #3498db;
+$wsHovered: #44aa00;
+$wsSpecial: #a0a8df;
+$wsSpecialHovered: #d77e97;
+$wsSpecialLabel: #525467;
+
+@use "../_variables.scss" as *;
+
+.Workspaces {
+  padding: 0 2px;
+
+  .Workspace {
+    margin: 3px 0;
+
+    .Filler {
+      padding: 4px;
+      margin: 2px 6px;
+      border: $wsBorder;
+      background-color: $wsInactive;
+      border-radius: 50%;
+    }
+
+    button {
+      &:hover .Filler {
+        background-color: $wsHovered;
+      }
+      &:hover:not(.displayed) .Filler {
+        padding: 5px;
+        margin: 1px 5px;
+      }
+    }
+
+    .active .Filler {
+      padding: 5px;
+      margin: 1px 5px;
+      background-color: $wsActive;
+    }
+
+    .displayed .Filler {
+      padding: 5px 10px;
+      margin: 0 0px;
+      border-radius: 30%;
+      background-color: $wsDisplayed;
+    }
+  }
+
+  .Special {
+    margin: 0 $horizontalMargin;
+
+    .Filler {
+      font-size: 1.2em;
+      padding: 0 3px;
+      margin: 1px 0;
+      border: $wsBorder;
+      background-color: $wsSpecial;
+      border-radius: 30%;
+    }
+
+    button {
+      &:hover .Filler {
+        background-color: $wsSpecialHovered;
+      }
+    }
+
+    label {
+      color: $wsSpecialLabel;
+      margin-right: 2px;
+      font-size: 0.7em;
+    }
+  }
+}

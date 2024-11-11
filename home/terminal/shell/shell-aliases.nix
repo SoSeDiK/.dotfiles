@@ -19,6 +19,7 @@ in
     updates = "${dotAssetsDir}/scripts/update_system.sh";
     updatec = "${dotAssetsDir}/scripts/update_commit.sh";
     updatef = "${dotAssetsDir}/scripts/update_flake.sh";
+    updatet = "${dotAssetsDir}/scripts/update_test.sh";
     # Updating stuff
     gw2update = "${dotAssetsDir}/scripts/update-gw-2-stuff.sh";
     uccssupdate = "${flakeDir}/home/programs/firefox/firefox_profile/uc_css-updater.sh";

@@ -1,0 +1,9 @@
+@use "../_variables.scss" as *;
+
+.SysTray {
+  padding: 3px $horizontalMargin;
+
+  .SysTrayItem {
+    padding: 0 4px;
+  }
+}

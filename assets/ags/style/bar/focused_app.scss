@@ -1,0 +1,23 @@
+$bgColor: #d5abcb;
+$textColor: $bgColor;
+$iconColor: #14141e;
+
+@use "../_variables.scss" as *;
+
+.FocusedApp {
+  font-size: 0.8em;
+
+  .AppIcon {
+    font-size: 1.2em;
+    margin-right: 8px;
+    padding: 0px 4px;
+    color: $iconColor;
+    background-color: $textColor;
+    border-radius: $radius 0 0 $radius;
+  }
+
+  .AppTitle {
+    color: $textColor;
+    margin-right: $horizontalMargin;
+  }
+}
