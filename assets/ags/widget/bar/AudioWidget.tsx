@@ -22,7 +22,7 @@ export const AudioOptionsMenu = (monitor: Gdk.Monitor) => {
         <label
           className="SinkName"
           halign={Gtk.Align.START}
-          label={bind(stream, "name")}
+          label={bind(stream, "description")}
         />
         <box>
           <slider

@@ -12,7 +12,13 @@ interface PowerOptionData {
 export const PowerOptionsMenu = (monitor: Gdk.Monitor) => {
   const PowerOption = ({ icon, label, handler }: PowerOptionData) => (
     <box className="PowerOption">
-      <button cursor="pointer" onClicked={handler}>
+      <button
+        cursor="pointer"
+        onClicked={() => {
+          powerOptionsVisible.set(false);
+          handler();
+        }}
+      >
         <box>
           <label className="PowerOptionIcon" label={icon} />
           <label className="PowerOptionLabel" label={label} />

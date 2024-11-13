@@ -83,6 +83,8 @@ function Media({ player }: { player: AstalMpris.Player }) {
 function SpotifySuggetion() {
   return (
     <button
+      className="SpotifySuggetion"
+      cursor="pointer"
       onClickRelease={(_, event) => {
         if (
           event.button === Astal.MouseButton.MIDDLE ||
@@ -91,7 +93,7 @@ function SpotifySuggetion() {
           Hyprland.get_default().dispatch("togglespecialworkspace", "music");
       }}
     >
-      {" "}
+      {""}
     </button>
   );
 }
