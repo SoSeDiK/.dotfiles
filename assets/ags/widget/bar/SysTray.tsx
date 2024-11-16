@@ -19,35 +19,37 @@ export default function SysTray() {
   return (
     <box className="SysTray bar_element">
       {bind(tray, "items").as((items) =>
-        items.map((item) => {
-          if (item.iconThemePath) App.add_icons(item.iconThemePath);
+        items
+          .filter((item) => item.gicon !== null)
+          .map((item) => {
+            if (item.iconThemePath) App.add_icons(item.iconThemePath);
 
-          const menu = item.create_menu();
+            const menu = item.create_menu();
 
-          return (
-            <button
-              className="SysTrayItem"
-              tooltipMarkup={bind(item, "tooltipMarkup").as(
-                (tp) => tp || item.id
-              )}
-              onDestroy={() => menu?.destroy()}
-              onClickRelease={(self, event) => {
-                if (event.button == Astal.MouseButton.MIDDLE) {
-                  openWorkspaceIfNeeded(item.id);
-                  return;
-                }
-                menu?.popup_at_widget(
-                  self,
-                  Gdk.Gravity.SOUTH,
-                  Gdk.Gravity.NORTH,
-                  null
-                );
-              }}
-            >
-              <icon gIcon={bind(item, "gicon")} />
-            </button>
-          );
-        })
+            return (
+              <button
+                className="SysTrayItem"
+                tooltipMarkup={bind(item, "tooltipMarkup").as(
+                  (tp) => tp || item.id
+                )}
+                onDestroy={() => menu?.destroy()}
+                onClickRelease={(self, event) => {
+                  if (event.button == Astal.MouseButton.MIDDLE) {
+                    openWorkspaceIfNeeded(item.id);
+                    return;
+                  }
+                  menu?.popup_at_widget(
+                    self,
+                    Gdk.Gravity.SOUTH,
+                    Gdk.Gravity.NORTH,
+                    null
+                  );
+                }}
+              >
+                <icon gIcon={bind(item, "gicon")} />
+              </button>
+            );
+          })
       )}
     </box>
   );

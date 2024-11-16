@@ -5,6 +5,12 @@ import { Separator } from "../misc/Separator";
 
 export const audioOptionsVisible = Variable(false);
 
+function limitLength(str: string | null, max: number): string {
+  if (!str) return "Unknown Speaker";
+  if (str.length > max) return str.substring(0, max).trim() + "…";
+  return str;
+}
+
 export const AudioOptionsMenu = (monitor: Gdk.Monitor) => {
   const audio = Wp.get_default()?.audio!;
   const speaker = audio.defaultSpeaker!;
@@ -19,11 +25,14 @@ export const AudioOptionsMenu = (monitor: Gdk.Monitor) => {
         <label label={bind(stream, "mute").as((mute) => (mute ? "󰝟" : "󰕾"))} />
       </button>
       <box vertical>
-        <label
-          className="SinkName"
-          halign={Gtk.Align.START}
-          label={bind(stream, "description")}
-        />
+        <box className="SinkDisplay">
+          <icon className="SinkIcon" icon={bind(stream, "icon")} />
+          <label label={bind(stream, "description")} />
+          <label label=" — " />
+          <label
+            label={bind(stream, "name").as((name) => limitLength(name, 12))}
+          />
+        </box>
         <box>
           <slider
             className="simple_slider"
@@ -89,12 +98,9 @@ export const AudioOptionsMenu = (monitor: Gdk.Monitor) => {
                 <label
                   className="SinkName"
                   halign={Gtk.Align.START}
-                  label={bind(speaker, "description").as((description) => {
-                    if (!description) return "Unknown Speaker";
-                    if (description.length > 24)
-                      return description.substring(0, 24).trim() + "…";
-                    return description;
-                  })}
+                  label={bind(speaker, "description").as((description) =>
+                    limitLength(description, 24)
+                  )}
                 />
                 <box>
                   <slider

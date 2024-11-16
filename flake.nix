@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix?rev=762c07ee10b381bc8e085be5b6c2ec43139f13b0";
+    stylix.url = "github:danth/stylix";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -77,7 +77,11 @@
     shadower.url = "github:n3oney/shadower";
 
     ags = {
-      url = "github:aylur/ags/v2";
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

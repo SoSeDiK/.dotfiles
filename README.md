@@ -4,6 +4,8 @@ https://quickshell.outfoxxed.me/docs/configuration/intro/
 https://github.com/pop-os/pop/issues/2227#issuecomment-1054216955
 https://github.com/MrGlockenspiel/activate-linux
 
+Why do I have gnome-online-accounts ?
+
 - Chore
 
   - ags

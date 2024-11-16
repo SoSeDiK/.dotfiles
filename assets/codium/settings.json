@@ -36,7 +36,6 @@
     }
   },
   "editor.mouseWheelZoom": true,
-  "C_Cpp.intelliSenseEngine": "disabled",
   "[nix]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2
@@ -50,5 +49,11 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[cpp]": {
+    "editor.wordBasedSuggestions": "off",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.stickyScroll.defaultModel": "foldingProviderModel",
+    "editor.suggest.insertMode": "replace"
   }
 }

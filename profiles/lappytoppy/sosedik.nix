@@ -103,6 +103,7 @@ in
     pantheon.elementary-iconbrowser # Browsing GTK icons
     playerctl # Control media player
     pamixer # Volume control
+    inputs'.quickshell.packages.default # Task bar and other things
     # Fun
     cmatrix # Matrix in terminal
   ];
