@@ -3,7 +3,7 @@
 {
   # Audio visualizer in terminal
   programs.cava = {
-    enable = true;
+    enable = false; # TODO broken build, #355948
     settings = {
       color = {
         background = "'#1e1e2e'";

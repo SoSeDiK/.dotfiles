@@ -126,7 +126,6 @@ files=(
     scrollingOneOffs.uc.js                              # Scrolling Search One-offs
     searchModeIndicatorIcons.uc.js                      # Search Mode Indicator Icons
     showSelectedSidebarInSwitcherPanel.uc.js            # Show Selected Sidebar in Switcher Panel
-    tabAnimation.uc.js                                  # Tab Animation Workaround
     tabLoadingSpinner.uc.js                             # Tab Loading Spinner Animation
     tooltipShadowSupport.uc.js                          # Tooltip Shadow Support
     tooltipStyler.uc.js                                 # Tooltip Styler

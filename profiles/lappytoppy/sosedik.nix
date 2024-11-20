@@ -72,7 +72,7 @@ in
     libreoffice-qt
     # Utils
     qalculate-qt
-    mission-center # Windows-like process manager
+    # mission-center # Windows-like process manager # TODO borken, #357219
     fsearch # fast search
     cpu-x # PC Info
     fontforge

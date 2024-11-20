@@ -14,7 +14,7 @@ in
       apps
       battery
       bluetooth
-      cava
+      # cava # TODO broken build, #355948
       hyprland
       mpris
       network
