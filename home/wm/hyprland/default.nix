@@ -21,8 +21,8 @@ in
     '';
     plugins = [
       inputs'.hyprland-plugins.packages.hyprbars
-      inputs'.hyprland-plugins.packages.hyprexpo
-      inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors
+      # inputs'.hyprland-plugins.packages.hyprexpo
+      # inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors
       inputs'.hyprsplit.packages.hyprsplit
     ];
 

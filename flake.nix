@@ -45,6 +45,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Sync Wayland and X11 (XWayland) clipboards
+    clipboard-sync.url = "github:dnut/clipboard-sync";
+
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";

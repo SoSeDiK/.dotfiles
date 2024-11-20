@@ -6,7 +6,8 @@
   "codeium.enableConfig": {
     "*": true,
     "properties": true,
-    "nix": true
+    "nix": true,
+    "qml": true
   },
   "window.titleBarStyle": "custom",
   "[typescriptreact]": {

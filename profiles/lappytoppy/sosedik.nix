@@ -37,6 +37,7 @@ in
     "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/cliphist.nix"
     "${self}/home/programs/github-desktop.nix"
+    "${self}/home/programs/quickshell.nix" # Task bar and many other things
     "${self}/home/programs/screenshots.nix"
     "${self}/home/programs/spicetify.nix"
 
@@ -91,6 +92,7 @@ in
     space-cadet-pinball # Good Old Pinball
     # Social
     vesktop # Discord client
+    equibop # Discord client
     inputs'.nix-gaming.packages.wine-discord-ipc-bridge
     telegram-desktop
     whatsapp-for-linux
@@ -103,7 +105,6 @@ in
     pantheon.elementary-iconbrowser # Browsing GTK icons
     playerctl # Control media player
     pamixer # Volume control
-    inputs'.quickshell.packages.default # Task bar and other things
     # Fun
     cmatrix # Matrix in terminal
   ];

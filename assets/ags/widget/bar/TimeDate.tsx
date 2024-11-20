@@ -86,7 +86,7 @@ export default function TimeDate() {
     <box className="TimeDate bar_element">
       <label className="DateIcon" label={"󰃭"} />
       <label className="DateText" label={date()} />
-      <label className="TimeIcon" label={getTimeIcon()} />
+      <label className="TimeIcon" label={time().as(() => getTimeIcon())} />
       <box className="TimeTextBox">
         <TimeStamp time={time} pos={0} count={3} />
         <TimeStamp time={time} pos={1} count={10} />

@@ -24,6 +24,7 @@ const filterTitle = (client: Hyprland.Client): [string, string] => {
     ["microsoft-edge", ["󰇩", "Edge"]],
     ["discord", ["", "Discord"]],
     ["vesktop", ["", "Vesktop"]],
+    ["equibop", ["", "Equibop"]],
     ["telegram", ["", "Telegram"]],
     ["whatsapp", ["󰖣", "WhatsApp"]],
     ["org.kde.dolphin", ["", "Dolphin"]],

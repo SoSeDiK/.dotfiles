@@ -83,6 +83,8 @@ in
 
     # Misc
     inputs.nix-index-database.nixosModules.nix-index
+
+    inputs.clipboard-sync.nixosModules.default
   ];
 
   # Apps
@@ -115,6 +117,9 @@ in
 
   # Services
   services.fstrim.enable = true;
+
+  # Auto start clipboard sync
+  services.clipboard-sync.enable = true;
 
   # For gaming
   # services.zerotierone.enable = true;
