@@ -105,8 +105,10 @@ in
     pantheon.elementary-iconbrowser # Browsing GTK icons
     playerctl # Control media player
     pamixer # Volume control
-    # Fun
+    # Fun CLIs
     cmatrix # Matrix in terminal
+    dotacat # Because rainbow is cool
+    sl # Steam Locomotive
   ];
 
   # Better cd command
