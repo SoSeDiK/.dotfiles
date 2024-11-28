@@ -72,7 +72,7 @@ in
     libreoffice-qt
     # Utils
     qalculate-qt
-    # mission-center # Windows-like process manager # TODO borken, #357219
+    mission-center # Windows-like process manager
     fsearch # fast search
     cpu-x # PC Info
     fontforge
@@ -105,6 +105,7 @@ in
     pantheon.elementary-iconbrowser # Browsing GTK icons
     playerctl # Control media player
     pamixer # Volume control
+    wl-mirror # App/screen mirroring
     # Fun CLIs
     cmatrix # Matrix in terminal
     dotacat # Because rainbow is cool

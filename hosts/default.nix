@@ -10,31 +10,33 @@
     in
     {
       lappytoppy = withSystem "x86_64-linux" (ctx@{ config, inputs', ... }:
+        let
+          profileName = "lappytoppy";
+          hmUsers = [ "sosedik" ];
+        in
         nixosSystem {
           specialArgs = {
-            inherit inputs self inputs' dotAssetsDir;
+            inherit inputs self inputs' dotAssetsDir hmUsers;
           };
-          modules =
-            let
-              profileName = "lappytoppy";
-              hmUsers = [ "sosedik" ];
-            in
-            [
-              # System options
-              (./. + "/${profileName}")
+          modules = [
+            # System options
+            (./. + "/${profileName}")
 
-              # Home manager
-              "${self}/system/programs/home-manager.nix"
-              {
-                home-manager.extraSpecialArgs = {
-                  inherit inputs self inputs' dotAssetsDir;
-                };
-              }
-            ] ++ (concatMap
-              (username: [
-                { home-manager.users."${username}" = import "${self}/profiles/${profileName}/${username}.nix"; }
-              ])
-              hmUsers);
+            # Add extra pkg inputs
+            "${self}/system/overlay-inputs.nix"
+
+            # Home manager
+            "${self}/system/programs/home-manager.nix"
+            {
+              home-manager.extraSpecialArgs = {
+                inherit inputs self inputs' dotAssetsDir;
+              };
+            }
+          ] ++ (concatMap
+            (username: [
+              { home-manager.users."${username}" = import "${self}/profiles/${profileName}/${username}.nix"; }
+            ])
+            hmUsers);
         });
     };
 }

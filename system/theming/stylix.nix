@@ -1,4 +1,4 @@
-{ inputs, pkgs, self, ... }:
+{ inputs, inputs', pkgs, self, ... }:
 
 let
   theme = "da-one-sea";
@@ -19,7 +19,7 @@ in
     cursor = {
       size = 24;
       name = cursorName;
-      package = pkgs.bibata-cursors;
+      package = inputs'.nixpkgs-bibata-fix-pr.legacyPackages.bibata-cursors;
     };
 
     fonts = {
@@ -34,6 +34,10 @@ in
       serif = {
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
+      };
+      emoji = {
+        package = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-emoji-plus.nix" { inherit self; };
+        name = "Noto Color Emoji";
       };
       sizes = {
         applications = 12;

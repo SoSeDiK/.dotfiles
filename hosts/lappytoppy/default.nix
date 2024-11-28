@@ -1,7 +1,6 @@
-{ config, inputs, self, pkgs, ... }:
+{ config, inputs, self, pkgs, hmUsers, ... }:
 
 let
-  users = [ "sosedik" ];
   username = "sosedik";
 
   sysTimezone = "Europe/Kyiv";
@@ -25,6 +24,7 @@ in
     # Hardware
     ./hardware.nix # Include the results of the hardware scan
     ./hardware-modes.nix
+    ./hw-brightness-proxy.nix # Fixup brightness control
     "${self}/system/hardware/battery.nix"
     "${self}/system/hardware/bluetooth.nix"
     "${self}/system/hardware/lenovo-legion.nix"
@@ -131,7 +131,7 @@ in
   programs.weylus = {
     enable = true;
     openFirewall = true;
-    users = users;
+    users = hmUsers;
   };
 
   # Shared network folder
@@ -176,17 +176,17 @@ in
   # Custom options (from modules)
   programs.openrazer = {
     enable = true;
-    users = users;
+    users = hmUsers;
   };
 
   programs.podman = {
     enable = true;
-    users = users;
+    users = hmUsers;
   };
 
   customs.ydotool = {
     enable = true;
-    users = users;
+    users = hmUsers;
   };
 
   # Mount data disk

@@ -17,8 +17,6 @@
         export MAKEFLAGS="$MAKEFLAGS -j$(($(nproc)-1))"
       fi
 
-      bindkey '^[[A' history-search-backward          # Up arrow        Search backward in history based on current input
-      bindkey '^[[B' history-search-forward           # Down arrow      Search forward in history based on current input
       bindkey '^[[3~' delete-char                     # Delete key      Delete the character under the cursor
       bindkey '^[[5~' beginning-of-buffer-or-history  # Page Up         Jump to the first command in history
       bindkey '^[[6~' end-of-buffer-or-history        # Page Down       Jump to the last command in history
@@ -45,7 +43,7 @@
       # Do not treat the #, ~ and ^ characters as part of patterns for filename generation
       unsetopt extendedglob
 
-      # Do not report the status of background jobs immediately, wait2
+      # Do not report the status of background jobs immediately, wait
       unsetopt notify
     '';
   };

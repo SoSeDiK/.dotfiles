@@ -41,7 +41,6 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2
   },
-  "editor.formatOnSave": true,
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -56,5 +55,6 @@
     "editor.semanticHighlighting.enabled": true,
     "editor.stickyScroll.defaultModel": "foldingProviderModel",
     "editor.suggest.insertMode": "replace"
-  }
+  },
+  "editor.formatOnSave": true
 }

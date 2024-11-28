@@ -7,7 +7,7 @@ let
     baseColor = "#FFFFFF";
     outlineColor = "#000000";
     watchBackgroundColor = "#FFFFFF";
-    colorName = "Ice";
+    colorName = "ice";
   };
 in
 {
