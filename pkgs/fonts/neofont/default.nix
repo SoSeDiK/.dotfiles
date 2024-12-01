@@ -1,10 +1,10 @@
-{ pkgs, self }:
+{ pkgs }:
 
 pkgs.stdenv.mkDerivation {
   pname = "NeoFont";
   version = "1.0";
 
-  src = "${self}/assets/fonts/Custom/TrueType/NeoFont";
+  src = ./.;
 
   installPhase = ''
     install -Dm644 *.ttf -t $out/share/fonts/truetype

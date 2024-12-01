@@ -2,15 +2,16 @@
 
 let
   appleFonts = pkgs.callPackage "${self}/pkgs/fonts/apple-fonts.nix" { };
-  neofont = pkgs.callPackage "${self}/pkgs/fonts/neofont.nix" { inherit self; };
-  notoFonts = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-sans.nix" { inherit self; };
+  neofont = pkgs.callPackage "${self}/pkgs/fonts/neofont" { };
+  notoFonts = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-sans" { };
 in
 {
   # Fonts are nice to have
   # List installed fonts: fc-list
   fonts.packages = with pkgs; [
-    # Load only specified nerdfonts
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "Ubuntu" ]; })
+    nerd-fonts.symbols-only
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
     font-awesome
     appleFonts # Mostly for use by Firefox theme
     neofont
@@ -19,6 +20,8 @@ in
 
   # Enable custom fonts dir ($XDG_DATA_HOME/fonts --> ~/.local/share/fonts)
   fonts.fontDir.enable = true;
+
+  fonts.fontconfig.useEmbeddedBitmaps = true;
 
   # Add custom keyboard layout (ruu)
   console.useXkbConfig = true;

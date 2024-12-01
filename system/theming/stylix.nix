@@ -3,6 +3,8 @@
 let
   theme = "da-one-sea";
   cursorName = "Bibata-Modern-Ice";
+
+  noto-fonts-color-emoji-plus = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-emoji-plus" { };
 in
 {
   imports = [
@@ -24,7 +26,7 @@ in
 
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
@@ -36,7 +38,7 @@ in
         name = "DejaVu Serif";
       };
       emoji = {
-        package = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-emoji-plus.nix" { inherit self; };
+        package = noto-fonts-color-emoji-plus;
         name = "Noto Color Emoji";
       };
       sizes = {
@@ -49,4 +51,17 @@ in
 
     targets.plymouth.enable = false;
   };
+
+  fonts.fontconfig.defaultFonts = {
+    monospace = [ "Symbols Nerd Font Mono" ];
+    sansSerif = [ "Symbols Nerd Font Mono" ];
+    serif = [ "Symbols Nerd Font Mono" ];
+    emoji = [ "Symbols Nerd Font Mono" ];
+  };
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      noto-fonts-color-emoji = noto-fonts-color-emoji-plus;
+    })
+  ];
 }

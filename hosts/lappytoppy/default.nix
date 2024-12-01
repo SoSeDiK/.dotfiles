@@ -89,6 +89,7 @@ in
 
   # Apps
   environment.systemPackages = with pkgs; [
+    tealdeer # tldr
     # Gaming
     heroic # Epic Games launcher
     # Misc

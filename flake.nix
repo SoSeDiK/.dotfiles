@@ -52,11 +52,26 @@
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
-    hyprcursor.url = "github:hyprwm/hyprcursor";
-    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
-    hyprlock.url = "github:hyprwm/hyprlock";
-    hypridle.url = "github:hyprwm/hypridle";
-    hyprsunset.url = "github:hyprwm/hyprsunset";
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpolkitagent = {
+      url = "github:hyprwm/hyprpolkitagent";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprsunset = {
+      url = "github:hyprwm/hyprsunset";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";

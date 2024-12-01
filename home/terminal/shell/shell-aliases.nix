@@ -1,8 +1,5 @@
-{ dotAssetsDir, ... }:
+{ dotAssetsDir, self, ... }:
 
-let
-  flakeDir = "/home/sosedik/.dotfiles"; # TODO remove :)
-in
 {
   home.shellAliases = {
     # Moving around
@@ -22,13 +19,13 @@ in
     updatet = "${dotAssetsDir}/scripts/update_test.sh";
     # Updating stuff
     gw2update = "${dotAssetsDir}/scripts/update-gw-2-stuff.sh";
-    uccssupdate = "${flakeDir}/home/programs/firefox/firefox_profile/uc_css-updater.sh";
+    uccssupdate = "${self}/home/programs/firefox/firefox_profile/uc_css-updater.sh";
     # Managing system
     kys = "shutdown now";
     gccleanup = "nh clean all";
-    linkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/nvidia_gpu.sh";
-    unlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/unload_gpu.sh";
-    virtlinkgpu = "sudo ${flakeDir}/system/apps/virtualization/hooks/vfio_gpu.sh";
+    linkgpu = "sudo ${self}/system/apps/virtualization/hooks/nvidia_gpu.sh";
+    unlinkgpu = "sudo ${self}/system/apps/virtualization/hooks/unload_gpu.sh";
+    virtlinkgpu = "sudo ${self}/system/apps/virtualization/hooks/vfio_gpu.sh";
     hp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/prepare/begin/alloc_hugepages.sh";
     rhp = "sudo /var/lib/libvirt/hooks/qemu.d/win11/release/end/dealloc_hugepages.sh";
     # Shortcups

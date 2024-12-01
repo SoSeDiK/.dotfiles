@@ -456,7 +456,10 @@ user_pref("userChrome.css.mac-ui-fonts", true);
  ****************************************************************************/
 
 // Custom values
+// Disable middle mouse paste (scroll instead)
 user_pref("middlemouse.paste", false);
+// Prefer noto emoji font
+user_pref("font.name-list.emoji", "Noto Color Emoji, Twemoji Mozilla");
 
 // BETTERFOX Overrides
 // Save downloads to default folder
