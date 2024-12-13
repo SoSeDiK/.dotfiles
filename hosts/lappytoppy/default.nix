@@ -1,4 +1,4 @@
-{ config, inputs, self, pkgs, hmUsers, ... }:
+{ config, inputs, system, self, pkgs, hmUsers, ... }:
 
 let
   username = "sosedik";
@@ -28,6 +28,8 @@ in
     "${self}/system/hardware/battery.nix"
     "${self}/system/hardware/bluetooth.nix"
     "${self}/system/hardware/lenovo-legion.nix"
+
+    inputs.nur.modules.nixos.default
 
     # Boot
     "${self}/system/boot"

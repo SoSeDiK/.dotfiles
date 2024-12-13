@@ -11,7 +11,7 @@ extraScripts=(
     extensionOptionsPanel.uc.js               # Extension Options Panel
     verticalTabsPane.uc.js                    # Vertical Tabs Pane
     aboutUserChrome.sys.mjs                   # about:userchrome
-    aboutCfg.uc.js                            # about:cfg
+    aboutCfg.sys.mjs                          # about:cfg
     appMenuAboutConfigButton.uc.js            # App Menu about:config Button
     appMenuMods.uc.js                         # App Menu Mods
     allTabsMenuExpansionPack.uc.js            # All Tabs Menu Expansion Pack
@@ -132,8 +132,8 @@ files=(
     urlbarMods.uc.js                                    # Urlbar Mods
     urlbarNotificationIconsOpenStatus.uc.js             # Add [open] Status to Urlbar Notification Icons
     autocompletePopupStyler.uc.js                       # Autocomplete Popup Styler
-    userChromeAgentAuthorSheetLoader.uc.js              # Agent/Author Sheet Loader
-    userChromeDevtoolsSheetLoader.uc.js                 # Browser Toolbox Stylesheet Loader # TODO currently is not integrated
+    userChromeAgentAuthorSheetLoader.sys.mjs            # Agent/Author Sheet Loader
+    userChromeDevtoolsSheetLoader.sys.mjs               # Browser Toolbox Stylesheet Loader # TODO currently is not integrated
     osDetector.uc.js                                    # OS Detector
 )
 mkdir -p $outputDir/JS

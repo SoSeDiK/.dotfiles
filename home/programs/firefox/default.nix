@@ -34,7 +34,7 @@ let
   });
   # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons
   addons = inputs'.firefox-addons.packages;
-  coreAddons = with config.nur.repos.rycee.firefox-addons; [
+  coreAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Bearable browsing
     ublock-origin
     istilldontcareaboutcookies
@@ -77,12 +77,12 @@ let
     refined-github
     octolinker
   ];
-  tabsAddons = with config.nur.repos.rycee.firefox-addons; [
+  tabsAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Tabs management
     simple-tab-groups # tabs grouping
     addons.stg-plugin-group-notes # tab group notes
   ];
-  homeAddons = with config.nur.repos.rycee.firefox-addons; [
+  homeAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Tabs management
     multi-account-containers # split tabs into containers
     profile-switcher # in-browser profile switching

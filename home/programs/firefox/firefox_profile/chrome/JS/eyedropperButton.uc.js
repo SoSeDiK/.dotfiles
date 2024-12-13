@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Eyedropper Button
-// @version        1.0.4
+// @version        1.0.6
 // @author         aminomancer
 // @homepageURL    https://github.com/aminomancer/uc.css.js
 // @description    Adds a toolbar button that implements the color picker without launching the devtools. Similar to the menu item in the "More Tools" and "Tools > Browser Tools" menus, only this one can be placed directly on your toolbar. Also adds a customizable hotkey to do the same — by default, it's Ctrl+Shift+Y (or ⌘+⇧+Y on macOS)
@@ -92,9 +92,11 @@ class EyedropperButton {
     return this._keyEl || (this._keyEl = window[this.shortcut.id]);
   }
   makeHotkey() {
-    this.hotkey = _ucUtils.registerHotkey(this.shortcut, (win, key) => {
-      Services.obs.notifyObservers(win, "uc-eyedropper-started");
-    });
+    this.hotkey = UC_API.Hotkeys.define({
+      ...this.shortcut,
+      command: win =>
+        Services.obs.notifyObservers(win, "uc-eyedropper-started"),
+    }).autoAttach({ suppressOriginalKey: true });
   }
   makeWidget() {
     if (CustomizableUI.getPlacementOfWidget("eyedropper-button", true)) return;

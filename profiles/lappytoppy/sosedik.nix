@@ -20,8 +20,6 @@ let
 in
 {
   imports = [
-    inputs.nur.nixosModules.nur
-
     # Terminal
     "${self}/home/terminal/clis/fastfetch.nix"
     "${self}/home/terminal/programs/cava.nix"
@@ -91,7 +89,6 @@ in
     r2modman # Lethal Company mod manager
     space-cadet-pinball # Good Old Pinball
     # Social
-    vesktop # Discord client
     equibop # Discord client
     inputs'.nix-gaming.packages.wine-discord-ipc-bridge
     telegram-desktop
