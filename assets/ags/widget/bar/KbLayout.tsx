@@ -10,7 +10,7 @@ function getLayoutName(keymap: string) {
 export default function KbLayout() {
   const hypr = Hyprland.get_default();
 
-  const activeWorkspace = Variable<string>(
+  const activeLayout = Variable<string>(
     getLayoutName(
       Process.exec(
         'bash -c "hyprctl devices -j | jq -r ".keyboards.[0].active_keymap""'
@@ -22,13 +22,13 @@ export default function KbLayout() {
     <box className="KbLayout bar_element">
       <button>
         <label
-          label={activeWorkspace()}
+          label={activeLayout()}
           tooltipText="󰘴 Alt + 󰘶 Shift to change"
           setup={(self) =>
             self.hook(hypr, "event", (_h, event: string, args: string) => {
               if (event !== "activelayout") return;
 
-              activeWorkspace.set(getLayoutName(args.split(",").pop() ?? ""));
+              activeLayout.set(getLayoutName(args.split(",").pop() ?? ""));
             })
           }
         />

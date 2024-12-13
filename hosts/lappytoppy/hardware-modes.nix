@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, config, lib, inputs, ... }:
 
 {
   # Hybrid mode by default
@@ -23,7 +23,7 @@
   #   imports = [ ./hardware-vfio.nix ];
   # };
 
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
   # https://bbs.archlinux.org/viewtopic.php?id=294113&p=2
   # https://wiki.archlinux.org/title/PRIME#NVIDIA
   boot.extraModprobeConfig = lib.concatStringsSep "\n" [

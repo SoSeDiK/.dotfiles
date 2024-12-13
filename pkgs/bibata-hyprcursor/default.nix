@@ -20,7 +20,7 @@ let
       capital_letter = builtins.substring 0 1 str;
       non_capital = lib.removePrefix capital_letter str;
     in
-    lib.toUpper capital_letter + non_capital;
+      lib.toUpper capital_letter + non_capital;
 
   themeName = "Bibata-${capitalize variant}-${capitalize colorName}-Hyprcursor";
 in

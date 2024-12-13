@@ -157,6 +157,7 @@ in
   xdg.mimeApps.enable = true;
 
   # Allows Blish HUD to show up in tray
+  # services.snixembed.enable = true;
   # services.xembed-sni-proxy.enable = true; # TODO failing to start
   # services.xembed-sni-proxy.package = xembed-sni-proxy;
 

@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Sometimes things break
-    nixpkgs-bibata-fix-pr.url = "github:NixOS/nixpkgs?ref=pull/359604/head";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 

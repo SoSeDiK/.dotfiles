@@ -1,4 +1,4 @@
-{ inputs, inputs', pkgs, self, ... }:
+{ inputs, pkgs, self, ... }:
 
 let
   theme = "da-one-sea";
@@ -21,7 +21,7 @@ in
     cursor = {
       size = 24;
       name = cursorName;
-      package = inputs'.nixpkgs-bibata-fix-pr.legacyPackages.bibata-cursors;
+      package = pkgs.bibata-cursors;
     };
 
     fonts = {
