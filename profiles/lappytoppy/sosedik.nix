@@ -1,4 +1,4 @@
-{ inputs, inputs', config, osConfig, lib, self, pkgs, dotAssetsDir, ... }:
+{ inputs', config, osConfig, lib, self, pkgs, dotAssetsDir, ... }:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
