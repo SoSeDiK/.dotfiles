@@ -81,6 +81,7 @@ in
     qbittorrent # torrents
     # Dev
     jetbrains.idea-community-bin
+    jetbrains.rust-rover
     android-studio
     filezilla
     postman

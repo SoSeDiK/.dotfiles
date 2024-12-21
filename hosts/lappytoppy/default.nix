@@ -86,7 +86,7 @@ in
     # Misc
     inputs.nix-index-database.nixosModules.nix-index
 
-    inputs.clipboard-sync.nixosModules.default
+    # inputs.clipboard-sync.nixosModules.default # TODO breaks X11 clipboard :/
   ];
 
   # Apps
@@ -122,7 +122,7 @@ in
   services.fstrim.enable = true;
 
   # Auto start clipboard sync
-  services.clipboard-sync.enable = true;
+  # services.clipboard-sync.enable = true; # TODO breaks X11 clipboard :/
 
   # For gaming
   # services.zerotierone.enable = true;
