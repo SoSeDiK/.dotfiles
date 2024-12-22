@@ -23,6 +23,11 @@
   #   imports = [ ./hardware-vfio.nix ];
   # };
 
+  boot.kernelParams = [
+    # Enable IOMMU only for passthrough devices
+    "iommu=pt"
+  ];
+
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
   # https://bbs.archlinux.org/viewtopic.php?id=294113&p=2
   # https://wiki.archlinux.org/title/PRIME#NVIDIA

@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Sometimes things break
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Sometimes things break
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -16,23 +16,41 @@
     };
 
     # Secrets management
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Nix User Repository
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
+    };
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     # Firefox Nightly
@@ -43,32 +61,19 @@
     firefox-addons = {
       url = "gitlab:NetForceExplorer/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
-
-    # Sync Wayland and X11 (XWayland) clipboards
-    clipboard-sync.url = "github:dnut/clipboard-sync";
 
     # Hyprland & plugins
-    hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
+    };
+    xdg-portal-hyprland = {
+      url = "github:hyprwm/xdg-desktop-portal-hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprcursor = {
       url = "github:hyprwm/hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprpolkitagent = {
-      url = "github:hyprwm/hyprpolkitagent";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprsunset = {
-      url = "github:hyprwm/hyprsunset";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
@@ -77,6 +82,7 @@
     };
     hypr-dynamic-cursors = {
       url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprland.follows = "hyprland";
     };
     hyprsplit = {
@@ -102,6 +108,10 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Deduplicators
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-compat.url = "github:edolstra/flake-compat";
   };
 
   outputs = inputs@{ flake-parts, ... }:

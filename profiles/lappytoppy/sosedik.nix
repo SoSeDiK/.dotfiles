@@ -57,7 +57,7 @@ in
   # User apps
   home.packages = with pkgs; [
     nix-inspect
-    inputs'.hyprsunset.packages.hyprsunset
+    hyprsunset
     hyprfreeze
     rofi-wayland # App/things launcher
     bottles # WINE helper

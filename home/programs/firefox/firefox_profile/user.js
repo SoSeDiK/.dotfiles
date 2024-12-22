@@ -456,6 +456,8 @@ user_pref("userChrome.css.mac-ui-fonts", true);
 user_pref("middlemouse.paste", false);
 // Prefer noto emoji font
 user_pref("font.name-list.emoji", "Noto Color Emoji, Twemoji Mozilla");
+// Enable VA-API support
+user_pref("media.ffmpeg.vaapi.enabled", true);
 
 // BETTERFOX Overrides
 // Save downloads to default folder
