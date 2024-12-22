@@ -91,7 +91,7 @@ let
   ];
   binaryName = "firefox-nightly";
   desktopEntry = "${binaryName}.desktop";
-  linksHandler = "handlr.desktop"; # http/https links are handled via handlr to workaround xdg-open in isolated envs
+  linksHandler = "handlro.desktop"; # http/https links are handled via handlr to workaround xdg-open in isolated envs
 in
 {
   programs.firefox = {

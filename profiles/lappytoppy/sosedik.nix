@@ -216,8 +216,9 @@ in
         }
         # Any other http & https URLs since handlr is a default handler for them
         {
+          # exec = "${dotAssetsDir}/scripts/test.sh %u";
           exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
-          regexes = [ "^(http|https)://.*\..+$" ];
+          regexes = [ "^(http|https):.+$" ];
         }
       ];
     };
