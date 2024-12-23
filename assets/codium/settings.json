@@ -2,7 +2,6 @@
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "editor.wordWrap": "on",
-  "redhat.telemetry.enabled": false,
   "codeium.enableConfig": {
     "*": true,
     "properties": true,
@@ -27,7 +26,7 @@
   },
   "workbench.colorTheme": "One Dark Pro Darker",
   "cSpell.language": "en,uk,ru",
-  "editor.fontFamily": "'FiraCode Nerd Font'",
+  "editor.fontFamily": "'FiraCode Nerd Font Mono'",
   "editor.largeFileOptimizations": false,
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",
