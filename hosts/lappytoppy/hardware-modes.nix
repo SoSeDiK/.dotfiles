@@ -1,4 +1,4 @@
-{ pkgs, config, lib, inputs, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   # Hybrid mode by default
@@ -26,22 +26,23 @@
   boot.kernelParams = [
     # Enable IOMMU only for passthrough devices
     "iommu=pt"
+    # "mem_sleep_default=s2idle" # "deep" by default
   ];
 
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
-  # https://bbs.archlinux.org/viewtopic.php?id=294113&p=2
-  # https://wiki.archlinux.org/title/PRIME#NVIDIA
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
+
   boot.extraModprobeConfig = lib.concatStringsSep "\n" [
     ("options nvidia " + lib.concatStringsSep " " [
-      # Disable GSP firmware to un-break RTD3
-      "NVreg_EnableGpuFirmware=0"
-      # Enable S0ix-based power management
-      "NVreg_EnableS0ixPowerManagement=1"
+      # Disable GSP firmware to un-break RTD3 # Does not work with open driver, and does not support the device it seems
+      # "NVreg_EnableGpuFirmware=0"
+      # Enable S0ix-based power management # Does not work on device?
+      # "NVreg_EnableS0ixPowerManagement=1"
       # Disables clearing system memory allocation before using it for the GPU
       # Potentially improves performance, but at the cost of increased security risks
       "NVreg_InitializeSystemMemoryAllocations=0"
     ])
   ];
+
   # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/640
   # https://github.com/NVIDIA/open-gpu-kernel-modules/issues/472
 
@@ -51,8 +52,11 @@
   #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", TEST=="power/control", ATTR{power/control}="auto"
   # '';
 
-  hardware.nvidia.nvidiaPersistenced = true;
-  # hardware.nvidia.modesetting.enable = false;
+  # hardware.nvidia.nvidiaPersistenced = true;
+  # hardware.nvidia.open = lib.mkForce true;
+  # hardware.nvidia.modesetting.enable = lib.mkForce false;
+  # hardware.nvidia.prime.offload.enable = lib.mkForce false;
+  # hardware.nvidia.powerManagement.finegrained = lib.mkForce false; # Requires offload # Does not work?
 
   # Prevent apps from holding NVIDIA GPU
   environment.variables = {

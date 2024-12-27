@@ -1,4 +1,4 @@
-{ config, inputs, system, self, pkgs, hmUsers, ... }:
+{ config, inputs, self, pkgs, hmUsers, ... }:
 
 let
   username = "sosedik";
@@ -15,7 +15,7 @@ in
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.${userSessionPassword "sosedik"}.path;
     description = "SoSeDiK";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
   };
   sops.secrets.${userSessionPassword "sosedik"}.neededForUsers = true;
 
@@ -98,6 +98,8 @@ in
     teamviewer
   ];
 
+  # Also needs user in the "gamemode" group
+  # https://github.com/FeralInteractive/gamemode/issues/452
   programs.gamemode.enable = true;
 
   programs.nh = {
