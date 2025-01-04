@@ -91,6 +91,7 @@ in
   # Apps
   environment.systemPackages = with pkgs; [
     tealdeer # tldr
+    nix-tree # Tree view for nix packages
     # Gaming
     heroic # Epic Games launcher
     # Misc

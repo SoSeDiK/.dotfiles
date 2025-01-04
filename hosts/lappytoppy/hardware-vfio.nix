@@ -13,8 +13,6 @@ in
       "vfio_pci"
       "vfio"
       "vfio_iommu_type1"
-
-      # "amdgpu" # Loaded by nixos-hardware module
     ];
     blacklistedKernelModules = [
       # These are loaded by default due to services.xserver.enable being enabled
