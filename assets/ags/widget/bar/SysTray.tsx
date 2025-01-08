@@ -24,6 +24,30 @@ export default function SysTray() {
           .map((item) => {
             if (item.iconThemePath) App.add_icons(item.iconThemePath);
 
+            return (
+              <menubutton
+                className="SysTrayItem"
+                tooltipMarkup={bind(item, "tooltipMarkup").as(
+                  (tp) => tp || item.id
+                )}
+                usePopover={false}
+                actionGroup={bind(item, "actionGroup").as((ag) => [
+                  "dbusmenu",
+                  ag,
+                ])}
+                menuModel={bind(item, "menuModel")}
+              >
+                <icon gicon={bind(item, "gicon")} />
+              </menubutton>
+            );
+          })
+      )}
+      {/* {bind(tray, "items").as((items) =>
+        items
+          .filter((item) => item.gicon !== null)
+          .map((item) => {
+            if (item.iconThemePath) App.add_icons(item.iconThemePath);
+
             const menu = item.create_menu();
 
             return (
@@ -50,7 +74,7 @@ export default function SysTray() {
               </button>
             );
           })
-      )}
+      )} */}
     </box>
   );
 }

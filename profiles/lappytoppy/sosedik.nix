@@ -69,6 +69,7 @@ in
     gimp
     libreoffice-qt
     # Utils
+    gnome-clocks
     qalculate-qt
     mission-center # Windows-like process manager
     fsearch # fast search
