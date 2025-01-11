@@ -79,12 +79,12 @@ let
   ];
   tabsAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Tabs management
+    multi-account-containers # split tabs into containers
     simple-tab-groups # tabs grouping
     addons.stg-plugin-group-notes # tab group notes
   ];
   homeAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Tabs management
-    multi-account-containers # split tabs into containers
     profile-switcher # in-browser profile switching
     # GitHub
     notifier-for-github
@@ -124,7 +124,7 @@ in
         path = "work";
         extensions = coreAddons ++ tabsAddons;
       };
-      # Separate instance for movies
+      # Separate instance for multimedia
       movies = {
         id = 3;
         name = "movies";

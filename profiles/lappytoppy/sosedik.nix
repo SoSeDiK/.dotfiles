@@ -35,7 +35,7 @@ in
     "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/cliphist.nix"
     "${self}/home/programs/github-desktop.nix"
-    # "${self}/home/programs/quickshell.nix" # Task bar and many other things # TODO broken
+    "${self}/home/programs/quickshell.nix" # Task bar and many other things
     "${self}/home/programs/screenshots.nix"
     "${self}/home/programs/spicetify.nix"
 
@@ -80,6 +80,7 @@ in
     obs-studio # video recorder
     stremio # video streaming
     qbittorrent # torrents
+    hakuneko # manga
     # Dev
     jetbrains.idea-community-bin
     jetbrains.rust-rover

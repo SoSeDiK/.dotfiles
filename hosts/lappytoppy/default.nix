@@ -199,6 +199,11 @@ in
     ];
   };
 
+  # Enable zswap
+  # https://github.com/NixOS/nixpkgs/issues/119244
+  boot.kernelParams = [ "zswap.enabled=1" "zswap.compressor=lz4" "zswap.zpool=z3fold" ];
+  boot.initrd.kernelModules = [ "lz4" "z3fold" ];
+
   # Enable networking
   networking.hostName = "lappytoppy";
   networking.networkmanager.enable = true;
@@ -206,7 +211,7 @@ in
   # Set your time zone
   time.timeZone = sysTimezone;
 
-  # Select internationalisation properties
+  # Select internationalization properties
   i18n.defaultLocale = sysLocale;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = sysExtraLocale;
