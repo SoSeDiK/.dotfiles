@@ -104,6 +104,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprlock.url = "github:hyprwm/hyprlock";
+    hypridle.url = "github:hyprwm/hypridle";
+
     shadower.url = "github:n3oney/shadower";
 
     ags.url = "github:aylur/ags";
