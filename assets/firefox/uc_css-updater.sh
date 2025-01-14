@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script removes old US.CSS files, and copies new ones instead
 # US.CSS source: https://github.com/aminomancer/uc.css.js
-outputDir=~/.dotfiles/home/programs/firefox/firefox_profile/chrome
+outputDir=~/.dotfiles/assets/firefox/chrome
 
 # In test mode, there's no cleanup
 testMode=false

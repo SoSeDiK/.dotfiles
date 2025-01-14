@@ -19,7 +19,7 @@
     updatet = "${dotAssetsDir}/scripts/update_test.sh";
     # Updating stuff
     gw2update = "${dotAssetsDir}/scripts/update-gw-2-stuff.sh";
-    uccssupdate = "${self}/home/programs/firefox/firefox_profile/uc_css-updater.sh";
+    uccssupdate = "${dotAssetsDir}/firefox/uc_css-updater.sh";
     # Managing system
     kys = "shutdown now";
     gccleanup = "nh clean all";

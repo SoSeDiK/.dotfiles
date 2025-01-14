@@ -1,8 +1,9 @@
-{ pkgs, config, inputs', dotAssetsDir, ... }:
+{ pkgs, lib, config, inputs', dotAssetsDir, ... }:
 
 let
   username = config.home.username;
   defaultProfileName = username;
+  profiles = [ defaultProfileName "private" "work" "movies" "gaming" ];
 
   # Firefox Nightly with https://github.com/MrOtherGuy/fx-autoconfig
   firefox-nightly = (
@@ -45,13 +46,9 @@ let
     canvasblocker
     # Access inaccessible
     censor-tracker
-    # Password manager
-    bitwarden
     # Downloads
     addons.mdm-enhanced
     addons.imageye_image_downloader
-    # PWA (Progressive Web App) support
-    pwas-for-firefox
     # General Enhancers
     darkreader # don't burn the eyes
     indie-wiki-buddy # provide better wikis
@@ -70,12 +67,19 @@ let
     sponsorblock
     return-youtube-dislikes
     enhancer-for-youtube
-    addons.youtube_auto_like
     # GitHub
     lovely-forks
     enhanced-github
     refined-github
     octolinker
+  ];
+  coreNonPrivateOnlyAddons = with pkgs.nur.repos.rycee.firefox-addons; [
+    # Password manager
+    bitwarden
+    # YouTube
+    addons.youtube_auto_like
+    # Tabs management
+    profile-switcher # in-browser profile switching
   ];
   tabsAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Tabs management
@@ -84,19 +88,32 @@ let
     addons.stg-plugin-group-notes # tab group notes
   ];
   homeAddons = with pkgs.nur.repos.rycee.firefox-addons; [
-    # Tabs management
-    profile-switcher # in-browser profile switching
+    # PWA (Progressive Web App) support
+    pwas-for-firefox
     # GitHub
     notifier-for-github
   ];
   binaryName = "firefox-nightly";
   desktopEntry = "${binaryName}.desktop";
-  linksHandler = "handlro.desktop"; # http/https links are handled via handlr to workaround xdg-open in isolated envs
+  linksHandler = "handlro.desktop"; # http/https links are handled via handlr for extra customizability
+
+  linkSource = profile: fileName: {
+    name = ".mozilla/firefox/${profile}/${fileName}";
+    value = {
+      source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/firefox/${fileName}";
+    };
+  };
 in
 {
   programs.firefox = {
     enable = true;
     package = firefox-nightly;
+    # https://mozilla.github.io/policy-templates/
+    policies = {
+      DontCheckDefaultBrowser = true; # Don’t check if Firefox is the default browser at startup.
+      NoDefaultBookmarks = true; # Disable the creation of default bookmarks.
+      PasswordManagerEnabled = false; # Remove (some) access to the password manager.
+    };
     nativeMessagingHosts = with pkgs; [
       (callPackage ./firefox-profile-switcher-connector.nix { })
       firefoxpwa
@@ -108,7 +125,7 @@ in
         name = defaultProfileName;
         path = "${defaultProfileName}";
         isDefault = true;
-        extensions = coreAddons ++ tabsAddons ++ homeAddons;
+        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons ++ homeAddons;
       };
       # Used by private browser overlay
       private = {
@@ -122,37 +139,33 @@ in
         id = 2;
         name = "work";
         path = "work";
-        extensions = coreAddons ++ tabsAddons;
+        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
       };
       # Separate instance for multimedia
       movies = {
         id = 3;
         name = "movies";
         path = "movies";
-        extensions = coreAddons ++ tabsAddons;
+        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
       };
       # Separate instance for games
       gaming = {
         id = 4;
         name = "gaming";
         path = "gaming";
-        extensions = coreAddons ++ tabsAddons;
+        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
       };
     };
   };
 
-  # Symlink userChrome profile settings
-  home.file.".mozilla/firefox/${defaultProfileName}/chrome".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/private/chrome".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/work/chrome".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/movies/chrome".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/chrome";
-  home.file.".mozilla/firefox/gaming/chrome".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/chrome";
-  # Symlink user.js settings
-  home.file.".mozilla/firefox/${defaultProfileName}/user.js".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/private/user.js".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/work/user.js".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/movies/user.js".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/user.js";
-  home.file.".mozilla/firefox/gaming/user.js".source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/../home/programs/firefox/firefox_profile/user.js";
+  home.file = builtins.listToAttrs (
+    lib.concatMap
+      (profile: [
+        (linkSource profile "chrome")
+        (linkSource profile "user.js")
+      ])
+      profiles
+  );
 
   # Register firefox as default handler
   xdg.mimeApps.defaultApplications = {
