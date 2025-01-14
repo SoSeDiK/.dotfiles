@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Script removes old US.CSS files, and copies new ones instead
 # US.CSS source: https://github.com/aminomancer/uc.css.js
+# Depends on: https://github.com/MrOtherGuy/fx-autoconfig
 outputDir=~/.dotfiles/assets/firefox/chrome
 
 # In test mode, there's no cleanup
@@ -17,20 +18,24 @@ extraScripts=(
     allTabsMenuExpansionPack.uc.js            # All Tabs Menu Expansion Pack
     atoolboxButton.uc.js                      # Toolbox Button
     bookmarksPopupShadowRoot.uc.js            # Bookmarks Popup Mods
+    # bookmarksMenuAndButtonShortcuts.uc.js     # Bookmarks Menu & Button Shortcuts | Skipped
+    ## browserChromeBookmarkKeywords.uc.js       # Browser Chrome Bookmark Keywords | Skipped, broken
     clearDownloadsButton.uc.js                # Clear Downloads Panel Button
-    ## contextMenuMods.uc.js                     # Context Menu Mods | Makes search not only with Google
+    # contextMenuMods.uc.js                     # Context Menu Mods | Skipped | Makes search not only with Google
     copyCurrentUrlHotkey.uc.js                # Copy Current URL Hotkey; Ctrl+Alt+C
     debugExtensionInToolbarContextMenu.uc.js  # Debug Extension in Toolbar Context Menu
     eyedropperButton.uc.js                    # Eyedropper Button
     invertPDFButton.sys.mjs                   # Invert PDF Button
     fluentRevealTabs.uc.js                    # Fluent Reveal Tabs
     fluentRevealNavbar.uc.js                  # Fluent Reveal Navbar Buttons
-    ## enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh
+    # fullscreenHotkey.uc.js                    # Fullscreen Hotkey | Skipped
+    ## enterInUrlbarToRefresh.uc.js              # Hit Enter in Urlbar to Refresh | Skipped
     letCtrlWClosePinnedTabs.uc.js             # Let Ctrl+W Close Pinned Tabs
     openBookmarksHistoryEtcInNewTabs.uc.js    # Open Bookmarks, History, etc. in New Tabs
     ## openBookmarkInContainerTab.uc.js          # Open Bookmark in Container Tab (context menu) | Makes tab context menu black
     openLinkInUnloadedTab.uc.js               # Open Link in Unloaded Tab (context menu item)
     privateTabs.uc.js                         # Private Tabs
+    # privateWindowHomepage.uc.js               # Private Window Homepage | Skipped
     screenshotPageActionButton.uc.js          # Screenshot Page Action Button
     searchSelectionShortcut.sys.mjs             # Search Selection Keyboard Shortcut
     tabContextMenuNavigation.uc.js            # Tab Context Menu Navigation
@@ -41,35 +46,40 @@ extraScripts=(
     animateContextMenus.uc.js                 # Animate Context Menus
     recentlyClosedTabsContextMenu.uc.js       # Undo Recently Closed Tabs in Tab Context Menu
     unreadTabMods.uc.js                       # Unread Tab Mods
+    # updateNotificationSlayer.uc.js            # Update Notification Slayer | Skipped, handling updates differently
+    # updateBannerLabels.uc.js                  # Concise Update Banner Labels | Skipped, handling updates differently
     urlbarContainerColor.uc.js                # Urlbar Container Color Indicator
     urlbarMouseWheelScroll.uc.js              # Scroll Urlbar with Mousewheel
     urlbarViewScrollSelect.uc.js              # Scroll Urlbar Results with Mousewheel
+    # backspacePanelNav.uc.js                   # Backspace Panel Navigation | Skipped
     pinTabHotkey.uc.js                        # Pin Tab Hotkey
     windowDragHotkey.uc.js                    # Window Drag Hotkey; Alt + Shift + LMB
     customHintProvider.uc.js                  # Custom Hint Provider
     miscMods.uc.js                            # Misc. Mods
 )
-# Skipped:
-# Bookmarks Menu & Button Shortcuts
-# Browser Chrome Bookmark Keywords
-# Fullscreen Hotkey
-# Private Window Homepage
-# Update Notification Slayer
-# Concise Update Banner Labels
-# Backspace Panel Navigation
 
 # Download latest uc.css.js
 parentOutputDir=$(readlink -f "$outputDir"/..)
 pushd $parentOutputDir
 if [ ! -d "uc.css.js-master" ]; then
-    curl -LO https://github.com/aminomancer/uc.css.js/archive/refs/heads/master.zip
-    unzip master.zip
+    curl -o uc.css.js-master.zip -LO https://github.com/aminomancer/uc.css.js/archive/refs/heads/master.zip
+    unzip uc.css.js-master.zip
+fi
+if [ ! -d "fx-autoconfig-master" ]; then
+    curl -o fx-autoconfig-master.zip -LO https://github.com/MrOtherGuy/fx-autoconfig/archive/refs/heads/master.zip
+    unzip fx-autoconfig-master.zip
 fi
 inputDir=./uc.css.js-master
+utilsDir=./fx-autoconfig-master
 
 # Check if source folder exists
 if [ ! -d "$inputDir" ]; then
     echo "Error: Directory '$inputDir' does not exist. Exiting."
+    exit 1
+fi
+# Check if utils folder exists
+if [ ! -d "$utilsDir" ]; then
+    echo "Error: Directory '$utilsDir' does not exist. Exiting."
     exit 1
 fi
 
@@ -120,7 +130,7 @@ files=(
     oneClickOneOffSearchButtons.uc.js                   # One-click One-off Search Buttons
     removeSearchEngineAliasFormatting.uc.js             # Remove Search Engine Alias Formatting
     restoreTabSoundButton.uc.js                         # Restore pre-Proton Tab Sound Button
-    # Restore pre-Proton Arrowpanels <- Handled in CSS
+    # Restore pre-Proton Arrowpanels <- Handled in CSS # TODO currently is not integrated
     restorePreProtonLibraryButton.uc.js                 # Restore pre-Proton Library Button
     restorePreProtonStarButton.uc.js                    # Restore pre-Proton Star Button
     scrollingOneOffs.uc.js                              # Scrolling Search One-offs
@@ -147,10 +157,16 @@ for file in "${files[@]}"; do
     cp "${inputDir}/JS/${file}" "${outputDir}/JS"
 done
 
+# Copy required utils from fx-autoconfig
+cp "$utilsDir/profile/chrome/utils/"*.sys.mjs "$outputDir/utils/"
+
+
 # Remove leftover files
 if [ "$testMode" = false ]; then
-    rm -f master.zip
+    rm -f uc.css.js-master.zip
+    rm -f fx-autoconfig-master.zip
     rm -rf uc.css.js-master
+    rm -rf fx-autoconfig-master
 fi
 
 popd
