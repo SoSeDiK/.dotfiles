@@ -2,7 +2,7 @@
 
 let
   # Path to hooks
-  # hooksPath = "/home/${username}/.dotfiles/system/apps/virtualization/hooks";
+  # hooksPath = "${dotAssetsDir}/vfio";
   username = "sosedik";
   flakeDir = "/home/sosedik/.dotfiles";
 in
@@ -32,7 +32,8 @@ in
     ];
     qemu = {
       # While I do not need the full QEMU (only smbd from non-default), it would require compiling it manually
-      package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
+      # package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
+      package = pkgs.qemu.override { smbdSupport = true; };
       ovmf.enable = true;
       ovmf.packages = [
         (pkgs.OVMF.override {

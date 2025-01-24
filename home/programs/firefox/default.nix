@@ -134,7 +134,7 @@ in
         path = "private";
         extensions = coreAddons;
       };
-      # Separate instance for games
+      # Separate instance for work-related things
       work = {
         id = 2;
         name = "work";

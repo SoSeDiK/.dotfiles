@@ -10,16 +10,16 @@ in
       # "kvm-amd" # Loaded by default hardware scan
 
       # Required for passthrough, can be loaded when needed
-      "vfio_pci"
-      "vfio"
-      "vfio_iommu_type1"
+      # "vfio_pci"
+      # "vfio"
+      # "vfio_iommu_type1"
     ];
     blacklistedKernelModules = [
       # These are loaded by default due to services.xserver.enable being enabled
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_drm"
-      "nvidia_uvm"
+      # "nvidia"
+      # "nvidia_modeset"
+      # "nvidia_drm"
+      # "nvidia_uvm"
     ];
     kernelParams = [
       # Enable IOMMU only for passthrough devices

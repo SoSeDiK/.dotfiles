@@ -40,7 +40,6 @@ let
   # jdk21 = pkgs.jetbrains.jdk;
 in
 {
-  # Profile-specific apps
   environment.systemPackages = [
     jdk21
   ];
