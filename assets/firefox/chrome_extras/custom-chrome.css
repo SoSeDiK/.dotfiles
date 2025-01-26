@@ -1,11 +1,8 @@
 @import url(firefox-csshacks/chrome/compact_extensions_panel.css);
+@import url(components/vertical-tab.css);
 
 /* us.css.js overrides */
 /* Custom find text count color */
 :root {
   --matches-indicator-text-color: white;
-}
-
-:root[vertical-tabs] #TabsToolbar {
-  /* display: none; */
 }

@@ -46,12 +46,8 @@ in
     # Secrets!
     "${self}/secrets/sops-home.nix"
 
-    # WM
-    "${self}/home/wm/hyprland"
     ## Managing idle & screen lock
     "${self}/home/wm/hyprland/hyprlock-hypridle.nix"
-    ## GUI monitors management
-    "${self}/home/wm/hyprland/nwg-displays.nix"
   ];
 
   # User apps

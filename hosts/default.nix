@@ -32,6 +32,9 @@
                 inherit inputs self inputs' dotAssetsDir;
               };
             }
+
+            inputs.hjem.nixosModules.default
+            inputs.hjem-rum.nixosModules.default
           ] ++ (concatMap
             (username: [
               { home-manager.users."${username}" = import "${self}/profiles/${profileName}/${username}.nix"; }

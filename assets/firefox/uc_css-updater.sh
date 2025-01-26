@@ -10,7 +10,7 @@ testMode=false
 # Any extra scripts wanted from JS folder
 extraScripts=(
     extensionOptionsPanel.uc.js               # Extension Options Panel
-    verticalTabsPane.uc.js                    # Vertical Tabs Pane
+    # verticalTabsPane.uc.js                    # Vertical Tabs Pane | Skipped, obsolete and breaks often
     aboutUserChrome.sys.mjs                   # about:userchrome
     aboutCfg.sys.mjs                          # about:cfg
     appMenuAboutConfigButton.uc.js            # App Menu about:config Button

@@ -1,10 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, dotAssetsDir, ... }:
 
 let
   # Path to hooks
   # hooksPath = "${dotAssetsDir}/vfio";
   username = "sosedik";
-  flakeDir = "/home/sosedik/.dotfiles";
 in
 {
   environment.systemPackages = with pkgs; [
@@ -59,7 +58,7 @@ in
     preStart =
       ''
         mkdir -p /var/lib/libvirt/vgabios
-        ln -sf ${flakeDir}/patched.rom /var/lib/libvirt/vgabios/patched.rom
+        ln -sf ${dotAssetsDir}/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
 
         # Workaround "missing" modules.alias
         ln -sf /run/booted-system/kernel-modules/lib/modules /lib

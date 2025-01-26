@@ -58,6 +58,7 @@ Why do I have gnome-online-accounts ?
 - https://github.com/Alexays/Waybar/issues/1127
   # Wine system tray integration
   - Using plasma-workspace's xembed-sni-proxy;
+  - https://gitlab.winehq.org/wine/wine/-/merge_requests/2808
 - https://github.com/microsoft/vscode/issues/187338
   # VSCode fails identifying gnome-keyring
   - Manually forcing it to use "gnome-libsecret" as password store

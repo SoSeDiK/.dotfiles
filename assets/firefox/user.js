@@ -458,6 +458,12 @@ user_pref("middlemouse.paste", false);
 user_pref("font.name-list.emoji", "Noto Color Emoji, Twemoji Mozilla");
 // Enable VA-API support
 user_pref("media.ffmpeg.vaapi.enabled", true);
+// Enable JPEG XL support
+user_pref("image.jxl.enabled", true);
+// Enable vertical tabs
+user_pref("sidebar.revamp", true); // Required
+user_pref("sidebar.position_start", true); // On the left
+user_pref("sidebar.verticalTabs", true);
 
 // BETTERFOX Overrides
 // Save downloads to default folder

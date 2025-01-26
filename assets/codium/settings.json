@@ -1,25 +1,19 @@
 {
+  "editor.formatOnSave": true,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "editor.wordWrap": "on",
   "codeium.enableConfig": {
-    "*": true,
-    "properties": true,
-    "nix": true,
-    "qml": true
+    "*": true
   },
   "window.titleBarStyle": "custom",
   "workbench.colorTheme": "One Dark Pro Darker",
   "cSpell.language": "en,uk,ru",
   "editor.fontFamily": "'FiraCode Nerd Font Mono'",
   "editor.largeFileOptimizations": false,
+  "nix.formatterPath": "nixfmt",
   "nix.enableLanguageServer": true,
   "nix.serverPath": "nil",
-  "nix.serverSettings": {
-    "nil": {
-      "formatting": { "command": ["nixpkgs-fmt"] }
-    }
-  },
   "editor.mouseWheelZoom": true,
   "[nix]": {
     "editor.insertSpaces": true,
@@ -54,6 +48,5 @@
     "editor.semanticHighlighting.enabled": true,
     "editor.stickyScroll.defaultModel": "foldingProviderModel",
     "editor.suggest.insertMode": "replace"
-  },
-  "editor.formatOnSave": true
+  }
 }

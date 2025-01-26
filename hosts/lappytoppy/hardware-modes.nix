@@ -4,7 +4,7 @@
   # Hybrid mode by default
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid
-    ./hardware-vfio.nix
+    # ./hardware-vfio.nix
   ];
 
   # # Discrete NVIDIA-only

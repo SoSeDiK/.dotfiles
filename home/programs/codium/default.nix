@@ -30,7 +30,7 @@ in
 
   home.packages = with pkgs; [
     nil # nix auto completion
-    nixpkgs-fmt # nix formatter
+    nixfmt-rfc-style # nix formatter
   ];
 
   home.sessionVariables = {
