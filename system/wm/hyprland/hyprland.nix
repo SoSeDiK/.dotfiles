@@ -1,9 +1,24 @@
-{ inputs, inputs', config, lib, pkgs, hmUsers, dotAssetsDir, ... }:
+{
+  inputs,
+  inputs',
+  config,
+  lib,
+  pkgs,
+  hmUsers,
+  dotAssetsDir,
+  ...
+}:
 
 let
   hyprland = inputs'.hyprland.packages.hyprland;
   hyprland-portal = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
-in {
+
+  hyprbars = false;
+  hyprexpo = false;
+  hypr-dynamic-cursors = false;
+  hyprsplit = false;
+in
+{
   imports = [
     inputs.hyprland.nixosModules.default
   ];
@@ -31,15 +46,38 @@ in {
     #   ];
     # });
     portalPackage = hyprland-portal;
-    extraConfig = ''
-      source = ${dotAssetsDir}/hypr/hyprland.conf
-    '';
-    plugins = [
-      inputs'.hyprland-plugins.packages.hyprbars
-      inputs'.hyprland-plugins.packages.hyprexpo
-      inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors
-      inputs'.hyprsplit.packages.hyprsplit
-    ];
+    extraConfig =
+      ''
+        # Base config
+        source = ${dotAssetsDir}/hypr/hyprland.conf
+
+        # Some dynamic values
+        source = ~/.config/hypr/generated.conf
+
+        # Plugins
+      ''
+      + (if hyprbars then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprbars.conf" else "")
+      + (if hyprexpo then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprexpo.conf" else "")
+      + (
+        if hypr-dynamic-cursors then
+          "\nsource = ${dotAssetsDir}/hypr/plugins/hyprdynamiccursors.conf"
+        else
+          ""
+      )
+      + (
+        if hyprsplit then
+          "\nsource = ${dotAssetsDir}/hypr/plugins/hyprsplit.conf"
+        else
+          "\nsource = ${dotAssetsDir}/hypr/plugins/nohyprsplit.conf"
+      );
+    plugins =
+      [ ]
+      ++ (if hyprbars then [ inputs'.hyprland-plugins.packages.hyprbars ] else [ ])
+      ++ (if hyprexpo then [ inputs'.hyprland-plugins.packages.hyprexpo ] else [ ])
+      ++ (
+        if hypr-dynamic-cursors then [ inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors ] else [ ]
+      )
+      ++ (if hyprsplit then [ inputs'.hyprsplit.packages.hyprsplit ] else [ ]);
   };
 
   hjem.users = lib.genAttrs hmUsers (username: {
@@ -64,10 +102,16 @@ in {
             }
           }
         '';
-      ".config/hypr/hyprlandd.conf".text =
-        ''
-          source = ${dotAssetsDir}/hypr/hyprlandd.conf
-        '';
+      ".config/hypr/hyprlandd.conf".text = ''
+        # Base config
+        source = ${dotAssetsDir}/hypr/hyprlandd.conf
+
+        # Some dynamic values
+        source = ~/.config/hypr/generated.conf
+
+        # Plugins
+        source = ${dotAssetsDir}/hypr/plugins/nohyprsplit.conf
+      '';
     };
   });
 
