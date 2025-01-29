@@ -13,10 +13,12 @@ let
   hyprland = inputs'.hyprland.packages.hyprland;
   hyprland-portal = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
 
-  hyprbars = false;
-  hyprexpo = false;
-  hypr-dynamic-cursors = false;
-  hyprsplit = false;
+  plugins = true;
+  hyprbars = true;
+  hyprexpo = true;
+  hyprwinwrap = true;
+  hypr-dynamic-cursors = true;
+  hyprsplit = true;
 in
 {
   imports = [
@@ -56,28 +58,35 @@ in
 
         # Plugins
       ''
-      + (if hyprbars then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprbars.conf" else "")
-      + (if hyprexpo then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprexpo.conf" else "")
+      + (if plugins && hyprbars then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprbars.conf" else "")
+      + (if plugins && hyprexpo then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprexpo.conf" else "")
       + (
-        if hypr-dynamic-cursors then
+        if plugins && hyprwinwrap then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprwinwrap.conf" else ""
+      )
+      + (
+        if plugins && hypr-dynamic-cursors then
           "\nsource = ${dotAssetsDir}/hypr/plugins/hyprdynamiccursors.conf"
         else
           ""
       )
       + (
-        if hyprsplit then
+        if plugins && hyprsplit then
           "\nsource = ${dotAssetsDir}/hypr/plugins/hyprsplit.conf"
         else
           "\nsource = ${dotAssetsDir}/hypr/plugins/nohyprsplit.conf"
       );
     plugins =
       [ ]
-      ++ (if hyprbars then [ inputs'.hyprland-plugins.packages.hyprbars ] else [ ])
-      ++ (if hyprexpo then [ inputs'.hyprland-plugins.packages.hyprexpo ] else [ ])
+      ++ (if plugins && hyprbars then [ inputs'.hyprland-plugins.packages.hyprbars ] else [ ])
+      ++ (if plugins && hyprexpo then [ inputs'.hyprland-plugins.packages.hyprexpo ] else [ ])
+      ++ (if plugins && hyprwinwrap then [ inputs'.hyprland-plugins.packages.hyprwinwrap ] else [ ])
       ++ (
-        if hypr-dynamic-cursors then [ inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors ] else [ ]
+        if plugins && hypr-dynamic-cursors then
+          [ inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors ]
+        else
+          [ ]
       )
-      ++ (if hyprsplit then [ inputs'.hyprsplit.packages.hyprsplit ] else [ ]);
+      ++ (if plugins && hyprsplit then [ inputs'.hyprsplit.packages.hyprsplit ] else [ ]);
   };
 
   hjem.users = lib.genAttrs hmUsers (username: {
