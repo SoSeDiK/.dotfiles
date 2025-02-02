@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.programs.podman;
@@ -24,6 +29,7 @@ in
       distrobox
       boxbuddy
       podman-compose
+      podman-desktop
     ];
 
     virtualisation.podman = {

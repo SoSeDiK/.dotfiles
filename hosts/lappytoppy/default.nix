@@ -1,4 +1,11 @@
-{ config, inputs, self, pkgs, hmUsers, ... }:
+{
+  config,
+  inputs,
+  self,
+  pkgs,
+  hmUsers,
+  ...
+}:
 
 let
   username = "sosedik";
@@ -15,7 +22,11 @@ in
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.${userSessionPassword "sosedik"}.path;
     description = "SoSeDiK";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "gamemode"
+    ];
   };
   sops.secrets.${userSessionPassword "sosedik"}.neededForUsers = true;
 
@@ -99,6 +110,9 @@ in
     # Misc
     qdirstat # Space management
     teamviewer
+    walker # App/task launcher
+    libqalculate # calc for walker
+    termius
   ];
 
   # Also needs user in the "gamemode" group
@@ -231,7 +245,10 @@ in
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://nix-community.cachix.org"
         "https://nix-gaming.cachix.org"

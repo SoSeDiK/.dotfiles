@@ -34,7 +34,7 @@ case "$choice" in
         exit 1
         ;;
     "default")
-        firefox-nightly -new-instance
+        firefox-nightly -new-instance --name firefox-nightly-$choice
         ;;
     "private")
         firefox-nightly -new-instance -P $choice --name firefox-nightly-$choice --private-window

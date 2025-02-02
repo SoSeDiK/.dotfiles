@@ -1,4 +1,13 @@
-{ inputs', config, osConfig, lib, self, pkgs, dotAssetsDir, ... }:
+{
+  inputs',
+  config,
+  osConfig,
+  lib,
+  self,
+  pkgs,
+  dotAssetsDir,
+  ...
+}:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -122,7 +131,7 @@ in
     lfs.enable = true;
     diff-so-fancy.enable = true;
     extraConfig = {
-      init.defaultBranch = "master";
+      init.defaultBranch = "main";
       http.postBuffer = 1048576000;
     };
   };
@@ -188,38 +197,37 @@ in
   };
 
   # Custom handlr rules
-  xdg.configFile."handlr/handlr.toml".source =
-    (pkgs.formats.toml { }).generate "handlr-config" {
-      enable_selector = false;
-      selector = "rofi -dmenu -i -p 'Open With: '";
-      term_exec_args = "";
-      handlers = [
-        # GW 2 thingies
-        {
-          exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
-          regexes = [
-            "(https://)?.*guildwars2\.com.*"
-            "(https://)?gw2efficiency\.com.*"
-            "(https://)?gw2crafts\.net.*"
-            "(https://)?blishhud\.com.*"
-          ];
-        }
-        # Terraria
-        {
-          exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
-          regexes = [
-            "(https://)?terraria\.wiki\.gg.*"
-            "(https://)?calamitymod\.wiki\.gg.*"
-          ];
-        }
-        # Any other http & https URLs since handlr is a default handler for them
-        {
-          # exec = "${dotAssetsDir}/scripts/test.sh %u";
-          exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
-          regexes = [ "^(http|https):.+$" ];
-        }
-      ];
-    };
+  xdg.configFile."handlr/handlr.toml".source = (pkgs.formats.toml { }).generate "handlr-config" {
+    enable_selector = false;
+    selector = "rofi -dmenu -i -p 'Open With: '";
+    term_exec_args = "";
+    handlers = [
+      # GW 2 thingies
+      {
+        exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+        regexes = [
+          "(https://)?.*guildwars2\.com.*"
+          "(https://)?gw2efficiency\.com.*"
+          "(https://)?gw2crafts\.net.*"
+          "(https://)?blishhud\.com.*"
+        ];
+      }
+      # Terraria
+      {
+        exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+        regexes = [
+          "(https://)?terraria\.wiki\.gg.*"
+          "(https://)?calamitymod\.wiki\.gg.*"
+        ];
+      }
+      # Any other http & https URLs since handlr is a default handler for them
+      {
+        # exec = "${dotAssetsDir}/scripts/test.sh %u";
+        exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
+        regexes = [ "^(http|https):.+$" ];
+      }
+    ];
+  };
 
   home.username = username;
   home.homeDirectory = "/home/${username}";
