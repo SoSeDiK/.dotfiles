@@ -94,7 +94,6 @@ in
     "${self}/system/dev/jdk"
 
     # Theming
-    "${self}/system/theming/gtk-qt.nix"
     "${self}/system/theming/stylix.nix"
 
     # Misc

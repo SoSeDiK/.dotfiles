@@ -1,4 +1,10 @@
-{ lib, pkgs, hmUsers, dotAssetsDir, ... }:
+{
+  lib,
+  pkgs,
+  hmUsers,
+  dotAssetsDir,
+  ...
+}:
 
 {
   environment.systemPackages = with pkgs; [

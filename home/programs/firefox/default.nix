@@ -1,38 +1,53 @@
-{ pkgs, lib, config, inputs', dotAssetsDir, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs',
+  dotAssetsDir,
+  ...
+}:
 
 let
   username = config.home.username;
   defaultProfileName = username;
-  profiles = [ defaultProfileName "private" "work" "movies" "gaming" ];
+  profiles = [
+    defaultProfileName
+    "private"
+    "work"
+    "movies"
+    "gaming"
+  ];
 
   # Firefox Nightly with https://github.com/MrOtherGuy/fx-autoconfig
-  firefox-nightly = (
-    (inputs'.firefox-nightly.packages.firefox-nightly-bin).override {
+  firefox-nightly =
+    ((inputs'.firefox-nightly.packages.firefox-nightly-bin).override {
       extraPrefsFiles = [
         (builtins.fetchurl {
           url = "https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/master/program/config.js";
           sha256 = "1mx679fbc4d9x4bnqajqx5a95y1lfasvf90pbqkh9sm3ch945p40";
         })
       ];
-    }
-  ).overrideAttrs (oldAttrs: {
-    buildCommand = (oldAttrs.buildCommand or "") + ''
-      # Find firefox dir
-      firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
+    }).overrideAttrs
+      (oldAttrs: {
+        buildCommand =
+          (oldAttrs.buildCommand or "")
+          + ''
+            # Find firefox dir
+            firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
 
-      # Function to replace symlink with destination file
-      replaceSymlink() {
-        local symlink_path="$firefoxDir/$1"
-        local target_path=$(readlink -f "$symlink_path")
-        rm "$symlink_path"
-        cp "$target_path" "$symlink_path"
-      }
+            # Function to replace symlink with destination file
+            replaceSymlink() {
+              local symlink_path="$firefoxDir/$1"
+              local target_path=$(readlink -f "$symlink_path")
+              rm "$symlink_path"
+              cp "$target_path" "$symlink_path"
+            }
 
-      # Copy firefox binaries
-      replaceSymlink "firefox"
-      replaceSymlink "firefox-bin"
-    '';
-  });
+            # Copy firefox binaries
+            replaceSymlink "firefox"
+            replaceSymlink "firefox-bin"
+          '';
+      });
   # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons
   addons = inputs'.firefox-addons.packages;
   coreAddons = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -40,10 +55,6 @@ let
     ublock-origin
     istilldontcareaboutcookies
     skip-redirect
-    # Some privacy?
-    privacy-badger
-    localcdn
-    canvasblocker
     # Access inaccessible
     censor-tracker
     # Downloads
@@ -159,12 +170,10 @@ in
   };
 
   home.file = builtins.listToAttrs (
-    lib.concatMap
-      (profile: [
-        (linkSource profile "chrome")
-        (linkSource profile "user.js")
-      ])
-      profiles
+    lib.concatMap (profile: [
+      (linkSource profile "chrome")
+      (linkSource profile "user.js")
+    ]) profiles
   );
 
   # Register firefox as default handler

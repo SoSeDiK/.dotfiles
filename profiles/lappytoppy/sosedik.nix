@@ -94,6 +94,7 @@ in
     postman
     # Gaming
     prismlauncher # Minecraft launcher
+    blockbench
     r2modman # Lethal Company mod manager
     space-cadet-pinball # Good Old Pinball
     # Social

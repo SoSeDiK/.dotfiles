@@ -1,4 +1,9 @@
-{ lib, fetchFromGitHub, rustPlatform, cmake }:
+{
+  lib,
+  fetchFromGitHub,
+  rustPlatform,
+  cmake,
+}:
 
 rustPlatform.buildRustPackage rec {
   pname = "firefox-profile-switcher-connector";
@@ -13,7 +18,7 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [ cmake ];
 
-  cargoSha256 = "sha256-EQIBeZwF9peiwpgZNfMmjvLv8NyhvVGUjVXgkf12Wig=";
+  cargoSha256 = "sha256-Bp3UxuFQFvh/htV4sVcgOKe0w1+Ed6Iz6c9l9PWrW5E=";
 
   postInstall = ''
     mkdir -p $out/lib/mozilla/native-messaging-hosts

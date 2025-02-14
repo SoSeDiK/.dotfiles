@@ -1,7 +1,15 @@
 /* Main sidebar styling */
+:root {
+  --custom-sidebar-width-collapsed: calc(
+    max(32px, calc(1.7 * 1em)) + 2 * calc(3 * 0.267rem)
+  );
+  --custom-sidebar-width-expanded: 250px;
+}
+
 #sidebar-main {
-  width: 60px !important; /* Collapsed width */
-  transition: width 0.3s ease, margin-right 0.3s ease !important; /* Animation speed */
+  /* width: 50px !important; /* Collapsed width */
+  width: var(--custom-sidebar-width-collapsed) !important; /* Collapsed width */
+  transition: width 0.075s ease, margin-right 0.075s ease !important; /* Animation speed */
   z-index: 4 !important; /* Ensure it overlays other elements */
   margin-right: 0px !important;
   background: none !important; /* No background in collapsed state */
@@ -9,9 +17,11 @@
 
 /* When hovering over the sidebar */
 #sidebar-main:hover {
-  width: 260px !important; /* Expanded width */
-  margin-right: -200px !important; /* Adjust for layout shift */
-  background: #191919 !important; /* Background color */
+  width: 250px !important; /* Expanded width */
+  margin-right: calc(
+    -1 * var(--custom-sidebar-width-expanded) + var(--custom-sidebar-width-collapsed)
+  ) !important; /* Adjust for layout shift */
+  background: --lwt-accent-color !important; /* Background color */
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.4) !important; /* Optional shadow for depth */
 }
 
@@ -38,15 +48,13 @@
   display: none !important;
 }
 
-/* Due to 12.01.25 update additional styling is required */
-
-/* Hide close button when collapsed */
+/* Hide close button in collapsed state */
 #tabbrowser-tabs[orient="vertical"]:not([expanded]) .tab-close-button {
   display: none !important;
 }
 
 /* Uniform tabs padding */
-#tabbrowser-tabs[orient="vertical"]:not([expanded]) .tabbrowser-tab {
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab {
   padding-block: 0px !important;
 }
 
