@@ -55,9 +55,8 @@ in
 
         # Some dynamic values
         source = ~/.config/hypr/generated.conf
-
-        # Plugins
       ''
+      + (if plugins then "\n\n# Plugins" else "")
       + (if plugins && hyprbars then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprbars.conf" else "")
       + (if plugins && hyprexpo then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprexpo.conf" else "")
       + (
@@ -136,5 +135,7 @@ in
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    # Prefer iGPU
+    AQ_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
   };
 }

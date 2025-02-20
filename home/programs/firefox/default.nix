@@ -136,35 +136,35 @@ in
         name = defaultProfileName;
         path = "${defaultProfileName}";
         isDefault = true;
-        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons ++ homeAddons;
+        extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons ++ homeAddons;
       };
       # Used by private browser overlay
       private = {
         id = 1;
         name = "private";
         path = "private";
-        extensions = coreAddons;
+        extensions.packages = coreAddons;
       };
       # Separate instance for work-related things
       work = {
         id = 2;
         name = "work";
         path = "work";
-        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
+        extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
       };
       # Separate instance for multimedia
       movies = {
         id = 3;
         name = "movies";
         path = "movies";
-        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
+        extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
       };
       # Separate instance for games
       gaming = {
         id = 4;
         name = "gaming";
         path = "gaming";
-        extensions = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
+        extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
       };
     };
   };
