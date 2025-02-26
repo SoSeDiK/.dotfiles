@@ -462,6 +462,8 @@ user_pref("image.jxl.enabled", true);
 user_pref("sidebar.revamp", true); // Required
 user_pref("sidebar.position_start", true); // On the left
 user_pref("sidebar.verticalTabs", true);
+// user_pref("sidebar.expandOnHover", true);
+// user_pref("sidebar.animation.expand-on-hover.duration-ms", 0);
 
 // BETTERFOX Overrides
 // Save downloads to default folder

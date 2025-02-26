@@ -20,7 +20,7 @@ panel {
 }
 
 /* hide the outline shown on panels when transitioning from subview to subview */
-/* see here: https://searchfox.org/mozilla-central/rev/ec3889f74d6b5695833280f4370ca0e9ba59a3e4/browser/components/customizableui/PanelMultiView.jsm#1047 */
+/* see here: https://searchfox.org/mozilla-central/rev/09112edd051eaaac350e035b40661514fd1206ac/browser/components/customizableui/PanelMultiView.sys.mjs#1068 */
 panelview {
   outline: none !important;
 }
@@ -30,7 +30,8 @@ panelview {
 }
 
 /* allow panel height to flex and animate */
-@media (-moz-bool-pref: "userChrome.panels.allow-height-flex") {
+/* stylelint-disable-next-line media-query-no-invalid */
+@media -moz-pref("userChrome.panels.allow-height-flex") {
   panelview {
     min-height: revert !important;
     max-height: revert !important;
@@ -199,7 +200,8 @@ no longer necessary after modern flexbox emulation. */
 }
 
 /* protect the arrowpanel animations from future updates */
-@media (-moz-bool-pref: "xul.panel-animations.enabled") {
+/* stylelint-disable-next-line media-query-no-invalid */
+@media -moz-pref("xul.panel-animations.enabled") {
   @media (prefers-reduced-motion: no-preference) {
     @media (-moz-platform: macos) {
       panel[type="arrow"],
@@ -298,7 +300,6 @@ no longer necessary after modern flexbox emulation. */
   background-color: transparent;
   -moz-context-properties: fill, fill-opacity !important;
   fill-opacity: 0.6;
-  border-radius: var(--arrowpanel-menuitem-border-radius) !important;
   padding: var(--arrowpanel-menuitem-padding) !important;
   min-height: revert !important;
   border-radius: var(--arrowpanel-menuitem-border-radius) !important;
@@ -385,7 +386,7 @@ no longer necessary after modern flexbox emulation. */
 }
 
 #protections-popup-category-list {
-  margin-top: 0px !important;
+  margin-top: 0 !important;
 }
 
 #protections-popup-blocking-section-header,
@@ -1474,6 +1475,10 @@ toolbar button slider script. but just in case) */
   margin-block-start: 6px !important;
 }
 
+ul.webext-perm-domains-list {
+  margin-inline-start: revert !important;
+}
+
 :is(#identity-popup-mainView-panel-header, #permission-popup-mainView-panel-header, #protections-popup-mainView-panel-header) span,
 .protections-popup-tp-switch-on-header,
 .protections-popup-tp-switch-off-header {
@@ -1767,7 +1772,6 @@ toolbar button slider script. but just in case) */
 }
 
 .footer-button.screenshot-button {
-  background-color: var(--button-bgcolor, color-mix(in srgb, currentColor 13%, transparent)) !important;
   color: var(--uc-content-page-color) !important;
   background-color: transparent !important;
   margin: 0 !important;

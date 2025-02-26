@@ -1,3 +1,5 @@
+/* Source: https://www.reddit.com/r/FirefoxCSS/comments/1hu5bvp/auto_expand_the_experimental_vertical_tab_sidebar */
+
 /* Main sidebar styling */
 :root {
   --custom-sidebar-width-collapsed: calc(
@@ -57,6 +59,17 @@
 #tabbrowser-tabs[orient="vertical"] .tabbrowser-tab {
   padding-block: 0px !important;
 }
+
+/* 25.02.2025 update fix */
+#sidebar-main:not(:hover) .toolbarbutton-text {
+  display: none !important;
+}
+
+#sidebar-main:not(:hover) .tab-close-button {
+  display: none !important;
+}
+
+/* Extras */
 
 /* Scroll on the left */
 #tabbrowser-arrowscrollbox[orient="vertical"] {
