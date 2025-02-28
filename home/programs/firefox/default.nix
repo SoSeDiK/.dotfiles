@@ -48,6 +48,55 @@ let
             replaceSymlink "firefox-bin"
           '';
       });
+
+  searchEngines = {
+    "Google".metaData.alias = "!g";
+    "Bing".metaData.hidden = true;
+    "DuckDuckGo".metaData.alias = "!ddg";
+    "Google Images" = {
+      urls = [ { template = "https://google.com/search?tbm=isch&q={searchTerms}&tbs=imgo:1"; } ];
+      iconUpdateURL = "https://www.google.com/favicon.ico";
+      updateInterval = 24 * 60 * 60 * 1000; # every day
+      definedAliases = [ "!gi" ];
+    };
+    "YouTube" = {
+      urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
+      iconUpdateURL = "https://www.youtube.com/favicon.ico";
+      updateInterval = 24 * 60 * 60 * 1000; # every day
+      definedAliases = [ "!y" ];
+    };
+    "GitHub" = {
+      urls = [ { template = "https://github.com/search?utf8=%E2%9C%93&q={searchTerms}"; } ];
+      iconUpdateURL = "https://www.github.com/favicon.ico";
+      updateInterval = 24 * 60 * 60 * 1000; # every day
+      definedAliases = [ "!gh" ];
+    };
+    "Nix Packages" = {
+      urls = [
+        {
+          template = "https://search.nixos.org/packages";
+          params = [
+            {
+              name = "channel";
+              value = "unstable";
+            }
+            {
+              name = "type";
+              value = "packages";
+            }
+            {
+              name = "query";
+              value = "{searchTerms}";
+            }
+          ];
+        }
+      ];
+
+      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      definedAliases = [ "!np" ];
+    };
+  };
+
   # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons
   addons = inputs'.firefox-addons.packages;
   coreAddons = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -137,6 +186,10 @@ in
         path = "${defaultProfileName}";
         isDefault = true;
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons ++ homeAddons;
+        search = {
+          engines = searchEngines;
+          force = true;
+        };
       };
       # Used by private browser overlay
       private = {
@@ -144,6 +197,10 @@ in
         name = "private";
         path = "private";
         extensions.packages = coreAddons;
+        search = {
+          engines = searchEngines;
+          force = true;
+        };
       };
       # Separate instance for work-related things
       work = {
@@ -151,6 +208,10 @@ in
         name = "work";
         path = "work";
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
+        search = {
+          engines = searchEngines;
+          force = true;
+        };
       };
       # Separate instance for multimedia
       movies = {
@@ -158,6 +219,10 @@ in
         name = "movies";
         path = "movies";
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
+        search = {
+          engines = searchEngines;
+          force = true;
+        };
       };
       # Separate instance for games
       gaming = {
@@ -165,6 +230,10 @@ in
         name = "gaming";
         path = "gaming";
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
+        search = {
+          engines = searchEngines;
+          force = true;
+        };
       };
     };
   };

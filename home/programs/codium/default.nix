@@ -1,4 +1,9 @@
-{ pkgs, config, dotAssetsDir, ... }:
+{
+  pkgs,
+  config,
+  dotAssetsDir,
+  ...
+}:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -7,7 +12,7 @@ in
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium-fhs;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       # UI / Visual
       zhuangtongfa.material-theme # One Dark Pro
       streetsidesoftware.code-spell-checker # language packs are installed manually
@@ -43,6 +48,8 @@ in
     "text/x-java" = "codium.desktop"; # .patch
   };
 
-  xdg.configFile."VSCodium/User/settings.json".source = mkOutOfStoreSymlink "${dotAssetsDir}/codium/settings.json";
-  xdg.configFile."VSCodium/User/keybindings.json".source = mkOutOfStoreSymlink "${dotAssetsDir}/codium/keybindings.json";
+  xdg.configFile."VSCodium/User/settings.json".source =
+    mkOutOfStoreSymlink "${dotAssetsDir}/codium/settings.json";
+  xdg.configFile."VSCodium/User/keybindings.json".source =
+    mkOutOfStoreSymlink "${dotAssetsDir}/codium/keybindings.json";
 }
