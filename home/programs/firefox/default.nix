@@ -119,12 +119,14 @@ let
     addons.betterviewer # better image viewer
     # Reddit
     addons.load-reddit-images-directly
+    addons.reddit-nsfw-unblocker
     # Twitch
     betterttv
     # Steam
     augmented-steam
     # YouTube
     sponsorblock
+    dearrow
     return-youtube-dislikes
     enhancer-for-youtube
     # GitHub

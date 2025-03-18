@@ -3,19 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; # Sometimes things break
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small"; # Sometimes things break, sometimes the edge is needed
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-hardware.url = "github:SoSeDiK/nixos-hardware/lenovo-legion-15arh05"; # TODO upstream
 
+    # Home management
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Home management
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,9 +74,7 @@
     };
 
     # Hyprland & plugins
-    hyprland = {
-      url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
-    };
+    hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
     xdg-portal-hyprland = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -109,6 +106,7 @@
 
     shadower.url = "github:n3oney/shadower";
 
+    # UI shells
     ags.url = "github:aylur/ags";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -118,7 +116,7 @@
     # Creating impure symlinks
     # impurity.url = "github:outfoxxed/impurity.nix";
 
-    # Deduplicators
+    # Deduplicators (other inputs use these)
     flake-utils.url = "github:numtide/flake-utils";
     flake-compat.url = "github:edolstra/flake-compat";
   };

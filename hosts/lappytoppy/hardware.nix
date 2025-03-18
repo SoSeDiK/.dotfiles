@@ -17,16 +17,16 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/980f6c53-f179-428a-a6a4-07cc125049c7";
+      device = "/dev/disk/by-uuid/09ab94dd-69bb-433b-b0ee-372572debd57";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/B7B2-181F";
+      device = "/dev/disk/by-uuid/72EC-72CA";
       fsType = "vfat";
-      options = [ "umask=077" ];
+      options = [ "fmask=0077" "umask=077" ];
     };
 
   swapDevices =

@@ -17,7 +17,7 @@ let
   hyprbars = true;
   hyprexpo = true;
   hyprwinwrap = true;
-  hypr-dynamic-cursors = true;
+  hypr-dynamic-cursors = false;
   hyprsplit = true;
 in
 {

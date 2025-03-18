@@ -44,7 +44,7 @@ in
     "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/cliphist.nix"
     "${self}/home/programs/github-desktop.nix"
-    "${self}/home/programs/quickshell.nix" # Task bar and many other things
+    # "${self}/home/programs/quickshell.nix" # Task bar and many other things
     "${self}/home/programs/screenshots.nix"
     "${self}/home/programs/spicetify.nix"
 
@@ -92,6 +92,7 @@ in
     android-studio
     filezilla
     postman
+    obsidian
     # Gaming
     prismlauncher # Minecraft launcher
     blockbench
@@ -102,6 +103,7 @@ in
     inputs'.nix-gaming.packages.wine-discord-ipc-bridge
     telegram-desktop
     whatsapp-for-linux
+    teams-for-linux
     # Extra browsers
     microsoft-edge
     tor-browser
@@ -236,5 +238,5 @@ in
   programs.home-manager.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05"; # tldr: Do not change :)
+  home.stateVersion = "24.11"; # tldr: Do not change :)
 }

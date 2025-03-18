@@ -62,10 +62,10 @@
   # '';
 
   # hardware.nvidia.nvidiaPersistenced = true;
-  hardware.nvidia.open = lib.mkForce false;
+  # hardware.nvidia.open = lib.mkForce false;
   # hardware.nvidia.modesetting.enable = lib.mkForce false;
   # hardware.nvidia.prime.offload.enable = lib.mkForce false;
-  # hardware.nvidia.powerManagement.finegrained = lib.mkForce false; # Requires offload # Does not work?
+  # hardware.nvidia.powerManagement.finegrained = lib.mkForce true; # Requires offload # Does not work?
 
   # Prevent apps from holding NVIDIA GPU
   # environment.variables = {
