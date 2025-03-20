@@ -7,8 +7,11 @@
     (makeDesktopItem {
       name = "handlro";
       desktopName = "handlro";
-      exec = "${handlr-regex}/bin/handlr open";
-      mimeTypes = [ "x-scheme-handler/http" "x-scheme-handler/https" ];
+      exec = "${handlr-regex}/bin/handlr open \"\\\$@\"";
+      mimeTypes = [
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
       terminal = true;
       noDisplay = true;
     })

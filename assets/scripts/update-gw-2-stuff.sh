@@ -48,14 +48,24 @@ blish_hud_dir=$("${find_command[@]}")
 
 # Fetch latest Blish HUD version
 url=$(curl -s https://api.github.com/repos/blish-hud/Blish-HUD/releases/latest | grep browser_download_url | cut -d '"' -f 4)
+if [ -z "$url" ]; then
+    echo "Warning: No download URL found. Api rate limit?"
+    exit 1
+fi
 blish_file_name=$(basename "$url")
 blish_dir_name="${blish_file_name%.*}"
 
 # If no Blish or version missmatch
 if [ -z "$blish_hud_dir" ] || { [ "$blish_hud_dir" != "$GAME_DIR/$blish_dir_name" ] && rm -r "$blish_hud_dir"; }; then
     echo "No Blish HUD found, downloading $blish_dir_name"
-    curl -LO "$url"
-    unzip "$blish_file_name" -d "$GAME_DIR/$blish_dir_name"
+    if ! curl -LO "$url"; then
+        echo "Error: Failed to download $url"
+        exit 1
+    fi
+    if ! unzip "$blish_file_name" -d "$GAME_DIR/$blish_dir_name"; then
+        echo "Error: Failed to unzip $blish_file_name"
+        exit 1
+    fi
 fi
 
 # Replace exe file to lauch Blish anongside GW 2

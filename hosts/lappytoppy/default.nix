@@ -216,8 +216,9 @@ in
 
   # Enable zswap
   # https://github.com/NixOS/nixpkgs/issues/119244
-  # boot.kernelParams = [ "zswap.enabled=1" "zswap.compressor=lz4" "zswap.zpool=z3fold" ];
-  # boot.initrd.kernelModules = [ "lz4" "z3fold" ];
+  boot.kernelParams = [
+    "zswap.enabled=1"
+  ];
 
   # Enable networking
   networking.hostName = "lappytoppy";
