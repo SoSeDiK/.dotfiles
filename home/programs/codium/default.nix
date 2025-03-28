@@ -21,6 +21,7 @@ in
       waderyan.gitblame
       # Utils
       ms-vscode.hexeditor
+      signageos.signageos-vscode-sops
       # Nix
       jnoortheen.nix-ide
       arrterian.nix-env-selector

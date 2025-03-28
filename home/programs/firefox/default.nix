@@ -50,24 +50,19 @@ let
       });
 
   searchEngines = {
-    "Google".metaData.alias = "!g";
-    "Bing".metaData.hidden = true;
-    "DuckDuckGo".metaData.alias = "!ddg";
+    "google".metaData.alias = "!g";
+    "bing".metaData.hidden = true;
+    "ddg".metaData.alias = "!ddg";
+    "youtube".metaData.alias = "!y";
     "Google Images" = {
       urls = [ { template = "https://google.com/search?tbm=isch&q={searchTerms}&tbs=imgo:1"; } ];
-      iconUpdateURL = "https://www.google.com/favicon.ico";
+      icon = "https://www.google.com/favicon.ico";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "!gi" ];
     };
-    "YouTube" = {
-      urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
-      iconUpdateURL = "https://www.youtube.com/favicon.ico";
-      updateInterval = 24 * 60 * 60 * 1000; # every day
-      definedAliases = [ "!y" ];
-    };
     "GitHub" = {
       urls = [ { template = "https://github.com/search?utf8=%E2%9C%93&q={searchTerms}"; } ];
-      iconUpdateURL = "https://www.github.com/favicon.ico";
+      icon = "https://www.github.com/favicon.ico";
       updateInterval = 24 * 60 * 60 * 1000; # every day
       definedAliases = [ "!gh" ];
     };
@@ -97,7 +92,8 @@ let
     };
   };
 
-  # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons
+  # Addons list: https://raw.githubusercontent.com/nix-community/nur-combined/refs/heads/main/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
+  # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons/-/raw/master/combined.nix
   addons = inputs'.firefox-addons.packages;
   coreAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Bearable browsing

@@ -7,7 +7,7 @@
     (makeDesktopItem {
       name = "handlro";
       desktopName = "handlro";
-      exec = "${handlr-regex}/bin/handlr open \"\\\$@\"";
+      exec = "${handlr-regex}/bin/handlr open \"%U\"";
       mimeTypes = [
         "x-scheme-handler/http"
         "x-scheme-handler/https"

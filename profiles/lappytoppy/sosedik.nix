@@ -44,7 +44,7 @@ in
     "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/cliphist.nix"
     "${self}/home/programs/github-desktop.nix"
-    # "${self}/home/programs/quickshell.nix" # Task bar and many other things
+    "${self}/home/programs/quickshell.nix" # Task bar and many other things
     "${self}/home/programs/screenshots.nix"
     "${self}/home/programs/spicetify.nix"
 
@@ -68,6 +68,7 @@ in
     bottles # WINE helper
     helvum # Audio
     scrcpy # View/Control phone screen (also broadcasts audio!)
+    kdePackages.kdeconnect-kde
     nurl # fetch sha256 for packages
     libsForQt5.ark # archiver
     direnv
@@ -95,6 +96,7 @@ in
     obsidian
     # Gaming
     prismlauncher # Minecraft launcher
+    mcpelauncher-ui-qt # Minecraft Bedrock launcher
     blockbench
     r2modman # Lethal Company mod manager
     space-cadet-pinball # Good Old Pinball

@@ -13,6 +13,8 @@ in
 {
   stylix.targets.vscode.enable = false;
   stylix.targets.firefox.enable = false;
+  stylix.targets.starship.enable = false;
 
-  xdg.dataFile."icons/${hyprcursorName}".source = "${hyprcursorPackage}/share/icons/${hyprcursorName}";
+  xdg.dataFile."icons/${hyprcursorName}".source =
+    "${hyprcursorPackage}/share/icons/${hyprcursorName}";
 }

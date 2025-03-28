@@ -7,5 +7,6 @@ in
   # Starship Prompt
   programs.starship.enable = true;
 
-  xdg.configFile."starship.toml".source = mkOutOfStoreSymlink "${dotAssetsDir}/programs/starship.toml";
+  xdg.configFile."starship.toml".source =
+    mkOutOfStoreSymlink "${dotAssetsDir}/programs/starship.toml";
 }
