@@ -118,7 +118,7 @@ in
     wl-mirror # App/screen mirroring
     # Fun CLIs
     cmatrix # Matrix in terminal
-    dotacat # Because rainbow is cool
+    lolcat # Because rainbow is cool
     sl # Steam Locomotive
   ];
 
