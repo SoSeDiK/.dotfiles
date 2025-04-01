@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -16,4 +21,9 @@
   };
 
   sops.secrets.nixAccessTokens = { };
+  # gpg --import /path/to/the/key.asc, will ask for the passphrase
+  sops.secrets.gitSigningKey = {
+    mode = "0400";
+    path = "${config.home.homeDirectory}/.gnupg/keys/git-signing-key.asc";
+  };
 }

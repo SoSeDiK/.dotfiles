@@ -138,7 +138,17 @@ in
     extraConfig = {
       init.defaultBranch = "main";
       http.postBuffer = 1048576000;
+
+      # Setup signing commits
+      commit.gpgsign = true;
+      user.signingkey = "A2263A612AD152CB";
     };
+  };
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   # Gaming
