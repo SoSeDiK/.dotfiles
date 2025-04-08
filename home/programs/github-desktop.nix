@@ -1,11 +1,21 @@
 { pkgs, ... }:
 
+let
+  # Fixup repo/file removal not working due to missing glib
+  github-desktop = pkgs.github-desktop.overrideAttrs (oldAttrs: {
+    buildInputs = oldAttrs.buildInputs ++ [ pkgs.glib ];
+    installPhase = ''
+      ${oldAttrs.installPhase}
+
+      wrapProgram $out/bin/github-desktop \
+        --set PATH "${pkgs.glib}/bin:$PATH"
+    '';
+  });
+in
 {
   # Apps
-  home.packages = with pkgs; [
+  home.packages = [
     github-desktop
-    # Fixup inability to delete files from GUI
-    glib
   ];
 
   # Handle auth within the app

@@ -1,8 +1,10 @@
+# Things done manually on fresh install
+
+- Restore age key for sops
+- Import GPG keys from ~/.gnupg/keys
+
 # Tracked issues (- issue \* workaround/note)
 
-- https://github.com/hyprwm/Hyprland/issues/4375
-  # Switching workspace does not close special workspace
-  - Using workspace_aware_switch script
 - https://gitlab.gnome.org/GNOME/file-roller/-/issues/4
   # Archive manager doesn't support drag & drop
   - Waiting...
