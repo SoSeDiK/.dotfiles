@@ -9,6 +9,7 @@
 
 let
   username = "sosedik";
+  userDescription = "SoSeDiK";
 
   sysTimezone = "Europe/Kyiv";
   sysLocale = "en_US.UTF-8"; # System locale
@@ -18,17 +19,17 @@ let
 in
 {
   # Setup users
-  users.users.sosedik = {
+  users.users.${username} = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.${userSessionPassword "sosedik"}.path;
-    description = "SoSeDiK";
+    hashedPasswordFile = config.sops.secrets.${userSessionPassword username}.path;
+    description = userDescription;
     extraGroups = [
       "networkmanager"
       "wheel"
       "gamemode"
     ];
   };
-  sops.secrets.${userSessionPassword "sosedik"}.neededForUsers = true;
+  sops.secrets.${userSessionPassword username}.neededForUsers = true;
 
   # Device components
   imports = [
@@ -113,6 +114,18 @@ in
     libqalculate # calc for walker
     termius
   ];
+
+  hjem = {
+    extraModules = [
+      inputs.hjem-rum.hjemModules.default
+    ];
+    users.${username} = {
+      enable = true;
+      directory = "/home/${username}";
+      user = username;
+    };
+    clobberByDefault = true;
+  };
 
   # Also needs user in the "gamemode" group
   # https://github.com/FeralInteractive/gamemode/issues/452

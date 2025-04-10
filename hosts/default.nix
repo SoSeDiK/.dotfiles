@@ -1,4 +1,9 @@
-{ inputs, self, withSystem, ... }:
+{
+  inputs,
+  self,
+  withSystem,
+  ...
+}:
 
 {
   flake.nixosConfigurations =
@@ -9,37 +14,49 @@
       dotAssetsDir = "/home/sosedik/.dotfiles/assets";
     in
     {
-      lappytoppy = withSystem "x86_64-linux" (ctx@{ config, inputs', ... }:
+      lappytoppy = withSystem "x86_64-linux" (
+        ctx@{ config, inputs', ... }:
         let
           profileName = "lappytoppy";
           hmUsers = [ "sosedik" ];
         in
         nixosSystem {
           specialArgs = {
-            inherit inputs self inputs' dotAssetsDir hmUsers;
+            inherit
+              inputs
+              self
+              inputs'
+              dotAssetsDir
+              hmUsers
+              ;
           };
-          modules = [
-            # System options
-            (./. + "/${profileName}")
+          modules =
+            [
+              # System options
+              (./. + "/${profileName}")
 
-            # Add extra pkg inputs
-            "${self}/system/overlay-inputs.nix"
+              # Add extra pkg inputs
+              "${self}/system/overlay-inputs.nix"
 
-            # Home manager
-            "${self}/system/programs/home-manager.nix"
-            {
-              home-manager.extraSpecialArgs = {
-                inherit inputs self inputs' dotAssetsDir;
-              };
-            }
+              # Home manager
+              "${self}/system/programs/home-manager.nix"
+              {
+                home-manager.extraSpecialArgs = {
+                  inherit
+                    inputs
+                    self
+                    inputs'
+                    dotAssetsDir
+                    ;
+                };
+              }
 
-            inputs.hjem.nixosModules.default
-            inputs.hjem-rum.nixosModules.default
-          ] ++ (concatMap
-            (username: [
+              inputs.hjem.nixosModules.default
+            ]
+            ++ (concatMap (username: [
               { home-manager.users."${username}" = import "${self}/profiles/${profileName}/${username}.nix"; }
-            ])
-            hmUsers);
-        });
+            ]) hmUsers);
+        }
+      );
     };
 }
