@@ -5,5 +5,6 @@
     wl-clipboard # dependency
     xclip # WINE compat
     cliphist
+    unstable.copyq
   ];
 }
