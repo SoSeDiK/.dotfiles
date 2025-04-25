@@ -28,8 +28,27 @@ in
   services.xserver = {
     xkb.extraLayouts.ruu = {
       description = "Russian-Ukrainian United keyboard layout";
-      languages = [ "rus" "ukr" "bel" ];
+      languages = [
+        "rus"
+        "ukr"
+        "bel"
+      ];
       symbolsFile = "${self}/assets/kb-layouts/ruu.xkb";
+    };
+  };
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "layer(capslock)";
+          };
+          "capslock:C-S-M" = { };
+        };
+      };
     };
   };
 }

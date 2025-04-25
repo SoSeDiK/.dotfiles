@@ -96,7 +96,7 @@ in
     obsidian
     # Gaming
     prismlauncher # Minecraft launcher
-    # mcpelauncher-ui-qt # Minecraft Bedrock launcher # TODO broken
+    unstable.mcpelauncher-ui-qt # Minecraft Bedrock launcher # TODO remove unstable
     blockbench
     r2modman # Lethal Company mod manager
     space-cadet-pinball # Good Old Pinball
