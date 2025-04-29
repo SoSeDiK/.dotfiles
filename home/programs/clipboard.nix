@@ -2,9 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    wl-clipboard # dependency
-    xclip # WINE compat
-    cliphist
+    wl-clipboard
+    xclip
   ];
 
   services.copyq.enable = true;

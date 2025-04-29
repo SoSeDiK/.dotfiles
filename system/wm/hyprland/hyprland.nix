@@ -14,9 +14,9 @@ let
   hyprland-portal = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
 
   plugins = true;
-  hyprbars = true;
+  hyprbars = false;
   hyprexpo = true;
-  hyprwinwrap = true;
+  hyprwinwrap = false;
   hypr-dynamic-cursors = true;
   hyprsplit = true;
 in

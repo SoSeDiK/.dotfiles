@@ -42,7 +42,7 @@ in
     "${self}/home/programs/firefox"
     "${self}/home/programs/mpv"
     "${self}/home/programs/ags.nix" # Task bar and many other things
-    "${self}/home/programs/cliphist.nix"
+    "${self}/home/programs/clipboard.nix"
     "${self}/home/programs/github-desktop.nix"
     "${self}/home/programs/quickshell.nix" # Task bar and many other things
     "${self}/home/programs/screenshots.nix"
@@ -96,7 +96,7 @@ in
     obsidian
     # Gaming
     prismlauncher # Minecraft launcher
-    unstable.mcpelauncher-ui-qt # Minecraft Bedrock launcher # TODO remove unstable
+    mcpelauncher-ui-qt # Minecraft Bedrock launcher
     blockbench
     r2modman # Lethal Company mod manager
     space-cadet-pinball # Good Old Pinball
