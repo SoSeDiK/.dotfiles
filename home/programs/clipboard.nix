@@ -6,5 +6,8 @@
     xclip
   ];
 
-  services.copyq.enable = true;
+  services.copyq = {
+    enable = true;
+    forceXWayland = false;
+  };
 }

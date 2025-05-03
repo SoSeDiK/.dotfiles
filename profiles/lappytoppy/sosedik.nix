@@ -18,11 +18,11 @@ let
 
   hyprfreeze = pkgs.callPackage "${self}/pkgs/hyprfreeze" { };
 
-  # Only pull xembed-sni-proxy from plasma-workspace # TODO Find a way to not have to depend on plasma-workspace?
-  # Converts legacy xembed tray icons to SNI onces, required for WINE apps (e.g. Blish HUD)
+  # Only pull xembed-sni-proxy from plasma-workspace
+  # Converts legacy xembed tray icons to SNI onces, required for WINE apps (e.g., Blish HUD, Wallpaper Engine)
   xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
     mkdir -p $out/bin
-    ln -s ${pkgs.plasma-workspace}/bin/xembedsniproxy $out/bin
+    ln -s ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy $out/bin
   '';
   imageViewer = "org.gnome.Loupe.desktop";
   videoPlayer = "mpv.desktop";
@@ -148,7 +148,7 @@ in
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    pinentryPackage = pkgs.pinentry-curses;
+    pinentry.package = pkgs.pinentry-curses;
     defaultCacheTtl = 31536000;
     maxCacheTtl = 31536000;
   };
@@ -178,10 +178,9 @@ in
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
 
-  # Allows Blish HUD to show up in tray
-  # services.snixembed.enable = true;
-  # services.xembed-sni-proxy.enable = true; # TODO failing to start
-  # services.xembed-sni-proxy.package = xembed-sni-proxy;
+  # Allows WINE icons to show up in tray
+  services.xembed-sni-proxy.enable = true;
+  services.xembed-sni-proxy.package = xembed-sni-proxy;
 
   xdg.mimeApps.defaultApplications = {
     "inode/directory" = "org.gnome.Nautilus.desktop";

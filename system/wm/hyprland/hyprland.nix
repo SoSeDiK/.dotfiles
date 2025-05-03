@@ -14,7 +14,7 @@ let
   hyprland-portal = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
 
   plugins = true;
-  hyprbars = false;
+  hyprbars = false; # TODO fails to build
   hyprexpo = true;
   hyprwinwrap = false;
   hypr-dynamic-cursors = true;
@@ -41,6 +41,7 @@ in
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     package = hyprland;
     # package = hyprland.overrideAttrs (_finalAttrs: previousAttrs: {
     #   patches = previousAttrs.patches ++ [

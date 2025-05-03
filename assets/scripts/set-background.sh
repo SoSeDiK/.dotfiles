@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Test IDs: 859663165 2985464274 2931446135
 
+default_background=2579315681
 assets_dir=~/Data/SteamLibrary/steamapps/common/wallpaper_engine/assets
 workshop_dir=~/Data/SteamLibrary/steamapps/workshop/content/431960
 screenshot_dest=~/.cache/wallpaper_dump.png
@@ -18,7 +19,7 @@ if [ -n "$1" ]; then
 else
     # Default background
     echo "No argument provided, using default wallpaper"
-    background_id=2985464274
+    background_id=$default_background
 fi
 
 # Kill old running instance

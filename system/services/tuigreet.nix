@@ -1,8 +1,7 @@
-{ inputs', pkgs, ... }:
+{ pkgs, ... }:
 
 let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  hyprland-session = "${inputs'.hyprland.packages.hyprland}/share/wayland-sessions";
 in
 {
   services.xserver = {
@@ -19,7 +18,6 @@ in
       default_session = {
         command = ''
           ${tuigreet} \
-          --sessions ${hyprland-session} \
           --time \
           --remember \
           --remember-user-session \
