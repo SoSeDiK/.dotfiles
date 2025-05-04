@@ -8,6 +8,11 @@ in
 {
   # Fonts are nice to have
   # List installed fonts: fc-list
+
+  environment.systemPackages = with pkgs; [
+    font-manager
+  ];
+
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
     nerd-fonts.fira-code

@@ -181,7 +181,7 @@ export default function AudioWidget() {
           })}
         />
       </button>
-      <label visible={bind(microphone, "mute")} label={"󰍭"} />
+      <label visible={bind(microphone, "mute")} label={" 󰍭"} />
     </box>
   );
 }

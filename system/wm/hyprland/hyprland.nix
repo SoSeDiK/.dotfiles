@@ -14,10 +14,10 @@ let
   hyprland-portal = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
 
   plugins = true;
-  hyprbars = false; # TODO fails to build
+  hyprbars = true;
   hyprexpo = true;
-  hyprwinwrap = false;
-  hypr-dynamic-cursors = true;
+  hyprwinwrap = true;
+  hypr-dynamic-cursors = false;
   hyprsplit = true;
 in
 {

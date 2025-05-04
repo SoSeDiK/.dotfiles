@@ -1,6 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  # GUI audio controls
+  environment.systemPackages = with pkgs; [
+    pavucontrol
+  ];
+
   # Pipewire
   services.pipewire = {
     enable = true;

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   inputs',
   dotAssetsDir,
   ...
@@ -163,6 +164,31 @@ let
   };
 in
 {
+  imports = [
+    inputs.zen-browser.homeModules.twilight
+  ];
+
+  programs.zen-browser = {
+    enable = true;
+    policies = {
+      DontCheckDefaultBrowser = true; # Do not check for default browser at startup.
+      DisableAppUpdate = true; # App updates are handled with nix.
+      DisableTelemetry = true; # No.
+    };
+    profiles = {
+      # Default profile
+      "${defaultProfileName}" = {
+        id = 0;
+        name = defaultProfileName;
+        path = "${defaultProfileName}";
+        isDefault = true;
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+        ];
+      };
+    };
+  };
+
   programs.firefox = {
     enable = true;
     package = firefox-nightly;
