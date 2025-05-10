@@ -124,6 +124,7 @@ in
       directory = "/home/${username}";
       user = username;
     };
+    # Override files on rebuild
     clobberByDefault = true;
   };
 

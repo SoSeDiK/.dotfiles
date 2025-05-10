@@ -1,4 +1,9 @@
-{ config, pkgs, dotAssetsDir, ... }:
+{
+  config,
+  pkgs,
+  dotAssetsDir,
+  ...
+}:
 
 let
   # Path to hooks
@@ -31,8 +36,8 @@ in
     ];
     qemu = {
       # While I do not need the full QEMU (only smbd from non-default), it would require compiling it manually
-      # package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
-      package = pkgs.qemu.override { smbdSupport = true; };
+      package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
+      # package = pkgs.qemu.override { smbdSupport = true; };
       ovmf.enable = true;
       ovmf.packages = [
         (pkgs.OVMF.override {
@@ -55,14 +60,13 @@ in
 
   # Copy patched GPU ROM
   systemd.services.libvirtd = {
-    preStart =
-      ''
-        mkdir -p /var/lib/libvirt/vgabios
-        ln -sf ${dotAssetsDir}/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
+    preStart = ''
+      mkdir -p /var/lib/libvirt/vgabios
+      ln -sf ${dotAssetsDir}/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
 
-        # Workaround "missing" modules.alias
-        ln -sf /run/booted-system/kernel-modules/lib/modules /lib
-      '';
+      # Workaround "missing" modules.alias
+      ln -sf /run/booted-system/kernel-modules/lib/modules /lib
+    '';
   };
 
   hardware.graphics.enable = true;
@@ -79,5 +83,9 @@ in
     };
   };
 
-  users.users.${username}.extraGroups = [ "kvm" "libvirtd" "qemu-libvirtd" ];
+  users.users.${username}.extraGroups = [
+    "kvm"
+    "libvirtd"
+    "qemu-libvirtd"
+  ];
 }

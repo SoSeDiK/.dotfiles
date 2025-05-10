@@ -21,6 +21,7 @@
     };
     hjem-rum = {
       url = "github:snugnug/hjem-rum";
+      inputs.hjem.follows = "hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
