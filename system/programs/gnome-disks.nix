@@ -11,9 +11,6 @@
     udisks
     gnome-disk-utility # GUI wrapper for udisks
     gparted
-
-    # extra disk tools
-    ventoy-full
   ];
 
   services.gvfs.enable = true; # MTP

@@ -35,9 +35,9 @@ in
       "virbr0"
     ];
     qemu = {
-      # While I do not need the full QEMU (only smbd from non-default), it would require compiling it manually
-      package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
-      # package = pkgs.qemu.override { smbdSupport = true; };
+      # While I do not need the full QEMU (only smbd from non-default), it would require compiling it manually # TODO it compiles the whole thing :f
+      # package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
+      package = pkgs.qemu.override { smbdSupport = true; };
       ovmf.enable = true;
       ovmf.packages = [
         (pkgs.OVMF.override {
