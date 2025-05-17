@@ -264,7 +264,7 @@ in
 
   home.file = builtins.listToAttrs (
     lib.concatMap (profile: [
-      (linkSource profile "chrome")
+      # (linkSource profile "chrome")
       (linkSource profile "user.js")
     ]) profiles
   );
