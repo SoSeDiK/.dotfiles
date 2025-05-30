@@ -69,7 +69,7 @@
 
   # Prevent apps from holding NVIDIA GPU
   # environment.variables = {
-  #   __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa.drivers.outPath}/share/glvnd/egl_vendor.d/50_mesa.json";
+  #   __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa.outPath}/share/glvnd/egl_vendor.d/50_mesa.json";
   #   __GLX_VENDOR_LIBRARY_NAME = "mesa";
   # };
 

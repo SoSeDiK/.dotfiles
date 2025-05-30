@@ -1,42 +1,94 @@
 { pkgs, ... }:
 
-# Sync nvidia backlight changes to amd
+# Sync nvidia and amd backlight changes
 let
   # May vary on different setups
   nvidiaDeviceId = "nvidia_0";
   amdDeviceId = "amdgpu_bl1";
   nvidia_max_brightness = 100;
   amdgpu_max_brightness = 255;
+  nvidiaPath = "/sys/class/backlight/${nvidiaDeviceId}/brightness";
+  amdPath = "/sys/class/backlight/${amdDeviceId}/brightness";
 in
 {
   systemd = {
-    services.backlight-monitor = {
-      description = "Sync nvidia backlight changes to amd";
-      wantedBy = [ "multi-user.target" ];
-      # unitConfig = {
-      #   ConditionPathExists = [
-      #     "/sys/class/backlight/${nvidiaDeviceId}/actual_brightness"
-      #     "/sys/class/backlight/${amdDeviceId}/actual_brightness"
-      #   ];
-      # };
-      serviceConfig = {
-        # Type = "oneshot";
-        ExecStart = "${pkgs.writeShellScript "backlight-monitor" ''
-          nvidia_path=/sys/class/backlight/${nvidiaDeviceId}/actual_brightness
-          if [ ! -f "$nvidia_path" ]; then
-            return 0
-          fi
-          nvidia_brightness=$(cat $nvidia_path)
-          scaled_brightness=$(expr $(expr $nvidia_brightness \* ${toString amdgpu_max_brightness}) / ${toString nvidia_max_brightness})
-          echo "$scaled_brightness" > /sys/class/backlight/${amdDeviceId}/brightness
-        ''}";
+    services =
+      let
+        syncBacklight =
+          {
+            sourcePath,
+            targetPath,
+            sourceMaxBrightness,
+            targetMaxBrightness,
+            serviceName,
+            description,
+          }:
+          {
+            description = description;
+            wantedBy = [ "multi-user.target" ];
+            unitConfig = {
+              ConditionPathExists = [
+                sourcePath
+                targetPath
+              ];
+              Conflicts = [ "backlight-monitor-${serviceName}.service" ];
+            };
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = "${pkgs.writeShellScript serviceName ''
+                if [ ! -f "${sourcePath}" ] || [ ! -f "${targetPath}" ]; then
+                    exit 0
+                fi
+
+                source_brightness=$(cat "${sourcePath}")
+                target_brightness=$(cat "${targetPath}")
+
+                source_percentage=$((source_brightness * 100 / ${toString sourceMaxBrightness}))
+                target_percentage=$((target_brightness * 100 / ${toString targetMaxBrightness}))
+                if [ "$source_percentage" -eq "$target_percentage" ]; then
+                    exit 0
+                fi
+
+                scaled_brightness=$((source_brightness * ${toString targetMaxBrightness} / ${toString sourceMaxBrightness}))
+                if [ "$scaled_brightness" -ne "$target_brightness" ]; then
+                    echo "$scaled_brightness" > ${targetPath}
+                fi
+              ''}";
+            };
+          };
+      in
+      {
+        backlight-monitor-nvidia-to-amd = syncBacklight {
+          sourcePath = nvidiaPath;
+          targetPath = amdPath;
+          sourceMaxBrightness = nvidia_max_brightness;
+          targetMaxBrightness = amdgpu_max_brightness;
+          serviceName = "backlight-monitor-nvidia-to-amd";
+          description = "Sync nvidia backlight changes to amd";
+        };
+        backlight-monitor-amd-to-nvidia = syncBacklight {
+          sourcePath = amdPath;
+          targetPath = nvidiaPath;
+          sourceMaxBrightness = amdgpu_max_brightness;
+          targetMaxBrightness = nvidia_max_brightness;
+          serviceName = "backlight-monitor-amd-to-nvidia";
+          description = "Sync amd backlight changes to nvidia";
+        };
       };
-    };
-    paths.backlight-monitor = {
-      description = "Monitor nvidia backlight changes";
-      wantedBy = [ "multi-user.target" ];
-      pathConfig = {
-        PathModified = "/sys/class/backlight/${nvidiaDeviceId}/brightness";
+    paths = {
+      backlight-monitor-nvidia-to-amd = {
+        description = "Monitor nvidia backlight changes";
+        wantedBy = [ "multi-user.target" ];
+        pathConfig = {
+          PathModified = nvidiaPath;
+        };
+      };
+      backlight-monitor-amd-to-nvidia = {
+        description = "Monitor amd backlight changes";
+        wantedBy = [ "multi-user.target" ];
+        pathConfig = {
+          PathModified = amdPath;
+        };
       };
     };
   };

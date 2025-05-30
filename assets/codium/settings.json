@@ -1,5 +1,4 @@
 {
-  "editor.formatOnSave": true,
   "git.autofetch": true,
   "git.enableSmartCommit": true,
   "editor.wordWrap": "on",
@@ -9,7 +8,7 @@
   "window.titleBarStyle": "custom",
   "workbench.colorTheme": "One Dark Pro Darker",
   "cSpell.language": "en,uk,ru",
-  "editor.fontFamily": "'FiraCode Nerd Font Mono'",
+  "editor.fontFamily": "'Fira Code', 'Symbols Nerd Font Mono'",
   "editor.largeFileOptimizations": false,
   "nix.formatterPath": "nixfmt",
   "nix.enableLanguageServer": true,
@@ -53,5 +52,6 @@
     "editor.semanticHighlighting.enabled": true,
     "editor.stickyScroll.defaultModel": "foldingProviderModel",
     "editor.suggest.insertMode": "replace"
-  }
+  },
+  "editor.formatOnSave": true
 }

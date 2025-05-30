@@ -80,7 +80,7 @@ in
     mission-center # Windows-like process manager
     fsearch # fast search
     cpu-x # PC Info
-    fontforge
+    fontforge-gtk
     # Media
     loupe # image viewer
     obs-studio # video recorder
@@ -107,7 +107,6 @@ in
     whatsapp-for-linux
     teams-for-linux
     # Extra browsers
-    microsoft-edge
     tor-browser
     # Misc
     linux-wallpaperengine

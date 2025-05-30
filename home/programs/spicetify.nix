@@ -29,15 +29,18 @@ in
 
     enabledExtensions = with spicePkgs.extensions; [
       adblock
-      # fullAppDisplayMod
+      powerBar
+      fullAppDisplayMod
       popupLyrics
       shuffle # shuffle+ (special characters are sanitized out of extension names)
       seekSong
+      fullAlbumDate
       copyToClipboard
       hidePodcasts
       history
       betterGenres
       listPlaylistsWithSong
+      playNext
     ];
   };
 }

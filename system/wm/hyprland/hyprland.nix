@@ -121,6 +121,20 @@ in
         # Plugins
         source = ${dotAssetsDir}/hypr/plugins/nohyprsplit.conf
       '';
+      ".config/uwsm/env".text = ''
+        # Use the Ozone Wayland support in Chromium and Electron apps
+        export NIXOS_OZONE_WL=1
+
+        # Toolkit Backend Variables
+        export GDK_BACKEND=wayland,x11,*
+        export QT_QPA_PLATFORM=wayland;xcb
+        export SDL_VIDEODRIVER=wayland
+        export CLUTTER_BACKEND=wayland
+      '';
+      ".config/uwsm/env-hyprland".text = ''
+        # Prefer iGPU
+        export AQ_DRM_DEVICES=/dev/dri/card1:/dev/dri/card0
+      '';
     };
   });
 
@@ -132,11 +146,5 @@ in
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
-  };
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    # Prefer iGPU
-    AQ_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";
   };
 }

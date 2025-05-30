@@ -9,7 +9,8 @@ let
   theme = "da-one-sea";
   cursorName = "Bibata-Modern-Ice";
 
-  noto-fonts-color-emoji-plus = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-emoji-plus" { };
+  emoji-font-name = "Noto Color Emoji";
+  emoji-font = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-emoji-plus" { };
 in
 {
   imports = [
@@ -31,8 +32,8 @@ in
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font Mono";
+        package = pkgs.jetbrains-mono;
+        name = "JetBrains Mono";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;
@@ -43,8 +44,8 @@ in
         name = "DejaVu Serif";
       };
       emoji = {
-        package = noto-fonts-color-emoji-plus;
-        name = "Noto Color Emoji";
+        package = emoji-font;
+        name = emoji-font-name;
       };
       sizes = {
         applications = 12;
@@ -57,16 +58,17 @@ in
     targets.plymouth.enable = false;
   };
 
+  # Extra font rules
   fonts.fontconfig.defaultFonts = {
-    monospace = [ "Symbols Nerd Font Mono" ];
-    sansSerif = [ "Symbols Nerd Font Mono" ];
-    serif = [ "Symbols Nerd Font Mono" ];
+    monospace = [ emoji-font-name "Symbols Nerd Font Mono" ];
+    sansSerif = [ emoji-font-name "Symbols Nerd Font Mono" ];
+    serif = [ emoji-font-name "Symbols Nerd Font Mono" ];
     emoji = [ "Symbols Nerd Font Mono" ];
   };
 
   nixpkgs.overlays = [
     (final: prev: {
-      noto-fonts-color-emoji = noto-fonts-color-emoji-plus;
+      noto-fonts-color-emoji = emoji-font;
     })
   ];
 }

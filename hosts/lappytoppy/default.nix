@@ -82,6 +82,7 @@ in
     "${self}/system/programs/virtualization/podman.nix"
     "${self}/system/programs/virtualization/virt-manager.nix"
     "${self}/system/programs/brightness.nix"
+    "${self}/system/programs/chromium.nix"
     "${self}/system/programs/cli-collection.nix"
     "${self}/system/programs/gnome-disks.nix"
     "${self}/system/programs/handlr.nix"
@@ -108,6 +109,7 @@ in
     # Gaming
     heroic # Epic Games launcher
     # Misc
+    syncthing
     qdirstat # Space management
     teamviewer
     walker # App/task launcher
@@ -154,6 +156,26 @@ in
 
   services.tailscale.enable = true;
   services.tailscale.authKeyFile = config.sops.secrets.tailscaleAuthKey.path;
+
+  # Syncing files across devices
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = username;
+    key = config.sops.secrets."syncthing/key.pem".path;
+    cert = config.sops.secrets."syncthing/certificate.pem".path;
+    settings = {
+      gui = {
+        user = username;
+        password = config.sops.secrets."syncthing/gui-password";
+      };
+      folders = {
+        "/home/${username}/Documents/Vault" = {
+          id = "vault";
+        };
+      };
+    };
+  };
 
   # iPad as second screen
   programs.weylus = {

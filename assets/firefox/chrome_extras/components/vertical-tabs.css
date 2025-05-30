@@ -1,0 +1,27 @@
+/* Source: https://www.reddit.com/r/FirefoxCSS/comments/1hu5bvp/auto_expand_the_experimental_vertical_tab_sidebar */
+
+/* Show pin tabs separator in expanded state */
+#tabbrowser-tabs[expanded] > #vertical-pinned-tabs-container-separator {
+  display: block !important;
+}
+
+/* Hide pin tabs separator in expanded state with no pin tabs */
+#vertical-pinned-tabs-container:empty + #vertical-pinned-tabs-container-separator {
+  display: none !important;
+}
+
+/* Uniform tabs padding */
+#tabbrowser-tabs[orient="vertical"] .tabbrowser-tab {
+  padding-block: 0px !important;
+}
+
+/* Column layout for pin tabs */
+#vertical-pinned-tabs-container {
+  grid-template-columns: none !important;
+  height: unset !important;
+}
+
+/* Hide the new vertical tab extension buttons */
+div.wrapper button-group.tools-and-extensions.actions-list {
+  display: none !important;
+}

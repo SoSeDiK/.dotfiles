@@ -22,6 +22,7 @@ const filterTitle = (client: Hyprland.Client): [string, string] => {
     ["firefox-nightly-private", ["󰈹", "Firefox"]],
     ["tor browser", ["", "Tor"]],
     ["microsoft-edge", ["󰇩", "Edge"]],
+    ["brave", ["", "Brave"]],
     ["discord", ["", "Discord"]],
     ["vesktop", ["", "Vesktop"]],
     ["equibop", ["", "Equibop"]],

@@ -50,46 +50,48 @@ let
           '';
       });
 
+  defaultSearchEngine = "ddg"; # DuckDuckGo
+  dailyUpdateInterval = 24 * 60 * 60 * 1000;
   searchEngines = {
-    "google".metaData.alias = "!g";
+    "google".metaData.hidden = true; # Using Google with forced English instead
     "bing".metaData.hidden = true;
-    "ddg".metaData.alias = "!ddg";
+    "ddg".metaData.alias = "!d";
     "youtube".metaData.alias = "!y";
+    "Google (English)" = {
+      urls = [ { template = "https://www.google.com/search?hl=en&gl=us&lr=lang_en&q={searchTerms}"; } ];
+      icon = "https://www.google.com/favicon.ico";
+      updateInterval = dailyUpdateInterval;
+      definedAliases = [ "!g" ];
+    };
     "Google Images" = {
       urls = [ { template = "https://google.com/search?tbm=isch&q={searchTerms}&tbs=imgo:1"; } ];
       icon = "https://www.google.com/favicon.ico";
-      updateInterval = 24 * 60 * 60 * 1000; # every day
+      updateInterval = dailyUpdateInterval;
       definedAliases = [ "!gi" ];
     };
     "GitHub" = {
       urls = [ { template = "https://github.com/search?utf8=%E2%9C%93&q={searchTerms}"; } ];
       icon = "https://www.github.com/favicon.ico";
-      updateInterval = 24 * 60 * 60 * 1000; # every day
+      updateInterval = dailyUpdateInterval;
       definedAliases = [ "!gh" ];
     };
     "Nix Packages" = {
       urls = [
         {
-          template = "https://search.nixos.org/packages";
-          params = [
-            {
-              name = "channel";
-              value = "unstable";
-            }
-            {
-              name = "type";
-              value = "packages";
-            }
-            {
-              name = "query";
-              value = "{searchTerms}";
-            }
-          ];
+          template = "https://search.nixos.org/packages?channel=unstable&type=packages&query={searchTerms}";
         }
       ];
-
       icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
       definedAliases = [ "!np" ];
+    };
+    "Nix Options" = {
+      urls = [
+        {
+          template = "https://search.nixos.org/options?channel=unstable&type=packages&query={searchTerms}";
+        }
+      ];
+      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      definedAliases = [ "!no" ];
     };
   };
 
@@ -98,9 +100,9 @@ let
   addons = inputs'.firefox-addons.packages;
   coreAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Bearable browsing
-    ublock-origin
-    istilldontcareaboutcookies
-    skip-redirect
+    ublock-origin # Ad Blocker
+    istilldontcareaboutcookies # Auto accept cookies on cookie banners
+    skip-redirect # Skipping shortlinks/redirects
     # Access inaccessible
     censor-tracker
     # Downloads
@@ -114,6 +116,7 @@ let
     side-view # open page in sidebar
     tampermonkey # scripts manager
     addons.betterviewer # better image viewer
+    adaptive-tab-bar-colour # fancier visuals
     # Reddit
     addons.load-reddit-images-directly
     addons.reddit-nsfw-unblocker
@@ -131,6 +134,7 @@ let
     enhanced-github
     refined-github
     octolinker
+    addons.patch-roulette
   ];
   coreNonPrivateOnlyAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Password manager
@@ -211,6 +215,8 @@ in
         isDefault = true;
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons ++ homeAddons;
         search = {
+          default = defaultSearchEngine;
+          privateDefault = defaultSearchEngine;
           engines = searchEngines;
           force = true;
         };
@@ -222,6 +228,8 @@ in
         path = "private";
         extensions.packages = coreAddons;
         search = {
+          default = defaultSearchEngine;
+          privateDefault = defaultSearchEngine;
           engines = searchEngines;
           force = true;
         };
@@ -233,6 +241,8 @@ in
         path = "work";
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
         search = {
+          default = defaultSearchEngine;
+          privateDefault = defaultSearchEngine;
           engines = searchEngines;
           force = true;
         };
@@ -244,6 +254,8 @@ in
         path = "movies";
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
         search = {
+          default = defaultSearchEngine;
+          privateDefault = defaultSearchEngine;
           engines = searchEngines;
           force = true;
         };
@@ -255,6 +267,8 @@ in
         path = "gaming";
         extensions.packages = coreAddons ++ coreNonPrivateOnlyAddons ++ tabsAddons;
         search = {
+          default = defaultSearchEngine;
+          privateDefault = defaultSearchEngine;
           engines = searchEngines;
           force = true;
         };
@@ -264,7 +278,7 @@ in
 
   home.file = builtins.listToAttrs (
     lib.concatMap (profile: [
-      # (linkSource profile "chrome")
+      (linkSource profile "chrome")
       (linkSource profile "user.js")
     ]) profiles
   );

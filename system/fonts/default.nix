@@ -2,7 +2,6 @@
 
 let
   appleFonts = pkgs.callPackage "${self}/pkgs/fonts/apple-fonts.nix" { };
-  neofont = pkgs.callPackage "${self}/pkgs/fonts/neofont" { };
   notoFonts = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-sans" { };
 in
 {
@@ -15,11 +14,11 @@ in
 
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
+    fira-code
     nerd-fonts.fira-code
+    jetbrains-mono
     nerd-fonts.jetbrains-mono
-    font-awesome
     appleFonts # Mostly for use by Firefox theme
-    neofont
     notoFonts
   ];
 

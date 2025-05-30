@@ -3,12 +3,12 @@
 
 pkgs.stdenv.mkDerivation {
   pname = "RDBDI-Noto-Emoji-Plus";
-  version = "1.0";
+  version = "16.0";
 
   src = ./.;
 
   installPhase = ''
-    mkdir -p $out/share/fonts/noto
-    cp NotoColorEmoji.ttf $out/share/fonts/noto
+    # install -Dm755 NotoColorEmojiFlags.ttf $out/share/fonts/noto/NotoColorEmojiFlags.ttf
+    install -Dm755 NotoColorEmoji.ttf $out/share/fonts/noto/NotoColorEmoji.ttf
   '';
 }

@@ -437,7 +437,7 @@ user_pref("userChrome.css.mac-ui-fonts", true);
 // Disable middle mouse paste (scroll instead)
 user_pref("middlemouse.paste", false);
 // Prefer noto emoji font
-user_pref("font.name-list.emoji", "Noto Color Emoji, Twemoji Mozilla");
+user_pref("font.name-list.emoji", "Noto Color Emoji, Twemoji Mozilla, Symbols Nerd Font Mono");
 // Enable VA-API support
 user_pref("media.ffmpeg.vaapi.enabled", true);
 // Enable JPEG XL support
@@ -446,8 +446,11 @@ user_pref("image.jxl.enabled", true);
 user_pref("sidebar.revamp", true); // Required
 user_pref("sidebar.position_start", true); // On the left
 user_pref("sidebar.verticalTabs", true);
-// user_pref("sidebar.expandOnHover", true);
-// user_pref("sidebar.animation.expand-on-hover.duration-ms", 0);
+user_pref("sidebar.expandOnHover", true);
+user_pref("sidebar.animation.expand-on-hover.duration-ms", 200);
+// Smoother experience
+user_pref("layers.acceleration.force-enabled", true);
+user_pref("gfx.webrender.all", true);
 
 // BETTERFOX Overrides
 // Save downloads to default folder

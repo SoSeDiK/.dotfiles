@@ -1,8 +1,74 @@
 @import url(firefox-csshacks/chrome/compact_extensions_panel.css);
-@import url(components/vertical-tab.css);
+@import url(components/vertical-tabs.css);
 
 /* us.css.js overrides */
 /* Custom find text count color */
 :root {
   --matches-indicator-text-color: white;
+}
+
+/* Calm Browsing */
+:root[customtitlebar] {
+  background-color: var(--toolbox-bgcolor) !important;
+}
+
+:root[customtitlebar]:-moz-window-inactive {
+  background-color: var(--toolbox-bgcolor-inactive) !important;
+}
+
+#navigator-toolbox {
+  opacity: 0;
+  min-height: 1px;
+  max-height: 1px;
+  transition:
+    max-height 1s linear 3s,
+    opacity 600ms ease 3s !important;
+}
+#navigator-toolbox:hover,
+#navigator-toolbox:focus-within {
+  opacity: 1;
+  min-height: 1px;
+  max-height: 50px;
+  transition-duration: 200ms !important;
+  transition-delay: 0s, 200ms !important;
+}
+
+#urlbar {
+  opacity: 0;
+  min-height: 1px;
+  max-height: 1px;
+  transition:
+    max-height 1s linear 3s,
+    opacity 600ms ease 3s !important;
+}
+#urlbar:focus-within,
+#navigator-toolbox:hover #urlbar {
+  opacity: 1;
+  min-height: 1px;
+  max-height: 50px;
+  transition-duration: 200ms !important;
+  transition-delay: 0s, 200ms !important;
+}
+
+/* Remove sidebar border */
+#sidebar {
+  @media -moz-pref("sidebar.revamp") {
+    border-radius: 0 !important;
+    outline: 0.5px solid transparent !important;
+  }
+}
+
+/* Remove tab border */
+#tabbrowser-tabbox {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Bleeding corners fix */
+.browserContainer,
+.browserStack {
+  clip-path: inset(0 round 0px);
+}
+
+@media (display-mode: fullscreen) {
 }
