@@ -88,7 +88,8 @@ Rectangle {
         if (charged) {
             const conservationMode = level <= 95;
             const batteryIcon = conservationMode ? chargingBatteryIcons[101] : batteryIcons[100];
-            return `${batteryIcon} ${level}%`;
+            const displayLevel = conservationMode && level % 10 === 9 ? level + 1 : level;
+            return `${batteryIcon} ${displayLevel}%`;
         }
 
         const batteryIcon = getClosestBatteryLevel(level, charging)
@@ -102,7 +103,7 @@ Rectangle {
             .sort((a, b) => b - a);
         for (let i = 0; i < levels.length; i++) {
             if (level >= levels[i]) {
-            return array[levels[i]];
+                return array[levels[i]];
             }
         }
         return array[levels[levels.length - 1]];

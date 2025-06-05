@@ -43,12 +43,6 @@ in
     EDITOR = "codium --wait";
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/plain" = "codium.desktop";
-    "text/x-patch" = "codium.desktop"; # .patch
-    "text/x-java" = "codium.desktop"; # .patch
-  };
-
   xdg.configFile."VSCodium/User/settings.json".source =
     mkOutOfStoreSymlink "${dotAssetsDir}/codium/settings.json";
   xdg.configFile."VSCodium/User/keybindings.json".source =

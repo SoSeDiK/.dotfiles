@@ -81,28 +81,28 @@ Rectangle {
 
                 ToolTip {
                     id: tooltip
-                    text: delegate.item.tooltipTitle || delegate.item.id
+                    text: (delegate.item.tooltipTitle || delegate.item.id) + (delegate.item.tooltipDescription === "delegate.item.tooltipDescription" ? "" : " " + delegate.item.tooltipDescription)
 
                     contentItem: Text {
-                            text: tooltip.text
-                            font: tooltip.font
-                            color: ShellGlobals.colors.timeTextColor
+                        text: tooltip.text
+                        font: tooltip.font
+                        color: ShellGlobals.colors.timeTextColor
                     }
 
                     background: Rectangle {
-                            radius: ShellGlobals.props.widgetRounding
-                            color: ShellGlobals.colors.widget
-                            border.color: ShellGlobals.colors.widgetOutline
+                        radius: ShellGlobals.props.widgetRounding
+                        color: ShellGlobals.colors.widget
+                        border.color: ShellGlobals.colors.widgetOutline
                     }
                 }
 
                 onEntered: {
-                        tooltip.visible = true
-                        tooltip.x = -tooltip.width - ShellGlobals.props.universalPadding
+                    tooltip.visible = true;
+                    tooltip.x = -tooltip.width - ShellGlobals.props.universalPadding;
                 }
 
                 onExited: {
-                        tooltip.visible = false
+                    tooltip.visible = false;
                 }
             }
         }

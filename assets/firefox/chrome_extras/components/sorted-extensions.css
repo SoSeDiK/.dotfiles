@@ -1,0 +1,111 @@
+/* Bucket each extension item by first‐letter (case-insensitive) */
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="a" i] {
+  order: 1;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="b" i] {
+  order: 2;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="c" i] {
+  order: 3;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="d" i] {
+  order: 4;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="e" i] {
+  order: 5;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="f" i] {
+  order: 6;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="g" i] {
+  order: 7;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="h" i] {
+  order: 8;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="i" i] {
+  order: 9;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="j" i] {
+  order: 10;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="k" i] {
+  order: 11;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="l" i] {
+  order: 12;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="m" i] {
+  order: 13;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="n" i] {
+  order: 14;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="o" i] {
+  order: 15;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="p" i] {
+  order: 16;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="q" i] {
+  order: 17;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="r" i] {
+  order: 18;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="s" i] {
+  order: 19;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="t" i] {
+  order: 20;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="u" i] {
+  order: 21;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="v" i] {
+  order: 22;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="w" i] {
+  order: 23;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="x" i] {
+  order: 24;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="y" i] {
+  order: 25;
+}
+#unified-extensions-panel toolbaritem.unified-extensions-item[label^="z" i] {
+  order: 26;
+}
+
+/* Catch-all for any item whose label doesn't start with A–Z */
+#unified-extensions-panel
+  toolbaritem.unified-extensions-item
+  :not([label^="a" i])
+  :not([label^="b" i])
+  :not([label^="c" i])
+  :not([label^="d" i])
+  :not([label^="e" i])
+  :not([label^="f" i])
+  :not([label^="g" i])
+  :not([label^="h" i])
+  :not([label^="i" i])
+  :not([label^="j" i])
+  :not([label^="k" i])
+  :not([label^="l" i])
+  :not([label^="m" i])
+  :not([label^="n" i])
+  :not([label^="o" i])
+  :not([label^="p" i])
+  :not([label^="q" i])
+  :not([label^="r" i])
+  :not([label^="s" i])
+  :not([label^="t" i])
+  :not([label^="u" i])
+  :not([label^="v" i])
+  :not([label^="w" i])
+  :not([label^="x" i])
+  :not([label^="y" i])
+  :not([label^="z" i]) {
+  order: 999;
+}

@@ -5,7 +5,6 @@
   lib,
   self,
   pkgs,
-  dotAssetsDir,
   ...
 }:
 
@@ -24,8 +23,6 @@ let
     mkdir -p $out/bin
     ln -s ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy $out/bin
   '';
-  imageViewer = "org.gnome.Loupe.desktop";
-  videoPlayer = "mpv.desktop";
 in
 {
   imports = [
@@ -54,9 +51,6 @@ in
 
     # Secrets!
     "${self}/secrets/sops-home.nix"
-
-    ## Managing idle & screen lock
-    "${self}/home/wm/hyprland/hyprlock-hypridle.nix"
   ];
 
   # User apps
@@ -119,6 +113,7 @@ in
     cmatrix # Matrix in terminal
     lolcat # Because rainbow is cool
     sl # Steam Locomotive
+    caffeine-ng # Idle inhibit
   ];
 
   # Better cd command
@@ -173,76 +168,9 @@ in
     createDirectories = true;
   };
 
-  # Enable mime apps
-  xdg.mime.enable = true;
-  xdg.mimeApps.enable = true;
-
   # Allows WINE icons to show up in tray
   services.xembed-sni-proxy.enable = true;
   services.xembed-sni-proxy.package = xembed-sni-proxy;
-
-  xdg.mimeApps.defaultApplications = {
-    "inode/directory" = "org.gnome.Nautilus.desktop";
-    # Images
-    "image/png" = imageViewer;
-    "image/apng" = imageViewer;
-    "image/jpeg" = imageViewer; # + .jpg
-    "image/pjpeg" = imageViewer; # + .jpg
-    "image/jxl" = imageViewer;
-    "image/gif" = imageViewer;
-    "image/webp" = imageViewer;
-    "image/svg+xml" = imageViewer; # .svg
-    "image/x-icon" = imageViewer; # .ico
-    "image/avif" = imageViewer;
-    "image/bmp" = imageViewer;
-    "image/tiff" = imageViewer; # + .tif
-    "image/x-tiff" = imageViewer; # + .tif
-    # Videos
-    "video/x-matroska" = videoPlayer; # .mkv
-    "video/avi" = videoPlayer;
-    "video/x-msvideo" = videoPlayer; # .avi
-    "video/mp4" = videoPlayer;
-    "video/mpeg" = videoPlayer;
-    "video/ogg" = videoPlayer;
-    "video/webm" = videoPlayer;
-  };
-  xdg.mimeApps.associations.added = {
-    "application/x-portable-anymap" = imageViewer; # .pnm
-    "image/x-portable-anymap" = imageViewer; # .pnm
-  };
-
-  # Custom handlr rules
-  xdg.configFile."handlr/handlr.toml".source = (pkgs.formats.toml { }).generate "handlr-config" {
-    enable_selector = false;
-    selector = "rofi -dmenu -i -p 'Open With: '";
-    term_exec_args = "";
-    handlers = [
-      # GW 2 thingies
-      {
-        exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
-        regexes = [
-          "(https://)?.*guildwars2\.com.*"
-          "(https://)?gw2efficiency\.com.*"
-          "(https://)?gw2crafts\.net.*"
-          "(https://)?blishhud\.com.*"
-        ];
-      }
-      # Terraria
-      {
-        exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
-        regexes = [
-          "(https://)?terraria\.wiki\.gg.*"
-          "(https://)?calamitymod\.wiki\.gg.*"
-        ];
-      }
-      # Any other http & https URLs since handlr is a default handler for them
-      {
-        # exec = "${dotAssetsDir}/scripts/test.sh %u";
-        exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
-        regexes = [ "^(http|https):.+$" ];
-      }
-    ];
-  };
 
   home.username = username;
   home.homeDirectory = "/home/${username}";

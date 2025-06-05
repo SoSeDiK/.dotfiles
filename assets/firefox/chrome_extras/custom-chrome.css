@@ -1,4 +1,6 @@
 @import url(firefox-csshacks/chrome/compact_extensions_panel.css);
+@import url(components/better-pip.css);
+@import url(components/sorted-extensions.css);
 @import url(components/vertical-tabs.css);
 
 /* us.css.js overrides */
@@ -8,13 +10,13 @@
 }
 
 /* Calm Browsing */
-:root[customtitlebar] {
+/* :root[customtitlebar] {
   background-color: var(--toolbox-bgcolor) !important;
 }
 
 :root[customtitlebar]:-moz-window-inactive {
   background-color: var(--toolbox-bgcolor-inactive) !important;
-}
+} */
 
 #navigator-toolbox {
   opacity: 0;
@@ -51,24 +53,261 @@
 }
 
 /* Remove sidebar border */
-#sidebar {
+/* #sidebar {
   @media -moz-pref("sidebar.revamp") {
     border-radius: 0 !important;
     outline: 0.5px solid transparent !important;
   }
-}
+} */
 
 /* Remove tab border */
-#tabbrowser-tabbox {
+/* #tabbrowser-tabbox {
   box-shadow: none !important;
   outline: none !important;
-}
+} */
 
 /* Bleeding corners fix */
+/* https://sites.google.com/site/broguegame/ */
 .browserContainer,
 .browserStack {
   clip-path: inset(0 round 0px);
 }
 
-@media (display-mode: fullscreen) {
+@-moz-document url(chrome://browser/content/browser.xul), url(chrome://browser/content/browser.xhtml)
+{
+  * {
+    scrollbar-width: none !important;
+  }
+
+  :root {
+    --tab-min-height: 20px;
+    --tab-max-height: 20px;
+    --toolbarbutton-inner-padding: 0;
+    --toolbar-field-focus-border-color: rgb(0, 0, 0);
+
+    --my-bg-color: var(--toolbox-bgcolor);
+    --my-bg-color-navbar: var(--toolbox-bgcolor-inactive);
+    --my-bg-color-gradient: linear-gradient(
+      rgba(100, 103, 120, 0.9),
+      rgba(150, 103, 120, 0.9)
+    );
+    --my-bg-color-gradient-inverted: linear-gradient(
+      rgba(150, 103, 120, 0.9),
+      rgba(100, 103, 120, 0.9)
+    );
+    --my-bg-color-hover: rgba(100, 0, 0, 0.8);
+    --my-font-size: 1em;
+    --my-min-font-size: 0.8em;
+    --my-button-active-bgcolor: rgba(70, 70, 120, 0.9);
+
+    --my-tab-font-size: 0.9em;
+
+    /* Browser */
+    #browser {
+      background: var(--my-bg-color) !important;
+
+      #tabbrowser-tabpanels {
+        border-radius: 8px !important;
+        background: var(--my-bg-color) !important;
+      }
+
+      #tabbrowser-tabbox {
+        box-shadow: none !important;
+        outline: none !important;
+        overflow: unset !important;
+      }
+
+      #tabbrowser-tabbox browser {
+        background-color: var(--my-bg-color) !important;
+        border-radius: 8px !important;
+      }
+
+      .browserContainer {
+        border-radius: 8px !important;
+      }
+
+      .browserStack {
+        border-radius: 8px !important;
+        margin: 4px !important;
+      }
+    }
+
+    [class="devtools-horizontal-splitter"] {
+      margin-bottom: 1px !important;
+      width: 100px !important;
+    }
+  }
+
+  #sidebar-main button-group {
+    background-color: var(--my-bg-color) !important;
+  }
+
+  /* Tabs */
+  #tabbrowser-tabs {
+    background-color: var(--my-bg-color) !important;
+
+    /* Pinned tabs */
+    #vertical-pinned-tabs-container {
+      [class="tabbrowser-tab"] {
+        border: 1px solid transparent !important;
+        border-radius: 6px !important;
+
+        [class="tab-icon-image"] {
+          width: 16px !important;
+          height: 16px !important;
+        }
+
+        :hover [class="tab-background"] {
+          background-color: var(--my-button-active-bgcolor) !important;
+        }
+
+        [class="tab-background"] {
+          padding-top: 17px !important;
+          padding-bottom: 17px !important;
+          transition: box-shadow 0.3s;
+          background-color: var(--my-bg-color) !important;
+        }
+      }
+
+      /* Max amount of the pinned tabs */
+      max-height: calc(
+        12 * var(--tabstrip-min-height) + var(--space-large)
+      ) !important;
+    }
+
+    [class="tabbrowser-tab"] {
+      padding-block: 0 0 !important;
+
+      :hover [class="tab-background"] {
+        background: var(--my-button-active-bgcolor) !important;
+      }
+
+      [class="tab-icon-image"] {
+        width: 12px !important;
+        height: 12px !important;
+      }
+
+      [class="tab-background"] {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 10px !important;
+        outline: none !important;
+        min-height: 24px !important;
+      }
+
+      [class="tab-content"] {
+        font-size: var(--my-tab-font-size) !important;
+
+        [class="tab-icon-stack"] {
+          margin-left: 2.5px !important;
+          margin-right: 2.5px !important;
+        }
+
+        [class*="tab-close-button"] {
+          margin-right: 2.5px !important;
+          width: 20px !important;
+          height: 20px !important;
+        }
+      }
+
+      [class="tab-background"][selected] {
+        background: var(--my-button-active-bgcolor) !important;
+      }
+    }
+  }
+
+  /* Navbar */
+  #navigator-toolbox {
+    background: var(--my-bg-color) !important;
+  }
+
+  #nav-bar {
+    background: var(--my-bg-color) !important;
+    font-size: 0.8em !important;
+    font-size: 0.8em !important;
+    height: 25px !important;
+
+    #urlbar-results {
+      background: var(--my-bg-color) !important;
+    }
+
+    #urlbar[focused] #urlbar-background {
+      outline: none !important;
+    }
+
+    #urlbar-background {
+      border: none !important;
+      background: var(--my-bg-color) !important;
+    }
+
+    #urlbar[focused] {
+      outline: none !important;
+      border: 0 !important;
+      border-color: var(--my-bg-color) !important;
+    }
+
+    #urlbar[open] {
+      #urlbar-background {
+        border: 0 !important;
+        border-inline: 0 !important;
+        border-radius: 0 0 20px 20px !important;
+        border-color: transparent !important;
+      }
+
+      .urlbarView {
+        border-inline: 0 !important;
+        border: 0 !important;
+        border-color: transparent !important;
+        border-radius: 0 0 30px 30px !important;
+
+        .urlbarView-body-inner {
+          #urlbar[open] > .urlbarView > .urlbarView-body-outer > & {
+            border-top: 0px solid transparent !important;
+          }
+        }
+      }
+    }
+
+    #urlbar[focused] #urlbar-input {
+      padding-left: 15px !important;
+      outline: none !important;
+      border: 1px !important;
+      border-color: var(--my-bg-color) !important;
+    }
+
+    #urlbar[breakout][breakout-extend] {
+      #urlbar-container {
+        #urlbar {
+          min-height: 0 !important;
+          height: 25px !important;
+
+          #searchmode-switcher-icon {
+            height: 12px !important;
+            width: 12px !important;
+          }
+
+          #tracking-protection-icon,
+          #identity-icon,
+          #page-action-buttons image {
+            width: 10px !important;
+          }
+
+          .urlbarView {
+            border-inline: 1px !important;
+            border: 1px !important;
+            border-color: var(--my-bg-color) !important;
+            border-radius: 20px !important;
+          }
+        }
+      }
+    }
+  }
+
+  #PersonalToolbar {
+    background-color: var(--my-bg-color) !important;
+
+    .bookmark-item {
+      color: #ccc !important;
+    }
+  }
 }

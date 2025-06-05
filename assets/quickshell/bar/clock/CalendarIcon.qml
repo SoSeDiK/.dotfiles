@@ -61,6 +61,8 @@ Text {
         '04-22': { name: "Earth Day", icon: "󰇧" },
         '04-26': { name: "Alien Day", icon: "󰢚" },
         '05-01': { name: "International Workers' Day", icon: "󱢇" },
+        '05-09': { name: "Victory Day over Nazism in World War Ⅱ", icon: "卐" },
+        '06-01': { name: "Pride Month", icon: "🏳️‍🌈" },
         '06-05': { name: "World Environment Day", icon: "" },
         '07-02': { name: "World UFO Day", icon: "󱃄" },
         '08-24': { name: "Independence Day of Ukraine", icon: "🇺🇦" },
@@ -76,6 +78,9 @@ Text {
 
     function getDateInfo(date) {
         if (isEaster(date)) return { name: "Easter", icon: "󰪰" }
+        if (isUSThanksgiving(date, 0)) return { name: "Thanksgiving (United States)", icon: "󱜛" }
+        if (isUSThanksgiving(date, 1)) return { name: "Black Friday", icon: "󰑯" }
+        if (isUSThanksgiving(date, 4)) return { name: "Cyber Monday", icon: "" }
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
         const dateKey = `${month}-${day}`;
@@ -92,10 +97,28 @@ Text {
         I = I - 30 * Math.floor(I / 30);
         I = I - Math.floor(I / 28) * (1 - Math.floor(I / 28) * Math.floor(29 / (I + 1)) * Math.floor((21 - N) / 11));
         var J = Y + Math.floor(Y / 4) + I + 2 - C + Math.floor(C / 4);
-        J = J - 7*Math.floor(J / 7);
+        J = J - 7 * Math.floor(J / 7);
         var L = I - J;
         var M = 3 + Math.floor((L + 40) / 44);
         var D = L + 28 - 31 * Math.floor(M / 4);
         return M === date.getMonth() + 1 && D === date.getDate();
+    }
+
+    function isUSThanksgiving(date, offset) {
+        if (date.getMonth() !== 10) return false;
+
+        const thanksgivingInUSDate = getUSThanksgivingDate(date.getFullYear());
+        const offsetDate = new Date(thanksgivingInUSDate);
+        offsetDate.setDate(thanksgivingInUSDate.getDate() + offset);
+
+        return date.getDate() === offsetDate.getDate();
+    }
+
+    function getUSThanksgivingDate(year) {
+        // Calculate the fourth Thursday of November
+        const thanksgivingInUSDate = new Date(year, 10, 1);
+        const firstDayOfNovember = thanksgivingInUSDate.getDay();
+        const fourthThursday = 22 + (firstDayOfNovember <= 4 ? 4 - firstDayOfNovember : 11 - firstDayOfNovember);
+        return new Date(year, 10, fourthThursday);
     }
 }

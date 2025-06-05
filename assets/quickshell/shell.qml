@@ -35,7 +35,7 @@ ShellRoot {
             PanelWindow {
                 id: window
                 screen: modelData
-                HyprlandWindow.opacity: 0.9999 // Does not render transparency correctly otherwise
+                surfaceFormat.opaque: false
 
                 anchors {
                     top: true
@@ -43,8 +43,7 @@ ShellRoot {
                     right: true
                 }
 
-                implicitHeight: 36 // TODO: for whatever reason the bar height is not set properly via globals
-                // implicitHeight: ShellGlobals.props.barHeight + ShellGlobals.props.universalPadding + ShellGlobals.props.barOffset
+                implicitHeight: ShellGlobals.props.barHeight + ShellGlobals.props.universalPadding + ShellGlobals.props.barOffset
                 color: monitorRoot.backgroundColor
 
                 Item {

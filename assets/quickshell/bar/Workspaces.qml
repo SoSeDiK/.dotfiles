@@ -32,11 +32,10 @@ Rectangle {
         Repeater {
             model: ScriptModel {
                 values: {
-                    if (!workspaceData) return [];
-
                     specialWs = null;
 
-                    const workspaces = Array.from({ length: 10 }, (_, id) => ([(monitor.id * 10 + id) + 1, null]));
+                    // [workspace id, workspace object, whether the workspace is an "extra" one (out of usual bounds, i.e., 10 per workspace)]
+                    const workspaces = Array.from({ length: 10 }, (_, id) => ([(monitor.id * 10 + id) + 1, null, false]));
 
                     [...Hyprland.workspaces.values]
                         .filter((ws) => {
@@ -51,7 +50,10 @@ Rectangle {
                         })
                         .forEach((ws) => {
                             const index = (ws.id - 1) % 10;
-                            workspaces[index][1] = ws;
+                            if (ws.id === workspaces[index][0])
+                                workspaces[index][1] = ws;
+                            else
+                                workspaces.push([ws.id, ws, true]);
                         });
 
                     return workspaces;
@@ -61,6 +63,7 @@ Rectangle {
             delegate: RowLayout {
                 property int wsNum: modelData[0]
                 property HyprlandWorkspace ws: modelData[1]
+                property bool extraWorkspace: modelData[2]
 
                 height: parent.height - ShellGlobals.props.universalPadding
                 implicitWidth: workspaceDisplay.width + repeater.width
@@ -72,7 +75,7 @@ Rectangle {
                     property string wsColor: hovering ? (down ? ShellGlobals.colors.workspaceActivePressedTextColor : ShellGlobals.colors.workspaceActiveHovereredTextColor) : (wsNum === monitor.activeWorkspace?.id ? ShellGlobals.colors.workspaceActiveTextColor : (ws ? ShellGlobals.colors.workspaceTextColor : ShellGlobals.colors.workspaceEmptyTextColor))
 
                     id: workspaceDisplay
-                    text: getWorkspaceName(wsNum)
+                    text: getWorkspaceName(wsNum, extraWorkspace)
                     color: wsColor
                     font.pixelSize: 0.8 * Math.min(ShellGlobals.props.barHeight, parent.height)
                     y: -(height - font.pixelSize) / 4
@@ -275,7 +278,9 @@ Rectangle {
         return chunks;
     }
 
-    function getWorkspaceName(wsNum) {
+    function getWorkspaceName(wsNum, extraWorkspace) {
+        if (extraWorkspace) return getWorkspaceName(wsNum, false) + '⁎';
+
         wsNum = wsNum % 10;
         switch (wsNum) {
             case 1:
@@ -338,6 +343,8 @@ Rectangle {
             splitMarker: ""
             onRead: data => {
                 hyprlandRequestSocket.connected = false;
+                if (data === "unknown request") return; // Happens ¯\_(ツ)_/¯
+
                 var jsonData = JSON.parse(data);
 
                 const keysToKeep = ['address', 'class', 'title', 'floating'];
@@ -376,5 +383,15 @@ Rectangle {
         hyprlandRequestSocket.connected = true;
         hyprlandRequestSocket.write("j/clients");
         hyprlandRequestSocket.flush();
+        disableSocketListening.start(); // In case the read fails to disconnect
+    }
+
+    Timer {
+        id: disableSocketListening
+        interval: 10;
+        repeat: false;
+        onTriggered: {
+            hyprlandRequestSocket.connected = false;
+        }
     }
 }

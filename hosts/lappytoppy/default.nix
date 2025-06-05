@@ -37,6 +37,7 @@ in
     ./hardware.nix # Include the results of the hardware scan
     ./hardware-modes.nix
     ./hw-brightness-proxy.nix # Fixup brightness control
+    ./file-ext.nix # File associations
     "${self}/system/hardware/battery.nix"
     "${self}/system/hardware/bluetooth.nix"
     "${self}/system/hardware/lenovo-legion.nix"
@@ -64,6 +65,8 @@ in
 
     # WM
     "${self}/system/wm/hyprland/hyprland.nix"
+    ## Managing idle & screen lock
+    "${self}/system/wm/hyprland/hyprlock-hypridle.nix"
     ## GUI monitors management
     "${self}/system/wm/hyprland/nwg-displays.nix"
 
@@ -85,7 +88,6 @@ in
     "${self}/system/programs/chromium.nix"
     "${self}/system/programs/cli-collection.nix"
     "${self}/system/programs/gnome-disks.nix"
-    "${self}/system/programs/handlr.nix"
     "${self}/system/programs/nautilus.nix" # File manager
     "${self}/system/programs/ydotool.nix"
 

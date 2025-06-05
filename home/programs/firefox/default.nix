@@ -158,7 +158,6 @@ let
   ];
   binaryName = "firefox-nightly";
   desktopEntry = "${binaryName}.desktop";
-  linksHandler = "handlro.desktop"; # http/https links are handled via handlr for extra customizability
 
   linkSource = profile: fileName: {
     name = ".mozilla/firefox/${profile}/${fileName}";
@@ -282,21 +281,6 @@ in
       (linkSource profile "user.js")
     ]) profiles
   );
-
-  # Register firefox as default handler
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = desktopEntry;
-    "x-scheme-handler/http" = linksHandler;
-    "x-scheme-handler/https" = linksHandler;
-    "x-scheme-handler/about" = desktopEntry;
-    "x-scheme-handler/unknown" = desktopEntry;
-    "application/x-extension-htm" = desktopEntry;
-    "application/x-extension-html" = desktopEntry;
-    "application/x-extension-shtml" = desktopEntry;
-    "application/xhtml+xml" = desktopEntry;
-    "application/x-extension-xhtml" = desktopEntry;
-    "application/x-extension-xht" = desktopEntry;
-  };
 
   # Hint Firefox Profile Switcher the binary location
   xdg.configFile."firefoxprofileswitcher/config.json".text = ''
