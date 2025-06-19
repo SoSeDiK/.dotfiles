@@ -4,7 +4,7 @@ hostname=$(hostname)
 
 pushd ~/.dotfiles
 
-gen=$(nixos-rebuild --flake .#$hostname list-generations | grep current)
+gen=$(nixos-rebuild --flake .#$hostname list-generations | grep 'True')
 git add .
 git commit -am "$gen"
 

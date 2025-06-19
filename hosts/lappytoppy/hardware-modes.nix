@@ -73,9 +73,8 @@
   #   __GLX_VENDOR_LIBRARY_NAME = "mesa";
   # };
 
-  # Vulkan support for AMD
-  hardware.amdgpu.amdvlk = {
-    enable = true;
-    support32Bit.enable = true;
-  };
+  # AMD CLR - Compute Language Runtimes
+  hardware.graphics.extraPackages = with pkgs; [
+    rocmPackages.clr
+  ];
 }

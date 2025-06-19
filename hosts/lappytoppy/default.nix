@@ -84,6 +84,7 @@ in
     "${self}/system/programs/peripherals/openrazer.nix"
     "${self}/system/programs/virtualization/podman.nix"
     "${self}/system/programs/virtualization/virt-manager.nix"
+    # "${self}/system/programs/apollo.nix"
     "${self}/system/programs/brightness.nix"
     "${self}/system/programs/chromium.nix"
     "${self}/system/programs/cli-collection.nix"
@@ -95,6 +96,7 @@ in
     "${self}/system/programs/steam.nix"
 
     # Dev
+    "${self}/system/dev/adb.nix"
     "${self}/system/dev/jdk"
 
     # Theming
@@ -136,6 +138,7 @@ in
   # https://github.com/FeralInteractive/gamemode/issues/452
   programs.gamemode.enable = true;
 
+  # Nix cli helper
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -144,7 +147,7 @@ in
   };
 
   # Use lix
-  nix.package = pkgs.lix;
+  nix.package = pkgs.lixPackageSets.latest.lix;
 
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
@@ -172,11 +175,27 @@ in
         password = config.sops.secrets."syncthing/gui-password";
       };
       folders = {
-        "/home/${username}/Documents/Vault" = {
-          id = "vault";
+        "/home/${username}/Documents/Notes" = {
+          id = "notes";
+        };
+      };
+      devices = {
+        "poco-f3" = {
+          id = "4B532ZA-CXVBPA4-NBEJ35R-YT63RVA-VL4WGQC-XX4LCFQ-4FYQNLU-RF6JWAP";
+          name = "Poco F3";
         };
       };
     };
+  };
+
+  # Unified Remote
+  services.urserver.enable = true;
+
+  # Enable self-hosted game streaming
+  services.sunshine = {
+    enable = true;
+    capSysAdmin = true;
+    openFirewall = true;
   };
 
   # iPad as second screen
@@ -226,6 +245,11 @@ in
   # };
 
   # Custom options (from modules)
+  programs.adb = {
+    enable = true;
+    users = hmUsers;
+  };
+
   programs.openrazer = {
     enable = true;
     users = hmUsers;

@@ -154,7 +154,7 @@ Rectangle {
                         model: {
                             return Pipewire.linkGroups.values
                                 // Only apps
-                                .filter((node) => node.source && node.source.audio && !node.source.isSink && node.source.isStream)
+                                .filter((node) => node.source && node.source.audio && node.source.isStream)
                                 // Deduplicate
                                 .filter((item, index, self) => index === self.findIndex(t => t.source.id === item.source.id));
                         }

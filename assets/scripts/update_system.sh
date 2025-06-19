@@ -22,9 +22,9 @@ rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 
 # Fancy nh way
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh os switch --update
+  nh os switch --update -- --show-trace
 else
-  nh os switch
+  nh os switch -- --show-trace
 fi
 
 popd

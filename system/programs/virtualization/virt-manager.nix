@@ -70,6 +70,7 @@ in
   };
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
   # Workaround missing secure boot EFI options

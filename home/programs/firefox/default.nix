@@ -70,7 +70,7 @@ let
       definedAliases = [ "!gi" ];
     };
     "GitHub" = {
-      urls = [ { template = "https://github.com/search?utf8=%E2%9C%93&q={searchTerms}"; } ];
+      urls = [ { template = "https://github.com/search?utf8=%E2%9C%93&type=code&q={searchTerms}"; } ];
       icon = "https://www.github.com/favicon.ico";
       updateInterval = dailyUpdateInterval;
       definedAliases = [ "!gh" ];
