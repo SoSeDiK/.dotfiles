@@ -18,6 +18,6 @@ rm -f ~/.config/fastfetch/config.jsonc.hmbackup
 rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 
 # Rebuild without adding a boot entry
-nixos-rebuild --use-remote-sudo test --flake .#$(hostname) --show-trace
+nixos-rebuild --sudo test --flake .#$(hostname) --show-trace
 
 popd

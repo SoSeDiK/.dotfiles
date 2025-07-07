@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   name = "hyprfreeze";
-  version = "1.1.1";
+  version = "1.1.2";
 
   src = fetchFromGitHub {
     owner = "zerodya";
     repo = "hyprfreeze";
-    rev = "6b674166ba88a37da4136a87b4fa756d3aef601f";
+    rev = "v${version}";
     hash = "sha256-iMFSbMRVO3yOBZvCzx0BAb26KEETE7Nb+960B24r+W4=";
   };
 

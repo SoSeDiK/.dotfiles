@@ -7,6 +7,7 @@
 }:
 
 let
+  explorer = "org.gnome.Nautilus.desktop";
   textEditor = "codium.desktop";
   imageViewer = "org.gnome.Loupe.desktop";
   videoPlayer = "mpv.desktop";
@@ -70,7 +71,7 @@ in
 
   xdg.mime.defaultApplications = {
     # Misc
-    "inode/directory" = "org.gnome.Nautilus.desktop";
+    "inode/directory" = explorer;
     # Text
     "text/plain" = textEditor;
     "text/x-patch" = textEditor; # .patch

@@ -18,7 +18,7 @@ rm -f ~/.config/fastfetch/config.jsonc.hmbackup
 rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 
 # The usual way
-# nixos-rebuild --use-remote-sudo switch --flake .#$(hostname) --show-trace
+# nixos-rebuild --sudo switch --flake .#$(hostname) --show-trace
 
 # Fancy nh way
 if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then

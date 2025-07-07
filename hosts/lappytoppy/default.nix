@@ -89,6 +89,7 @@ in
     "${self}/system/programs/chromium.nix"
     "${self}/system/programs/cli-collection.nix"
     "${self}/system/programs/gnome-disks.nix"
+    "${self}/system/programs/hakuneko.nix"
     "${self}/system/programs/nautilus.nix" # File manager
     "${self}/system/programs/ydotool.nix"
 

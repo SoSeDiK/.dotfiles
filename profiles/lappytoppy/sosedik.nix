@@ -72,6 +72,7 @@ in
     gnome-clocks
     qalculate-qt
     mission-center # Windows-like process manager
+    resources # Process manager
     fsearch # fast search
     cpu-x # PC Info
     fontforge-gtk
@@ -80,7 +81,6 @@ in
     obs-studio # video recorder
     stremio # video streaming
     qbittorrent # torrents
-    hakuneko # manga
     # Dev
     jetbrains.idea-community-bin
     jetbrains.rust-rover
