@@ -46,8 +46,7 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-      inputs.flake-compat.follows = "flake-compat";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     nix-gaming = {
@@ -122,7 +121,6 @@
 
     # Deduplicators (other inputs use these)
     flake-utils.url = "github:numtide/flake-utils";
-    flake-compat.url = "github:edolstra/flake-compat";
   };
 
   outputs =
