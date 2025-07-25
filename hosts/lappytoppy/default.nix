@@ -113,6 +113,16 @@ in
     nix-tree # Tree view for nix packages
     # Gaming
     heroic # Epic Games launcher
+    # Dev
+    (small.jetbrains.idea-community-bin.overrideAttrs (attrs: { # TODO remove small
+      forceWayland = true;
+    }))
+    (android-studio.overrideAttrs (attrs: {
+      forceWayland = true;
+    }))
+    filezilla
+    postman
+    obsidian
     # Misc
     syncthing
     qdirstat # Space management

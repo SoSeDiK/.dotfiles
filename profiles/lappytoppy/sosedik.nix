@@ -81,13 +81,6 @@ in
     obs-studio # video recorder
     stremio # video streaming
     qbittorrent # torrents
-    # Dev
-    jetbrains.idea-community-bin
-    jetbrains.rust-rover
-    android-studio
-    filezilla
-    postman
-    obsidian
     # Gaming
     prismlauncher # Minecraft launcher
     mcpelauncher-ui-qt # Minecraft Bedrock launcher

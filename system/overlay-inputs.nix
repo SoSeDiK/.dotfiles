@@ -3,7 +3,7 @@
 {
   nixpkgs.overlays = [
     (final: _prev: {
-      unstable = import inputs.nixpkgs-unstable {
+      small = import inputs.nixpkgs-unstable-small {
         inherit (final) system config;
       };
     })

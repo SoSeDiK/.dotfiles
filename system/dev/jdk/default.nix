@@ -14,9 +14,10 @@ let
   #     cp ${hotswapAgent} $out/lib/openjdk/lib/hotswap/hotswap-agent.jar
   #   '';
   # });
+  baseJdk = pkgs.small.jetbrains.jdk; # TODO remove small
   jdk21 = pkgs.symlinkJoin {
     name = "jetbrains-jdk-hotswap";
-    paths = [ pkgs.jetbrains.jdk ];
+    paths = [ baseJdk ];
     nativeBuildInputs = [ ];
     postBuild = ''
       # Workaround for Java to actually detect the hotswap agent (replace symlinks with real binaries)
@@ -30,11 +31,11 @@ let
       mkdir -p $out/lib/openjdk/lib/hotswap
       cp ${hotswapAgent} $out/lib/openjdk/lib/hotswap/hotswap-agent.jar
 
-      cp -r "${pkgs.jetbrains.jdk}/lib/openjdk/bin" "$out/lib/openjdk/bin"
-      cp -r "${pkgs.jetbrains.jdk}/lib/openjdk/conf" "$out/lib/openjdk/conf"
-      cp -r "${pkgs.jetbrains.jdk}/lib/openjdk/include" "$out/lib/openjdk/include"
-      cp -r "${pkgs.jetbrains.jdk}/lib/openjdk/jmods" "$out/lib/openjdk/jmods"
-      cp -r "${pkgs.jetbrains.jdk}/lib/openjdk/lib" "$out/lib/openjdk"
+      cp -r "${baseJdk}/lib/openjdk/bin" "$out/lib/openjdk/bin"
+      cp -r "${baseJdk}/lib/openjdk/conf" "$out/lib/openjdk/conf"
+      cp -r "${baseJdk}/lib/openjdk/include" "$out/lib/openjdk/include"
+      cp -r "${baseJdk}/lib/openjdk/jmods" "$out/lib/openjdk/jmods"
+      cp -r "${baseJdk}/lib/openjdk/lib" "$out/lib/openjdk"
     '';
   };
   # jdk21 = pkgs.jetbrains.jdk;
