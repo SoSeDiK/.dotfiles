@@ -36,36 +36,39 @@ in
 
   # Custom handlr rules
   hjem.users = lib.genAttrs hmUsers (username: {
-    files.".config/handlr/handlr.toml".source = (pkgs.formats.toml { }).generate "handlr-config" {
-      enable_selector = false;
-      selector = "rofi -dmenu -i -p 'Open With: '";
-      term_exec_args = "";
-      handlers = [
-        # GW 2 thingies
-        {
-          exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
-          regexes = [
-            "(https://)?.*guildwars2\.com.*"
-            "(https://)?gw2efficiency\.com.*"
-            "(https://)?gw2crafts\.net.*"
-            "(https://)?blishhud\.com.*"
-          ];
-        }
-        # Terraria
-        {
-          exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
-          regexes = [
-            "(https://)?terraria\.wiki\.gg.*"
-            "(https://)?calamitymod\.wiki\.gg.*"
-          ];
-        }
-        # Any other http & https URLs since handlr is a default handler for them
-        {
-          # exec = "${dotAssetsDir}/scripts/test.sh %u";
-          exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
-          regexes = [ "^(http|https):.+$" ];
-        }
-      ];
+    files = {
+      ".config/mimeapps.list".source = "/etc/xdg/mimeapps.list";
+      ".config/handlr/handlr.toml".source = (pkgs.formats.toml { }).generate "handlr-config" {
+        enable_selector = false;
+        selector = "rofi -dmenu -i -p 'Open With: '";
+        term_exec_args = "";
+        handlers = [
+          # GW 2 thingies
+          {
+            exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+            regexes = [
+              "(https://)?.*guildwars2\.com.*"
+              "(https://)?gw2efficiency\.com.*"
+              "(https://)?gw2crafts\.net.*"
+              "(https://)?blishhud\.com.*"
+            ];
+          }
+          # Terraria
+          {
+            exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+            regexes = [
+              "(https://)?terraria\.wiki\.gg.*"
+              "(https://)?calamitymod\.wiki\.gg.*"
+            ];
+          }
+          # Any other http & https URLs since handlr is a default handler for them
+          {
+            # exec = "${dotAssetsDir}/scripts/test.sh %u";
+            exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
+            regexes = [ "^(http|https):.+$" ];
+          }
+        ];
+      };
     };
   });
 
