@@ -1,6 +1,6 @@
 # Source: https://github.com/null-dev/firefox-profile-switcher-connector/issues/10#issuecomment-1238034441
 # Packaging request: https://github.com/NixOS/nixpkgs/issues/332470
-# Changes from source: cargoSha256 -> cargoHash, use useFetchCargoVendor
+# Changes from source: cargoSha256 -> cargoHash
 {
   lib,
   fetchFromGitHub,
@@ -21,7 +21,6 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [ cmake ];
 
-  useFetchCargoVendor = true;
   cargoHash = "sha256-MLz2c82hUYZHvWuEIlqMIYxjAtc1DuK/kmTpcmGpUxc=";
 
   postInstall = ''
