@@ -124,6 +124,7 @@ in
     postman
     obsidian
     # Misc
+    bitwarden-desktop
     syncthing
     qdirstat # Space management
     teamviewer
