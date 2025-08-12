@@ -7,6 +7,9 @@
     autosuggestion.enable = true;
     historySubstringSearch.enable = true;
     initContent = lib.mkBefore ''
+      # Print system info
+      neofetch
+
       # Setup history
       HISTFILE=~/.zsh_history
       HISTSIZE=1000
@@ -53,9 +56,6 @@
       bindkey '^[[1;3C' forward-word                        # Alt + Right     Move cursor one word to the right
       bindkey "$key[Home]" beginning-of-line                # Home key        Move cursor to the beginning of the line
       bindkey "$key[End]" end-of-line                       # End key         Move cursor to the end of the line
-
-      # Print system info
-      neofetch
     '';
   };
 }

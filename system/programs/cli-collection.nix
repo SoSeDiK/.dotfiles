@@ -11,6 +11,7 @@
     coreutils-full
     bc # basic calculator
     jq # json parser
+    xdg-user-dirs
     file
     wget
     curl

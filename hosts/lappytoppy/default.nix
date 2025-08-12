@@ -91,6 +91,7 @@ in
     "${self}/system/programs/gnome-disks.nix"
     "${self}/system/programs/hakuneko.nix"
     "${self}/system/programs/nautilus.nix" # File manager
+    "${self}/system/programs/screenshots.nix"
     "${self}/system/programs/ydotool.nix"
 
     # Gaming

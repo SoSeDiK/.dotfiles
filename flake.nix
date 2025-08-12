@@ -104,6 +104,8 @@
 
     shadower.url = "github:n3oney/shadower";
 
+    grim-hyprland.url = "github:eriedaberrie/grim-hyprland";
+
     # UI shells
     ags.url = "github:aylur/ags";
     quickshell = {

@@ -42,7 +42,6 @@ in
     "${self}/home/programs/clipboard.nix"
     "${self}/home/programs/github-desktop.nix"
     "${self}/home/programs/quickshell.nix" # Task bar and many other things
-    "${self}/home/programs/screenshots.nix"
     "${self}/home/programs/spicetify.nix"
 
     # Theming

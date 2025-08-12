@@ -6,7 +6,7 @@ let
   nvidiaDeviceId = "nvidia_0";
   amdDeviceId = "amdgpu_bl1";
   nvidia_max_brightness = 100;
-  amdgpu_max_brightness = 255;
+  amdgpu_max_brightness = 65535;
   nvidiaPath = "/sys/class/backlight/${nvidiaDeviceId}/brightness";
   amdPath = "/sys/class/backlight/${amdDeviceId}/brightness";
 in
