@@ -26,10 +26,6 @@ in
 
     ./system/file-ext.nix # File associations
 
-    # Security
-    "${self}/system/security/keyring.nix"
-    "${self}/system/security/polkit.nix"
-
     # Secrets
     "${self}/secrets/sops-system.nix"
 
@@ -39,7 +35,6 @@ in
     "${self}/system/wm/hyprland/hyprlock-hypridle.nix"
 
     # Services
-    "${self}/system/services/dbus.nix"
     "${self}/system/services/tuigreet.nix"
 
     # Fonts
@@ -70,8 +65,11 @@ in
     "${self}/modules/system/misc/battery.nix"
     "${self}/modules/system/misc/bluetooth.nix"
     "${self}/modules/system/misc/cloudflare-dns.nix"
+    "${self}/modules/system/misc/dbus.nix"
+    "${self}/modules/system/misc/keyring.nix"
     "${self}/modules/system/misc/lenovo-legion.nix"
     "${self}/modules/system/misc/ntsync.nix"
+    "${self}/modules/system/misc/polkit.nix"
     "${self}/modules/system/misc/sound.nix"
     "${self}/modules/system/misc/sudo-insults.nix"
     "${self}/modules/system/misc/systemd-boot.nix"
