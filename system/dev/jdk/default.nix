@@ -14,7 +14,7 @@ let
   #     cp ${hotswapAgent} $out/lib/openjdk/lib/hotswap/hotswap-agent.jar
   #   '';
   # });
-  baseJdk = pkgs.small.jetbrains.jdk; # TODO remove small
+  baseJdk = pkgs.jetbrains.jdk;
   jdk21 = pkgs.symlinkJoin {
     name = "jetbrains-jdk-hotswap";
     paths = [ baseJdk ];

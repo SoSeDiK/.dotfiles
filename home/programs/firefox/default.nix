@@ -127,7 +127,7 @@ let
     sponsorblock
     dearrow
     return-youtube-dislikes
-    enhancer-for-youtube
+    addons.youtube-enhancer-vc
     # GitHub
     lovely-forks
     enhanced-github

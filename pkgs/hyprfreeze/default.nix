@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub }:
+{ lib, stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
   name = "hyprfreeze";
@@ -20,4 +20,10 @@ stdenv.mkDerivation rec {
 
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "Utility to suspend a game process (and other programs) in Hyprland and Sway";
+    homepage = "https://github.com/Zerodya/hyprfreeze";
+    license = licenses.mit;
+  };
 }

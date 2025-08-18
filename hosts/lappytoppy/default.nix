@@ -115,7 +115,7 @@ in
     # Gaming
     heroic # Epic Games launcher
     # Dev
-    (small.jetbrains.idea-community-bin.overrideAttrs (attrs: { # TODO remove small
+    (jetbrains.idea-community-bin.overrideAttrs (attrs: {
       forceWayland = true;
     }))
     (android-studio.overrideAttrs (attrs: {
@@ -294,6 +294,12 @@ in
   boot.kernelParams = [
     "zswap.enabled=1"
   ];
+
+  # Enable NTSYNC
+  boot.kernelModules = [ "ntsync" ];
+  services.udev.extraRules = ''
+    KERNEL=="ntsync", MODE="0644"
+  '';
 
   # Enable networking
   networking.hostName = "lappytoppy";

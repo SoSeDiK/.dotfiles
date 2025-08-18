@@ -1,5 +1,4 @@
 {
-  inputs',
   config,
   osConfig,
   lib,
@@ -58,7 +57,7 @@ in
     hyprsunset
     hyprfreeze
     rofi-wayland # App/things launcher
-    bottles # WINE helper
+    (bottles.override { removeWarningPopup = true; }) # WINE helper
     helvum # Audio
     scrcpy # View/Control phone screen (also broadcasts audio!)
     kdePackages.kdeconnect-kde
@@ -88,7 +87,7 @@ in
     space-cadet-pinball # Good Old Pinball
     # Social
     equibop # Discord client
-    inputs'.nix-gaming.packages.wine-discord-ipc-bridge
+    # inputs'.nix-gaming.packages.wine-discord-ipc-bridge # ToDo broken
     telegram-desktop
     whatsapp-for-linux
     teams-for-linux
