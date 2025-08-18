@@ -1,25 +1,22 @@
-{ self, pkgs, ... }:
+{ self, ... }:
 
 {
   imports = [
+    ./home-manager/vscode.nix
+
     # Gaming
     "${self}/modules/home-manager/gaming/mangohud.nix"
 
     # Shell
     "${self}/modules/home-manager/shell/shell-aliases.nix"
+    "${self}/modules/home-manager/shell/starship.nix"
+    "${self}/modules/home-manager/shell/zsh.nix"
   ];
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium-fhs;
-    profiles.default.extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-    ];
-  };
-  home.packages = with pkgs; [
-    nil
-    nixfmt-rfc-style
-  ];
+  programs.kitty.enable = true;
 
-  home.stateVersion = "25.05";
+  programs.home-manager.enable = true;
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "25.05"; # tldr: Do not change :)
 }

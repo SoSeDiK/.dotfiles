@@ -8,14 +8,19 @@
 
 let
   explorer = "org.gnome.Nautilus.desktop";
+  textEditorApp = "codium --wait";
   textEditor = "codium.desktop";
   imageViewer = "org.gnome.Loupe.desktop";
   videoPlayer = "mpv.desktop";
   archiveViewer = "org.kde.ark.desktop";
   browser = "firefox-nightly.desktop";
+  terminalApp = "kitty";
+  terminal = "${terminalApp}.desktop";
   linksHandler = "handlro.desktop"; # http/https links are handled via handlr for extra customizability
 in
 {
+  users.defaultUserShell = pkgs.zsh;
+
   environment.systemPackages = with pkgs; [
     handlr-regex # xdg-open replacement; handle URLs/files apps
     # Workaround for apps invoking desktop entry directly
@@ -75,6 +80,7 @@ in
   xdg.mime.defaultApplications = {
     # Misc
     "inode/directory" = explorer;
+    "x-scheme-handler/terminal" = terminal;
     # Text
     "text/plain" = textEditor;
     "text/x-patch" = textEditor; # .patch
@@ -127,5 +133,10 @@ in
   xdg.mime.addedAssociations = {
     "application/x-portable-anymap" = imageViewer; # .pnm
     "image/x-portable-anymap" = imageViewer; # .pnm
+  };
+
+  environment.sessionVariables = {
+    TERM = terminalApp;
+    EDITOR = textEditorApp;
   };
 }

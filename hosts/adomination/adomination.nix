@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, pkgs, ... }:
 
 let
   sysTimezone = "Europe/Kyiv";
@@ -12,6 +12,19 @@ in
     "${self}/modules/system/gaming/gamescope.nix"
     "${self}/modules/system/gaming/steam.nix"
     "${self}/modules/system/gaming/zzz.nix"
+  ];
+
+  environment.systemPackages = with pkgs; [
+    # Social
+    equibop # Discord client
+    # Gaming
+    heroic # Epic Games launcher
+    prismlauncher # Minecraft launcher
+    # Misc
+    resources # Process manager
+    qdirstat # Space management
+    walker # App/task launcher
+    libqalculate # calc for walker
   ];
 
   # Time & internationalization properties

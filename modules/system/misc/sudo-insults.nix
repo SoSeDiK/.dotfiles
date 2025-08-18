@@ -1,9 +1,6 @@
 { lib, pkgs, ... }:
 
 # sudo with insults
-let
-  inherit (lib) mkForce mkDefault;
-in
 {
   security.sudo = {
     enable = true;
@@ -11,9 +8,9 @@ in
     package = pkgs.sudo.override { withInsults = true; };
 
     # Enable sudo only for wheel users
-    execWheelOnly = mkForce true;
+    execWheelOnly = lib.mkForce true;
 
     # Require password for wheel users
-    wheelNeedsPassword = mkDefault true;
+    wheelNeedsPassword = lib.mkDefault true;
   };
 }

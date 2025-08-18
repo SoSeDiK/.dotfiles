@@ -39,7 +39,7 @@
               (./. + "/${hostName}/${hostName}.nix")
 
               # Add extra pkg inputs
-              "${self}/system/overlay-inputs.nix"
+              "${self}/modules/system/overlay-inputs.nix"
 
               # Home management
               "${self}/modules/system/misc/home-manager.nix"

@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, pkgs, ... }:
 
 let
   sysTimezone = "Europe/Kyiv";
@@ -11,6 +11,27 @@ in
     "${self}/modules/system/gaming/gamemode.nix"
     "${self}/modules/system/gaming/gamescope.nix"
     "${self}/modules/system/gaming/steam.nix"
+  ];
+
+  environment.systemPackages = with pkgs; [
+    # Social
+    equibop # Discord client
+    # Gaming
+    heroic # Epic Games launcher
+    prismlauncher # Minecraft launcher
+    space-cadet-pinball # Good Old Pinball
+    # Dev
+    (jetbrains.idea-community-bin.overrideAttrs (attrs: {
+      forceWayland = true;
+    }))
+    (android-studio.overrideAttrs (attrs: {
+      forceWayland = true;
+    }))
+    # Misc
+    resources # Process manager
+    qdirstat # Space management
+    walker # App/task launcher
+    libqalculate # calc for walker
   ];
 
   # Time & internationalization properties

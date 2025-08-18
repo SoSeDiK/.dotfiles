@@ -18,29 +18,17 @@ in
   # Device components
   imports = [
     # Hardware
-    ./hardware.nix # Include the results of the hardware scan
-    ./hardware-modes.nix
-    ./hw-brightness-proxy.nix # Fixup brightness control
-    "${self}/system/hardware/battery.nix"
-    "${self}/system/hardware/bluetooth.nix"
-    "${self}/system/hardware/lenovo-legion.nix"
+    ./hardware/hardware-configuration.nix # Include the results of the hardware scan
+    ./hardware/hardware-modes.nix
+    ./hardware/hw-brightness-proxy.nix # Fixup brightness control
 
     inputs.nur.modules.nixos.default
 
-    ./file-ext.nix # File associations
-
-    # Boot
-    "${self}/system/boot"
-    "${self}/system/boot/systemd-boot.nix"
-    "${self}/system/boot/plymoth.nix"
-
-    # Shell
-    "${self}/system/shell/zsh.nix"
+    ./system/file-ext.nix # File associations
 
     # Security
     "${self}/system/security/keyring.nix"
     "${self}/system/security/polkit.nix"
-    "${self}/system/security/sudo.nix"
 
     # Secrets
     "${self}/secrets/sops-system.nix"
@@ -55,9 +43,6 @@ in
     # Services
     "${self}/system/services/dbus.nix"
     "${self}/system/services/tuigreet.nix"
-
-    # Network
-    "${self}/system/network/cloudflare.nix"
 
     # Fonts
     "${self}/system/fonts"
@@ -84,39 +69,40 @@ in
     "${self}/system/theming/stylix.nix"
 
     # Misc
+    "${self}/modules/system/misc/battery.nix"
+    "${self}/modules/system/misc/bluetooth.nix"
+    "${self}/modules/system/misc/cloudflare-dns.nix"
+    "${self}/modules/system/misc/lenovo-legion.nix"
     "${self}/modules/system/misc/ntsync.nix"
     "${self}/modules/system/misc/sound.nix"
+    "${self}/modules/system/misc/sudo-insults.nix"
+    "${self}/modules/system/misc/systemd-boot.nix"
+    "${self}/modules/system/misc/zswap.nix"
 
     # Programs
     "${self}/modules/system/programs/comma.nix"
     "${self}/modules/system/programs/nh.nix"
+    "${self}/modules/system/programs/plymoth.nix"
+
+    # Shell
+    "${self}/modules/system/shell/zsh.nix"
   ];
 
   # Apps
   environment.systemPackages = with pkgs; [
     tealdeer # tldr
     nix-tree # Tree view for nix packages
-    # Gaming
-    heroic # Epic Games launcher
     # Dev
-    (jetbrains.idea-community-bin.overrideAttrs (attrs: {
-      forceWayland = true;
-    }))
-    (android-studio.overrideAttrs (attrs: {
-      forceWayland = true;
-    }))
     filezilla
     postman
     obsidian
     # Misc
     bitwarden-desktop
     syncthing
-    qdirstat # Space management
     teamviewer
-    walker # App/task launcher
-    libqalculate # calc for walker
     termius
   ];
+
   # Setup users
   users.users = builtins.mapAttrs (username: userNameValue: {
     isNormalUser = true;
@@ -272,11 +258,17 @@ in
     ];
   };
 
-  # Enable zswap
-  # https://github.com/NixOS/nixpkgs/issues/119244
-  boot.kernelParams = [
-    "zswap.enabled=1"
-  ];
+  # Speedup rebuilds by having /tmp be a tmpfs (and reducing strain on hdd/ssd)
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "50%";
+
+  # https://wiki.archlinux.org/title/gaming#Increase_vm.max_map_count
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 2147483642;
+  };
+
+  # https://xanmod.org/
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   # Enable networking
   networking.hostName = hostName;

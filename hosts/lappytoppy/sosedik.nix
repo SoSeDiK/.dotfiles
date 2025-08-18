@@ -21,10 +21,7 @@ in
     # Terminal
     "${self}/home/terminal/clis/fastfetch.nix"
     "${self}/home/terminal/programs/cava.nix"
-    "${self}/home/terminal/programs/kitty.nix"
     "${self}/home/terminal/shell/shell-aliases.nix"
-    "${self}/home/terminal/shell/starship.nix"
-    "${self}/home/terminal/shell/zsh.nix"
 
     # Programs
     "${self}/home/programs/codium"
@@ -51,6 +48,8 @@ in
 
     # Shell
     "${self}/modules/home-manager/shell/shell-aliases.nix"
+    "${self}/modules/home-manager/shell/starship.nix"
+    "${self}/modules/home-manager/shell/zsh.nix"
   ];
 
   # User apps
@@ -72,7 +71,6 @@ in
     gnome-clocks
     qalculate-qt
     mission-center # Windows-like process manager
-    resources # Process manager
     fsearch # fast search
     cpu-x # PC Info
     fontforge-gtk
@@ -82,13 +80,9 @@ in
     stremio # video streaming
     qbittorrent # torrents
     # Gaming
-    prismlauncher # Minecraft launcher
     mcpelauncher-ui-qt # Minecraft Bedrock launcher
     blockbench
     r2modman # Lethal Company mod manager
-    space-cadet-pinball # Good Old Pinball
-    # Social
-    equibop # Discord client
     # inputs'.nix-gaming.packages.wine-discord-ipc-bridge # ToDo broken
     telegram-desktop
     whatsapp-for-linux
@@ -108,6 +102,8 @@ in
     sl # Steam Locomotive
     caffeine-ng # Idle inhibit
   ];
+
+  programs.kitty.enable = true;
 
   # Better cd command
   programs.zoxide.enable = true;
@@ -138,11 +134,6 @@ in
     pinentry.package = pkgs.pinentry-qt;
     defaultCacheTtl = 31536000;
     maxCacheTtl = 31536000;
-  };
-
-  # Create symlink for Steam games
-  home.file."Games/Steam" = lib.mkIf osConfig.programs.steam.enable {
-    source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/Steam/steamapps/common";
   };
 
   # Create XDG Dirs

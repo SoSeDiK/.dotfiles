@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  homeUsers,
+  ...
+}:
 
 {
   environment.systemPackages = with pkgs; [
@@ -19,4 +25,13 @@
   };
 
   hardware.steam-hardware.enable = true;
+
+  # Create symlink for Steam games
+  hjem.users = lib.genAttrs homeUsers (username: {
+    files = {
+      "Games/Steam".source = "${
+        config.hjem.users.${username}.directory
+      }/.local/share/Steam/steamapps/common";
+    };
+  });
 }

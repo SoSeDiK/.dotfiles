@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   inputs,
   self,
@@ -22,12 +21,21 @@ in
     ./hardware/impermanence-btrfs.nix
 
     # Misc
+    "${self}/modules/system/misc/battery.nix"
+    "${self}/modules/system/misc/bluetooth.nix"
+    "${self}/modules/system/misc/cloudflare-dns.nix"
     "${self}/modules/system/misc/ntsync.nix"
     "${self}/modules/system/misc/sound.nix"
+    "${self}/modules/system/misc/sudo-insults.nix"
+    "${self}/modules/system/misc/zswap.nix"
 
     # Programs
     "${self}/modules/system/programs/comma.nix"
     "${self}/modules/system/programs/nh.nix"
+    "${self}/modules/system/programs/plymoth.nix"
+
+    # Shell
+    "${self}/modules/system/shell/zsh.nix"
   ];
 
   # Setup users

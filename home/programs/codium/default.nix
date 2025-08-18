@@ -39,10 +39,6 @@ in
     nixfmt-rfc-style # nix formatter
   ];
 
-  home.sessionVariables = {
-    EDITOR = "codium --wait";
-  };
-
   xdg.configFile."VSCodium/User/settings.json".source =
     mkOutOfStoreSymlink "${flakeDir}/assets/codium/settings.json";
   xdg.configFile."VSCodium/User/keybindings.json".source =
