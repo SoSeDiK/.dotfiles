@@ -17,6 +17,7 @@ in
     "${self}/modules/system/gaming/steam.nix"
 
     # Programs
+    "${self}/modules/system/programs/nwg-displays.nix"
     "${self}/modules/system/programs/walker.nix"
 
     # WM

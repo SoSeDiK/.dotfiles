@@ -37,8 +37,6 @@ in
     "${self}/system/wm/hyprland/hyprland.nix"
     ## Managing idle & screen lock
     "${self}/system/wm/hyprland/hyprlock-hypridle.nix"
-    ## GUI monitors management
-    "${self}/system/wm/hyprland/nwg-displays.nix"
 
     # Services
     "${self}/system/services/dbus.nix"
