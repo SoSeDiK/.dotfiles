@@ -1,8 +1,8 @@
 {
   lib,
   pkgs,
-  hmUsers,
-  dotAssetsDir,
+  homeUsers,
+  flakeDir,
   ...
 }:
 
@@ -11,9 +11,9 @@
     nwg-displays
   ];
 
-  hjem.users = lib.genAttrs hmUsers (username: {
+  hjem.users = lib.genAttrs homeUsers (username: {
     files = {
-      ".config/hypr/monitors.conf".source = "${dotAssetsDir}/hypr/monitors.conf";
+      ".config/hypr/monitors.conf".source = "${flakeDir}/assets/hypr/monitors.conf";
     };
   });
 }

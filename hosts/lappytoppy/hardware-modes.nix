@@ -8,20 +8,20 @@
 {
   # Hybrid mode by default
   imports = [
-    inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid
+    inputs.nixos-hardware-1.nixosModules.lenovo-legion-15arh05-hybrid
     # ./hardware-vfio.nix
   ];
 
   # # Discrete NVIDIA-only
   # specialisation.nvidia.configuration = {
-  #   imports = [ inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-nvidia ];
-  #   disabledModules = [ inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid ];
+  #   imports = [ inputs.nixos-hardware-1.nixosModules.lenovo-legion-15arh05-nvidia ];
+  #   disabledModules = [ inputs.nixos-hardware-1.nixosModules.lenovo-legion-15arh05-hybrid ];
   # };
 
   # iGPU-only
   # specialisation.amd.configuration = {
-  #   imports = [ inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-amd ];
-  #   disabledModules = [ inputs.nixos-hardware.nixosModules.lenovo-legion-15arh05-hybrid ];
+  #   imports = [ inputs.nixos-hardware-1.nixosModules.lenovo-legion-15arh05-amd ];
+  #   disabledModules = [ inputs.nixos-hardware-1.nixosModules.lenovo-legion-15arh05-hybrid ];
   # };
 
   # # VFIO

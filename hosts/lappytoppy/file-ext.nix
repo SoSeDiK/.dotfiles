@@ -1,8 +1,8 @@
 {
   pkgs,
   lib,
-  hmUsers,
-  dotAssetsDir,
+  homeUsers,
+  flakeDir,
   ...
 }:
 
@@ -35,7 +35,7 @@ in
   ];
 
   # Custom handlr rules
-  hjem.users = lib.genAttrs hmUsers (username: {
+  hjem.users = lib.genAttrs homeUsers (username: {
     files = {
       ".config/mimeapps.list".source = "/etc/xdg/mimeapps.list";
       ".config/handlr/handlr.toml".source = (pkgs.formats.toml { }).generate "handlr-config" {
@@ -45,7 +45,7 @@ in
         handlers = [
           # GW 2 thingies
           {
-            exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+            exec = "${flakeDir}/assets/scripts/firefox-open.sh gaming %u";
             regexes = [
               "(https://)?.*guildwars2\.com.*"
               "(https://)?gw2efficiency\.com.*"
@@ -55,7 +55,7 @@ in
           }
           # Terraria
           {
-            exec = "${dotAssetsDir}/scripts/firefox-open.sh gaming %u";
+            exec = "${flakeDir}/assets/scripts/firefox-open.sh gaming %u";
             regexes = [
               "(https://)?terraria\.wiki\.gg.*"
               "(https://)?calamitymod\.wiki\.gg.*"
@@ -63,8 +63,8 @@ in
           }
           # Any other http & https URLs since handlr is a default handler for them
           {
-            # exec = "${dotAssetsDir}/scripts/test.sh %u";
-            exec = "${dotAssetsDir}/scripts/firefox-open.sh default %u";
+            # exec = "${flakeDir}/assets/scripts/test.sh %u";
+            exec = "${flakeDir}/assets/scripts/firefox-open.sh default %u";
             regexes = [ "^(http|https):.+$" ];
           }
         ];

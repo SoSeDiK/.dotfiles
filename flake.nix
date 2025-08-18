@@ -5,15 +5,30 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small"; # Sometimes things break, sometimes the edge is needed
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
+    # Hardware
+    # TODO upstream
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.url = "github:SoSeDiK/nixos-hardware/lenovo-legion-15arh05"; # TODO upstream
+    nixos-hardware-1.url = "github:SoSeDiK/nixos-hardware/lenovo-legion-15arh05";
+    nixos-hardware-2.url = "github:SoSeDiK/nixos-hardware/microsoft-surface-book-3";
+    # Secure boot
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # System management
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    impermanence.url = "github:nix-community/impermanence";
 
     # Home management
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     hjem = {
       url = "github:feel-co/hjem";
@@ -43,15 +58,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
-
+    # Gaming
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.flake-parts.follows = "flake-parts";
+    };
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Better Spotify
@@ -60,7 +74,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Firefox Nightly
+    # Firefox
     firefox-nightly = {
       url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -112,9 +126,6 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Creating impure symlinks
-    # impurity.url = "github:outfoxxed/impurity.nix";
 
     # Deduplicators (other inputs use these)
     flake-utils.url = "github:numtide/flake-utils";

@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  dotAssetsDir,
+  flakeDir,
   ...
 }:
 
@@ -44,7 +44,7 @@ in
   };
 
   xdg.configFile."VSCodium/User/settings.json".source =
-    mkOutOfStoreSymlink "${dotAssetsDir}/codium/settings.json";
+    mkOutOfStoreSymlink "${flakeDir}/assets/codium/settings.json";
   xdg.configFile."VSCodium/User/keybindings.json".source =
-    mkOutOfStoreSymlink "${dotAssetsDir}/codium/keybindings.json";
+    mkOutOfStoreSymlink "${flakeDir}/assets/codium/keybindings.json";
 }

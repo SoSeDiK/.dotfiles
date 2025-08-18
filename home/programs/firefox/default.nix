@@ -3,7 +3,7 @@
   lib,
   config,
   inputs',
-  dotAssetsDir,
+  flakeDir,
   ...
 }:
 
@@ -161,7 +161,7 @@ let
   linkSource = profile: fileName: {
     name = ".mozilla/firefox/${profile}/${fileName}";
     value = {
-      source = config.lib.file.mkOutOfStoreSymlink "${dotAssetsDir}/firefox/${fileName}";
+      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/assets/firefox/${fileName}";
     };
   };
 in

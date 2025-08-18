@@ -15,13 +15,6 @@ let
   gitEmail = "mrsosedik@gmail.com";
 
   hyprfreeze = pkgs.callPackage "${self}/pkgs/hyprfreeze" { };
-
-  # Only pull xembed-sni-proxy from plasma-workspace
-  # Converts legacy xembed tray icons to SNI onces, required for WINE apps (e.g., Blish HUD, Wallpaper Engine)
-  xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
-    mkdir -p $out/bin
-    ln -s ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy $out/bin
-  '';
 in
 {
   imports = [
@@ -49,6 +42,15 @@ in
 
     # Secrets!
     "${self}/secrets/sops-home.nix"
+
+    # Gaming
+    "${self}/modules/home-manager/gaming/mangohud.nix"
+
+    # Misc
+    "${self}/modules/home-manager/misc/xembed-sni-proxy.nix"
+
+    # Shell
+    "${self}/modules/home-manager/shell/shell-aliases.nix"
   ];
 
   # User apps
@@ -138,16 +140,6 @@ in
     maxCacheTtl = 31536000;
   };
 
-  # Gaming
-  programs.mangohud = {
-    enable = true;
-    # https://github.com/flightlessmango/MangoHud/blob/master/data/MangoHud.conf
-    settings = {
-      # Disable / hide the hud by default
-      no_display = true;
-    };
-  };
-
   # Create symlink for Steam games
   home.file."Games/Steam" = lib.mkIf osConfig.programs.steam.enable {
     source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.local/share/Steam/steamapps/common";
@@ -158,10 +150,6 @@ in
     enable = true;
     createDirectories = true;
   };
-
-  # Allows WINE icons to show up in tray
-  services.xembed-sni-proxy.enable = true;
-  services.xembed-sni-proxy.package = xembed-sni-proxy;
 
   home.username = username;
   home.homeDirectory = "/home/${username}";

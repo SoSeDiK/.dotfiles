@@ -53,5 +53,6 @@
     "editor.stickyScroll.defaultModel": "foldingProviderModel",
     "editor.suggest.insertMode": "replace"
   },
-  "qt-qml.qmlls.useQmlImportPathEnvVar": true
+  "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+  "editor.formatOnSave": true
 }

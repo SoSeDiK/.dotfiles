@@ -6,13 +6,14 @@
     pavucontrol
   ];
 
-  # Pipewire
+  # Enable sound with pipewire
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
+    # jack.enable = true;
   };
 
   # Enable rtkit for real-time scheduling, required for pipewire

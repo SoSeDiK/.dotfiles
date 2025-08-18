@@ -1,13 +1,13 @@
 {
   config,
   pkgs,
-  dotAssetsDir,
+  flakeDir,
   ...
 }:
 
 let
   # Path to hooks
-  # hooksPath = "${dotAssetsDir}/vfio";
+  # hooksPath = "${flakeDir}/assets/vfio";
   username = "sosedik";
 in
 {
@@ -62,7 +62,7 @@ in
   systemd.services.libvirtd = {
     preStart = ''
       mkdir -p /var/lib/libvirt/vgabios
-      ln -sf ${dotAssetsDir}/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
+      ln -sf ${flakeDir}/assets/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
 
       # Workaround "missing" modules.alias
       ln -sf /run/booted-system/kernel-modules/lib/modules /lib

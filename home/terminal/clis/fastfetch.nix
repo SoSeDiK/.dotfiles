@@ -1,4 +1,4 @@
-{ pkgs, config, dotAssetsDir, ... }:
+{ pkgs, config, flakeDir, ... }:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -9,5 +9,5 @@ in
     (writeShellScriptBin "neofetch" "fastfetch") # Proxy neofetch to fastfetch
   ];
 
-  xdg.configFile."fastfetch/config.jsonc".source = mkOutOfStoreSymlink "${dotAssetsDir}/fastfetch/config.jsonc";
+  xdg.configFile."fastfetch/config.jsonc".source = mkOutOfStoreSymlink "${flakeDir}/assets/fastfetch/config.jsonc";
 }

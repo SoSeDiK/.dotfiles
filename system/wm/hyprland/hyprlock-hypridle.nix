@@ -1,8 +1,8 @@
 {
   inputs',
   lib,
-  hmUsers,
-  dotAssetsDir,
+  homeUsers,
+  flakeDir,
   ...
 }:
 
@@ -18,11 +18,11 @@
     package = inputs'.hyprlock.packages.hyprlock;
   };
 
-  hjem.users = lib.genAttrs hmUsers (username: {
+  hjem.users = lib.genAttrs homeUsers (username: {
     files = {
-      ".config/hypr/hypridle.conf".source = "${dotAssetsDir}/hypr/hyprlock.conf";
-      ".config/hypr/hyprlock.conf".source = "${dotAssetsDir}/hypr/hyprlock.conf";
-      ".config/hypr/hyprlock_background.png".source = "${dotAssetsDir}/login_wallpaper.png";
+      ".config/hypr/hypridle.conf".source = "${flakeDir}/assets/hypr/hyprlock.conf";
+      ".config/hypr/hyprlock.conf".source = "${flakeDir}/assets/hypr/hyprlock.conf";
+      ".config/hypr/hyprlock_background.png".source = "${flakeDir}/assets/login_wallpaper.png";
     };
   });
 }

@@ -1,4 +1,4 @@
-{ config, dotAssetsDir, ... }:
+{ config, flakeDir, ... }:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -8,5 +8,5 @@ in
   programs.starship.enable = true;
 
   xdg.configFile."starship.toml".source =
-    mkOutOfStoreSymlink "${dotAssetsDir}/programs/starship.toml";
+    mkOutOfStoreSymlink "${flakeDir}/assets/programs/starship.toml";
 }

@@ -1,4 +1,4 @@
-{ inputs', inputs, config, dotAssetsDir, ... }:
+{ inputs', inputs, config, flakeDir, ... }:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -9,7 +9,7 @@ in
   programs.ags = {
     enable = true;
     package = inputs'.ags.packages.agsFull;
-    configDir = mkOutOfStoreSymlink "${dotAssetsDir}/ags";
+    configDir = mkOutOfStoreSymlink "${flakeDir}/assets/ags";
     extraPackages = with inputs'.ags.packages; [
       apps
       battery

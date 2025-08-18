@@ -1,48 +1,33 @@
 {
   config,
+  lib,
   inputs,
   self,
   pkgs,
-  hmUsers,
+  hostName,
+  homeUser,
+  homeUsers,
+  homeUserNames,
   ...
 }:
 
 let
-  username = "sosedik";
-  userDescription = "SoSeDiK";
-
-  sysTimezone = "Europe/Kyiv";
-  sysLocale = "en_US.UTF-8"; # System locale
-  sysExtraLocale = "uk_UA.UTF-8"; # Time/date/currency/etc. locale
-
   userSessionPassword = username: "users/${username}/session";
 in
 {
-  # Setup users
-  users.users.${username} = {
-    isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.${userSessionPassword username}.path;
-    description = userDescription;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "gamemode"
-    ];
-  };
-  sops.secrets.${userSessionPassword username}.neededForUsers = true;
-
   # Device components
   imports = [
     # Hardware
     ./hardware.nix # Include the results of the hardware scan
     ./hardware-modes.nix
     ./hw-brightness-proxy.nix # Fixup brightness control
-    ./file-ext.nix # File associations
     "${self}/system/hardware/battery.nix"
     "${self}/system/hardware/bluetooth.nix"
     "${self}/system/hardware/lenovo-legion.nix"
 
     inputs.nur.modules.nixos.default
+
+    ./file-ext.nix # File associations
 
     # Boot
     "${self}/system/boot"
@@ -59,9 +44,6 @@ in
 
     # Secrets
     "${self}/secrets/sops-system.nix"
-
-    # Sound
-    "${self}/system/sound/pipewire.nix"
 
     # WM
     "${self}/system/wm/hyprland/hyprland.nix"
@@ -94,9 +76,6 @@ in
     "${self}/system/programs/screenshots.nix"
     "${self}/system/programs/ydotool.nix"
 
-    # Gaming
-    "${self}/system/programs/steam.nix"
-
     # Dev
     "${self}/system/dev/adb.nix"
     "${self}/system/dev/jdk"
@@ -105,7 +84,12 @@ in
     "${self}/system/theming/stylix.nix"
 
     # Misc
-    inputs.nix-index-database.nixosModules.nix-index
+    "${self}/modules/system/misc/ntsync.nix"
+    "${self}/modules/system/misc/sound.nix"
+
+    # Programs
+    "${self}/modules/system/programs/comma.nix"
+    "${self}/modules/system/programs/nh.nix"
   ];
 
   # Apps
@@ -133,30 +117,33 @@ in
     libqalculate # calc for walker
     termius
   ];
+  # Setup users
+  users.users = builtins.mapAttrs (username: userNameValue: {
+    isNormalUser = true;
+    hashedPasswordFile = config.sops.secrets.${userSessionPassword username}.path;
+    description = userNameValue;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  }) homeUserNames;
+
+  sops.secrets = lib.genAttrs (builtins.map userSessionPassword homeUsers) (username: {
+    neededForUsers = true;
+  });
 
   hjem = {
     extraModules = [
       inputs.hjem-rum.hjemModules.default
     ];
-    users.${username} = {
+    # Override files on rebuild
+    clobberByDefault = true;
+
+    users = lib.genAttrs homeUsers (username: {
       enable = true;
       directory = "/home/${username}";
       user = username;
-    };
-    # Override files on rebuild
-    clobberByDefault = true;
-  };
-
-  # Also needs user in the "gamemode" group
-  # https://github.com/FeralInteractive/gamemode/issues/452
-  programs.gamemode.enable = true;
-
-  # Nix cli helper
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 5";
-    flake = "/home/${username}/.dotfiles";
+    });
   };
 
   # Use lix
@@ -164,10 +151,6 @@ in
 
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
-
-  # Run software via , (comma) without installing it
-  programs.nix-index-database.comma.enable = true;
-  programs.command-not-found.enable = false;
 
   # Services
   services.fstrim.enable = true;
@@ -179,16 +162,16 @@ in
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    user = username;
+    user = homeUser;
     key = config.sops.secrets."syncthing/key.pem".path;
     cert = config.sops.secrets."syncthing/certificate.pem".path;
     settings = {
       gui = {
-        user = username;
+        user = homeUser;
         password = config.sops.secrets."syncthing/gui-password";
       };
       folders = {
-        "/home/${username}/Documents/Notes" = {
+        "/home/${homeUser}/Documents/Notes" = {
           id = "notes";
         };
       };
@@ -215,7 +198,7 @@ in
   programs.weylus = {
     enable = true;
     openFirewall = true;
-    users = hmUsers;
+    users = homeUsers;
   };
 
   # Shared network folder
@@ -232,12 +215,12 @@ in
         "log level" = "2";
       };
       "lovely" = {
-        "path" = "/home/${username}/Data/Share";
+        "path" = "/home/${homeUser}/Data/Share";
         "comment" = "Ah, lovely";
         "writable" = "yes";
         "public" = "yes";
         "guest only" = "yes";
-        "force user" = "${username}";
+        "force user" = "${homeUser}";
         "force group" = "users";
         "create mask" = "777";
         "directory mask" = "777";
@@ -260,26 +243,26 @@ in
   # Custom options (from modules)
   programs.adb = {
     enable = true;
-    users = hmUsers;
+    users = homeUsers;
   };
 
   programs.openrazer = {
     enable = true;
-    users = hmUsers;
+    users = homeUsers;
   };
 
   programs.podman = {
     enable = true;
-    users = hmUsers;
+    users = homeUsers;
   };
 
   customs.ydotool = {
     enable = true;
-    users = hmUsers;
+    users = homeUsers;
   };
 
   # Mount data disk
-  fileSystems."/home/${username}/Data" = {
+  fileSystems."/home/${homeUser}/Data" = {
     device = "/dev/sda2";
     fsType = "ntfs-3g";
     options = [
@@ -295,32 +278,9 @@ in
     "zswap.enabled=1"
   ];
 
-  # Enable NTSYNC
-  boot.kernelModules = [ "ntsync" ];
-  services.udev.extraRules = ''
-    KERNEL=="ntsync", MODE="0644"
-  '';
-
   # Enable networking
-  networking.hostName = "lappytoppy";
+  networking.hostName = hostName;
   networking.networkmanager.enable = true;
-
-  # Set your time zone
-  time.timeZone = sysTimezone;
-
-  # Select internationalization properties
-  i18n.defaultLocale = sysLocale;
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = sysExtraLocale;
-    LC_IDENTIFICATION = sysExtraLocale;
-    LC_MEASUREMENT = sysExtraLocale;
-    LC_MONETARY = sysExtraLocale;
-    LC_NAME = sysExtraLocale;
-    LC_NUMERIC = sysExtraLocale;
-    LC_PAPER = sysExtraLocale;
-    LC_TELEPHONE = sysExtraLocale;
-    LC_TIME = sysExtraLocale;
-  };
 
   # Optimization settings and garbage collection automation
   nix = {
@@ -340,7 +300,6 @@ in
       ];
     };
     gc = {
-      automatic = false; # Handled by nh
       dates = "weekly";
       options = "--delete-older-than 7d";
     };

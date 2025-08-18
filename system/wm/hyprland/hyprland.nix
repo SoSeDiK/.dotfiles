@@ -4,8 +4,8 @@
   config,
   lib,
   pkgs,
-  hmUsers,
-  dotAssetsDir,
+  homeUsers,
+  flakeDir,
   ...
 }:
 
@@ -52,28 +52,28 @@ in
     extraConfig =
       ''
         # Base config
-        source = ${dotAssetsDir}/hypr/hyprland.conf
+        source = ${flakeDir}/assets/hypr/hyprland.conf
 
         # Some dynamic values
         source = ~/.config/hypr/generated.conf
       ''
       + (if plugins then "\n\n# Plugins" else "")
-      + (if plugins && hyprbars then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprbars.conf" else "")
-      + (if plugins && hyprexpo then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprexpo.conf" else "")
+      + (if plugins && hyprbars then "\nsource = ${flakeDir}/assets/hypr/plugins/hyprbars.conf" else "")
+      + (if plugins && hyprexpo then "\nsource = ${flakeDir}/assets/hypr/plugins/hyprexpo.conf" else "")
       + (
-        if plugins && hyprwinwrap then "\nsource = ${dotAssetsDir}/hypr/plugins/hyprwinwrap.conf" else ""
+        if plugins && hyprwinwrap then "\nsource = ${flakeDir}/assets/hypr/plugins/hyprwinwrap.conf" else ""
       )
       + (
         if plugins && hypr-dynamic-cursors then
-          "\nsource = ${dotAssetsDir}/hypr/plugins/hyprdynamiccursors.conf"
+          "\nsource = ${flakeDir}/assets/hypr/plugins/hyprdynamiccursors.conf"
         else
           ""
       )
       + (
         if plugins && hyprsplit then
-          "\nsource = ${dotAssetsDir}/hypr/plugins/hyprsplit.conf"
+          "\nsource = ${flakeDir}/assets/hypr/plugins/hyprsplit.conf"
         else
-          "\nsource = ${dotAssetsDir}/hypr/plugins/nohyprsplit.conf"
+          "\nsource = ${flakeDir}/assets/hypr/plugins/nohyprsplit.conf"
       );
     plugins =
       [ ]
@@ -89,9 +89,9 @@ in
       ++ (if plugins && hyprsplit then [ inputs'.hyprsplit.packages.hyprsplit ] else [ ]);
   };
 
-  hjem.users = lib.genAttrs hmUsers (username: {
+  hjem.users = lib.genAttrs homeUsers (username: {
     files = {
-      ".config/hypr/xdph.conf".source = "${dotAssetsDir}/hypr/xdph.conf";
+      ".config/hypr/xdph.conf".source = "${flakeDir}/assets/hypr/xdph.conf";
       ".config/hypr/generated.conf".text =
         let
           theme = config.lib.stylix.colors;
@@ -113,13 +113,13 @@ in
         '';
       ".config/hypr/hyprlandd.conf".text = ''
         # Base config
-        source = ${dotAssetsDir}/hypr/hyprlandd.conf
+        source = ${flakeDir}/assets/hypr/hyprlandd.conf
 
         # Some dynamic values
         source = ~/.config/hypr/generated.conf
 
         # Plugins
-        source = ${dotAssetsDir}/hypr/plugins/nohyprsplit.conf
+        source = ${flakeDir}/assets/hypr/plugins/nohyprsplit.conf
       '';
       ".config/uwsm/env".text = ''
         # Use the Ozone Wayland support in Chromium and Electron apps
