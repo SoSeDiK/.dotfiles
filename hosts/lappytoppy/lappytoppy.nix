@@ -1,10 +1,6 @@
 {
   self,
-  lib,
   pkgs,
-  flakeDir,
-  hostName,
-  homeUsers,
   ...
 }:
 
