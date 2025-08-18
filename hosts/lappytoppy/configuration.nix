@@ -50,7 +50,6 @@ in
     "${self}/system/programs/cli-collection.nix"
     "${self}/system/programs/gnome-disks.nix"
     "${self}/system/programs/hakuneko.nix"
-    "${self}/system/programs/nautilus.nix" # File manager
     "${self}/system/programs/screenshots.nix"
     "${self}/system/programs/ydotool.nix"
 
@@ -75,10 +74,10 @@ in
     "${self}/modules/system/misc/systemd-boot.nix"
     "${self}/modules/system/misc/zswap.nix"
 
-    # Programs
-    "${self}/modules/system/programs/comma.nix"
-    "${self}/modules/system/programs/nh.nix"
-    "${self}/modules/system/programs/plymoth.nix"
+    # Core programs
+    "${self}/modules/system/core/comma.nix"
+    "${self}/modules/system/core/nh.nix"
+    "${self}/modules/system/core/plymoth.nix"
 
     # Shell
     "${self}/modules/system/shell/zsh.nix"

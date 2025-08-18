@@ -32,10 +32,10 @@ in
     "${self}/modules/system/misc/sudo-insults.nix"
     "${self}/modules/system/misc/zswap.nix"
 
-    # Programs
-    "${self}/modules/system/programs/comma.nix"
-    "${self}/modules/system/programs/nh.nix"
-    "${self}/modules/system/programs/plymoth.nix"
+    # Core programs
+    "${self}/modules/system/core/comma.nix"
+    "${self}/modules/system/core/nh.nix"
+    "${self}/modules/system/core/plymoth.nix"
 
     # Shell
     "${self}/modules/system/shell/zsh.nix"

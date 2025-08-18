@@ -18,6 +18,7 @@ in
     "${self}/modules/system/gaming/zzz.nix"
 
     # Programs
+    "${self}/modules/system/programs/nautilus.nix"
     "${self}/modules/system/programs/nwg-displays.nix"
     "${self}/modules/system/programs/walker.nix"
 
