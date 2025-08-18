@@ -681,6 +681,31 @@
         "type": "github"
       }
     },
+    "hyprgrass": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hyprgrass",
+          "hyprland",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755092449,
+        "narHash": "sha256-HVdEAFT1jJ96Gn+bPxq22CQBfUQeq/PYilLKqWcLMhE=",
+        "owner": "horriblename",
+        "repo": "hyprgrass",
+        "rev": "2b65ef7878b95e7c5f07e94f2ecf7450830532a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "horriblename",
+        "repo": "hyprgrass",
+        "type": "github"
+      }
+    },
     "hypridle": {
       "inputs": {
         "hyprland-protocols": "hyprland-protocols",
@@ -1817,6 +1842,7 @@
         "hjem-rum": "hjem-rum",
         "home-manager": "home-manager",
         "hypr-dynamic-cursors": "hypr-dynamic-cursors",
+        "hyprgrass": "hyprgrass",
         "hypridle": "hypridle",
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",

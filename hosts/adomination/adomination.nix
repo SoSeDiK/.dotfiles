@@ -1,4 +1,4 @@
-{
+args@{
   self,
   pkgs,
   ...
@@ -23,7 +23,18 @@ in
     "${self}/modules/system/programs/walker.nix"
 
     # WM
-    "${self}/modules/system/wm/hyprland.nix"
+    (import "${self}/modules/system/wm/hyprland.nix" (
+      args
+      // {
+        withPlugins = true;
+        hyprbars = true;
+        hyprexpo = true;
+        hyprwinwrap = true;
+        hypr-dynamic-cursors = true;
+        hyprsplit = true;
+        hyprgrass = true;
+      }
+    ))
   ];
 
   environment.systemPackages = with pkgs; [
@@ -37,6 +48,7 @@ in
     qdirstat # Space management
     walker # App/task launcher
     libqalculate # calc for walker
+    wvkbd # On-screen keyboard
   ];
 
   # Time & internationalization properties

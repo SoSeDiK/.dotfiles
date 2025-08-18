@@ -1,4 +1,4 @@
-{
+args@{
   self,
   pkgs,
   ...
@@ -22,7 +22,18 @@ in
     "${self}/modules/system/programs/walker.nix"
 
     # WM
-    "${self}/modules/system/wm/hyprland.nix"
+    (import "${self}/modules/system/wm/hyprland.nix" (
+      args
+      // {
+        withPlugins = true;
+        hyprbars = true;
+        hyprexpo = true;
+        hyprwinwrap = true;
+        hypr-dynamic-cursors = true;
+        hyprsplit = true;
+        hyprgrass = false;
+      }
+    ))
   ];
 
   environment.systemPackages = with pkgs; [

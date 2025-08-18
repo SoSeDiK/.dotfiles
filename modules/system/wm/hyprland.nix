@@ -6,19 +6,19 @@
   flakeDir,
   hostName,
   homeUsers,
+  withPlugins,
+  hyprbars,
+  hyprexpo,
+  hyprwinwrap,
+  hypr-dynamic-cursors,
+  hyprsplit,
+  hyprgrass,
   ...
 }:
 
 let
   hyprland = inputs'.hyprland.packages.hyprland;
   hyprland-portal = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
-
-  plugins = true;
-  hyprbars = true;
-  hyprexpo = true;
-  hyprwinwrap = true;
-  hypr-dynamic-cursors = true;
-  hyprsplit = true;
 in
 {
   imports = [
@@ -56,49 +56,64 @@ in
       # Some dynamic values
       source = ~/.config/hypr/generated.conf
     ''
-    + (if plugins then "\n\n# Plugins" else "")
+    + (if withPlugins then "\n\n# Plugins" else "")
     + (
-      if plugins && hyprbars then
+      if withPlugins && hyprbars then
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprbars.conf"
       else
         ""
     )
     + (
-      if plugins && hyprexpo then
+      if withPlugins && hyprexpo then
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprexpo.conf"
       else
         ""
     )
     + (
-      if plugins && hyprwinwrap then
+      if withPlugins && hyprwinwrap then
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprwinwrap.conf"
       else
         ""
     )
     + (
-      if plugins && hypr-dynamic-cursors then
+      if withPlugins && hypr-dynamic-cursors then
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprdynamiccursors.conf"
       else
         ""
     )
     + (
-      if plugins && hyprsplit then
+      if withPlugins && hyprsplit then
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprsplit.conf"
       else
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/nohyprsplit.conf"
+    )
+    + (
+      if withPlugins && hyprgrass then
+        "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprgrass.conf"
+      else
+        ""
     );
     plugins =
       [ ]
-      ++ (if plugins && hyprbars then [ inputs'.hyprland-plugins.packages.hyprbars ] else [ ])
-      ++ (if plugins && hyprexpo then [ inputs'.hyprland-plugins.packages.hyprexpo ] else [ ])
-      ++ (if plugins && hyprwinwrap then [ inputs'.hyprland-plugins.packages.hyprwinwrap ] else [ ])
+      ++ (if withPlugins && hyprbars then [ inputs'.hyprland-plugins.packages.hyprbars ] else [ ])
+      ++ (if withPlugins && hyprexpo then [ inputs'.hyprland-plugins.packages.hyprexpo ] else [ ])
+      ++ (if withPlugins && hyprwinwrap then [ inputs'.hyprland-plugins.packages.hyprwinwrap ] else [ ])
       ++ (
-        if plugins && hypr-dynamic-cursors then
+        if withPlugins && hypr-dynamic-cursors then
           [ inputs'.hypr-dynamic-cursors.packages.hypr-dynamic-cursors ]
         else
           [ ]
       )
-      ++ (if plugins && hyprsplit then [ inputs'.hyprsplit.packages.hyprsplit ] else [ ]);
+      ++ (if withPlugins && hyprsplit then [ inputs'.hyprsplit.packages.hyprsplit ] else [ ])
+      ++ (
+        if withPlugins && hyprgrass then
+          [
+            inputs'.hyprgrass.packages.default
+            inputs'.hyprgrass.packages.hyprgrass-pulse
+          ]
+        else
+          [ ]
+      );
   };
 
   hjem.users = lib.genAttrs homeUsers (username: {
