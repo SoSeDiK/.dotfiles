@@ -11,6 +11,9 @@ in
     "${self}/modules/system/gaming/gamemode.nix"
     "${self}/modules/system/gaming/gamescope.nix"
     "${self}/modules/system/gaming/steam.nix"
+
+    # WM
+    "${self}/modules/system/wm/hyprland.nix"
   ];
 
   environment.systemPackages = with pkgs; [
