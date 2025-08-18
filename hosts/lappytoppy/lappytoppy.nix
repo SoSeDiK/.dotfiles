@@ -1,4 +1,12 @@
-{ self, pkgs, ... }:
+{
+  self,
+  lib,
+  pkgs,
+  flakeDir,
+  hostName,
+  homeUsers,
+  ...
+}:
 
 let
   sysTimezone = "Europe/Kyiv";
@@ -11,6 +19,9 @@ in
     "${self}/modules/system/gaming/gamemode.nix"
     "${self}/modules/system/gaming/gamescope.nix"
     "${self}/modules/system/gaming/steam.nix"
+
+    # Programs
+    "${self}/modules/system/programs/walker.nix"
 
     # WM
     "${self}/modules/system/wm/hyprland.nix"
@@ -33,7 +44,6 @@ in
     # Misc
     resources # Process manager
     qdirstat # Space management
-    walker # App/task launcher
     libqalculate # calc for walker
   ];
 

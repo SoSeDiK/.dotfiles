@@ -1,4 +1,8 @@
-{ self, pkgs, ... }:
+{
+  self,
+  pkgs,
+  ...
+}:
 
 let
   sysTimezone = "Europe/Kyiv";
@@ -12,6 +16,9 @@ in
     "${self}/modules/system/gaming/gamescope.nix"
     "${self}/modules/system/gaming/steam.nix"
     "${self}/modules/system/gaming/zzz.nix"
+
+    # Programs
+    "${self}/modules/system/programs/walker.nix"
 
     # WM
     "${self}/modules/system/wm/hyprland.nix"
