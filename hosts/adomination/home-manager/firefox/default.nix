@@ -28,7 +28,7 @@ let
     "ddg".metaData.alias = "!d";
     "youtube".metaData.alias = "!y";
     "Google (English)" = {
-      urls = [ { template = "https://www.google.com/search?hl=en&gl=uk&lr=lang_en&q={searchTerms}"; } ];
+      urls = [ { template = "https://www.google.com/search?hl=en&gl=ua&lr=lang_en&q={searchTerms}"; } ];
       icon = "https://www.google.com/favicon.ico";
       updateInterval = dailyUpdateInterval;
       definedAliases = [ "!g" ];
