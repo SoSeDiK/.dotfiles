@@ -20,6 +20,9 @@ in
     ./hardware/secure-boot.nix
     ./hardware/impermanence-btrfs.nix
 
+    # Extra modules
+    inputs.nur.modules.nixos.default
+
     # Fonts
     "${self}/modules/system/font/apple-fonts.nix"
     "${self}/modules/system/font/fonts.nix"
@@ -76,6 +79,8 @@ in
 
   # Impermanence
   environment.persistence."/persist" = {
+    hideMounts = true;
+
     directories = [
       "/etc/NetworkManager/system-connections"
       "/var/db/sudo"

@@ -22,6 +22,7 @@ in
     ./hardware/hardware-modes.nix
     ./hardware/hw-brightness-proxy.nix # Fixup brightness control
 
+    # Extra modules
     inputs.nur.modules.nixos.default
 
     ./system/file-ext.nix # File associations
