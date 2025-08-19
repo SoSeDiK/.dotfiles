@@ -2,7 +2,10 @@
 
 {
   imports = [
-    ./home-manager/vscode.nix
+    ./home-manager/vscode
+
+    # Apps
+    "${self}/modules/home-manager/apps/spicetify.nix"
 
     # Gaming
     "${self}/modules/home-manager/gaming/mangohud.nix"

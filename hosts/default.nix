@@ -57,6 +57,7 @@
                     self'
                     inputs'
                     flakeDir
+                    hostName
                     ;
                 };
               }

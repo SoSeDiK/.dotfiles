@@ -13,5 +13,8 @@
         watchBackgroundColor = "#FFFFFF";
         colorName = "ice";
       };
+      packages.firefox-profile-switcher-connector =
+        pkgs.callPackage ./firefox-profile-switcher-connector
+          { };
     };
 }

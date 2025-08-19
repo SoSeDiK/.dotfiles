@@ -12,23 +12,26 @@ let
 in
 {
   imports = [
+    ./home-manager/firefox
+    ./home-manager/vscode
+
     # Terminal
     "${self}/home/terminal/clis/fastfetch.nix"
     "${self}/home/terminal/programs/cava.nix"
     "${self}/home/terminal/shell/shell-aliases.nix"
 
     # Programs
-    "${self}/home/programs/codium"
-    "${self}/home/programs/firefox"
     "${self}/home/programs/mpv"
     "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/clipboard.nix"
     "${self}/home/programs/github-desktop.nix"
     "${self}/home/programs/quickshell.nix" # Task bar and many other things
-    "${self}/home/programs/spicetify.nix"
 
     # Secrets!
     "${self}/secrets/sops-home.nix"
+
+    # Apps
+    "${self}/modules/home-manager/apps/spicetify.nix"
 
     # Gaming
     "${self}/modules/home-manager/gaming/mangohud.nix"

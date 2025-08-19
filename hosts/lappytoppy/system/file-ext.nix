@@ -13,7 +13,8 @@ let
   imageViewer = "org.gnome.Loupe.desktop";
   videoPlayer = "mpv.desktop";
   archiveViewer = "org.kde.ark.desktop";
-  browser = "firefox-nightly.desktop";
+  browserApp = "firefox-nightly";
+  browser = "${browserApp}.desktop";
   terminalApp = "kitty";
   terminal = "${terminalApp}.desktop";
   linksHandler = "handlro.desktop"; # http/https links are handled via handlr for extra customizability
@@ -138,5 +139,7 @@ in
   environment.sessionVariables = {
     TERM = terminalApp;
     EDITOR = textEditorApp;
+    BROWSER = browserApp;
+    DEFAULT_BROWSER = browserApp;
   };
 }
