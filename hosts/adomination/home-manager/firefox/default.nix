@@ -20,7 +20,7 @@ let
     "gaming"
   ];
 
-  defaultSearchEngine = "google";
+  defaultSearchEngine = "Google (English)";
   dailyUpdateInterval = 24 * 60 * 60 * 1000;
   searchEngines = {
     "google".metaData.hidden = true; # Using Google with forced English instead
