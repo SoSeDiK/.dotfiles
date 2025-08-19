@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./home-manager/firefox
     ./home-manager/vscode
 
     # Apps

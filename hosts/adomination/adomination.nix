@@ -85,7 +85,4 @@ in
     layout = "us";
     variant = "";
   };
-
-  # Install firefox.
-  programs.firefox.enable = true;
 }
