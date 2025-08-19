@@ -1,16 +1,10 @@
 {
-  config,
-  osConfig,
-  lib,
   self,
   pkgs,
   ...
 }:
 
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
-
-  username = "sosedik";
   gitUsername = "SoSeDiK";
   gitEmail = "mrsosedik@gmail.com";
 
@@ -33,10 +27,6 @@ in
     "${self}/home/programs/quickshell.nix" # Task bar and many other things
     "${self}/home/programs/spicetify.nix"
 
-    # Theming
-    "${self}/home/theming/gtk-qt.nix"
-    "${self}/home/theming/stylix.nix"
-
     # Secrets!
     "${self}/secrets/sops-home.nix"
 
@@ -50,6 +40,10 @@ in
     "${self}/modules/home-manager/shell/shell-aliases.nix"
     "${self}/modules/home-manager/shell/starship.nix"
     "${self}/modules/home-manager/shell/zsh.nix"
+
+    # Theming
+    "${self}/modules/home-manager/theming/gtk-qt.nix"
+    "${self}/modules/home-manager/theming/stylix.nix"
   ];
 
   # User apps
@@ -141,11 +135,6 @@ in
     enable = true;
     createDirectories = true;
   };
-
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
-
-  programs.home-manager.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.11"; # tldr: Do not change :)

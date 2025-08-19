@@ -20,6 +20,10 @@ in
     ./hardware/secure-boot.nix
     ./hardware/impermanence-btrfs.nix
 
+    # Fonts
+    "${self}/modules/system/font/apple-fonts.nix"
+    "${self}/modules/system/font/fonts.nix"
+
     # Misc
     "${self}/modules/system/misc/battery.nix"
     "${self}/modules/system/misc/bluetooth.nix"

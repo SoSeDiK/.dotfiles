@@ -37,9 +37,6 @@ in
     # Services
     "${self}/system/services/tuigreet.nix"
 
-    # Fonts
-    "${self}/system/fonts"
-
     # Programs
     "${self}/system/programs/peripherals/openrazer.nix"
     "${self}/system/programs/virtualization/podman.nix"
@@ -53,12 +50,9 @@ in
     "${self}/system/programs/screenshots.nix"
     "${self}/system/programs/ydotool.nix"
 
-    # Dev
-    "${self}/system/dev/adb.nix"
-    "${self}/system/dev/jdk"
-
-    # Theming
-    "${self}/system/theming/stylix.nix"
+    # Fonts
+    "${self}/modules/system/font/apple-fonts.nix"
+    "${self}/modules/system/font/fonts.nix"
 
     # Misc
     "${self}/modules/system/misc/battery.nix"

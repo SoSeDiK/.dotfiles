@@ -14,7 +14,12 @@
       mkNixosConfig =
         hostName: homeUserNames:
         withSystem "x86_64-linux" (
-          ctx@{ config, inputs', ... }:
+          ctx@{
+            config,
+            self',
+            inputs',
+            ...
+          }:
           let
             homeUsers = builtins.attrNames homeUserNames;
             homeUser = builtins.head homeUsers;
@@ -25,6 +30,7 @@
               inherit
                 inputs
                 self
+                self'
                 inputs'
                 flakeDir
                 hostName
@@ -48,6 +54,7 @@
                   inherit
                     inputs
                     self
+                    self'
                     inputs'
                     flakeDir
                     ;
@@ -56,7 +63,17 @@
               inputs.hjem.nixosModules.default
             ]
             ++ (concatMap (username: [
-              { home-manager.users."${username}" = import "${self}/hosts/${hostName}/${username}.nix"; }
+              {
+                home-manager.users."${username}" = {
+                  programs.home-manager.enable = inputs.nixpkgs.lib.mkDefault true;
+
+                  home.username = username;
+                  home.homeDirectory = "/home/${username}";
+
+                  imports = [ "${self}/hosts/${hostName}/${username}.nix" ];
+                };
+
+              }
             ]) homeUsers);
           }
         );

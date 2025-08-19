@@ -139,18 +139,9 @@
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
+        ./pkgs/package-definitions.nix
         ./hosts
       ];
       systems = [ "x86_64-linux" ];
-      perSystem =
-        {
-          config,
-          self',
-          inputs',
-          pkgs,
-          system,
-          ...
-        }:
-        { };
     };
 }

@@ -22,6 +22,10 @@ in
     "${self}/modules/system/programs/nwg-displays.nix"
     "${self}/modules/system/programs/walker.nix"
 
+    # Theming
+    "${self}/modules/system/theming/noto-emoji-plus.nix"
+    "${self}/modules/system/theming/stylix.nix"
+
     # WM
     (import "${self}/modules/system/wm/hyprland.nix" (
       args

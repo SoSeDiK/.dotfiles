@@ -2,15 +2,14 @@
   inputs,
   pkgs,
   self,
+  self',
   ...
 }:
 
 let
   theme = "da-one-sea";
   cursorName = "Bibata-Modern-Ice";
-
-  emoji-font-name = "Noto Color Emoji";
-  emoji-font = pkgs.callPackage "${self}/pkgs/fonts/rkbdi-noto-emoji-plus" { };
+  hyprcursorPackage = self'.packages.bibata-hyprcursors-modern-ice;
 in
 {
   imports = [
@@ -27,7 +26,7 @@ in
     cursor = {
       size = 24;
       name = cursorName;
-      package = pkgs.bibata-cursors;
+      package = hyprcursorPackage;
     };
 
     fonts = {
@@ -43,10 +42,6 @@ in
         package = pkgs.dejavu_fonts;
         name = "DejaVu Serif";
       };
-      emoji = {
-        package = emoji-font;
-        name = emoji-font-name;
-      };
       sizes = {
         applications = 12;
         terminal = 15;
@@ -57,18 +52,4 @@ in
 
     targets.plymouth.enable = false;
   };
-
-  # Extra font rules
-  fonts.fontconfig.defaultFonts = {
-    monospace = [ emoji-font-name "Symbols Nerd Font Mono" ];
-    sansSerif = [ emoji-font-name "Symbols Nerd Font Mono" ];
-    serif = [ emoji-font-name "Symbols Nerd Font Mono" ];
-    emoji = [ "Symbols Nerd Font Mono" ];
-  };
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      noto-fonts-color-emoji = emoji-font;
-    })
-  ];
 }

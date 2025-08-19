@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.services.printers;
@@ -41,7 +46,10 @@ in
     programs.system-config-printer.enable = true;
 
     users.users = lib.genAttrs cfg.users (username: {
-      extraGroups = [ "scanner" "lp" ];
+      extraGroups = [
+        "scanner"
+        "lp"
+      ];
     });
   };
 }

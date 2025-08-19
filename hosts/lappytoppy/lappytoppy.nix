@@ -16,10 +16,18 @@ in
     "${self}/modules/system/gaming/gamescope.nix"
     "${self}/modules/system/gaming/steam.nix"
 
+    # Dev
+    "${self}/modules/system/dev/jdk"
+    "${self}/modules/system/dev/adb.nix"
+
     # Programs
     "${self}/modules/system/programs/nautilus.nix"
     "${self}/modules/system/programs/nwg-displays.nix"
     "${self}/modules/system/programs/walker.nix"
+
+    # Theming
+    "${self}/modules/system/theming/noto-emoji-plus.nix"
+    "${self}/modules/system/theming/stylix.nix"
 
     # WM
     (import "${self}/modules/system/wm/hyprland.nix" (
@@ -55,6 +63,21 @@ in
     qdirstat # Space management
     libqalculate # calc for walker
   ];
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "layer(capslock)";
+          };
+          "capslock:C-S-M" = { };
+        };
+      };
+    };
+  };
 
   # Time & internationalization properties
   time.timeZone = sysTimezone;

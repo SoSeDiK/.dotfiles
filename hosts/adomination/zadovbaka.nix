@@ -11,11 +11,19 @@
     "${self}/modules/home-manager/shell/shell-aliases.nix"
     "${self}/modules/home-manager/shell/starship.nix"
     "${self}/modules/home-manager/shell/zsh.nix"
+
+    # Theming
+    "${self}/modules/home-manager/theming/gtk-qt.nix"
+    "${self}/modules/home-manager/theming/stylix.nix"
   ];
 
   programs.kitty.enable = true;
 
-  programs.home-manager.enable = true;
+  # Create XDG Dirs
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "25.05"; # tldr: Do not change :)
