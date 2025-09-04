@@ -2,6 +2,7 @@
   lib,
   inputs,
   self,
+  flakeDir,
   hostName,
   homeUsers,
   homeUserNames,
@@ -74,6 +75,10 @@ in
       enable = true;
       directory = "/home/${username}";
       user = username;
+
+      files = {
+        ".icons/icons".source = "${flakeDir}/assets/icons";
+      };
     });
   };
 

@@ -2,14 +2,13 @@
   inputs,
   pkgs,
   self,
-  self',
   ...
 }:
 
 let
   theme = "da-one-sea";
   cursorName = "Bibata-Modern-Ice";
-  hyprcursorPackage = self'.packages.bibata-hyprcursors-modern-ice;
+  cursorPackage = pkgs.bibata-cursors;
 in
 {
   imports = [
@@ -26,7 +25,7 @@ in
     cursor = {
       size = 24;
       name = cursorName;
-      package = hyprcursorPackage;
+      package = cursorPackage;
     };
 
     fonts = {

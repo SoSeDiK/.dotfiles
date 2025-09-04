@@ -4,6 +4,7 @@
   inputs,
   self,
   pkgs,
+  flakeDir,
   hostName,
   homeUser,
   homeUsers,
@@ -89,8 +90,6 @@ in
     # Misc
     bitwarden-desktop
     syncthing
-    teamviewer
-    termius
   ];
 
   # Setup users
@@ -119,6 +118,10 @@ in
       enable = true;
       directory = "/home/${username}";
       user = username;
+
+      files = {
+        ".icons/icons".source = "${flakeDir}/assets/icons";
+      };
     });
   };
 
@@ -168,13 +171,6 @@ in
     enable = true;
     capSysAdmin = true;
     openFirewall = true;
-  };
-
-  # iPad as second screen
-  programs.weylus = {
-    enable = true;
-    openFirewall = true;
-    users = homeUsers;
   };
 
   # Shared network folder

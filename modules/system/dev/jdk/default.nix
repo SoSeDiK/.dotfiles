@@ -1,10 +1,10 @@
 { pkgs, ... }:
 
 let
-  hotswapAgentVersion = "2.0.0";
+  hotswapAgentVersion = "2.0.1";
   hotswapAgent = pkgs.fetchurl {
     url = "https://github.com/HotswapProjects/HotswapAgent/releases/download/RELEASE-${hotswapAgentVersion}/hotswap-agent-${hotswapAgentVersion}.jar";
-    hash = "sha256-+RRH6MqKRXqoHlI5ySHfnPOs3vdivCfPis+vrxAF2GA=";
+    hash = "sha256-uo1eBXHceVLyRV8J2e9sqWeCwXvD0S9h6zpXYPKol/E=";
   };
   # jdk21 = pkgs.jetbrains.jdk.overrideAttrs (oldAttrs: {
   #   # Fails to build

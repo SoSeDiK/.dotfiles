@@ -8,12 +8,37 @@ let
   sysTimezone = "Europe/Kyiv";
   sysLocale = "en_US.UTF-8"; # System locale
   sysExtraLocale = "uk_UA.UTF-8"; # Time/date/currency/etc. locale
+
+  dualsensectl = pkgs.dualsensectl.overrideAttrs (oldAttrs: {
+    version = "0.8-dev";
+    src = pkgs.fetchFromGitHub {
+      owner = "nowrep";
+      repo = "dualsensectl";
+      rev = "pull/48/head";
+      hash = "sha256-tJpVFCJ9yTNh3Mj3LFZxCMfF6N/PEA7LNVlzyIh6jPw=";
+    };
+  });
+  android-studio = pkgs.symlinkJoin {
+    name = "android-studio-emulator-fix";
+    paths = [
+      (pkgs.android-studio.overrideAttrs (attrs: {
+        forceWayland = true;
+      }))
+    ];
+    postBuild = ''
+      actual_file=$(readlink -f "$out/share/applications/android-studio.desktop")
+      rm "$out/share/applications" # Is a symlink
+      mkdir "$out/share/applications"
+      sed 's|^Exec=.*|Exec=env -u QT_QPA_PLATFORM android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
+    '';
+  };
 in
 {
   imports = [
     # Games
     "${self}/modules/system/gaming/gamemode.nix"
     "${self}/modules/system/gaming/gamescope.nix"
+    "${self}/modules/system/gaming/no-gamepad-touchpad-mouse.nix"
     "${self}/modules/system/gaming/steam.nix"
 
     # Dev
@@ -51,13 +76,17 @@ in
     heroic # Epic Games launcher
     prismlauncher # Minecraft launcher
     space-cadet-pinball # Good Old Pinball
+    dualsensectl
+    # Media
+    stremio # video streaming
     # Dev
     (jetbrains.idea-community-bin.overrideAttrs (attrs: {
       forceWayland = true;
     }))
-    (android-studio.overrideAttrs (attrs: {
-      forceWayland = true;
-    }))
+    android-studio
+    # (android-studio.overrideAttrs (attrs: {
+    #   forceWayland = true;
+    # }))
     # Misc
     resources # Process manager
     qdirstat # Space management
@@ -93,4 +122,23 @@ in
     LC_TELEPHONE = sysExtraLocale;
     LC_TIME = sysExtraLocale;
   };
+
+  ### HACKS ### // As in, remove once not needed
+
+  # TODO remove, required by stremio
+  nixpkgs.config.permittedInsecurePackages = [
+    "qtwebengine-5.15.19"
+  ];
+  # TODO remove, required by nwg-displays https://github.com/NixOS/nixpkgs/issues/437058
+  nixpkgs.overlays = [
+    (final: prev: {
+      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+        (python-final: python-prev: {
+          i3ipc = python-prev.i3ipc.overridePythonAttrs (oldAttrs: {
+            doCheck = false;
+          });
+        })
+      ];
+    })
+  ];
 }

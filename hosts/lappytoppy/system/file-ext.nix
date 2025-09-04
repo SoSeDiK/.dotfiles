@@ -84,8 +84,10 @@ in
     "x-scheme-handler/terminal" = terminal;
     # Text
     "text/plain" = textEditor;
+    "text/x-log" = textEditor; # .log
     "text/x-patch" = textEditor; # .patch
     "text/x-java" = textEditor; # .patch
+    "application/xml" = textEditor; # .xml
     # Browser
     "text/html" = browser;
     "x-scheme-handler/http" = linksHandler;
@@ -138,6 +140,7 @@ in
 
   environment.sessionVariables = {
     TERM = terminalApp;
+    VISUAL = textEditorApp;
     EDITOR = textEditorApp;
     BROWSER = browserApp;
     DEFAULT_BROWSER = browserApp;

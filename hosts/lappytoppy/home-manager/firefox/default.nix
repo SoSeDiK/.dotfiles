@@ -98,6 +98,8 @@ let
     sponsorblock
     dearrow
     return-youtube-dislikes
+    addons.overplay
+    addons.youtube-enhancer-vc
     # GitHub
     lovely-forks
     enhanced-github
@@ -135,33 +137,16 @@ let
 
   # Firefox Nightly with https://github.com/MrOtherGuy/fx-autoconfig
   binaryName = "firefox-nightly";
-  firefox-package =
-    ((inputs'.firefox-nightly.packages.firefox-nightly-bin).override {
+  firefox-package = (
+    (inputs'.firefox-nightly.packages.firefox-nightly-bin).override {
       extraPrefsFiles = [
         (builtins.fetchurl {
           url = "https://raw.githubusercontent.com/MrOtherGuy/fx-autoconfig/master/program/config.js";
           sha256 = "1mx679fbc4d9x4bnqajqx5a95y1lfasvf90pbqkh9sm3ch945p40";
         })
       ];
-    }).overrideAttrs
-      (oldAttrs: {
-        buildCommand = (oldAttrs.buildCommand or "") + ''
-          # Find firefox dir
-          firefoxDir=$(find "$out/lib/" -type d -name 'firefox*' -print -quit)
-
-          # Function to replace symlink with destination file
-          replaceSymlink() {
-            local symlink_path="$firefoxDir/$1"
-            local target_path=$(readlink -f "$symlink_path")
-            rm "$symlink_path"
-            cp "$target_path" "$symlink_path"
-          }
-
-          # Copy firefox binaries
-          replaceSymlink "firefox"
-          replaceSymlink "firefox-bin"
-        '';
-      });
+    }
+  );
 in
 {
   programs.firefox = {

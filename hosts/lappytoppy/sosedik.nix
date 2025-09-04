@@ -39,6 +39,9 @@ in
     # Misc
     "${self}/modules/home-manager/misc/xembed-sni-proxy.nix"
 
+    # Services
+    "${self}/modules/home-manager/service/dunst.nix"
+
     # Shell
     "${self}/modules/home-manager/shell/shell-aliases.nix"
     "${self}/modules/home-manager/shell/starship.nix"
@@ -60,7 +63,7 @@ in
     scrcpy # View/Control phone screen (also broadcasts audio!)
     kdePackages.kdeconnect-kde
     nurl # fetch sha256 for packages
-    libsForQt5.ark # archiver
+    kdePackages.ark # archiver
     direnv
     gimp
     libreoffice-qt
@@ -74,7 +77,6 @@ in
     # Media
     loupe # image viewer
     obs-studio # video recorder
-    stremio # video streaming
     qbittorrent # torrents
     # Gaming
     mcpelauncher-ui-qt # Minecraft Bedrock launcher
