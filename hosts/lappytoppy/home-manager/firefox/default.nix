@@ -105,6 +105,7 @@ let
     enhanced-github
     refined-github
     octolinker
+    octotree
     addons.patch-roulette
   ];
   coreNonPrivateOnlyAddons = with pkgs.nur.repos.rycee.firefox-addons; [
