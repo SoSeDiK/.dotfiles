@@ -1,8 +1,9 @@
 # Source: https://gist.github.com/robbins/dccf1238e971973a6a963b04c486c099
-{ lib
-, stdenv
-, fetchurl
-, p7zip
+{
+  lib,
+  stdenv,
+  fetchurl,
+  p7zip,
 }:
 
 stdenv.mkDerivation rec {
@@ -11,12 +12,12 @@ stdenv.mkDerivation rec {
 
   pro = fetchurl {
     url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
-    sha256 = "sha256-090HwtgILtK/KGoOzcwz1iAtoiShKAVjiNhUDQtO+gQ=";
+    sha256 = "sha256-8Dkh9ih3NUoKQXyGkmg44OMGUXK9gBnIsfbpGL8uNPc=";
   };
 
   compact = fetchurl {
     url = "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
-    sha256 = "sha256-z70mts7oFaMTt4q7p6M7PzSw4auOEaiaJPItYqUpN0A=";
+    sha256 = "sha256-gKTztcBhUYR+VoV4cPED6ESu7slRzcQtLAQhBOY9CCk=";
   };
 
   mono = fetchurl {

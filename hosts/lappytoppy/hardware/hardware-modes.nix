@@ -68,10 +68,10 @@
   # hardware.nvidia.powerManagement.finegrained = lib.mkForce true; # Requires offload # Does not work?
 
   # Prevent apps from holding NVIDIA GPU
-  # environment.variables = {
-  #   __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa.outPath}/share/glvnd/egl_vendor.d/50_mesa.json";
-  #   __GLX_VENDOR_LIBRARY_NAME = "mesa";
-  # };
+  environment.variables = {
+    __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa.outPath}/share/glvnd/egl_vendor.d/50_mesa.json";
+    __GLX_VENDOR_LIBRARY_NAME = "mesa";
+  };
 
   # AMD CLR - Compute Language Runtimes
   hardware.graphics.extraPackages = with pkgs; [

@@ -125,20 +125,8 @@ in
 
   ### HACKS ### // As in, remove once not needed
 
-  # TODO remove, required by stremio
+  # TODO remove, required by stremio; https://github.com/NixOS/nixpkgs/issues/437992
   nixpkgs.config.permittedInsecurePackages = [
     "qtwebengine-5.15.19"
-  ];
-  # TODO remove, required by nwg-displays https://github.com/NixOS/nixpkgs/issues/437058
-  nixpkgs.overlays = [
-    (final: prev: {
-      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
-        (python-final: python-prev: {
-          i3ipc = python-prev.i3ipc.overridePythonAttrs (oldAttrs: {
-            doCheck = false;
-          });
-        })
-      ];
-    })
   ];
 }
