@@ -1,5 +1,6 @@
 args@{
   self,
+  self',
   pkgs,
   ...
 }:
@@ -32,6 +33,7 @@ let
       sed 's|^Exec=.*|Exec=env -u QT_QPA_PLATFORM android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
     '';
   };
+  stremio = self'.packages.stremio;
 in
 {
   imports = [
@@ -79,6 +81,7 @@ in
     dualsensectl
     # Media
     stremio # video streaming
+    youtube-music
     # Dev
     (jetbrains.idea-community-bin.overrideAttrs (attrs: {
       forceWayland = true;
@@ -108,6 +111,8 @@ in
     };
   };
 
+  hardware.xpadneo.enable = true;
+
   # Time & internationalization properties
   time.timeZone = sysTimezone;
   i18n.defaultLocale = sysLocale;
@@ -123,10 +128,7 @@ in
     LC_TIME = sysExtraLocale;
   };
 
-  ### HACKS ### // As in, remove once not needed
+  users.users.root.hashedPasswordFile = "/persist/etc/rootPswd";
 
-  # TODO remove, required by stremio; https://github.com/NixOS/nixpkgs/issues/437992
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebengine-5.15.19"
-  ];
+  ### HACKS ### // As in, remove once not needed
 }

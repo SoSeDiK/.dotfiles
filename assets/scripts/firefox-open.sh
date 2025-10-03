@@ -10,7 +10,7 @@ is_firefox_profile_running() {
     pgrep -f "$FIREFOX_BIN-$1" > /dev/null
 }
 
-if "$1" != "default" && is_firefox_profile_running "$1"; then
+if [ "$1" != "default" ] && is_firefox_profile_running "$1"; then
     $FIREFOX_BIN -P "$1" "$2"
 elif ! is_firefox_profile_running "default" && is_firefox_profile_running "private"; then
     $FIREFOX_BIN --private-window -P "private" "$2"

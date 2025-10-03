@@ -1,11 +1,8 @@
 { config, ... }:
 
-let
-  username = "sosedik";
-in
 {
   sops = {
-    age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
+    age.keyFile = "/persist/etc/sops-keys.txt";
     defaultSopsFile = ./secrets/secrets.yaml;
   };
 

@@ -17,6 +17,7 @@ let
   browser = "${browserApp}.desktop";
   terminalApp = "kitty";
   terminal = "${terminalApp}.desktop";
+  # linksHandler = browser;
   linksHandler = "handlro.desktop"; # http/https links are handled via handlr for extra customizability
 in
 {
@@ -69,9 +70,8 @@ in
           }
           # Any other http & https URLs since handlr is a default handler for them
           {
-            # exec = "${flakeDir}/assets/scripts/test.sh %u";
             exec = "${flakeDir}/assets/scripts/firefox-open.sh default %u";
-            regexes = [ "^(http|https):.+$" ];
+            regexes = [ "(http|https):.+" ];
           }
         ];
       };

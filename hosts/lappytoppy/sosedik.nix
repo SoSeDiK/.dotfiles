@@ -57,7 +57,7 @@ in
     nix-inspect
     hyprsunset
     hyprfreeze
-    rofi-wayland # App/things launcher
+    rofi # App/things launcher
     (bottles.override { removeWarningPopup = true; }) # WINE helper
     helvum # Audio
     scrcpy # View/Control phone screen (also broadcasts audio!)

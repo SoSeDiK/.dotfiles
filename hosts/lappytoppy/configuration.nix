@@ -22,6 +22,7 @@ in
     ./hardware/hardware-configuration.nix # Include the results of the hardware scan
     ./hardware/hardware-modes.nix
     ./hardware/hw-brightness-proxy.nix # Fixup brightness control
+    ./hardware/impermanence-btrfs.nix
 
     # Extra modules
     inputs.nur.modules.nixos.default
@@ -123,6 +124,35 @@ in
         ".icons/icons".source = "${flakeDir}/assets/icons";
       };
     });
+  };
+
+  # Impermanence
+  environment.persistence."/persist" = {
+    hideMounts = true;
+
+    directories = [
+      # Network settings (e.g., Wi-Fi passwords)
+      "/etc/NetworkManager/system-connections"
+      # Lectured users
+      "/var/db/sudo"
+      # Secure boot keys
+      "/var/lib/sbctl"
+      # Bluetooth data
+      "/var/lib/bluetooth"
+      # Important NixOS thingies
+      "/var/lib/nixos"
+      # Core dumbs, in case of crashes
+      "/var/lib/systemd/coredump"
+      # Last user & last session
+      "/var/cache/tuigreet"
+    ];
+
+    files = [
+      # Unique device id
+      "/etc/machine-id"
+      # Tailscale device id
+      "/var/lib/tailscale/tailscaled.state"
+    ];
   };
 
   # Use lix

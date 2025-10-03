@@ -84,9 +84,5 @@
       lappytoppy = mkNixosConfig "lappytoppy" {
         sosedik = "SoSeDiK";
       };
-
-      adomination = mkNixosConfig "adomination" {
-        zadovbaka = "ZaDoVBaKa";
-      };
     };
 }

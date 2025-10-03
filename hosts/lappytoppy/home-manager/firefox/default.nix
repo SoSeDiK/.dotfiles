@@ -98,7 +98,6 @@ let
     sponsorblock
     dearrow
     return-youtube-dislikes
-    addons.overplay
     addons.youtube-enhancer-vc
     # GitHub
     lovely-forks

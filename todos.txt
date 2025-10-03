@@ -2,8 +2,11 @@
 
 - Restore age key for sops
 - Import GPG keys from ~/.gnupg/keys
+- Logins: Steam, Discord, Spotify, Stremio
 
 # Tracked issues (- issue \* workaround/note)
+
+- kitty "-e" "handlr" "open" "https://google.com"
 
 - https://gitlab.gnome.org/GNOME/file-roller/-/issues/4
   # Archive manager doesn't support drag & drop
