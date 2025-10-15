@@ -12,7 +12,7 @@ let
   textEditor = "codium.desktop";
   imageViewer = "org.gnome.Loupe.desktop";
   videoPlayer = "mpv.desktop";
-  archiveViewer = "org.kde.ark.desktop";
+  archiveViewer = "xarchiver.desktop";
   browserApp = "firefox-nightly";
   browser = "${browserApp}.desktop";
   terminalApp = "kitty";

@@ -9,9 +9,6 @@
 
 - kitty "-e" "handlr" "open" "https://google.com"
 
-- https://gitlab.gnome.org/GNOME/file-roller/-/issues/4
-  # Archive manager doesn't support drag & drop
-  - Waiting...
 - https://github.com/Alexays/Waybar/issues/1127
   # Wine system tray integration
   - Using plasma-workspace's xembed-sni-proxy;

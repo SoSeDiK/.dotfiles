@@ -48,6 +48,7 @@
         ext.theqtcompany.qt-qml
         ext.theqtcompany.qt-ui
         ext.theqtcompany.qt-cpp
+        ext.ms-vscode.cmake-tools # Required for qt-cpp
 
         # Python
         ms-python.python

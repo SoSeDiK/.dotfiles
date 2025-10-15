@@ -64,10 +64,6 @@ in
     kdePackages.kdeconnect-kde
     nurl # fetch sha256 for packages
 
-    kdePackages.ark # archiver
-    p7zip
-    unrar
-
     direnv
     gimp
     libreoffice-qt

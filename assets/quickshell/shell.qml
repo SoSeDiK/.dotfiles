@@ -127,6 +127,7 @@ ShellRoot {
             ["com\.stremio\.stremio", ["󱖑", "Stremio"]],
             ["mpv", ["", "mpv"]],
             ["ark", ["", "Ark"]],
+            ["xarchiver", ["", "Xarchiver"]],
             ["gimp", ["", "GIMP"]],
             ["obsidian", ["󱞁", "Obsidian"]],
             ["com\.obsproject\.studio", ["", "OBS Studio"]],

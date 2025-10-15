@@ -103,6 +103,11 @@ in
     ## Android
     android-studio
 
+    # Archives handling
+    xarchiver
+    p7zip
+    unrar
+
     # Misc
     resources # Process manager
     qdirstat # Space management

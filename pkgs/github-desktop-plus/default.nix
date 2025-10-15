@@ -7,7 +7,8 @@
   gnome-keyring,
   libsecret,
   git,
-  curlWithGnuTls, # curl,
+  git-lfs,
+  curlWithGnuTls,
   nss,
   nspr,
   xorg,
@@ -48,7 +49,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     xorg.libX11
     libsecret
     git
-    curlWithGnuTls # curl
+    git-lfs
+    curlWithGnuTls
     nss
     nspr
     libdrm
@@ -76,8 +78,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     cp -R $TMP/${pname}/usr/lib/${pname}/* $out/opt/
     ln -sf $out/opt/${pname} $out/bin/${pname}
 
-    # wrapProgram $out/bin/${pname} \
-    #   --set PATH "${glib}/bin:$PATH"
+    rm -rf $out/opt/resources/app/git
+    ln -s ${git} $out/opt/resources/app/git
 
     runHook postInstall
   '';
