@@ -5,6 +5,7 @@
     { pkgs, ... }:
     {
       packages.stremio = pkgs.callPackage ./stremio { };
+      packages.github-desktop-plus = pkgs.callPackage ./github-desktop-plus { };
       packages.noto-emoji-plus = pkgs.callPackage ./fonts/rkbdi-noto-emoji-plus { };
       packages.noto-fonts = pkgs.callPackage ./fonts/rkbdi-noto-sans { };
       packages.bibata-hyprcursors-modern-ice = pkgs.callPackage ./bibata-hyprcursor {

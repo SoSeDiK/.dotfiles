@@ -145,6 +145,8 @@ in
       "/var/lib/systemd/coredump"
       # Last user & last session
       "/var/cache/tuigreet"
+      # Syncthing data
+      "/var/lib/syncthing/.config/syncthing"
     ];
 
     files = [

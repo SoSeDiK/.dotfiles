@@ -1,8 +1,9 @@
 # Things done manually on fresh install
 
-- Restore age key for sops
-- Import GPG keys from ~/.gnupg/keys
-- Logins: Steam, Discord, Spotify, Stremio
+- Restore /persist data (e.g., age key for sops)
+- Import GPG keys from ~/.gnupg/keys (gpg --import ~/.gnupg/keys/KEYFILE)
+- Logins: Steam, Discord, Spotify, Stremio, GitHub Desktop
+- Blush HUD options
 
 # Tracked issues (- issue \* workaround/note)
 

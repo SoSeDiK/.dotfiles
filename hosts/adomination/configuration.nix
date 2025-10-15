@@ -81,6 +81,7 @@ in
       };
     });
   };
+  systemd.enable = false; # Conflicts with home-manager
 
   # Impermanence
   environment.persistence."/persist" = {

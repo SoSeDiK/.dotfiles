@@ -14,6 +14,7 @@ in
   imports = [
     ./home-manager/firefox
     ./home-manager/vscode
+    ./home-manager/zen
 
     # Terminal
     "${self}/home/terminal/clis/fastfetch.nix"
@@ -63,7 +64,11 @@ in
     scrcpy # View/Control phone screen (also broadcasts audio!)
     kdePackages.kdeconnect-kde
     nurl # fetch sha256 for packages
+
     kdePackages.ark # archiver
+    p7zip
+    unrar
+
     direnv
     gimp
     libreoffice-qt
@@ -79,10 +84,9 @@ in
     obs-studio # video recorder
     qbittorrent # torrents
     # Gaming
-    mcpelauncher-ui-qt # Minecraft Bedrock launcher
+    # mcpelauncher-ui-qt # Minecraft Bedrock launcher # TODO
     blockbench
     r2modman # Lethal Company mod manager
-    # inputs'.nix-gaming.packages.wine-discord-ipc-bridge # ToDo broken
     telegram-desktop
     whatsapp-for-linux
     teams-for-linux

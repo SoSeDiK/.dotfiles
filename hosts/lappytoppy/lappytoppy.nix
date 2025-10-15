@@ -1,7 +1,10 @@
 args@{
+  lib,
   self,
   self',
   pkgs,
+  flakeDir,
+  homeUsers,
   ...
 }:
 
@@ -22,7 +25,7 @@ let
   android-studio = pkgs.symlinkJoin {
     name = "android-studio-emulator-fix";
     paths = [
-      (pkgs.android-studio.overrideAttrs (attrs: {
+      (pkgs.small.android-studio.overrideAttrs (attrs: {
         forceWayland = true;
       }))
     ];
@@ -44,7 +47,7 @@ in
     "${self}/modules/system/gaming/steam.nix"
 
     # Dev
-    "${self}/modules/system/dev/jdk"
+    # "${self}/modules/system/dev/jdk"
     "${self}/modules/system/dev/adb.nix"
 
     # Programs
@@ -74,27 +77,43 @@ in
   environment.systemPackages = with pkgs; [
     # Social
     equibop # Discord client
+    teamspeak6-client
+
     # Gaming
     heroic # Epic Games launcher
     prismlauncher # Minecraft launcher
     space-cadet-pinball # Good Old Pinball
     dualsensectl
+
     # Media
     stremio # video streaming
     youtube-music
+
     # Dev
-    (jetbrains.idea-community-bin.overrideAttrs (attrs: {
+    ## Java
+    (small.jetbrains.idea-community-bin.overrideAttrs (attrs: {
       forceWayland = true;
     }))
+    ## C#
+    (small.jetbrains.rider.overrideAttrs (attrs: {
+      forceWayland = true;
+    }))
+    mono
+    msbuild
+    ## Android
     android-studio
-    # (android-studio.overrideAttrs (attrs: {
-    #   forceWayland = true;
-    # }))
+
     # Misc
     resources # Process manager
     qdirstat # Space management
     libqalculate # calc for walker
   ];
+
+  hjem.users = lib.genAttrs homeUsers (username: {
+    files = {
+      ".config/equibop/settings/settings.json".source = "${flakeDir}/assets/equibop/settings.json";
+    };
+  });
 
   services.keyd = {
     enable = true;
@@ -110,6 +129,10 @@ in
       };
     };
   };
+  users.groups.keyd = { };
+  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
+    "CAP_SETGID"
+  ];
 
   hardware.xpadneo.enable = true;
 

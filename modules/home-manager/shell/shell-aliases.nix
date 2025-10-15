@@ -22,7 +22,9 @@
     ## Update system without creating a boot entry
     updatet = "${flakeDir}/assets/scripts/update_test.sh";
     ## Make current configuration the one bootable by default
-    updateb = "sudo /run/current-system/bin/switch-to-configuration boot";
+    updateb = "${flakeDir}/assets/scripts/update_system.sh --boot";
+    ## Make current configuration the one bootable by default
+    updater = "sudo /run/current-system/bin/switch-to-configuration boot";
     # Managing system
     kys = "shutdown now";
     reboot = "systemctl reboot";

@@ -471,6 +471,11 @@ user_pref("browser.search.suggest.enabled", true);
 user_pref("apz.gtk.pangesture.delta_mode", 2);
 user_pref("apz.gtk.pangesture.pixel_delta_mode_multiplier", 10);
 
+// Zen
+user_pref("app.normandy.first_run", false);
+user_pref("zen.urlbar.replace-newtab", false);
+user_pref("browser.tabs.groups.enabled", true);
+
 // UC.CSS.JS Overrides
 // Only slide right side of toolbar
 user_pref("userChrome.toolbarSlider.wrapButtonsRelativeToUrlbar", "after"); // after/before/all

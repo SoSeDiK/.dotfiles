@@ -21,10 +21,16 @@ rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 # nixos-rebuild --sudo switch --flake .#$(hostname) --show-trace
 
 # Fancy nh way
-if [[ "$*" == *"--update"* ]] || [[ "$*" == *"-u"* ]]; then
-  nh os switch --update -- --show-trace
-else
-  nh os switch -- --show-trace
-fi
+case "$1" in
+  --update|-u)
+    nh os switch --update -- --show-trace
+    ;;
+  --boot|-b)
+    nh os boot -- --show-trace
+    ;;
+  *)
+    nh os switch -- --show-trace
+    ;;
+esac
 
 popd

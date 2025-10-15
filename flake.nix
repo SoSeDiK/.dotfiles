@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small"; # Sometimes things break, sometimes the edge is needed
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master"; # Sometimes things break, sometimes the edge is needed
+    nixpkgs-unstable-small.url = "github:NixOS/nixpkgs/nixos-unstable-small"; # Slightly faster updates
 
     # Hardware
     # TODO upstream
@@ -83,6 +84,10 @@
       url = "gitlab:NetForceExplorer/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Hyprland & plugins

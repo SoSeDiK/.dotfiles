@@ -24,4 +24,9 @@
   sops.secrets."syncthing/gui-password" = { };
   sops.secrets."syncthing/certificate.pem" = { };
   sops.secrets."syncthing/key.pem" = { };
+
+  # Provide github token to not get API rate limit
+  nix.extraOptions = ''
+    !include ${config.sops.secrets.nixAccessTokens.path}
+  '';
 }

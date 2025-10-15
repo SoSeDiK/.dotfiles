@@ -4,6 +4,7 @@
 DIR="$HOME/.dotfiles/user/hyprland/rofi"
 THEME="simple"
 RASI="$DIR/themes/$THEME/firefox.rasi"
+BROWSER_BIN=${FIREFOX_BIN:-firefox-nightly}
 
 # Radio command
 command="rofi -dmenu -i \
@@ -34,12 +35,12 @@ case "$choice" in
         exit 1
         ;;
     "default")
-        firefox-nightly -new-instance --name firefox-nightly-$choice
+        $BROWSER_BIN -new-instance --name $BROWSER_BIN-$choice
         ;;
     "private")
-        firefox-nightly -new-instance -P $choice --name firefox-nightly-$choice --private-window
+        $BROWSER_BIN -new-instance -P $choice --name $BROWSER_BIN-$choice --private-window
         ;;
     *)
-        firefox-nightly -new-instance -P $choice --name firefox-nightly-$choice
+        $BROWSER_BIN -new-instance -P $choice --name $BROWSER_BIN-$choice
         ;;
 esac

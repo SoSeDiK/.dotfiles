@@ -6,14 +6,6 @@ let
     url = "https://github.com/HotswapProjects/HotswapAgent/releases/download/RELEASE-${hotswapAgentVersion}/hotswap-agent-${hotswapAgentVersion}.jar";
     hash = "sha256-uo1eBXHceVLyRV8J2e9sqWeCwXvD0S9h6zpXYPKol/E=";
   };
-  # jdk21 = pkgs.jetbrains.jdk.overrideAttrs (oldAttrs: {
-  #   # Fails to build
-  #   postBuild = ''
-  #     # Add Hotswap Agent
-  #     mkdir -p $out/lib/openjdk/lib/hotswap
-  #     cp ${hotswapAgent} $out/lib/openjdk/lib/hotswap/hotswap-agent.jar
-  #   '';
-  # });
   baseJdk = pkgs.jetbrains.jdk;
   jdk21 = pkgs.symlinkJoin {
     name = "jetbrains-jdk-hotswap";
