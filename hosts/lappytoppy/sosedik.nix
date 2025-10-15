@@ -13,7 +13,6 @@ in
 {
   imports = [
     ./home-manager/firefox
-    ./home-manager/vscode
     ./home-manager/zen
 
     # Terminal

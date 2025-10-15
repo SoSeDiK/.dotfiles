@@ -15,6 +15,7 @@
     defaultSecretsMountPoint = "/run/user/1000/secrets.d";
   };
 
+  sops.secrets.nixAccessTokens = { };
   # gpg --import /path/to/the/key.asc, will ask for the passphrase
   sops.secrets.gitSigningKey = {
     mode = "0400";

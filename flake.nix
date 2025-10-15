@@ -90,6 +90,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # VS Code extensions
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Hyprland & plugins
     hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
     xdg-portal-hyprland = {

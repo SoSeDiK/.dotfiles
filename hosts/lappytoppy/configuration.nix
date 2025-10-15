@@ -28,6 +28,7 @@ in
     inputs.nur.modules.nixos.default
 
     ./system/file-ext.nix # File associations
+    ./system/vscode
 
     # Secrets
     "${self}/secrets/sops-system.nix"
@@ -116,6 +117,7 @@ in
     clobberByDefault = true;
 
     users = lib.genAttrs homeUsers (username: {
+      systemd.enable = false;
       enable = true;
       directory = "/home/${username}";
       user = username;
