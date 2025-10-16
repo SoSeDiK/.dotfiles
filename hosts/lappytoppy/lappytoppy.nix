@@ -51,6 +51,7 @@ in
     "${self}/modules/system/dev/adb.nix"
 
     # Programs
+    "${self}/modules/system/programs/github-desktop.nix"
     "${self}/modules/system/programs/nautilus.nix"
     "${self}/modules/system/programs/nwg-displays.nix"
     "${self}/modules/system/programs/walker.nix"
@@ -76,16 +77,24 @@ in
 
   environment.systemPackages = with pkgs; [
     # Social
+    telegram-desktop
+    whatsapp-for-linux
     equibop # Discord client
+    teams-for-linux
     teamspeak6-client
 
     # Gaming
     heroic # Epic Games launcher
     prismlauncher # Minecraft launcher
+    blockbench # Minecraft models tool
+    mcpelauncher-ui-qt # Minecraft Bedrock launcher
     space-cadet-pinball # Good Old Pinball
     dualsensectl
 
     # Media
+    loupe # image viewer
+    obs-studio # video recorder
+    qbittorrent # torrents
     stremio # video streaming
     youtube-music
 
@@ -109,9 +118,13 @@ in
     unrar
 
     # Misc
+    gnome-clocks # Clocks & Alarms
+    mission-center # Windows-like process manager
     resources # Process manager
     qdirstat # Space management
+    qalculate-qt # Calculator
     libqalculate # calc for walker
+    libreoffice-qt # Office tools
   ];
 
   hjem.users = lib.genAttrs homeUsers (username: {

@@ -18,12 +18,12 @@ let
 in
 {
   # Apps
-  home.packages = [
+  environment.systemPackages = [
     github-desktop-plus
   ];
 
   # Handle auth within the app
-  xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/x-github-desktop-dev-auth" = "github-desktop-plus.desktop";
+  xdg.mime.defaultApplications = {
+    "x-scheme-handler/x-github-desktop-dev-auth" = "${github-desktop-plus.meta.mainProgram}.desktop";
   };
 }

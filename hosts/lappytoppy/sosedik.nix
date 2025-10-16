@@ -24,7 +24,6 @@ in
     "${self}/home/programs/mpv"
     "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/clipboard.nix"
-    "${self}/home/programs/github-desktop.nix"
     "${self}/home/programs/quickshell.nix" # Task bar and many other things
 
     # Secrets!
@@ -66,27 +65,15 @@ in
 
     direnv
     gimp
-    libreoffice-qt
+
     # Utils
-    gnome-clocks
-    qalculate-qt
-    mission-center # Windows-like process manager
     fsearch # fast search
     cpu-x # PC Info
     fontforge-gtk
-    # Media
-    loupe # image viewer
-    obs-studio # video recorder
-    qbittorrent # torrents
-    # Gaming
-    # mcpelauncher-ui-qt # Minecraft Bedrock launcher # TODO
-    blockbench
-    r2modman # Lethal Company mod manager
-    telegram-desktop
-    whatsapp-for-linux
-    teams-for-linux
+
     # Extra browsers
     tor-browser
+
     # Misc
     linux-wallpaperengine
     smile # emoji picker
@@ -94,6 +81,7 @@ in
     playerctl # Control media player
     pamixer # Volume control
     wl-mirror # App/screen mirroring
+
     # Fun CLIs
     cmatrix # Matrix in terminal
     lolcat # Because rainbow is cool

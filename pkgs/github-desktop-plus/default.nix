@@ -7,7 +7,6 @@
   gnome-keyring,
   libsecret,
   git,
-  git-lfs,
   curlWithGnuTls,
   nss,
   nspr,
@@ -22,6 +21,7 @@
   # Extras
   glib,
   xdg-utils,
+  git-lfs,
 }:
 
 let
@@ -49,7 +49,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     xorg.libX11
     libsecret
     git
-    git-lfs
     curlWithGnuTls
     nss
     nspr
@@ -61,6 +60,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     # Extras
     glib
     xdg-utils
+    git-lfs
   ];
 
   unpackPhase = ''
