@@ -302,7 +302,8 @@
             "logEdits": true,
             "logDeletes": true,
             "showEditDiffs": false,
-            "inlineEdits": true
+            "inlineEdits": true,
+            "separatedDiffs": false
         },
         "MessageTags": {
             "enabled": false
@@ -478,7 +479,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 342814924310970398",
+            "disabledLocations": "565169345110605833",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global"
@@ -1233,6 +1234,9 @@
         },
         "ZipPreview": {
             "enabled": false
+        },
+        "KeyboardNavigation": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1246,7 +1250,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1760491649433
+        "settingsSyncVersion": 1760703504995
     },
     "ignoreResetWarning": false,
     "userCssVars": {}

@@ -22,7 +22,6 @@
   programs.walker = {
     enable = true;
     package = inputs'.walker.packages.default;
-    runAsService = true;
   };
 
   nix.settings = {
