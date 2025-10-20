@@ -1,4 +1,9 @@
-{ inputs', config, flakeDir, ... }:
+{
+  inputs',
+  config,
+  flakeDir,
+  ...
+}:
 
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -8,5 +13,5 @@ in
     inputs'.quickshell.packages.default
   ];
 
-  xdg.configFile."quickshell/shell.qml".source = mkOutOfStoreSymlink "${flakeDir}/assets/quickshell/shell.qml";
+  xdg.configFile."quickshell".source = mkOutOfStoreSymlink "${flakeDir}/assets/quickshell";
 }
