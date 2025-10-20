@@ -100,11 +100,12 @@ in
   # Setup git
   programs.git = {
     enable = true;
-    userName = gitUsername;
-    userEmail = gitEmail;
     lfs.enable = true;
-    diff-so-fancy.enable = true;
-    extraConfig = {
+    settings = {
+      user = {
+        name = gitUsername;
+        email = gitEmail;
+      };
       init.defaultBranch = "main";
       http.postBuffer = 1048576000;
 
@@ -120,6 +121,10 @@ in
     pinentry.package = pkgs.pinentry-qt;
     defaultCacheTtl = 31536000;
     maxCacheTtl = 31536000;
+  };
+  programs.diff-so-fancy = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   # Create XDG Dirs

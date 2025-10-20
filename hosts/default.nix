@@ -42,7 +42,6 @@
             modules = [
               # System options
               (./. + "/${hostName}/configuration.nix")
-              (./. + "/${hostName}/${hostName}.nix")
 
               # Add extra pkg inputs
               "${self}/modules/system/overlay-inputs.nix"
@@ -71,7 +70,7 @@
                   home.username = username;
                   home.homeDirectory = "/home/${username}";
 
-                  imports = [ "${self}/hosts/${hostName}/${username}.nix" ];
+                  imports = [ "${self}/hosts/${hostName}/hmu_${username}.nix" ];
                 };
 
               }

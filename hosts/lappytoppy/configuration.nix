@@ -1,8 +1,9 @@
-{
+args@{
   config,
   lib,
   inputs,
   self,
+  self',
   pkgs,
   flakeDir,
   hostName,
@@ -13,6 +14,38 @@
 }:
 
 let
+  # Options
+  sysTimezone = "Europe/Kyiv";
+  sysLocale = "en_US.UTF-8"; # System locale
+  sysExtraLocale = "uk_UA.UTF-8"; # Time/date/currency/etc. locale
+
+  # Packages
+  dualsensectl = pkgs.dualsensectl.overrideAttrs (oldAttrs: {
+    version = "0.8-dev";
+    src = pkgs.fetchFromGitHub {
+      owner = "nowrep";
+      repo = "dualsensectl";
+      rev = "pull/48/head";
+      hash = "sha256-tJpVFCJ9yTNh3Mj3LFZxCMfF6N/PEA7LNVlzyIh6jPw=";
+    };
+  });
+  android-studio = pkgs.symlinkJoin {
+    name = "android-studio-emulator-fix";
+    paths = [
+      (pkgs.small.android-studio.overrideAttrs (attrs: {
+        forceWayland = true;
+      }))
+    ];
+    postBuild = ''
+      actual_file=$(readlink -f "$out/share/applications/android-studio.desktop")
+      rm "$out/share/applications" # Is a symlink
+      mkdir "$out/share/applications"
+      sed 's|^Exec=.*|Exec=env -u QT_QPA_PLATFORM android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
+    '';
+  };
+  stremio = self'.packages.stremio;
+
+  # Helpers
   userSessionPassword = username: "users/${username}/session";
 in
 {
@@ -35,8 +68,28 @@ in
 
     # WM
     "${self}/system/wm/hyprland/hyprland.nix"
+    (import "${self}/modules/system/wm/hyprland.nix" (
+      args
+      // {
+        withPlugins = true;
+        hyprbars = true;
+        hyprexpo = true;
+        hyprwinwrap = true;
+        hypr-dynamic-cursors = true;
+        hyprsplit = true;
+        hyprgrass = false;
+      }
+    ))
     ## Managing idle & screen lock
     "${self}/system/wm/hyprland/hyprlock-hypridle.nix"
+
+    # Fonts
+    "${self}/modules/system/font/apple-fonts.nix"
+    "${self}/modules/system/font/fonts.nix"
+
+    # Theming
+    "${self}/modules/system/theming/noto-emoji-plus.nix"
+    "${self}/modules/system/theming/stylix.nix"
 
     # Services
     "${self}/system/services/tuigreet.nix"
@@ -53,10 +106,21 @@ in
     "${self}/system/programs/hakuneko.nix"
     "${self}/system/programs/screenshots.nix"
     "${self}/system/programs/ydotool.nix"
+    "${self}/modules/system/programs/equibop.nix" # Discord client
+    "${self}/modules/system/programs/github-desktop.nix"
+    "${self}/modules/system/programs/nautilus.nix"
+    "${self}/modules/system/programs/nwg-displays.nix"
+    "${self}/modules/system/programs/walker.nix"
 
-    # Fonts
-    "${self}/modules/system/font/apple-fonts.nix"
-    "${self}/modules/system/font/fonts.nix"
+    # Games
+    "${self}/modules/system/gaming/gamemode.nix"
+    "${self}/modules/system/gaming/gamescope.nix"
+    "${self}/modules/system/gaming/no-gamepad-touchpad-mouse.nix"
+    "${self}/modules/system/gaming/steam.nix"
+
+    # Dev
+    "${self}/modules/system/dev/jdk"
+    "${self}/modules/system/dev/adb.nix"
 
     # Misc
     "${self}/modules/system/misc/battery.nix"
@@ -83,27 +147,78 @@ in
 
   # Apps
   environment.systemPackages = with pkgs; [
-    tealdeer # tldr
-    nix-tree # Tree view for nix packages
+    # Social
+    telegram-desktop
+    whatsapp-for-linux
+    teams-for-linux
+    teamspeak6-client
+
+    # Gaming
+    heroic # Epic Games launcher
+    prismlauncher # Minecraft launcher
+    blockbench # Minecraft models tool
+    mcpelauncher-ui-qt # Minecraft Bedrock launcher
+    space-cadet-pinball # Good Old Pinball
+    dualsensectl
+
+    # Media
+    loupe # image viewer
+    obs-studio # video recorder
+    qbittorrent # torrents
+    stremio # video streaming
+    youtube-music
+
     # Dev
+    ## Java
+    (small.jetbrains.idea-community-bin.overrideAttrs (attrs: {
+      forceWayland = true;
+    }))
+    ## C#
+    (small.jetbrains.rider.overrideAttrs (attrs: {
+      forceWayland = true;
+    }))
+    mono
+    msbuild
+    ## Android
+    android-studio
+    ## Misc
     filezilla
     postman
-    obsidian
+    obsidian # Note taking
+
+    # Archives handling
+    xarchiver
+    p7zip
+    unrar
+
     # Misc
+    gnome-clocks # Clocks & Alarms
+    mission-center # Windows-like process manager
+    resources # Process manager
+    qdirstat # Space management
+    qalculate-qt # Calculator
+    libqalculate # calc for walker
+    libreoffice-qt # Office tools
+    tealdeer # tldr
+    nix-tree # Tree view for nix packages
     bitwarden-desktop
     syncthing
   ];
 
   # Setup users
-  users.users = builtins.mapAttrs (username: userNameValue: {
-    isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.${userSessionPassword username}.path;
-    description = userNameValue;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-  }) homeUserNames;
+  users.users =
+    (builtins.mapAttrs (username: userNameValue: {
+      isNormalUser = true;
+      hashedPasswordFile = config.sops.secrets.${userSessionPassword username}.path;
+      description = userNameValue;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+    }) homeUserNames)
+    // ({
+      root.hashedPasswordFile = "/persist/etc/rootPswd";
+    });
 
   sops.secrets = lib.genAttrs (builtins.map userSessionPassword homeUsers) (username: {
     neededForUsers = true;
@@ -207,6 +322,15 @@ in
     openFirewall = true;
   };
 
+  services.logind.settings.Login = {
+    # Don’t shutdown when power button is short-pressed
+    HandlePowerKey = "ignore";
+  };
+  systemd.settings.Manager = {
+    # Fast shutdown
+    DefaultTimeoutStopSec = "5s";
+  };
+
   # Shared network folder
   services.samba = {
     enable = true;
@@ -245,6 +369,25 @@ in
   #     autoStart = false;
   #   };
   # };
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "layer(capslock)";
+          };
+          "capslock:C-S-M" = { };
+        };
+      };
+    };
+  };
+  users.groups.keyd = { };
+  systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
+    "CAP_SETGID"
+  ];
 
   # Custom options (from modules)
   programs.adb = {
@@ -294,6 +437,21 @@ in
   networking.hostName = hostName;
   networking.networkmanager.enable = true;
 
+  # Time & internationalization properties
+  time.timeZone = sysTimezone;
+  i18n.defaultLocale = sysLocale;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = sysExtraLocale;
+    LC_IDENTIFICATION = sysExtraLocale;
+    LC_MEASUREMENT = sysExtraLocale;
+    LC_MONETARY = sysExtraLocale;
+    LC_NAME = sysExtraLocale;
+    LC_NUMERIC = sysExtraLocale;
+    LC_PAPER = sysExtraLocale;
+    LC_TELEPHONE = sysExtraLocale;
+    LC_TIME = sysExtraLocale;
+  };
+
   # Optimization settings and garbage collection automation
   nix = {
     settings = {
@@ -327,4 +485,6 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
+
+  ### HACKS ### // As in, remove once not needed
 }
