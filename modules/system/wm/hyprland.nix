@@ -13,6 +13,7 @@
   hypr-dynamic-cursors,
   hyprsplit,
   hyprgrass,
+  hyprscrolling,
   ...
 }:
 
@@ -92,6 +93,12 @@ in
         "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprgrass.conf"
       else
         ""
+    )
+    + (
+      if withPlugins && hyprscrolling then
+        "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprscrolling.conf"
+      else
+        ""
     );
     plugins =
       [ ]
@@ -113,6 +120,9 @@ in
           ]
         else
           [ ]
+      )
+      ++ (
+        if withPlugins && hyprscrolling then [ inputs'.hyprland-plugins.packages.hyprscrolling ] else [ ]
       );
   };
 

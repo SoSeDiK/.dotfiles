@@ -78,6 +78,7 @@ in
         hypr-dynamic-cursors = true;
         hyprsplit = true;
         hyprgrass = false;
+        hyprscrolling = true;
       }
     ))
     ## Managing idle & screen lock
