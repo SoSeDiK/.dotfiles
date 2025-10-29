@@ -10,7 +10,7 @@
 /****************************************************************************
  * Betterfox                                                                *
  * "Ad meliora"                                                             *
- * version: 142                                                             *
+ * version: 144                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
  ****************************************************************************/
 
@@ -18,31 +18,39 @@
  * SECTION: FASTFOX                                                         *
  ****************************************************************************/
 /** GENERAL ***/
-user_pref("content.notify.interval", 100000);
+user_pref("gfx.content.skia-font-cache-size", 32);
 
 /** GFX ***/
-user_pref("gfx.canvas.accelerated.cache-size", 512);
-user_pref("gfx.content.skia-font-cache-size", 20);
+user_pref("gfx.canvas.accelerated.cache-items", 32768);
+user_pref("gfx.canvas.accelerated.cache-size", 4096);
+user_pref("webgl.max-size", 16384);
 
 /** DISK CACHE ***/
 user_pref("browser.cache.disk.enable", false);
 
 /** MEMORY CACHE ***/
+user_pref("browser.cache.memory.capacity", 131072);
+user_pref("browser.cache.memory.max_entry_size", 20480);
 user_pref("browser.sessionhistory.max_total_viewers", 4);
+user_pref("browser.sessionstore.max_tabs_undo", 10);
 
 /** MEDIA CACHE ***/
-user_pref("media.memory_cache_max_size", 65536);
-user_pref("media.cache_readahead_limit", 7200);
-user_pref("media.cache_resume_threshold", 3600);
+user_pref("media.memory_cache_max_size", 262144);
+user_pref("media.memory_caches_combined_limit_kb", 1048576);
+user_pref("media.cache_readahead_limit", 600);
+user_pref("media.cache_resume_threshold", 300);
 
 /** IMAGE CACHE ***/
-user_pref("image.mem.decode_bytes_at_a_time", 32768);
+user_pref("image.cache.size", 10485760);
+user_pref("image.mem.decode_bytes_at_a_time", 65536);
 
 /** NETWORK ***/
 user_pref("network.http.max-connections", 1800);
 user_pref("network.http.max-persistent-connections-per-server", 10);
 user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
+user_pref("network.http.request.max-start-delay", 5);
 user_pref("network.http.pacing.requests.enabled", false);
+user_pref("network.dnsCacheEntries", 10000);
 user_pref("network.dnsCacheExpiration", 3600);
 user_pref("network.ssl_tokens_cache_capacity", 10240);
 
@@ -55,16 +63,12 @@ user_pref("browser.places.speculativeConnect.enabled", false);
 user_pref("network.prefetch-next", false);
 user_pref("network.predictor.enabled", false);
 
-/** EXPERIMENTAL ***/
-user_pref("layout.css.grid-template-masonry-value.enabled", true);
-
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
  ****************************************************************************/
 /** TRACKING PROTECTION ***/
 user_pref("browser.contentblocking.category", "strict");
 user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true);
-user_pref("privacy.trackingprotection.allow_list.convenience.enabled", true);
 user_pref("browser.download.start_downloads_in_tmp_dir", true);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.uitour.enabled", false);
@@ -72,7 +76,6 @@ user_pref("privacy.globalprivacycontrol.enabled", true);
 
 /** OCSP & CERTS / HPKP ***/
 user_pref("security.OCSP.enabled", 0);
-user_pref("security.pki.crlite_mode", 2);
 user_pref("security.csp.reporting.enabled", false);
 
 /** SSL / TLS ***/
@@ -85,8 +88,8 @@ user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
 user_pref("browser.sessionstore.interval", 60000);
 
 /** SHUTDOWN & SANITIZING ***/
-user_pref("browser.privatebrowsing.resetPBM.enabled", true);
 user_pref("privacy.history.custom", true);
+user_pref("browser.privatebrowsing.resetPBM.enabled", true);
 
 /** SEARCH / URL BAR ***/
 user_pref("browser.urlbar.trimHttps", true);
@@ -186,6 +189,9 @@ user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 /** AI ***/
 user_pref("browser.ml.enable", false);
 user_pref("browser.ml.chat.enabled", false);
+user_pref("browser.ml.chat.menu", false);
+user_pref("browser.tabs.groups.smart.enabled", false);
+user_pref("browser.ml.linkPreview.enabled", false);
 
 /** FULLSCREEN NOTICE ***/
 user_pref("full-screen-api.transition-duration.enter", "0 0");
@@ -201,9 +207,6 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
-
-/** POCKET ***/
-user_pref("extensions.pocket.enabled", false);
 
 /** DOWNLOADS ***/
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -463,6 +466,7 @@ user_pref("layers.acceleration.force-enabled", true);
 user_pref("gfx.webrender.all", true);
 
 // BETTERFOX Overrides
+// user_pref("browser.contentblocking.category", "standard");
 // Save downloads to default folder
 user_pref("browser.download.useDownloadDir", true);
 // Restore search engine suggestions
@@ -470,11 +474,6 @@ user_pref("browser.search.suggest.enabled", true);
 // Better touchpad scrolling
 user_pref("apz.gtk.pangesture.delta_mode", 2);
 user_pref("apz.gtk.pangesture.pixel_delta_mode_multiplier", 10);
-
-// Zen
-user_pref("app.normandy.first_run", false);
-user_pref("zen.urlbar.replace-newtab", false);
-user_pref("browser.tabs.groups.enabled", true);
 
 // UC.CSS.JS Overrides
 // Only slide right side of toolbar
@@ -492,3 +491,14 @@ user_pref("userChrome.toolbarSlider.excludeFlexibleSpace", true);
 user_pref("tabTooltipNavButtons.modifierKey", "shift");
 // Don't use right/left arrow keys to navigate between search engines
 user_pref("userChrome.urlbar.oneOffs.keyNavigation", false);
+
+// Zen
+user_pref("app.normandy.first_run", false);
+user_pref("zen.welcome-screen.seen", true);
+user_pref("zen.urlbar.replace-newtab", false); // Show new tab page
+user_pref("zen.urlbar.behavior", "normal"); // Disable floating urlbar
+user_pref("browser.tabs.groups.enabled", true);
+
+user_pref("zen.view.use-single-toolbar", false);
+user_pref("zen.view.compact.enable-at-startup", false);
+user_pref("zen.view.show-newtab-button-top", false);

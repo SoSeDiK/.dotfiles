@@ -54,5 +54,5 @@
     "editor.suggest.insertMode": "replace"
   },
   "qt-qml.qmlls.useQmlImportPathEnvVar": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": false
 }

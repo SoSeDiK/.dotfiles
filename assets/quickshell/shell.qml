@@ -124,6 +124,7 @@ ShellRoot {
             ["minecraft", ["󰍳", "Minecraft"]],
             ["io\.github\.qalculate\.qalculate-qt", ["󰪚", "Qalculate!"]],
             ["spotify", ["󰓇", "Spotify"]],
+            ["youtube_music", ["", "YT Music"]],
             ["com\.stremio\.stremio", ["󱖑", "Stremio"]],
             ["mpv", ["", "mpv"]],
             ["ark", ["", "Ark"]],

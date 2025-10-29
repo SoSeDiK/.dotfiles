@@ -59,15 +59,15 @@ in
   };
 
   # Copy patched GPU ROM
-  systemd.services.libvirtd = {
-    preStart = ''
-      mkdir -p /var/lib/libvirt/vgabios
-      ln -sf ${flakeDir}/assets/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
+  # systemd.services.libvirtd = {
+  #   preStart = ''
+  #     mkdir -p /var/lib/libvirt/vgabios
+  #     ln -sf ${flakeDir}/assets/vfio/patched.rom /var/lib/libvirt/vgabios/patched.rom
 
-      # Workaround "missing" modules.alias
-      ln -sf /run/booted-system/kernel-modules/lib/modules /lib
-    '';
-  };
+  #     # Workaround "missing" modules.alias
+  #     ln -sf /run/booted-system/kernel-modules/lib/modules /lib
+  #   '';
+  # };
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;

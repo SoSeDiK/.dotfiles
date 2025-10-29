@@ -292,16 +292,16 @@ in
     enable = true;
     openDefaultPorts = true;
     user = homeUser;
+    guiPasswordFile = config.sops.secrets."syncthing/gui-password".path;
     key = config.sops.secrets."syncthing/key.pem".path;
     cert = config.sops.secrets."syncthing/certificate.pem".path;
     settings = {
-      gui = {
-        user = homeUser;
-        password = config.sops.secrets."syncthing/gui-password";
-      };
       folders = {
         "/home/${homeUser}/Documents/Notes" = {
           id = "notes";
+        };
+        "/home/${homeUser}/Data/Share/Music" = {
+          id = "music";
         };
       };
       devices = {

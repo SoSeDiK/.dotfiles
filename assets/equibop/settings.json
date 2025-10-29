@@ -422,7 +422,7 @@
             "enabled": false
         },
         "RevealAllSpoilers": {
-            "enabled": false
+            "enabled": true
         },
         "ReverseImageSearch": {
             "enabled": false
@@ -480,10 +480,11 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 720374890472931328, 685713995059167312",
+            "disabledLocations": "565169345110605833, 720374890472931328, 685713995059167312, 585089857374781450, 1431751619778711612",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
-            "chatIconRightClickAction": "global"
+            "chatIconRightClickAction": "global",
+            "chatContextMenu": true
         },
         "SortFriends": {
             "enabled": false
@@ -897,7 +898,8 @@
             "ignoreMutedChannels": false,
             "cacheLimit": 1000,
             "saveImages": false,
-            "messageLimit": 200
+            "messageLimit": 200,
+            "hideMessageFromMessageLoggers": false
         },
         "MessageTranslate": {
             "enabled": false
@@ -1238,6 +1240,13 @@
         },
         "KeyboardNavigation": {
             "enabled": false
+        },
+        "AutoZipper": {
+            "enabled": false
+        },
+        "arRPCBun": {
+            "enabled": true,
+            "oldVerNotice": true
         }
     },
     "notifications": {
@@ -1251,7 +1260,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1761155564404
+        "settingsSyncVersion": 1761673227092
     },
     "ignoreResetWarning": false,
     "userCssVars": {}
