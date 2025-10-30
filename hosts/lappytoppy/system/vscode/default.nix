@@ -21,6 +21,7 @@
     package = pkgs.vscodium-fhs;
     extensions =
       let
+        # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/refs/heads/master/data/cache/vscode-marketplace-latest.json
         ext = pkgs.vscode-marketplace-release;
       in
       with pkgs.vscode-extensions;
@@ -42,6 +43,9 @@
         # Nix
         jnoortheen.nix-ide
         arrterian.nix-env-selector
+
+        # TOML
+        ext.tamasfe.even-better-toml
 
         # QT
         ext.theqtcompany.qt-core

@@ -135,8 +135,7 @@
 
     grim-hyprland.url = "github:eriedaberrie/grim-hyprland";
 
-    # UI shells
-    ags.url = "github:aylur/ags";
+    # UI shell
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";

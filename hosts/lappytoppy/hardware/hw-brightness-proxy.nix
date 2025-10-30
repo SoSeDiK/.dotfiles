@@ -35,6 +35,7 @@ in
             };
             serviceConfig = {
               Type = "oneshot";
+              StartLimitBurst = 1000;
               ExecStart = "${pkgs.writeShellScript serviceName ''
                 if [ ! -f "${sourcePath}" ] || [ ! -f "${targetPath}" ]; then
                     exit 0

@@ -10,6 +10,6 @@
     terminal = "kitty";
   };
 
-  # Quick file preview
+  # Quick file preview (pressing Space)
   services.gnome.sushi.enable = true;
 }

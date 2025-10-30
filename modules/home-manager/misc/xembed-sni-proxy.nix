@@ -3,7 +3,7 @@
 let
   # Only pull xembed-sni-proxy from plasma-workspace
   # Converts legacy xembed tray icons to SNI onces, required for WINE apps (e.g., Blish HUD, Wallpaper Engine)
-  xembed-sni-proxy = pkgs.runCommandNoCC "xembed-sni-proxy" { } ''
+  xembed-sni-proxy = pkgs.runCommand "xembed-sni-proxy" { } ''
     mkdir -p $out/bin
     ln -s ${pkgs.kdePackages.plasma-workspace}/bin/xembedsniproxy $out/bin
   '';

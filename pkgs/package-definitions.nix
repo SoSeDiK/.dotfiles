@@ -4,6 +4,7 @@
   perSystem =
     { pkgs, ... }:
     {
+      packages.syngestures = pkgs.callPackage ./syngestures { };
       packages.stremio = pkgs.callPackage ./stremio { };
       packages.github-desktop-plus = pkgs.callPackage ./github-desktop-plus { };
       packages.noto-emoji-plus = pkgs.callPackage ./fonts/rkbdi-noto-emoji-plus { };

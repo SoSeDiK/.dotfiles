@@ -61,6 +61,7 @@ in
     inputs.nur.modules.nixos.default
 
     ./system/file-ext.nix # File associations
+    ./system/syngestures
     ./system/vscode
 
     # Secrets
@@ -109,8 +110,10 @@ in
     "${self}/system/programs/ydotool.nix"
     "${self}/modules/system/programs/equibop.nix" # Discord client
     "${self}/modules/system/programs/github-desktop.nix"
+    # "${self}/modules/system/programs/kitty.nix" # using hm + stylix for now
     "${self}/modules/system/programs/nautilus.nix"
     "${self}/modules/system/programs/nwg-displays.nix"
+    "${self}/modules/system/programs/swayosd.nix"
     "${self}/modules/system/programs/walker.nix"
 
     # Games
@@ -150,7 +153,7 @@ in
   environment.systemPackages = with pkgs; [
     # Social
     telegram-desktop
-    whatsapp-for-linux
+    wasistlos # WhatsApp
     teams-for-linux
     teamspeak6-client
 
@@ -215,6 +218,8 @@ in
       extraGroups = [
         "networkmanager"
         "wheel"
+        "input" # syngesture - trackpad access
+        "video" # swayosd - brightness controls
       ];
     }) homeUserNames)
     // ({

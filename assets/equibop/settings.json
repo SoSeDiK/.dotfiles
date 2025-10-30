@@ -480,7 +480,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 720374890472931328, 685713995059167312, 585089857374781450, 1431751619778711612",
+            "disabledLocations": "565169345110605833, 720374890472931328, 685713995059167312, 585089857374781450, 1431751619778711612, 685683819608670209",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -888,7 +888,7 @@
             "cacheMessagesFromServers": false,
             "whitelistedIds": "",
             "ignoreBots": false,
-            "ignoreSelf": false,
+            "ignoreSelf": true,
             "ignoreWebhooks": false,
             "alwaysLogDirectMessages": true,
             "alwaysLogCurrentChannel": true,
@@ -897,9 +897,16 @@
             "ignoreMutedCategories": false,
             "ignoreMutedChannels": false,
             "cacheLimit": 1000,
-            "saveImages": false,
+            "saveImages": true,
             "messageLimit": 200,
-            "hideMessageFromMessageLoggers": false
+            "hideMessageFromMessageLoggers": false,
+            "saveMessages": true,
+            "sortNewest": true,
+            "ShowWhereMessageIsFrom": false,
+            "messagesToDisplayAtOnceInLogs": 100,
+            "hideMessageFromMessageLoggersDeletedMessage": "redacted eh",
+            "attachmentSizeLimitInMegabytes": 12,
+            "attachmentFileExtensions": "png,jpg,jpeg,gif,webp,mp4,webm,mp3,ogg,wav"
         },
         "MessageTranslate": {
             "enabled": false
@@ -1247,6 +1254,12 @@
         "arRPCBun": {
             "enabled": true,
             "oldVerNotice": true
+        },
+        "Boo": {
+            "enabled": false
+        },
+        "SongLink": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1260,7 +1273,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1761673227092
+        "settingsSyncVersion": 1762037079716
     },
     "ignoreResetWarning": false,
     "userCssVars": {}
