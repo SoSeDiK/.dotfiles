@@ -14,10 +14,10 @@ rm -f ~/.local/share/applications/mimeapps.list.hmbackup
 rm -f ~/.config/handlr/handlr.toml.hmbackup
 rm -f ~/.config/cava/config.hmbackup
 rm -f ~/.config/user-dirs.dirs.hmbackup
-rm -f ~/.config/fastfetch/config.jsonc.hmbackup
 rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 
 # Rebuild without adding a boot entry
-nixos-rebuild --sudo test --flake .#$(hostname) --show-trace
+# nixos-rebuild --sudo test --flake .#$(hostname) --show-trace
+nh os test -- --show-trace
 
 popd

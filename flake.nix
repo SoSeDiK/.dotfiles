@@ -141,8 +141,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Launcher
+    # Launchers
     walker.url = "github:abenz1267/walker";
+    hexecute.url = "github:ThatOtherAndrew/Hexecute";
 
     # Deduplicators (other inputs use these)
     flake-utils.url = "github:numtide/flake-utils";

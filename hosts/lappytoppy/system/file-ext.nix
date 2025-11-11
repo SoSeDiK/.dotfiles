@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   homeUsers,
@@ -21,6 +22,7 @@ let
   linksHandler = "handlro.desktop"; # http/https links are handled via handlr for extra customizability
 in
 {
+  # users.defaultUserShell = lib.mkIf config.programs.zsh.enable pkgs.zsh;
   users.defaultUserShell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [

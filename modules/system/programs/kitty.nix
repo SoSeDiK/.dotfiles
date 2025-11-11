@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  flakeDir,
   homeUsers,
   ...
 }:
@@ -13,6 +14,10 @@
         fish.enable = lib.mkIf config.programs.fish.enable true;
         zsh.enable = lib.mkIf config.programs.zsh.enable true;
       };
+    };
+
+    files = {
+      ".config/kitty/kitty.conf".source = "${flakeDir}/assets/kitty/kitty.conf";
     };
   });
 }

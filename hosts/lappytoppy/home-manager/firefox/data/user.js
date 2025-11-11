@@ -500,5 +500,5 @@ user_pref("zen.urlbar.behavior", "normal"); // Disable floating urlbar
 user_pref("browser.tabs.groups.enabled", true);
 
 user_pref("zen.view.use-single-toolbar", false);
-user_pref("zen.view.compact.enable-at-startup", false);
+user_pref("zen.view.compact.enable-at-startup", true);
 user_pref("zen.view.show-newtab-button-top", false);

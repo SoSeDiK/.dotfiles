@@ -1,0 +1,22 @@
+{
+  "name": "{{scheme-id}}",
+  "displayName": "{{scheme-name}}",
+  "version": "0.0.0",
+  "publisher": "vscode",
+  "description": "Dummy extension for custom dynamic theming.",
+  "categories": [
+    "Themes"
+  ],
+  "engines": {
+    "vscode": "^1.43.0"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Dynamic: {{scheme-name}}",
+        "uiTheme": "vs",
+        "path": "./themes/theme.json"
+      }
+    ]
+  }
+}

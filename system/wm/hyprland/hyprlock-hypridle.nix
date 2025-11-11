@@ -1,6 +1,7 @@
 {
   inputs',
   lib,
+  hostName,
   homeUsers,
   flakeDir,
   ...
@@ -20,8 +21,8 @@
 
   hjem.users = lib.genAttrs homeUsers (username: {
     files = {
-      ".config/hypr/hypridle.conf".source = "${flakeDir}/assets/hypr/hypridle.conf";
-      ".config/hypr/hyprlock.conf".source = "${flakeDir}/assets/hypr/hyprlock.conf";
+      ".config/hypr/hypridle.conf".source = "${flakeDir}/hosts/${hostName}/assets/hypr/hypridle.conf";
+      ".config/hypr/hyprlock.conf".source = "${flakeDir}/hosts/${hostName}/assets/hypr/hyprlock.conf";
       ".config/hypr/hyprlock_background.png".source = "${flakeDir}/assets/login_wallpaper.png";
     };
   });

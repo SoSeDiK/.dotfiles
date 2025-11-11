@@ -2,6 +2,7 @@ args@{
   config,
   lib,
   inputs,
+  inputs',
   self,
   self',
   pkgs,
@@ -31,16 +32,12 @@ let
   });
   android-studio = pkgs.symlinkJoin {
     name = "android-studio-emulator-fix";
-    paths = [
-      (pkgs.small.android-studio.overrideAttrs (attrs: {
-        forceWayland = true;
-      }))
-    ];
+    paths = [ pkgs.small.android-studio ];
     postBuild = ''
       actual_file=$(readlink -f "$out/share/applications/android-studio.desktop")
       rm "$out/share/applications" # Is a symlink
       mkdir "$out/share/applications"
-      sed 's|^Exec=.*|Exec=env -u QT_QPA_PLATFORM android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
+      sed 's|^Exec=.*|Exec=QT_QPA_PLATFORM=xcb nvidia-offload android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
     '';
   };
   stremio = self'.packages.stremio;
@@ -110,7 +107,7 @@ in
     "${self}/system/programs/ydotool.nix"
     "${self}/modules/system/programs/equibop.nix" # Discord client
     "${self}/modules/system/programs/github-desktop.nix"
-    # "${self}/modules/system/programs/kitty.nix" # using hm + stylix for now
+    "${self}/modules/system/programs/kitty.nix" # using hm + stylix for now
     "${self}/modules/system/programs/nautilus.nix"
     "${self}/modules/system/programs/nwg-displays.nix"
     "${self}/modules/system/programs/swayosd.nix"
@@ -131,6 +128,7 @@ in
     "${self}/modules/system/misc/bluetooth.nix"
     "${self}/modules/system/misc/cloudflare-dns.nix"
     "${self}/modules/system/misc/dbus.nix"
+    "${self}/modules/system/misc/fastfetch.nix"
     "${self}/modules/system/misc/keyring.nix"
     "${self}/modules/system/misc/lenovo-legion.nix"
     "${self}/modules/system/misc/ntsync.nix"
@@ -146,11 +144,15 @@ in
     "${self}/modules/system/core/plymoth.nix"
 
     # Shell
+    "${self}/modules/system/shell/shell-aliases.nix"
+    "${self}/modules/system/shell/bash.nix"
     "${self}/modules/system/shell/zsh.nix"
   ];
 
   # Apps
   environment.systemPackages = with pkgs; [
+    inputs'.hexecute.packages.default
+
     # Social
     telegram-desktop
     wasistlos # WhatsApp
@@ -166,6 +168,7 @@ in
     dualsensectl
 
     # Media
+    gimp
     loupe # image viewer
     obs-studio # video recorder
     qbittorrent # torrents
@@ -185,6 +188,7 @@ in
     msbuild
     ## Android
     android-studio
+    scrcpy # View/Control phone screen (also broadcasts audio!)
     ## Misc
     filezilla
     postman
@@ -196,6 +200,7 @@ in
     unrar
 
     # Misc
+    smile # emoji picker
     gnome-clocks # Clocks & Alarms
     mission-center # Windows-like process manager
     resources # Process manager
@@ -203,10 +208,19 @@ in
     qalculate-qt # Calculator
     libqalculate # calc for walker
     libreoffice-qt # Office tools
-    tealdeer # tldr
-    nix-tree # Tree view for nix packages
+    kdePackages.kdeconnect-kde # Communication with phone
     bitwarden-desktop
     syncthing
+    caffeine-ng # Idle inhibit
+
+    # CLIs
+    ffmpeg
+    eza # better ls
+    tealdeer # tldr
+    nix-tree # Tree view for nix packages
+    playerctl # Control media player
+    cmatrix # Matrix in terminal
+    lolcat # Because rainbow is cool
   ];
 
   # Setup users

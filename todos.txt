@@ -22,3 +22,9 @@
 - https://github.com/nix-community/home-manager/issues/2562
   # zsh auto completions do not work for home-manager apps
   - Manually importing auto completions path
+
+# Why home-manager?
+- Firefox profiles
+- VS Code mutable extensions
+- stylix is neat
+- Useful options (mangohud, sni proxy, etc.)

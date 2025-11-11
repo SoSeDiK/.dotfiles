@@ -6,7 +6,6 @@
     "*": true
   },
   "window.titleBarStyle": "custom",
-  "workbench.colorTheme": "One Dark Pro Darker",
   "cSpell.language": "en,uk,ru",
   "editor.fontFamily": "'Fira Code', 'Symbols Nerd Font Mono'",
   "editor.largeFileOptimizations": false,
@@ -15,7 +14,11 @@
   "nix.serverPath": "nil",
   "nix.serverSettings": {
     "nil": {
-      "formatting": { "command": ["nixfmt"] }
+      "formatting": {
+        "command": [
+          "nixfmt"
+        ]
+      }
     }
   },
   "editor.mouseWheelZoom": true,
@@ -54,5 +57,6 @@
     "editor.suggest.insertMode": "replace"
   },
   "qt-qml.qmlls.useQmlImportPathEnvVar": true,
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "workbench.colorTheme": "One Dark Pro"
 }

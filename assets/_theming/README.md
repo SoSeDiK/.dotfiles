@@ -1,0 +1,1 @@
+https://tinted-theming.github.io/tinted-gallery/

@@ -70,8 +70,6 @@ let
     bitwarden
     # YouTube
     addons.youtube_auto_like
-    # Tabs management
-    # profile-switcher # in-browser profile switching
   ];
   tabsAddons = with pkgs.nur.repos.rycee.firefox-addons; [
     # Tabs management
@@ -108,7 +106,6 @@ in
     };
 
     nativeMessagingHosts = with pkgs; [
-      self'.packages.firefox-profile-switcher-connector
       firefoxpwa
     ];
 

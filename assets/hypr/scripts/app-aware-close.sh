@@ -1,6 +1,6 @@
-ACTIVE_WINDOW=$(hyprctl activewindow -j | jq -r ".class")
+app_tags=$(hyprctl activewindow -j | jq -r ".tags")
 
-if [[ $ACTIVE_WINDOW == firefox-nightly-private ]]; then
+if [[ "$app_tags" == *"firefox-based-browser"* ]]; then
     hyprctl -q dispatch sendshortcut CTRL, q,
 else
     # closes (not kills) the active window

@@ -5,8 +5,7 @@ let
 in
 {
   # Starship Prompt
-  programs.starship.enable = true;
+  # programs.starship.enable = true;
 
-  xdg.configFile."starship.toml".source =
-    mkOutOfStoreSymlink "${flakeDir}/assets/programs/starship.toml";
+  xdg.configFile."starship.toml".source = mkOutOfStoreSymlink "${flakeDir}/assets/programs/starship.toml";
 }

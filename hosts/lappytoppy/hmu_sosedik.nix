@@ -13,12 +13,11 @@ in
 {
   imports = [
     ./home-manager/firefox
+    ./home-manager/vscode
     ./home-manager/zen
 
     # Terminal
-    "${self}/home/terminal/clis/fastfetch.nix"
     "${self}/home/terminal/programs/cava.nix"
-    "${self}/home/terminal/shell/shell-aliases.nix"
 
     # Programs
     "${self}/home/programs/mpv"
@@ -44,7 +43,7 @@ in
     # Shell
     "${self}/modules/home-manager/shell/shell-aliases.nix"
     "${self}/modules/home-manager/shell/starship.nix"
-    "${self}/modules/home-manager/shell/zsh.nix"
+    # "${self}/modules/home-manager/shell/zsh.nix"
 
     # Theming
     "${self}/modules/home-manager/theming/gtk-qt.nix"
@@ -54,17 +53,13 @@ in
   # User apps
   home.packages = with pkgs; [
     nix-inspect
-    hyprsunset
     hyprfreeze
     rofi # App/things launcher
     (bottles.override { removeWarningPopup = true; }) # WINE helper
     helvum # Audio
-    scrcpy # View/Control phone screen (also broadcasts audio!)
-    kdePackages.kdeconnect-kde
     nurl # fetch sha256 for packages
 
     direnv
-    gimp
 
     # Utils
     fsearch # fast search
@@ -76,23 +71,12 @@ in
 
     # Misc
     linux-wallpaperengine
-    smile # emoji picker
     pantheon.elementary-iconbrowser # Browsing GTK icons
-    playerctl # Control media player
     pamixer # Volume control
     wl-mirror # App/screen mirroring
-
-    # Fun CLIs
-    cmatrix # Matrix in terminal
-    lolcat # Because rainbow is cool
-    sl # Steam Locomotive
-    caffeine-ng # Idle inhibit
   ];
 
-  programs.kitty.enable = true;
-
-  # Better cd command
-  programs.zoxide.enable = true;
+  # programs.kitty.enable = true;
 
   # Equalizer
   services.easyeffects.enable = true;
@@ -100,6 +84,7 @@ in
   # Setup git
   programs.git = {
     enable = true;
+    package = pkgs.gitFull;
     lfs.enable = true;
     # See https://git-scm.com/docs/git-config
     settings = {
@@ -107,6 +92,7 @@ in
         name = gitUsername;
         email = gitEmail;
       };
+      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
       init = {
         # Prevent complaining on init
         defaultBranch = "master";

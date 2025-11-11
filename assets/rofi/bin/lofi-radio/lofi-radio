@@ -47,17 +47,17 @@ main() {
       ;;
     2)
       notification "Chillhop Radio" "chillhop-radio.jpg"
-      mpv "http://stream.zeno.fm/fyn8eh3h5f8uv"
+      mpv "https://stream.zeno.fm/fyn8eh3h5f8uv"
       return
       ;;
     3)
       notification "Box Lofi" "box-lofi.jpg"
-      mpv "http://stream.zeno.fm/f3wvbbqmdg8uv"
+      mpv "https://stream.zeno.fm/f3wvbbqmdg8uv"
       return
       ;;
     4)
       notification "The Bootleg Boy" "the-bootleg-boy.jpg"
-      mpv "http://stream.zeno.fm/0r0xa792kwzuv"
+      mpv "https://stream.zeno.fm/0r0xa792kwzuv"
       return
       ;;
     5)

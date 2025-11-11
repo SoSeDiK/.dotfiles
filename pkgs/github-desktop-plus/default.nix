@@ -6,7 +6,7 @@
   buildPackages,
   gnome-keyring,
   libsecret,
-  git,
+  gitFull,
   curlWithGnuTls,
   nss,
   nspr,
@@ -48,7 +48,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     xorg.libXdamage
     xorg.libX11
     libsecret
-    git
+    gitFull
     curlWithGnuTls
     nss
     nspr
@@ -79,7 +79,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     ln -sf $out/opt/${pname} $out/bin/${pname}
 
     rm -rf $out/opt/resources/app/git
-    ln -s ${git} $out/opt/resources/app/git
+    ln -s ${gitFull} $out/opt/resources/app/git
 
     runHook postInstall
   '';

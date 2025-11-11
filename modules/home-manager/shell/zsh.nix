@@ -10,11 +10,6 @@
       # Print system info
       neofetch
 
-      # Setup history
-      HISTFILE=~/.zsh_history
-      HISTSIZE=1000
-      SAVEHIST=$HISTSIZE
-
       # If a pattern for filename generation has no matches, print an error
       setopt nomatch
 

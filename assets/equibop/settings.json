@@ -250,7 +250,7 @@
         "ImageZoom": {
             "enabled": true,
             "size": 500.9927797833935,
-            "zoom": 2.8000000000000034,
+            "zoom": 7.600000000000001,
             "nearestNeighbour": true,
             "square": true,
             "saveZoomValues": true,
@@ -313,7 +313,7 @@
             "enabled": false
         },
         "NewGuildSettings": {
-            "enabled": false
+            "enabled": true
         },
         "NoBlockedMessages": {
             "enabled": false
@@ -480,7 +480,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 720374890472931328, 685713995059167312, 585089857374781450, 1431751619778711612, 685683819608670209",
+            "disabledLocations": "565169345110605833, 685713995059167312, 585089857374781450, 1431751619778711612, 685718143116902406, 720374890472931328",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -652,7 +652,50 @@
             "enabled": false
         },
         "ChannelTabs": {
-            "enabled": false
+            "enabled": true,
+            "tabBarPosition": "top",
+            "showBookmarkBar": false,
+            "widerTabsAndBookmarks": false,
+            "tabWidthScale": 100,
+            "enableNumberKeySwitching": true,
+            "numberKeySwitchCount": 3,
+            "enableCloseTabShortcut": true,
+            "enableNewTabShortcut": true,
+            "enableTabCycleShortcut": true,
+            "closeTabKeybind": "CTRL+W",
+            "newTabKeybind": "CTRL+T",
+            "cycleTabForwardKeybind": "CTRL+TAB",
+            "cycleTabBackwardKeybind": "CTRL+SHIFT+TAB",
+            "animationHover": true,
+            "animationSelection": true,
+            "animationDragDrop": true,
+            "animationEnterExit": true,
+            "animationIconPop": true,
+            "animationCloseRotation": true,
+            "animationPlusPulse": true,
+            "animationMentionGlow": true,
+            "animationCompactExpand": true,
+            "animationSelectedBorder": true,
+            "animationSelectedBackground": true,
+            "animationTabShadows": true,
+            "animationTabPositioning": true,
+            "animationResizeHandle": true,
+            "animationQuestsActive": true,
+            "compactAutoExpandSelected": true,
+            "compactAutoExpandOnHover": true,
+            "bookmarksIndependentFromTabs": true,
+            "switchToExistingTab": false,
+            "createNewTabIfNotExists": false,
+            "onStartup": "nothing",
+            "oneTabPerServer": false,
+            "maxOpenTabs": 0,
+            "openNewTabsInCompactMode": false,
+            "renderAllTabs": false,
+            "showTabNumbers": false,
+            "tabNumberPosition": "left",
+            "showResizeHandle": true,
+            "noPomeloNames": false,
+            "showStatusIndicators": true
         },
         "CharacterCounter": {
             "enabled": false
@@ -892,7 +935,7 @@
             "ignoreWebhooks": false,
             "alwaysLogDirectMessages": true,
             "alwaysLogCurrentChannel": true,
-            "blacklistedIds": "",
+            "blacklistedIds": "685718143116902406",
             "ignoreMutedGuilds": false,
             "ignoreMutedCategories": false,
             "ignoreMutedChannels": false,
@@ -1060,7 +1103,7 @@
             "enabled": false
         },
         "ServerSearch": {
-            "enabled": false
+            "enabled": true
         },
         "ShowBadgesInChat": {
             "enabled": false
@@ -1260,6 +1303,18 @@
         },
         "SongLink": {
             "enabled": false
+        },
+        "CleanUserArea": {
+            "enabled": false
+        },
+        "UniversalMention": {
+            "enabled": false
+        },
+        "Snowfall": {
+            "enabled": false
+        },
+        "ContextMenuAPI": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -1273,7 +1328,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1762037079716
+        "settingsSyncVersion": 1762778858185
     },
     "ignoreResetWarning": false,
     "userCssVars": {}

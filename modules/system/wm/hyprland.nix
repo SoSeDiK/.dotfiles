@@ -145,7 +145,7 @@ in
 
         # Toolkit Backend Variables
         export GDK_BACKEND=wayland,x11,*
-        export QT_QPA_PLATFORM=wayland;xcb
+        export QT_QPA_PLATFORM="wayland;xcb"
         export SDL_VIDEODRIVER=wayland
         export CLUTTER_BACKEND=wayland
       '';

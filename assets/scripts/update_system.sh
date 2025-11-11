@@ -14,7 +14,6 @@ rm -f ~/.local/share/applications/mimeapps.list.hmbackup
 rm -f ~/.config/handlr/handlr.toml.hmbackup
 rm -f ~/.config/cava/config.hmbackup
 rm -f ~/.config/user-dirs.dirs.hmbackup
-rm -f ~/.config/fastfetch/config.jsonc.hmbackup
 rm -f ~/.mozilla/firefox/profiles.ini.hmbackup
 
 # The usual way
@@ -27,6 +26,9 @@ case "$1" in
     ;;
   --boot|-b)
     nh os boot -- --show-trace
+    ;;
+  --test|-t)
+    nh os test -- --show-trace
     ;;
   *)
     nh os switch -- --show-trace

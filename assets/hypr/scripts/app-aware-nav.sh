@@ -3,7 +3,6 @@
 direction="$1"
 
 # Exit if invalid argument
-wl-copy "$direction"
 [[ "$direction" != "right" && "$direction" != "left" ]] && exit 1
 
 # Get the active window info
