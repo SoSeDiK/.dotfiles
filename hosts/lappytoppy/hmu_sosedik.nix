@@ -12,14 +12,14 @@ let
 in
 {
   imports = [
-    ./home-manager/firefox
+    # ./home-manager/firefox
     ./home-manager/vscode
     ./home-manager/zen
 
     # Terminal
     "${self}/home/terminal/programs/cava.nix"
 
-    # Programs
+    # # Programs
     "${self}/home/programs/mpv"
     # "${self}/home/programs/ags.nix" # Task bar and many other things
     "${self}/home/programs/clipboard.nix"
@@ -41,11 +41,11 @@ in
     "${self}/modules/home-manager/service/dunst.nix"
 
     # Shell
-    "${self}/modules/home-manager/shell/shell-aliases.nix"
-    "${self}/modules/home-manager/shell/starship.nix"
+    # "${self}/modules/home-manager/shell/shell-aliases.nix"
+    # "${self}/modules/home-manager/shell/starship.nix"
     # "${self}/modules/home-manager/shell/zsh.nix"
 
-    # Theming
+    # # Theming
     "${self}/modules/home-manager/theming/gtk-qt.nix"
     "${self}/modules/home-manager/theming/stylix.nix"
   ];

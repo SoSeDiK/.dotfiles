@@ -8,6 +8,37 @@
     inputs.impermanence.nixosModules.impermanence
   ];
 
+  # Data to persist
+  environment.persistence."/persist" = {
+    hideMounts = true;
+
+    directories = [
+      # Network settings (e.g., Wi-Fi passwords)
+      "/etc/NetworkManager/system-connections"
+      # Lectured users
+      "/var/db/sudo"
+      # Secure boot keys
+      "/var/lib/sbctl"
+      # Bluetooth data
+      "/var/lib/bluetooth"
+      # Important NixOS thingies
+      "/var/lib/nixos"
+      # Core dumbs, in case of crashes
+      "/var/lib/systemd/coredump"
+      # Last user & last session
+      "/var/cache/tuigreet"
+      # Syncthing data
+      "/var/lib/syncthing/.config/syncthing"
+    ];
+
+    files = [
+      # Unique device id
+      "/etc/machine-id"
+      # Tailscale device id
+      "/var/lib/tailscale/tailscaled.state"
+    ];
+  };
+
   boot.initrd.systemd = {
     enable = true; # enables systemd support in stage1 - required for the below setup
     services.rollback = {
@@ -33,7 +64,7 @@
         btrfs subvolume list -o /mnt/root |
           cut -f9 -d' ' |
           while read subvolume; do
-            echo "deleting /$subvolume subvolume..."
+            echo "Deleting /$subvolume subvolume..."
             btrfs subvolume delete "/mnt/$subvolume"
           done &&
           echo "Deleting /root subvolume..." &&

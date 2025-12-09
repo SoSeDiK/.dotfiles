@@ -50,7 +50,7 @@ export const PowerOptionsMenu = (monitor: Gdk.Monitor) => {
         <PowerOption
           icon="󰍃"
           label="Logout"
-          handler={() => exec("hyprctl dispatch exit")}
+          handler={() => exec("loginctl terminate-user")}
         />
         <PowerOption
           icon=""

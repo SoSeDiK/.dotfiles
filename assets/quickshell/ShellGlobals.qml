@@ -47,7 +47,7 @@ Singleton {
     readonly property var actions: QtObject {
         readonly property var suspend: ["systemctl", "suspend"]
         readonly property var reboot: ["systemctl", "reboot"]
-        readonly property var logout: ["hyprctl", "dispatch exit"]
+        readonly property var logout: ["loginctl", "terminate-user"]
         readonly property var shutdown: ["systemctl", "poweroff"]
     }
 }

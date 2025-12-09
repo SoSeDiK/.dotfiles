@@ -83,8 +83,8 @@ fi
 # Apply alpha
 hyprctl setprop address:$window_address alpha $alpha lock
 if [ "$alpha_inactive" ]; then
-    hyprctl setprop address:$window_address alphainactive $alpha_inactive lock
+    hyprctl setprop address:$window_address alpha_inactive $alpha_inactive lock
 fi
 if [ "$alpha_fullscreen" ]; then
-    hyprctl setprop address:$window_address alphafullscreen $alpha_fullscreen lock
+    hyprctl setprop address:$window_address alpha_fullscreen $alpha_fullscreen lock
 fi

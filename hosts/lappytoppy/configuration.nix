@@ -40,7 +40,6 @@ let
       sed 's|^Exec=.*|Exec=QT_QPA_PLATFORM=xcb nvidia-offload android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
     '';
   };
-  stremio = self'.packages.stremio;
 
   # Helpers
   userSessionPassword = username: "users/${username}/session";
@@ -74,9 +73,9 @@ in
         hyprexpo = true;
         hyprwinwrap = true;
         hypr-dynamic-cursors = true;
-        hyprsplit = true;
+        hyprsplit = false;
         hyprgrass = false;
-        hyprscrolling = true;
+        hyprscrolling = false;
       }
     ))
     ## Managing idle & screen lock
@@ -97,7 +96,7 @@ in
     "${self}/system/programs/peripherals/openrazer.nix"
     "${self}/system/programs/virtualization/podman.nix"
     "${self}/system/programs/virtualization/virt-manager.nix"
-    # "${self}/system/programs/apollo.nix"
+    ## "${self}/system/programs/apollo.nix"
     "${self}/system/programs/brightness.nix"
     "${self}/system/programs/chromium.nix"
     "${self}/system/programs/cli-collection.nix"
@@ -172,7 +171,7 @@ in
     loupe # image viewer
     obs-studio # video recorder
     qbittorrent # torrents
-    stremio # video streaming
+    # stremio # video streaming
     youtube-music
 
     # Dev
@@ -207,7 +206,7 @@ in
     qdirstat # Space management
     qalculate-qt # Calculator
     libqalculate # calc for walker
-    libreoffice-qt # Office tools
+    onlyoffice-desktopeditors # Office tools
     kdePackages.kdeconnect-kde # Communication with phone
     bitwarden-desktop
     syncthing
@@ -263,37 +262,6 @@ in
     });
   };
 
-  # Impermanence
-  environment.persistence."/persist" = {
-    hideMounts = true;
-
-    directories = [
-      # Network settings (e.g., Wi-Fi passwords)
-      "/etc/NetworkManager/system-connections"
-      # Lectured users
-      "/var/db/sudo"
-      # Secure boot keys
-      "/var/lib/sbctl"
-      # Bluetooth data
-      "/var/lib/bluetooth"
-      # Important NixOS thingies
-      "/var/lib/nixos"
-      # Core dumbs, in case of crashes
-      "/var/lib/systemd/coredump"
-      # Last user & last session
-      "/var/cache/tuigreet"
-      # Syncthing data
-      "/var/lib/syncthing/.config/syncthing"
-    ];
-
-    files = [
-      # Unique device id
-      "/etc/machine-id"
-      # Tailscale device id
-      "/var/lib/tailscale/tailscaled.state"
-    ];
-  };
-
   # Use lix
   nix.package = pkgs.lixPackageSets.latest.lix;
 
@@ -336,16 +304,16 @@ in
   services.urserver.enable = true;
 
   # Enable self-hosted game streaming
-  services.sunshine = {
-    enable = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
+  # services.sunshine = {
+  #   enable = true;
+  #   capSysAdmin = true;
+  #   openFirewall = true;
+  # };
 
-  services.logind.settings.Login = {
-    # Don’t shutdown when power button is short-pressed
-    HandlePowerKey = "ignore";
-  };
+  # services.logind.settings.Login = {
+  #   # Don’t shutdown when power button is short-pressed
+  #   HandlePowerKey = "ignore";
+  # };
   systemd.settings.Manager = {
     # Fast shutdown
     DefaultTimeoutStopSec = "5s";
@@ -429,21 +397,6 @@ in
     enable = true;
     users = homeUsers;
   };
-
-  # Mount data disk
-  fileSystems."/home/${homeUser}/Data" = {
-    device = "/dev/sda2";
-    fsType = "ntfs-3g";
-    options = [
-      "rw"
-      "uid=1000"
-      "allow_other" # allow non-root access
-    ];
-  };
-
-  # Speedup rebuilds by having /tmp be a tmpfs (and reducing strain on hdd/ssd)
-  boot.tmp.useTmpfs = true;
-  boot.tmp.tmpfsSize = "50%";
 
   # https://wiki.archlinux.org/title/gaming#Increase_vm.max_map_count
   boot.kernel.sysctl = {

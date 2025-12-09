@@ -224,7 +224,8 @@
         },
         "GameActivityToggle": {
             "enabled": true,
-            "oldIcon": false
+            "oldIcon": false,
+            "location": "PANEL"
         },
         "GifPaste": {
             "enabled": false
@@ -382,9 +383,6 @@
         "PermissionsViewer": {
             "enabled": false
         },
-        "petpet": {
-            "enabled": false
-        },
         "PictureInPicture": {
             "enabled": false
         },
@@ -480,7 +478,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 685713995059167312, 585089857374781450, 1431751619778711612, 685718143116902406, 720374890472931328",
+            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 720374890472931328, 342814924310970398, 1233827370855694426, 823191668064911410",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -654,7 +652,7 @@
         "ChannelTabs": {
             "enabled": true,
             "tabBarPosition": "top",
-            "showBookmarkBar": false,
+            "showBookmarkBar": true,
             "widerTabsAndBookmarks": false,
             "tabWidthScale": 100,
             "enableNumberKeySwitching": true,
@@ -695,7 +693,9 @@
             "tabNumberPosition": "left",
             "showResizeHandle": true,
             "noPomeloNames": false,
-            "showStatusIndicators": true
+            "showStatusIndicators": true,
+            "bookmarkNotificationDot": true,
+            "newTabButtonBehavior": true
         },
         "CharacterCounter": {
             "enabled": false
@@ -1075,9 +1075,6 @@
         "RemixRevived": {
             "enabled": false
         },
-        "RepeatMessage": {
-            "enabled": false
-        },
         "ReplyPingControl": {
             "enabled": false
         },
@@ -1247,7 +1244,7 @@
             "enabled": false
         },
         "AudioPlayerAPI": {
-            "enabled": false
+            "enabled": true
         },
         "BadgeAPI": {
             "enabled": true
@@ -1298,9 +1295,6 @@
             "enabled": true,
             "oldVerNotice": true
         },
-        "Boo": {
-            "enabled": false
-        },
         "SongLink": {
             "enabled": false
         },
@@ -1315,6 +1309,36 @@
         },
         "ContextMenuAPI": {
             "enabled": true
+        },
+        "Ghosted": {
+            "enabled": true,
+            "exemptedChannels": "",
+            "ignoreBots": true,
+            "showDmIcons": true
+        },
+        "PetPet": {
+            "enabled": false
+        },
+        "RepeatMessages": {
+            "enabled": false
+        },
+        "HeaderBarAPI": {
+            "enabled": true
+        },
+        "BetterUserArea": {
+            "enabled": false
+        },
+        "ExitSounds": {
+            "enabled": false
+        },
+        "MessageNotifier": {
+            "enabled": false
+        },
+        "RichMagnetLinks": {
+            "enabled": false
+        },
+        "VoiceRejoin": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1328,8 +1352,12 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1762778858185
+        "settingsSyncVersion": 1764693124228
     },
     "ignoreResetWarning": false,
-    "userCssVars": {}
+    "userCssVars": {},
+    "uiElements": {
+        "chatBarButtons": {},
+        "messagePopoverButtons": {}
+    }
 }

@@ -2,6 +2,7 @@
   config,
   lib,
   modulesPath,
+  homeUser,
   ...
 }:
 
@@ -26,8 +27,37 @@
   ];
   boot.extraModulePackages = [ ];
 
+  # Speedup rebuilds by having /tmp be a tmpfs (and reducing strain on hdd/ssd)
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "50%";
+
+  # Boot
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/65AE-2549";
+    fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+  };
+
+  # Swap
+  swapDevices = [ { device = "/dev/disk/by-uuid/74eabf9c-a99d-4338-b0a4-15f313ec8d9b"; } ];
+
+  # Root as LUKS-encrypted btrfs with subvolumes
+  boot.initrd.systemd.enable = true; # For luks keyFileTimeout
+  boot.initrd.luks.devices = {
+    "enc" = {
+      device = "/dev/disk/by-uuid/80122acf-2c71-4a08-b95d-bcac5c62d7af";
+      keyFile = "/enc.lek:LABEL=JUNKYARD";
+      keyFileTimeout = 10;
+    };
+    "swap" = {
+      device = "/dev/disk/by-uuid/2bf1d33d-e835-474f-945b-d9e74f7e2b5f";
+      keyFile = "/enc.lek:LABEL=JUNKYARD";
+      keyFileTimeout = 10;
+    };
+  };
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/68095231-5349-46ca-8f3d-4d4b022ffb21";
+    device = "/dev/disk/by-uuid/a30e74d4-d41c-4e22-b534-3d016e095d96";
     fsType = "btrfs";
     options = [
       "subvol=root"
@@ -36,17 +66,8 @@
     ];
   };
 
-  boot.initrd.systemd.enable = true; # For luks keyFileTimeout
-  boot.initrd.luks.devices = {
-    "enc" = {
-      device = "/dev/disk/by-uuid/d0e18351-ed7c-481a-acba-eb927fa56077";
-      keyFile = "/enc.lek:LABEL=JUNKYARD";
-      keyFileTimeout = 5;
-    };
-  };
-
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/68095231-5349-46ca-8f3d-4d4b022ffb21";
+    device = "/dev/disk/by-uuid/a30e74d4-d41c-4e22-b534-3d016e095d96";
     fsType = "btrfs";
     options = [
       "subvol=home"
@@ -56,7 +77,7 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/68095231-5349-46ca-8f3d-4d4b022ffb21";
+    device = "/dev/disk/by-uuid/a30e74d4-d41c-4e22-b534-3d016e095d96";
     fsType = "btrfs";
     options = [
       "subvol=nix"
@@ -66,7 +87,7 @@
   };
 
   fileSystems."/persist" = {
-    device = "/dev/disk/by-uuid/68095231-5349-46ca-8f3d-4d4b022ffb21";
+    device = "/dev/disk/by-uuid/a30e74d4-d41c-4e22-b534-3d016e095d96";
     fsType = "btrfs";
     options = [
       "subvol=persist"
@@ -77,7 +98,7 @@
   };
 
   fileSystems."/var/log" = {
-    device = "/dev/disk/by-uuid/68095231-5349-46ca-8f3d-4d4b022ffb21";
+    device = "/dev/disk/by-uuid/a30e74d4-d41c-4e22-b534-3d016e095d96";
     fsType = "btrfs";
     options = [
       "subvol=log"
@@ -87,12 +108,16 @@
     neededForBoot = true;
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/03F3-3022";
-    fsType = "vfat";
+  # Mount data disk
+  fileSystems."/home/${homeUser}/Data" = {
+    device = "/dev/nvme1n1p5";
+    fsType = "ext4";
+    # options = [
+      # "rw"
+      # "uid=1000"
+      # "allow_other" # allow non-root access
+    # ];
   };
-
-  swapDevices = [ { device = "/dev/disk/by-uuid/06f5d670-0551-48be-87d0-8cf307759e75"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

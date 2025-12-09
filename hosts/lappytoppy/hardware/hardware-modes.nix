@@ -42,7 +42,7 @@
       "options nvidia "
       + lib.concatStringsSep " " [
         # Disable GSP firmware to un-break RTD3 # Does not work with open driver; and does not support the device it seems?
-        "NVreg_EnableGpuFirmware=0"
+        # "NVreg_EnableGpuFirmware=0"
         # Enable S0ix-based power management # Does not work on device?
         # "NVreg_EnableS0ixPowerManagement=1"
         # Disables clearing system memory allocation before using it for the GPU

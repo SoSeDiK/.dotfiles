@@ -10,7 +10,6 @@
     # TODO upstream
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-hardware-1.url = "github:SoSeDiK/nixos-hardware/lenovo-legion-15arh05";
-    nixos-hardware-2.url = "github:SoSeDiK/nixos-hardware/microsoft-surface-book-3";
     # Secure boot
     lanzaboote = {
       url = "github:nix-community/lanzaboote";

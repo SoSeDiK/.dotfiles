@@ -16,6 +16,7 @@
   hjem.users = lib.genAttrs homeUsers (username: {
     files = {
       ".config/walker/walker.conf".source = "${flakeDir}/hosts/${hostName}/assets/walker/walker.conf";
+      ".config/elephant".source = "${flakeDir}/hosts/${hostName}/assets/walker/elephant";
     };
   });
 

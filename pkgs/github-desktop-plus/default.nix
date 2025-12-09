@@ -26,14 +26,14 @@
 
 let
   pname = "github-desktop-plus";
-  version = "3.5.3.10";
+  version = "3.5.5.0";
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   inherit pname version;
 
   src = fetchurl {
     url = "https://github.com/pol-rivero/github-desktop-plus/releases/download/v${version}/GitHubDesktopPlus-v${version}-linux-x86_64.deb";
-    sha256 = "sha256-8Rb0+Ch6WCCVgg2YtZDaM4Jjo58uip8UsptT5bpvRS8=";
+    sha256 = "sha256-klhY2bdlnbS3HMkzpydCbSo5YAlbvFeOpPdVQglkPqQ=";
   };
 
   nativeBuildInputs = [

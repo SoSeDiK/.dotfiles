@@ -1,6 +1,5 @@
 {
   config,
-  self',
   inputs,
   inputs',
   pkgs,
@@ -22,6 +21,49 @@ let
   ];
 
   defaultSearchEngine = "ddg"; # DuckDuckGo
+  dailyUpdateInterval = 24 * 60 * 60 * 1000;
+  searchEngines = {
+    "google".metaData.hidden = true; # Using Google with forced English instead
+    "bing".metaData.hidden = true;
+    "ddg".metaData.alias = "!d";
+    "youtube".metaData.alias = "!y";
+    "Google (English)" = {
+      urls = [ { template = "https://www.google.com/search?hl=en&gl=ua&lr=lang_en&q={searchTerms}"; } ];
+      icon = "https://www.google.com/favicon.ico";
+      updateInterval = dailyUpdateInterval;
+      definedAliases = [ "!g" ];
+    };
+    "Google Images" = {
+      urls = [ { template = "https://google.com/search?tbm=isch&q={searchTerms}&tbs=imgo:1"; } ];
+      icon = "https://www.google.com/favicon.ico";
+      updateInterval = dailyUpdateInterval;
+      definedAliases = [ "!gi" ];
+    };
+    "GitHub" = {
+      urls = [ { template = "https://github.com/search?utf8=%E2%9C%93&type=code&q={searchTerms}"; } ];
+      icon = "https://www.github.com/favicon.ico";
+      updateInterval = dailyUpdateInterval;
+      definedAliases = [ "!gh" ];
+    };
+    "Nix Packages" = {
+      urls = [
+        {
+          template = "https://search.nixos.org/packages?channel=unstable&type=packages&query={searchTerms}";
+        }
+      ];
+      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      definedAliases = [ "!np" ];
+    };
+    "Nix Options" = {
+      urls = [
+        {
+          template = "https://search.nixos.org/options?channel=unstable&type=packages&query={searchTerms}";
+        }
+      ];
+      icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      definedAliases = [ "!no" ];
+    };
+  };
 
   # Addons list: https://raw.githubusercontent.com/nix-community/nur-combined/refs/heads/main/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
   # Extra addons can be fetched from https://gitlab.com/NetForceExplorer/firefox-addons/-/raw/master/combined.nix
@@ -120,7 +162,7 @@ in
         search = {
           default = defaultSearchEngine;
           privateDefault = defaultSearchEngine;
-          #   engines = searchEngines;
+          engines = searchEngines;
           force = true;
         };
       };
@@ -133,7 +175,7 @@ in
         search = {
           default = defaultSearchEngine;
           privateDefault = defaultSearchEngine;
-          #   engines = searchEngines;
+          engines = searchEngines;
           force = true;
         };
       };
@@ -146,7 +188,7 @@ in
         search = {
           default = defaultSearchEngine;
           privateDefault = defaultSearchEngine;
-          # engines = searchEngines;
+          engines = searchEngines;
           force = true;
         };
       };
@@ -159,7 +201,7 @@ in
         search = {
           default = defaultSearchEngine;
           privateDefault = defaultSearchEngine;
-          # engines = searchEngines;
+          engines = searchEngines;
           force = true;
         };
       };
@@ -172,7 +214,7 @@ in
         search = {
           default = defaultSearchEngine;
           privateDefault = defaultSearchEngine;
-          # engines = searchEngines;
+          engines = searchEngines;
           force = true;
         };
       };

@@ -3,7 +3,7 @@
 let
   # Better Spofify
   spicetify-nix = inputs.spicetify-nix;
-  spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = [
