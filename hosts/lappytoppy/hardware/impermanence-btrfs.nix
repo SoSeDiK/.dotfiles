@@ -28,14 +28,14 @@
       # Last user & last session
       "/var/cache/tuigreet"
       # Syncthing data
-      "/var/lib/syncthing/.config/syncthing"
+      "/var/lib/syncthing"
+      # Tailscale data
+      "/var/lib/tailscale"
     ];
 
     files = [
       # Unique device id
       "/etc/machine-id"
-      # Tailscale device id
-      "/var/lib/tailscale/tailscaled.state"
     ];
   };
 

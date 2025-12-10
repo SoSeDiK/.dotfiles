@@ -145,6 +145,7 @@ in
     # Shell
     "${self}/modules/system/shell/shell-aliases.nix"
     "${self}/modules/system/shell/bash.nix"
+    "${self}/modules/system/shell/starship.nix"
     "${self}/modules/system/shell/zsh.nix"
   ];
 
