@@ -314,7 +314,16 @@
             "enabled": false
         },
         "NewGuildSettings": {
-            "enabled": true
+            "enabled": true,
+            "guild": true,
+            "mobilePush": true,
+            "everyone": true,
+            "role": true,
+            "events": true,
+            "highlights": true,
+            "messages": 3,
+            "showAllChannels": true,
+            "voiceChannels": false
         },
         "NoBlockedMessages": {
             "enabled": false
@@ -478,7 +487,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 720374890472931328, 342814924310970398, 1233827370855694426, 823191668064911410",
+            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 720374890472931328, 1233827370855694426, 823191668064911410, 1174769030402412696, 342814924310970398",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -654,7 +663,7 @@
             "tabBarPosition": "top",
             "showBookmarkBar": true,
             "widerTabsAndBookmarks": false,
-            "tabWidthScale": 100,
+            "tabWidthScale": 101,
             "enableNumberKeySwitching": true,
             "numberKeySwitchCount": 3,
             "enableCloseTabShortcut": true,
@@ -1184,7 +1193,11 @@
             "enabled": false
         },
         "Translate+": {
-            "enabled": true
+            "enabled": true,
+            "target": "en",
+            "toki": true,
+            "sitelen": true,
+            "shavian": true
         },
         "UnitConverter": {
             "enabled": false
@@ -1264,7 +1277,8 @@
             "disableCreateDMButton": false,
             "disableDMContextMenu": false,
             "noMirroredCamera": false,
-            "removeActivitySection": false
+            "removeActivitySection": false,
+            "showYourOwnActivityButtons": false
         },
         "VCSupport": {
             "enabled": true
@@ -1339,6 +1353,18 @@
         },
         "VoiceRejoin": {
             "enabled": false
+        },
+        "ScheduledMessages": {
+            "enabled": false
+        },
+        "UrlHighlighter": {
+            "enabled": false
+        },
+        "IdleAutoRestart": {
+            "enabled": false
+        },
+        "UserAreaAPI": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -1352,12 +1378,14 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1764693124228
+        "settingsSyncVersion": 1766171218486
     },
     "ignoreResetWarning": false,
     "userCssVars": {},
     "uiElements": {
         "chatBarButtons": {},
         "messagePopoverButtons": {}
-    }
+    },
+    "enableOnlineThemes": true,
+    "pinnedThemes": []
 }

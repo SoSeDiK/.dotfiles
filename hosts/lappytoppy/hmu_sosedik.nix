@@ -59,8 +59,6 @@ in
     helvum # Audio
     nurl # fetch sha256 for packages
 
-    direnv
-
     # Utils
     fsearch # fast search
     cpu-x # PC Info

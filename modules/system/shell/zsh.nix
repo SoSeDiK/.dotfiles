@@ -18,6 +18,18 @@
       # Print fancy system info
       fastfetch
 
+      # If a pattern for filename generation has no matches, print an error
+      setopt nomatch
+
+      # Beep on error in ZLE
+      unsetopt beep
+
+      # Do not treat the #, ~ and ^ characters as part of patterns for filename generation
+      unsetopt extendedglob
+
+      # Do not report the status of background jobs immediately, wait
+      unsetopt notify
+
       source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
       # Key codes

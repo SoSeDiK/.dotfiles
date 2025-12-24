@@ -37,7 +37,7 @@ let
       actual_file=$(readlink -f "$out/share/applications/android-studio.desktop")
       rm "$out/share/applications" # Is a symlink
       mkdir "$out/share/applications"
-      sed 's|^Exec=.*|Exec=QT_QPA_PLATFORM=xcb nvidia-offload android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
+      sed 's|^Exec=.*|Exec=env QT_QPA_PLATFORM=xcb nvidia-offload android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
     '';
   };
 
@@ -169,6 +169,7 @@ in
 
     # Media
     gimp
+    inkscape-with-extensions
     loupe # image viewer
     obs-studio # video recorder
     qbittorrent # torrents
@@ -177,7 +178,7 @@ in
 
     # Dev
     ## Java
-    (small.jetbrains.idea-community-bin.overrideAttrs (attrs: {
+    (small.jetbrains.idea-oss.overrideAttrs (attrs: {
       forceWayland = true;
     }))
     ## C#
@@ -265,6 +266,8 @@ in
 
   # Use lix
   nix.package = pkgs.lixPackageSets.latest.lix;
+
+  programs.direnv.enable = true;
 
   # Allow running unpatched binaries
   programs.nix-ld.enable = true;
