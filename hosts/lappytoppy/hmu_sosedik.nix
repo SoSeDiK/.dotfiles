@@ -61,7 +61,7 @@ in
 
     # Utils
     fsearch # fast search
-    cpu-x # PC Info
+    # cpu-x # PC Info
     fontforge-gtk
 
     # Extra browsers

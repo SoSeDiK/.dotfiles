@@ -174,7 +174,7 @@ in
     obs-studio # video recorder
     qbittorrent # torrents
     # stremio # video streaming
-    youtube-music
+    pear-desktop
 
     # Dev
     ## Java
