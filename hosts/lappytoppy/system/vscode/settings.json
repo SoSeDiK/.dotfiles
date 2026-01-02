@@ -7,7 +7,7 @@
   },
   "window.titleBarStyle": "custom",
   "cSpell.language": "en,uk,ru",
-  "editor.fontFamily": "'Fira Code', 'Symbols Nerd Font Mono'",
+  "editor.fontFamily": "'Fira Code', 'Noto Color Emoji', 'Symbols Nerd Font Mono'",
   "editor.largeFileOptimizations": false,
   "nix.formatterPath": "nixfmt",
   "nix.enableLanguageServer": true,
@@ -58,5 +58,9 @@
   },
   "qt-qml.qmlls.useQmlImportPathEnvVar": true,
   "editor.formatOnSave": false,
-  "workbench.colorTheme": "One Dark Pro"
+  "workbench.colorTheme": "One Dark Pro",
+  "claudeCode.preferredLocation": "panel",
+  "http.systemCertificatesNode": true,
+  "cSpell.blockCheckingWhenTextChunkSizeGreaterThan": 10000,
+  "cSpell.blockCheckingWhenLineLengthGreaterThan": 2000000
 }

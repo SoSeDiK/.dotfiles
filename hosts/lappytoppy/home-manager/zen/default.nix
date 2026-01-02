@@ -101,6 +101,7 @@ let
     addons.youtube-enhancer-vc
     # GitHub
     lovely-forks
+    addons.github-history
     enhanced-github
     refined-github
     octolinker

@@ -4,5 +4,10 @@
     "key": "ctrl+d",
     "command": "editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "editor.action.transformToUppercase",
+    "when": "editorHasSelection"
   }
 ]

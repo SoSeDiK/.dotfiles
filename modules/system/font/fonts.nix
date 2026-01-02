@@ -29,8 +29,6 @@ in
   # Useful for quick manual tests
   fonts.fontDir.enable = true;
 
-  fonts.fontconfig.useEmbeddedBitmaps = true;
-
   # Add custom keyboard layout (ruu)
   console.useXkbConfig = true;
   services.xserver = {

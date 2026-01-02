@@ -374,9 +374,6 @@
         "OnePingPerDM": {
             "enabled": false
         },
-        "Oneko": {
-            "enabled": false
-        },
         "OpenInApp": {
             "enabled": false
         },
@@ -487,7 +484,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 720374890472931328, 1233827370855694426, 823191668064911410, 1174769030402412696, 342814924310970398",
+            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 1233827370855694426, 823191668064911410, 1174769030402412696, 342814924310970398",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -958,7 +955,8 @@
             "messagesToDisplayAtOnceInLogs": 100,
             "hideMessageFromMessageLoggersDeletedMessage": "redacted eh",
             "attachmentSizeLimitInMegabytes": 12,
-            "attachmentFileExtensions": "png,jpg,jpeg,gif,webp,mp4,webm,mp3,ogg,wav"
+            "attachmentFileExtensions": "png,jpg,jpeg,gif,webp,mp4,webm,mp3,ogg,wav",
+            "timeBasedCleanupMinutes": 0
         },
         "MessageTranslate": {
             "enabled": false
@@ -1278,7 +1276,8 @@
             "disableDMContextMenu": false,
             "noMirroredCamera": false,
             "removeActivitySection": false,
-            "showYourOwnActivityButtons": false
+            "showYourOwnActivityButtons": false,
+            "noDefaultHangStatus": false
         },
         "VCSupport": {
             "enabled": true
@@ -1365,6 +1364,15 @@
         },
         "UserAreaAPI": {
             "enabled": true
+        },
+        "MoreQuickReactions": {
+            "enabled": false
+        },
+        "MicLoopbackTester": {
+            "enabled": false
+        },
+        "CursorBuddy": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1378,7 +1386,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1766171218486
+        "settingsSyncVersion": 1767313740642
     },
     "ignoreResetWarning": false,
     "userCssVars": {},
