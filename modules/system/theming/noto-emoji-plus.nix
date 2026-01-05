@@ -53,33 +53,17 @@ in
       <fontconfig>
         <match target="scan">
             <test name="family" compare="contains">
+                <string>serif</string>
+            </test>
+            <test name="family" compare="contains">
+                <string>sans</string>
+            </test>
+            <test name="family" compare="contains">
+                <string>monospace</string>
+            </test>
+            <test name="family" compare="contains">
                 <string>DejaVu</string>
             </test>
-            <edit name="charset" mode="assign" binding="same">
-                <minus>
-                    <name>charset</name>
-                    <charset>
-                        <range>
-                            <int>0x1f600</int>
-                            <int>0x1f640</int>
-                        </range>
-                        <range>
-                            <int>0xe000</int>
-                            <int>0xf8ff</int>
-                        </range>
-                        <range>
-                            <int>0xf0000</int>
-                            <int>0xffffd</int>
-                        </range>
-                        <range>
-                            <int>0x100000</int>
-                            <int>0x10fffd</int>
-                        </range>
-                    </charset>
-                </minus>
-            </edit>
-        </match>
-        <match target="scan">
             <test name="family" compare="contains">
                 <string>JetBrains</string>
             </test>
@@ -88,48 +72,8 @@ in
                     <name>charset</name>
                     <charset>
                         <range>
-                            <int>0x1f600</int>
-                            <int>0x1f640</int>
-                        </range>
-                        <range>
-                            <int>0xe000</int>
-                            <int>0xf8ff</int>
-                        </range>
-                        <range>
-                            <int>0xf0000</int>
-                            <int>0xffffd</int>
-                        </range>
-                        <range>
-                            <int>0x100000</int>
-                            <int>0x10fffd</int>
-                        </range>
-                    </charset>
-                </minus>
-            </edit>
-        </match>
-        <match target="scan">
-            <test name="family" compare="contains">
-                <string>Fira</string>
-            </test>
-            <edit name="charset" mode="assign" binding="same">
-                <minus>
-                    <name>charset</name>
-                    <charset>
-                        <range>
-                            <int>0x1f600</int>
-                            <int>0x1f640</int>
-                        </range>
-                        <range>
-                            <int>0xe000</int>
-                            <int>0xf8ff</int>
-                        </range>
-                        <range>
-                            <int>0xf0000</int>
-                            <int>0xffffd</int>
-                        </range>
-                        <range>
-                            <int>0x100000</int>
-                            <int>0x10fffd</int>
+                            <int>0x1f000</int>
+                            <int>0x1fffd</int>
                         </range>
                     </charset>
                 </minus>
@@ -235,19 +179,6 @@ in
         <match target="pattern">
             <test qual="any" name="family"><string>Symbola</string></test>
             <edit name="family" mode="assign" binding="same"><string>Noto Color Emoji</string></edit>
-        </match>
-
-
-        <match target="font">
-            <test name="family" compare="equal">
-                <string>Noto Color Emoji</string>
-            </test>
-            <test name="charset" compare="bitmask">
-            <bitmask>
-                <bit name="unicode-range" value="0xe000-0xf8ff, 0xf0000-0xffffd, 0x100000-0x10fffd"/>
-            </bitmask>
-            </test>
-            <edit name="priority" mode="set" value="1"/>
         </match>
       </fontconfig>
     '';
