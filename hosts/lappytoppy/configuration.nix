@@ -120,7 +120,6 @@ in
 
     # Dev
     "${self}/modules/system/dev/jdk"
-    "${self}/modules/system/dev/adb.nix"
 
     # Misc
     "${self}/modules/system/misc/battery.nix"
@@ -189,6 +188,7 @@ in
     msbuild
     ## Android
     android-studio
+    android-tools
     scrcpy # View/Control phone screen (also broadcasts audio!)
     ## Misc
     filezilla
@@ -233,6 +233,7 @@ in
       extraGroups = [
         "networkmanager"
         "wheel"
+        "adbusers" # adb
         "input" # syngesture - trackpad access
         "video" # swayosd - brightness controls
       ];
@@ -380,12 +381,6 @@ in
   systemd.services.keyd.serviceConfig.CapabilityBoundingSet = [
     "CAP_SETGID"
   ];
-
-  # Custom options (from modules)
-  programs.adb = {
-    enable = true;
-    users = homeUsers;
-  };
 
   programs.openrazer = {
     enable = true;
