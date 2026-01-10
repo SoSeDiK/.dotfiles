@@ -1,5 +1,6 @@
 //@ pragma UseQApplication
 import Quickshell
+import Quickshell.Wayland
 import Quickshell.Hyprland
 import Quickshell.Io
 import Quickshell.Widgets
@@ -35,6 +36,7 @@ ShellRoot {
             PanelWindow {
                 id: window
                 screen: modelData
+                // WlrLayershell.layer: WlrLayer.Background
                 surfaceFormat.opaque: false
 
                 anchors {

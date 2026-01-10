@@ -16,7 +16,7 @@
       fi
 
       # Print fancy system info
-      fastfetch
+      microfetch
 
       # If a pattern for filename generation has no matches, print an error
       setopt nomatch

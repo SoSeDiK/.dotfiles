@@ -216,6 +216,7 @@ in
 
     # CLIs
     ffmpeg
+    microfetch
     eza # better ls
     tealdeer # tldr
     nix-tree # Tree view for nix packages

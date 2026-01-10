@@ -115,7 +115,9 @@
         },
         "CallTimer": {
             "enabled": true,
-            "format": "stopwatch"
+            "format": "stopwatch",
+            "allCallTimers": false,
+            "watchLargeGuilds": false
         },
         "ClearURLs": {
             "enabled": false
@@ -1277,7 +1279,8 @@
             "noMirroredCamera": false,
             "removeActivitySection": false,
             "showYourOwnActivityButtons": false,
-            "noDefaultHangStatus": false
+            "noDefaultHangStatus": false,
+            "forceRoleIcon": false
         },
         "VCSupport": {
             "enabled": true
@@ -1373,6 +1376,9 @@
         },
         "CursorBuddy": {
             "enabled": false
+        },
+        "DragFavoriteEmotes": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1386,7 +1392,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1767760533213
+        "settingsSyncVersion": 1767981585781
     },
     "ignoreResetWarning": false,
     "userCssVars": {},
