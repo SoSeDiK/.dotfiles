@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# Define the path to the CSV file storage
-csv_file="/tmp/window_visibility_cache.csv"
-
 # Function to get the window address
 get_window_address() {
     if [[ "$1" == "activewindow" ]]; then
@@ -33,58 +30,29 @@ if [ -z "$window_address" ]; then
     exit
 fi
 
-# Check if the CSV file exists, if not, create it with headers
-if [[ ! -f "$csv_file" ]]; then
-    echo "window_address,alpha,alpha_inactive,alpha_fullscreen" > "$csv_file"
-fi
+# Get current opacity values from hyprctl
+current_alpha=$(hyprctl getprop address:$window_address opacity)
+current_alpha_inactive=$(hyprctl getprop address:$window_address opacity_inactive)
+current_alpha_fullscreen=$(hyprctl getprop address:$window_address opacity_fullscreen)
 
-# Read the visibility from the CSV file
-IFS=',' read -r window visibility visibility_inactive visibility_fullscreen < <(awk -F',' -v window="$window_address" '$1 == window {print $0}' "$csv_file")
-
-# If visibility is not found in the CSV file, set it to 1.0
-if [[ -z "$visibility" ]]; then
-    visibility=1.0
-fi
-if [[ -z "$visibility_inactive" ]]; then
-    visibility_inactive=1.0
-fi
-if [[ -z "$visibility_fullscreen" ]]; then
-    visibility_fullscreen=1.0
-fi
-
-# Calculate new alpha values
-alpha=$(calculate_alpha "$visibility" "$2")
+# Calculate new alpha values based on input
+alpha=$(calculate_alpha "$current_alpha" "$2")
 alpha_inactive=""
 alpha_fullscreen=""
 if [ "$3" ]; then
-    alpha_inactive=$(calculate_alpha "$visibility_inactive" "$3")
+    alpha_inactive=$(calculate_alpha "$current_alpha_inactive" "$3")
 fi
 if [ "$4" ]; then
-    alpha_fullscreen=$(calculate_alpha "$visibility_fullscreen" "$4")
+    alpha_fullscreen=$(calculate_alpha "$current_alpha_fullscreen" "$4")
 fi
 
-echo $alpha_inactive " | " $visibility_inactive
-
-# Update the CSV file if visibility has changed
-if [ "$alpha" != "$visibility" ] || { [ "$alpha_inactive" ] && [ "$alpha_inactive" != "$visibility_inactive" ]; } || { [ "$alpha_fullscreen" ] && [ "$alpha_fullscreen" != "$visibility_fullscreen" ]; }; then
-    new_alpha=$alpha
-    new_alpha_inactive=$visibility_inactive
-    new_alpha_fullscreen=$visibility_fullscreen
+# Update opacities if they've changed
+if [ "$alpha" != "$current_alpha" ] || { [ "$alpha_inactive" ] && [ "$alpha_inactive" != "$current_alpha_inactive" ]; } || { [ "$alpha_fullscreen" ] && [ "$alpha_fullscreen" != "$current_alpha_fullscreen" ]; }; then
+    hyprctl dispatch setprop address:$window_address opacity $alpha lock
     if [ "$alpha_inactive" ]; then
-        new_alpha_inactive=$alpha_inactive
+        hyprctl dispatch setprop address:$window_address opacity_inactive $alpha_inactive lock
     fi
-    echo $new_alpha_inactive
     if [ "$alpha_fullscreen" ]; then
-        new_alpha_fullscreen=$alpha_fullscreen
+        hyprctl dispatch setprop address:$window_address opacity_fullscreen $alpha_fullscreen lock
     fi
-    awk -v window="$window_address" -v alpha="$new_alpha" -v alpha_inactive="$new_alpha_inactive" -v alpha_fullscreen="$new_alpha_fullscreen" -F',' -v OFS=',' 'BEGIN { found = 0 } $1 == window { $2 = alpha; $3 = alpha_inactive; $4 = alpha_fullscreen; found = 1 } { print } END { if (!found) print window, alpha, alpha_inactive, alpha_fullscreen }' "$csv_file" > tmpfile && mv tmpfile "$csv_file"
-fi
-
-# Apply alpha
-hyprctl dispatch setprop address:$window_address alpha $alpha lock
-if [ "$alpha_inactive" ]; then
-    hyprctl dispatch setprop address:$window_address alpha_inactive $alpha_inactive lock
-fi
-if [ "$alpha_fullscreen" ]; then
-    hyprctl dispatch setprop address:$window_address alpha_fullscreen $alpha_fullscreen lock
 fi

@@ -253,7 +253,7 @@
         "ImageZoom": {
             "enabled": true,
             "size": 500.9927797833935,
-            "zoom": 7.600000000000001,
+            "zoom": 2.3418635307274713,
             "nearestNeighbour": true,
             "square": true,
             "saveZoomValues": true,
@@ -486,7 +486,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 1233827370855694426, 823191668064911410, 1174769030402412696, 342814924310970398",
+            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 823191668064911410, 1174769030402412696, 342814924310970398, 1233827370855694426",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -1392,7 +1392,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1767981585781
+        "settingsSyncVersion": 1768476381977
     },
     "ignoreResetWarning": false,
     "userCssVars": {},

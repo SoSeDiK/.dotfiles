@@ -72,7 +72,7 @@ in
         hyprbars = true;
         hyprexpo = true;
         hyprwinwrap = true;
-        hypr-dynamic-cursors = true;
+        hypr-dynamic-cursors = false;
         hyprsplit = false;
         hyprgrass = false;
         hyprscrolling = false;
@@ -86,7 +86,6 @@ in
     "${self}/modules/system/font/fonts.nix"
 
     # Theming
-    "${self}/modules/system/theming/noto-emoji-plus.nix"
     "${self}/modules/system/theming/stylix.nix"
 
     # Services

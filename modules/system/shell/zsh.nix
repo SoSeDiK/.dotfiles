@@ -1,65 +1,63 @@
-{ pkgs, ... }:
-
 {
+  pkgs,
+  lib,
+  homeUsers,
+  flakeDir,
+  ...
+  }:
+
+let
+  keys = {
+    UpArrow = "$terminfo[kcuu1]";
+    DownArrow = "$terminfo[kcud1]";
+  };
+in {
   programs.zsh = {
     enable = true;
+    # Disable global completion init to speed up `compinit` call in `~/.zshrc`.
+    # Needs adding the compinit call to every user's ~/.zshrc
     # enableGlobalCompInit = false;
-    shellInit = ''
-      # zmodload zsh/zprof
-    '';
-    interactiveShellInit = ''
-      if test -n "$KITTY_INSTALLATION_DIR"; then
-        export KITTY_SHELL_INTEGRATION="no-rc enabled"
-        autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
-        kitty-integration
-        unfunction kitty-integration
-      fi
-
-      # Print fancy system info
-      microfetch
-
-      # If a pattern for filename generation has no matches, print an error
-      setopt nomatch
-
-      # Beep on error in ZLE
-      unsetopt beep
-
-      # Do not treat the #, ~ and ^ characters as part of patterns for filename generation
-      unsetopt extendedglob
-
-      # Do not report the status of background jobs immediately, wait
-      unsetopt notify
-
-      source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-      # Key codes
-      key=(
-        BackSpace  "$terminfo[kbs]"
-        Home       "$terminfo[khome]"
-        End        "$terminfo[kend]"
-        Insert     "$terminfo[kich1]"
-        Delete     "$terminfo[kdch1]"
-        Up         "$terminfo[kcuu1]"
-        Down       "$terminfo[kcud1]"
-        Left       "$terminfo[kcub1]"
-        Right      "$terminfo[kcuf1]"
-        PageUp     "$terminfo[kpp]"
-        PageDown   "$terminfo[knp]"
-      )
-
-      bindkey "$key[Up]" history-substring-search-up        # Up arrow        Jump to the previous command in history
-      bindkey "$key[Down]" history-substring-search-down    # Down arrow      Jump to the next command in history
-      bindkey "$key[Delete]" delete-char                    # Delete key      Delete the character under the cursor
-      bindkey "$key[PageUp]" beginning-of-buffer-or-history # Page Up         Jump to the first command in history
-      bindkey "$key[PageDown]" end-of-buffer-or-history     # Page Down       Jump to the last command in history
-      bindkey '^[[1;3D' backward-word                       # Alt + Left      Move cursor one word to the left
-      bindkey '^[[1;3C' forward-word                        # Alt + Right     Move cursor one word to the right
-      bindkey "$key[Home]" beginning-of-line                # Home key        Move cursor to the beginning of the line
-      bindkey "$key[End]" end-of-line                       # End key         Move cursor to the end of the line
-
-      # zprof
-    '';
-    syntaxHighlighting.enable = true;
-    autosuggestions.enable = true;
   };
+
+  hjem.users = lib.genAttrs homeUsers (username: {
+    rum.programs.zsh = {
+      enable = true;
+      plugins = {
+        history-substring-search = {
+          source = "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh";
+          config = ''
+            bindkey "${keys.UpArrow}" history-substring-search-up        # Jump to the previous command in history
+            bindkey "${keys.DownArrow}" history-substring-search-down    # Jump to the next command in history
+          '';
+        };
+        completions = {
+          source = "${pkgs.nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh";
+        };
+        autosuggestions = {
+          source = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+        };
+        highlighting = {
+          source = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
+        };
+      };
+      initConfig = ''
+        eval "$(${lib.getExe pkgs.oh-my-posh} init zsh --config "${flakeDir}/assets/oh-my-posh/omp.toml")"
+
+        # Print fancy system info
+        microfetch
+
+        # If a pattern for filename generation has no matches, print an error
+        setopt nomatch
+
+        # Beep on error in ZLE
+        unsetopt beep
+
+        # Do not treat the #, ~ and ^ characters as part of patterns for filename generation
+        unsetopt extendedglob
+
+        # Do not report the status of background jobs immediately, wait
+        unsetopt notify
+      '';
+    };
+  });
 }

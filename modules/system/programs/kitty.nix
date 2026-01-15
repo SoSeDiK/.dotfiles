@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  flakeDir,
+  self,
   homeUsers,
   ...
 }:
@@ -11,13 +11,10 @@
     rum.programs.kitty = {
       enable = true;
       integrations = {
-        fish.enable = lib.mkIf config.programs.fish.enable true;
-        zsh.enable = lib.mkIf config.programs.zsh.enable true;
+        fish.enable = lib.mkIf config.hjem.users.${username}.rum.programs.fish.enable true;
+        zsh.enable = lib.mkIf config.hjem.users.${username}.rum.programs.zsh.enable true;
       };
-    };
-
-    files = {
-      ".config/kitty/kitty.conf".source = "${flakeDir}/assets/kitty/kitty.conf";
+      settings."" = builtins.readFile "${self}/assets/kitty/kitty.conf" + "\n# Generated";
     };
   });
 }

@@ -15,7 +15,7 @@
 
   environment.systemPackages = with pkgs; [
     nil # nix auto completion
-    nixfmt-rfc-style # nix formatter
+    nixfmt # nix formatter
   ];
 
   # VS Code itself is managed via home-manager due to its "mutable extensions" feature

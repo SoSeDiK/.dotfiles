@@ -7,7 +7,7 @@
 
 {
   # Starship Prompt
-  programs.starship.enable = true;
+  programs.starship.enable = false;
 
   hjem.users = lib.genAttrs homeUsers (username: {
     files = {
