@@ -121,16 +121,22 @@ let
     # addons.stg-plugin-group-notes # tab group notes
   ];
   homeAddons = with pkgs.nur.repos.rycee.firefox-addons; [
-    # PWA (Progressive Web App) support
-    # pwas-for-firefox
     # GitHub
     notifier-for-github
   ];
 
+  # https://zen-browser.app/mods/
+  mods = [
+    "7d577b21-4685-4db2-bb17-d39d08eec199" # Bleeding Corners Fix
+  ];
+  userChrome = '''';
+  userContent = '''';
+
+  configPath = config.programs.zen-browser.configPath;
   linkSource = profile: fileName: {
-    name = ".zen/${profile}/${fileName}";
+    name = "${configPath}/${profile}/${fileName}";
     value = {
-      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/hosts/${hostName}/home-manager/firefox/data/${fileName}";
+      source = config.lib.file.mkOutOfStoreSymlink "${flakeDir}/hosts/${hostName}/home-manager/zen/data/${fileName}";
     };
   };
 in
@@ -141,20 +147,22 @@ in
 
   programs.zen-browser = {
     enable = true;
+    # Prefer .config/zen, https://github.com/zen-browser/desktop/issues/11917
+    # configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/zen";
 
+    # See https://mozilla.github.io/policy-templates/
     policies = {
-      DontCheckDefaultBrowser = true; # Don’t check if Firefox is the default browser at startup.
+      DontCheckDefaultBrowser = true; # Don’t check if it's the default browser at startup.
       NoDefaultBookmarks = true; # Disable the creation of default bookmarks.
       PasswordManagerEnabled = false; # Remove (some) access to the password manager.
+      DisableTelemetry = true; # Disable storage and uploading of telemetry data.
+      DisableFirefoxStudies = true; # Prevent automatic enrollment in Firefox Studies.
     };
-
-    nativeMessagingHosts = with pkgs; [
-      firefoxpwa
-    ];
 
     profiles = {
       # Default profile
       "${defaultProfileName}" = {
+        inherit mods userChrome userContent;
         id = 0;
         name = defaultProfileName;
         path = "${defaultProfileName}";
@@ -169,6 +177,7 @@ in
       };
       # Used by private browser overlay
       private = {
+        inherit mods userChrome userContent;
         id = 1;
         name = "private";
         path = "private";
@@ -182,6 +191,7 @@ in
       };
       # Separate instance for work-related things
       work = {
+        inherit mods userChrome userContent;
         id = 2;
         name = "work";
         path = "work";
@@ -195,6 +205,7 @@ in
       };
       # Separate instance for multimedia
       movies = {
+        inherit mods userChrome userContent;
         id = 3;
         name = "movies";
         path = "movies";
@@ -208,6 +219,7 @@ in
       };
       # Separate instance for games
       gaming = {
+        inherit mods userChrome userContent;
         id = 4;
         name = "gaming";
         path = "gaming";

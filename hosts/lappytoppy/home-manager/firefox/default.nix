@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  self',
   inputs',
   flakeDir,
   hostName,

@@ -2,7 +2,7 @@
 device = "/dev/input/by-path/platform-AMDI0010:03-event-mouse"
 gestures = [
 	# Navigate next
-	{ type = "swipe", direction = "right", fingers = 2, execute = "~/.dotfiles/assets/hypr/scripts/app-aware-nav.sh right" },
+	# { type = "swipe", direction = "right", fingers = 2, execute = "~/.dotfiles/assets/hypr/scripts/app-aware-nav.sh right" },
 	# Navigate previous
-	{ type = "swipe", direction = "left", fingers = 2, execute = "~/.dotfiles/assets/hypr/scripts/app-aware-nav.sh left" },
+	# { type = "swipe", direction = "left", fingers = 2, execute = "~/.dotfiles/assets/hypr/scripts/app-aware-nav.sh left" },
 ]

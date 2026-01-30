@@ -9,31 +9,31 @@ let
 
   baseJdk = pkgs.jetbrains.jdk;
 
-  # jdk = pkgs.symlinkJoin {
-  #   name = "jetbrains-jdk-hotswap";
-  #   paths = [ baseJdk ];
-  #   nativeBuildInputs = [ ];
-  #   postBuild = ''
-  #     # Workaround for Java to actually detect the hotswap agent (replace symlinks with real binaries)
-  #     rm -r "$out/lib/openjdk/bin"
-  #     rm -r "$out/lib/openjdk/conf"
-  #     rm -r "$out/lib/openjdk/include"
-  #     rm -r "$out/lib/openjdk/jmods"
-  #     rm -r "$out/lib/openjdk/lib"
+  jdk = pkgs.symlinkJoin {
+    name = "jetbrains-jdk-hotswap";
+    paths = [ baseJdk ];
+    nativeBuildInputs = [ ];
+    postBuild = ''
+      # Workaround for Java to actually detect the hotswap agent (replace symlinks with real binaries)
+      rm -r "$out/lib/openjdk/bin"
+      rm -r "$out/lib/openjdk/conf"
+      rm -r "$out/lib/openjdk/include"
+      rm -r "$out/lib/openjdk/jmods"
+      rm -r "$out/lib/openjdk/lib"
 
-  #     # Add Hotswap Agent
-  #     mkdir -p $out/lib/openjdk/lib/hotswap
-  #     cp ${hotswapAgent} $out/lib/openjdk/lib/hotswap/hotswap-agent.jar
+      # Add Hotswap Agent
+      mkdir -p $out/lib/openjdk/lib/hotswap
+      cp ${hotswapAgent} $out/lib/openjdk/lib/hotswap/hotswap-agent.jar
 
-  #     cp -r "${baseJdk}/lib/openjdk/bin" "$out/lib/openjdk/bin"
-  #     cp -r "${baseJdk}/lib/openjdk/conf" "$out/lib/openjdk/conf"
-  #     cp -r "${baseJdk}/lib/openjdk/include" "$out/lib/openjdk/include"
-  #     cp -r "${baseJdk}/lib/openjdk/jmods" "$out/lib/openjdk/jmods"
-  #     cp -r "${baseJdk}/lib/openjdk/lib" "$out/lib/openjdk"
-  #   '';
-  # };
+      cp -r "${baseJdk}/lib/openjdk/bin" "$out/lib/openjdk/bin"
+      cp -r "${baseJdk}/lib/openjdk/conf" "$out/lib/openjdk/conf"
+      cp -r "${baseJdk}/lib/openjdk/include" "$out/lib/openjdk/include"
+      cp -r "${baseJdk}/lib/openjdk/jmods" "$out/lib/openjdk/jmods"
+      cp -r "${baseJdk}/lib/openjdk/lib" "$out/lib/openjdk"
+    '';
+  };
 
-  jdk = pkgs.openjdk25;
+  # jdk = pkgs.openjdk25;
 in
 {
   environment.systemPackages = [

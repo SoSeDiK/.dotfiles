@@ -45,7 +45,7 @@
             "enabled": true
         },
         "ServerListAPI": {
-            "enabled": false
+            "enabled": true
         },
         "UserSettingsAPI": {
             "enabled": true
@@ -486,7 +486,7 @@
             "chatIcon": true,
             "defaultHidden": true,
             "enabledLocations": "",
-            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 823191668064911410, 1174769030402412696, 342814924310970398, 1233827370855694426, 720374890472931328, 1082130864344928256",
+            "disabledLocations": "565169345110605833, 1431751619778711612, 685718143116902406, 823191668064911410, 1174769030402412696, 342814924310970398, 1233827370855694426, 720374890472931328, 1082130864344928256, 1093546366036349079",
             "chatIconLeftClickAction": "channel",
             "chatIconMiddleClickAction": "settings",
             "chatIconRightClickAction": "global",
@@ -652,7 +652,8 @@
             "enabled": false
         },
         "BypassStatus": {
-            "enabled": false
+            "enabled": true,
+            "statusToUse": "dnd"
         },
         "ChannelBadges": {
             "enabled": false
@@ -1330,7 +1331,9 @@
             "enabled": true,
             "exemptedChannels": "",
             "ignoreBots": true,
-            "showDmIcons": true
+            "showDmIcons": true,
+            "showIndicator": true,
+            "ignoreGroupDms": false
         },
         "PetPet": {
             "enabled": false
@@ -1379,6 +1382,18 @@
         },
         "DragFavoriteEmotes": {
             "enabled": false
+        },
+        "ShowSongName": {
+            "enabled": false
+        },
+        "VoiceMessageTranscriber": {
+            "enabled": false
+        },
+        "FavouriteAnything": {
+            "enabled": false
+        },
+        "FileUpload": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1392,7 +1407,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1768721775552
+        "settingsSyncVersion": 1769766462932
     },
     "ignoreResetWarning": false,
     "userCssVars": {},

@@ -9,6 +9,16 @@ let
   gitEmail = "mrsosedik@gmail.com";
 
   hyprfreeze = pkgs.callPackage "${self}/pkgs/hyprfreeze" { };
+  linux-wallpaperengine = pkgs.linux-wallpaperengine.overrideAttrs (attrs: {
+    version = "0-unstable-2025-12-19";
+    src = pkgs.fetchFromGitHub {
+      owner = "Almamu";
+      repo = "linux-wallpaperengine";
+      rev = "f79c29f067b2613895419e351033582464577154";
+      fetchSubmodules = true;
+      hash = "sha256-AISdouVqMXTYErQoT7oM5H+vlrw03NtpI9FqDwZ0J9A=";
+    };
+  });
 in
 {
   imports = [

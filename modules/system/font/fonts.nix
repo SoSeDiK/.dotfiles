@@ -120,6 +120,18 @@ in
         ${fontMatch "Arial"}
         ${fontMatch "JetBrains"}
 
+        <match target="font">
+          <test name="family" compare="eq">
+            <string>Noto Color Emoji</string>
+          </test>
+          <edit name="embolden" mode="assign">
+            <bool>false</bool>
+          </edit>
+          <edit name="autohint" mode="assign">
+            <bool>false</bool>
+          </edit>
+        </match>
+
         <!--
         Recognize legacy ways of writing EmojiOne family name.
         -->

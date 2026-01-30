@@ -9,5 +9,10 @@
     "key": "ctrl+u",
     "command": "editor.action.transformToUppercase",
     "when": "editorHasSelection"
+  },
+  {
+    "key": "ctrl+alt+u",
+    "command": "editor.action.transformToLowercase",
+    "when": "editorHasSelection"
   }
 ]
