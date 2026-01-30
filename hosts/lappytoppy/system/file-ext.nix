@@ -14,7 +14,7 @@ let
   imageViewer = "org.gnome.Loupe.desktop";
   videoPlayer = "mpv.desktop";
   archiveViewer = "xarchiver.desktop";
-  browserApp = "firefox-nightly";
+  browserApp = "zen-twilight";
   browser = "${browserApp}.desktop";
   terminalApp = "kitty";
   terminal = "${terminalApp}.desktop";
