@@ -72,7 +72,7 @@ in
         hyprbars = true;
         hyprexpo = true;
         hyprwinwrap = true;
-        hypr-dynamic-cursors = false;
+        hypr-dynamic-cursors = true;
         hyprsplit = false;
         hyprgrass = false;
         hyprscrolling = false;
@@ -348,6 +348,16 @@ in
         "create mask" = "777";
         "directory mask" = "777";
       };
+    };
+  };
+
+  services.searx = {
+    enable = true;
+    redisCreateLocally = true;
+    settings.server = {
+      bind_address = "::1";
+      port = 8888;
+      secret_key = config.sops.secrets.searxKey.path;
     };
   };
 

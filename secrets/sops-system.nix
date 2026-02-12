@@ -21,6 +21,7 @@
     group = config.users.groups.keys.name;
   };
   sops.secrets.tailscaleAuthKey = { };
+  sops.secrets.searxKey = { };
   sops.secrets."syncthing/gui-password" = { };
   sops.secrets."syncthing/certificate.pem" = { };
   sops.secrets."syncthing/key.pem" = { };

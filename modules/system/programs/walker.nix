@@ -24,6 +24,8 @@
     enable = true;
     package = inputs'.walker.packages.default;
   };
+  # https://github.com/abenz1267/walker/issues/687
+  disabledModules = [ "services/misc/elephant.nix" ];
 
   nix.settings = {
     substituters = [
