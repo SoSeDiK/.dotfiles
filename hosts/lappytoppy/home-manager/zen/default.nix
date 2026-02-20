@@ -147,8 +147,9 @@ in
 
   programs.zen-browser = {
     enable = true;
+    suppressXdgMigrationWarning = true;
     # Prefer .config/zen, https://github.com/zen-browser/desktop/issues/11917
-    # configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/zen";
+    configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/zen";
 
     # See https://mozilla.github.io/policy-templates/
     policies = {

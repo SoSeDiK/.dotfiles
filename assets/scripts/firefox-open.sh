@@ -4,8 +4,8 @@
 # *Special case: if not running default profile but private exists, open in private
 # (!) Depends on Hyprland to show special private workspace
 
-bins_to_try=("firefox" "firefox-nightly" "zen")
-default_bin=${FIREFOX_BIN:-zen}
+bins_to_try=("firefox" "firefox-nightly" "zen" "zen-twilight")
+default_bin=${FIREFOX_BIN:-zen-twilight}
 
 is_profile_running() {
     pgrep -f "$1-$2" > /dev/null

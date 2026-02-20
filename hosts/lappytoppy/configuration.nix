@@ -40,6 +40,16 @@ let
       sed 's|^Exec=.*|Exec=env QT_QPA_PLATFORM=xcb nvidia-offload android-studio|' "$actual_file" > "$out/share/applications/android-studio.desktop"
     '';
   };
+  linux-wallpaperengine = pkgs.linux-wallpaperengine.overrideAttrs (attrs: {
+    version = "0-unstable-2026-02-12";
+    src = pkgs.fetchFromGitHub {
+      owner = "Almamu";
+      repo = "linux-wallpaperengine";
+      rev = "cf764a88e2fef84c3cf807551f4602985e393928";
+      fetchSubmodules = true;
+      hash = "sha256-qguiE20nOV4GHCn3a/dzN3QzqtScsXKhwvuzzlJoj5w=";
+    };
+  });
 
   # Helpers
   userSessionPassword = username: "users/${username}/session";
@@ -212,8 +222,10 @@ in
     bitwarden-desktop
     syncthing
     caffeine-ng # Idle inhibit
+    linux-wallpaperengine
 
     # CLIs
+    self'.packages.hyprfreeze
     ffmpeg
     microfetch
     eza # better ls
