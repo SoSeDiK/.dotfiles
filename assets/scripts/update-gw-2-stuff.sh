@@ -10,7 +10,7 @@ ARC_URLS=(
     "https://github.com/Krappa322/arcdps_unofficial_extras_releases/releases/latest/download/arcdps_unofficial_extras.dll"
     "https://github.com/gw2scratch/arcdps-clears/releases/latest/download/arcdps_clears.dll"
     "https://github.com/knoxfighter/arcdps-killproof.me-plugin/releases/latest/download/d3d9_arcdps_killproof_me.dll"
-    "https://github.com/MarsEdge/GW2-ArcDPS-Boon-Table/releases/latest/download/d3d9_arcdps_table.dll"
+    "https://github.com/knoxfighter/GW2-ArcDPS-Boon-Table/releases/latest/download/d3d9_arcdps_table.dll"
     "https://update.drf.rs/drf.dll"
 )
 

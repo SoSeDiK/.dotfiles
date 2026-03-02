@@ -903,9 +903,6 @@
         "LastActive": {
             "enabled": false
         },
-        "LimitMiddleClickPaste": {
-            "enabled": false
-        },
         "ListenBrainzRPC": {
             "enabled": false
         },
@@ -1412,6 +1409,9 @@
         },
         "WaitForSlot": {
             "enabled": false
+        },
+        "MiddleClickTweaks": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1425,7 +1425,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1771247312305
+        "settingsSyncVersion": 1772468552825
     },
     "ignoreResetWarning": false,
     "userCssVars": {},

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Opens link in profile instance if it's running, or in default if not
-# *Special case: if not running default profile but private exists, open in private
+# *Special case: if not running default profile, but private profile exists, open in private
 # (!) Depends on Hyprland to show special private workspace
 
 bins_to_try=("firefox" "firefox-nightly" "zen" "zen-twilight")
