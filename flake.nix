@@ -97,7 +97,7 @@
     };
 
     # Hyprland & plugins
-    hyprland.url = "github:hyprwm/Hyprland"; # ?rev= to pin commit
+    hyprland.url = "github:hyprwm/Hyprland?rev=8685fd7b0c2afe06c798554dea80c53f98d73894"; # ?rev= to pin commit
     xdg-portal-hyprland = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -87,6 +87,7 @@ let
     tampermonkey # scripts manager
     addons.betterviewer # better image viewer
     adaptive-tab-bar-colour # fancier visuals
+    addons.consumer-rights-wiki
     # Reddit
     addons.load-reddit-images-directly
     addons.reddit-nsfw-unblocker
@@ -147,7 +148,6 @@ in
 
   programs.zen-browser = {
     enable = true;
-    suppressXdgMigrationWarning = true;
     # Prefer .config/zen, https://github.com/zen-browser/desktop/issues/11917
     configPath = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${config.xdg.configHome}/zen";
 

@@ -45,9 +45,9 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "Almamu";
       repo = "linux-wallpaperengine";
-      rev = "cf764a88e2fef84c3cf807551f4602985e393928";
+      rev = "cb0a0f6e1e9a77f93ac702e15a5bd38acf931a88";
       fetchSubmodules = true;
-      hash = "sha256-qguiE20nOV4GHCn3a/dzN3QzqtScsXKhwvuzzlJoj5w=";
+      hash = "sha256-5us4MMpsJrg0iabrOw6fvCfEiUNLo6R8ZPpqEMYGsT0=";
     };
   });
 
@@ -219,6 +219,7 @@ in
     libqalculate # calc for walker
     onlyoffice-desktopeditors # Office tools
     kdePackages.kdeconnect-kde # Communication with phone
+    kdePackages.qttools # For qdbus - used by noctalia shell for kdeconnect support
     bitwarden-desktop
     syncthing
     caffeine-ng # Idle inhibit

@@ -81,7 +81,8 @@
             "forceOpen": false,
             "closeServerFolder": false,
             "sidebarAnim": true,
-            "closeOthers": false
+            "closeOthers": false,
+            "nestedFolders": {}
         },
         "BetterGifAltText": {
             "enabled": false
@@ -286,7 +287,8 @@
             "enabled": false
         },
         "MessageClickActions": {
-            "enabled": false
+            "enabled": false,
+            "addAdditionalReacts": false
         },
         "MessageLatency": {
             "enabled": false
@@ -943,7 +945,7 @@
             "ignoreWebhooks": false,
             "alwaysLogDirectMessages": true,
             "alwaysLogCurrentChannel": true,
-            "blacklistedIds": "685718143116902406",
+            "blacklistedIds": "685718143116902406,927485846628741142",
             "ignoreMutedGuilds": false,
             "ignoreMutedCategories": false,
             "ignoreMutedChannels": false,
@@ -958,7 +960,8 @@
             "hideMessageFromMessageLoggersDeletedMessage": "redacted eh",
             "attachmentSizeLimitInMegabytes": 12,
             "attachmentFileExtensions": "png,jpg,jpeg,gif,webp,mp4,webm,mp3,ogg,wav",
-            "timeBasedCleanupMinutes": 0
+            "timeBasedCleanupMinutes": 0,
+            "permanentlyRemoveLogByDefault": false
         },
         "MessageTranslate": {
             "enabled": false
@@ -1013,7 +1016,8 @@
                 }
             },
             "dontShowForBots": false,
-            "showWebhookTagFully": false
+            "showWebhookTagFully": false,
+            "noAppsAllowed": false
         },
         "Moyai": {
             "enabled": false
@@ -1281,7 +1285,10 @@
             "showYourOwnActivityButtons": false,
             "noDefaultHangStatus": false,
             "forceRoleIcon": false,
-            "accountStandingButton": false
+            "accountStandingButton": false,
+            "restoreFileDownloadButton": false,
+            "noModalAnimation": false,
+            "noBulletPoints": false
         },
         "VCSupport": {
             "enabled": true
@@ -1333,7 +1340,8 @@
             "ignoreBots": true,
             "showDmIcons": true,
             "showIndicator": true,
-            "ignoreGroupDms": false
+            "ignoreGroupDms": false,
+            "maxInactiveTimeMs": 0
         },
         "PetPet": {
             "enabled": false
@@ -1343,9 +1351,6 @@
         },
         "HeaderBarAPI": {
             "enabled": true
-        },
-        "BetterUserArea": {
-            "enabled": false
         },
         "ExitSounds": {
             "enabled": false
@@ -1412,6 +1417,27 @@
         },
         "MiddleClickTweaks": {
             "enabled": false
+        },
+        "HideMessages": {
+            "enabled": false
+        },
+        "NoPushToTalk": {
+            "enabled": false
+        },
+        "TriviaAI": {
+            "enabled": false
+        },
+        "Declutter": {
+            "enabled": false
+        },
+        "ClickableRoles": {
+            "enabled": false
+        },
+        "RichPresence": {
+            "enabled": false
+        },
+        "SongSpotlight": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -1425,7 +1451,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1772468552825
+        "settingsSyncVersion": 1774088444637
     },
     "ignoreResetWarning": false,
     "userCssVars": {},
@@ -1434,5 +1460,6 @@
         "messagePopoverButtons": {}
     },
     "enableOnlineThemes": true,
-    "pinnedThemes": []
+    "pinnedThemes": [],
+    "mainWindowFrameless": false
 }

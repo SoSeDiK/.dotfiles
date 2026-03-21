@@ -13,6 +13,12 @@
 
   programs.steam = {
     enable = true;
+    package = pkgs.steam.override {
+      extraEnv = {
+        MANGOHUD = "1";
+        GAMEMODERUN = "1";
+      };
+    };
     extraCompatPackages = with pkgs; [
       proton-ge-bin
       steamtinkerlaunch

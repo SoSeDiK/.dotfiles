@@ -34,29 +34,27 @@ in
       "nm-bridge"
       "virbr0"
     ];
-    #   qemu = {
+      qemu = {
     #     # While I do not need the full QEMU (only smbd from non-default), it would require compiling it manually # TODO it compiles the whole thing :f
     #     # package = pkgs.qemu_full; # pkgs.qemu.override { smbdSupport = true; };
     #     package = pkgs.qemu.override { smbdSupport = true; };
-    #     ovmf.enable = true;
-    #     ovmf.packages = [
-    #       (pkgs.OVMF.override {
-    #         secureBoot = true;
-    #         tpmSupport = true;
-    #       }).fd
-    #     ];
-    #     swtpm.enable = true;
-    #     verbatimConfig = ''
-    #       security_default_confied = 0
-    #       seccomp_sandbox = 0
-    #       security_driver = "none"
-    #     '';
-    #   };
+        swtpm.enable = true;
+        verbatimConfig = ''
+          security_default_confied = 0
+          seccomp_sandbox = 0
+          security_driver = "none"
+        '';
+      };
     #   # TODO figure out how this works
     #   # hooks.qemu = {
     #   #   hugepages_handler = "${hooksPath}/alloc_hugepages.sh";
     #   # };
   };
+
+  # virtualisation.efi.OVMF = pkgs.OVMF.override {
+    # secureBoot = true;
+    # tpmSupport = true;
+  # };
 
   # Copy patched GPU ROM
   # systemd.services.libvirtd = {

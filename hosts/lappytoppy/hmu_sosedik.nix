@@ -53,7 +53,7 @@ in
     nix-inspect
     rofi # App/things launcher
     (bottles.override { removeWarningPopup = true; }) # WINE helper
-    helvum # Audio
+    crosspipe # Audio
     nurl # fetch sha256 for packages
 
     # Utils
