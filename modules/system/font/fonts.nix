@@ -72,11 +72,11 @@ in
     symbola
   ];
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      noto-fonts-color-emoji = emojiFontPackage;
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     noto-fonts-color-emoji = emojiFontPackage;
+  #   })
+  # ];
 
   # Enable custom fonts dir ($XDG_DATA_HOME/fonts --> ~/.local/share/fonts)
   # Useful for quick manual tests

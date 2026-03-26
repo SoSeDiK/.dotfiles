@@ -374,7 +374,7 @@ in
     };
   };
 
-  programs.openvpn3.enable = true;
+  # programs.openvpn3.enable = true;
   # services.openvpn.servers = {
   #   zaborona = {
   #     config = builtins.readFile (pkgs.fetchurl {

@@ -20,13 +20,19 @@ let
     "gaming"
   ];
 
-  defaultSearchEngine = "ddg"; # DuckDuckGo
+  defaultSearchEngine = "SearX";
   dailyUpdateInterval = 24 * 60 * 60 * 1000;
   searchEngines = {
     "google".metaData.hidden = true; # Using Google with forced English instead
     "bing".metaData.hidden = true;
-    "ddg".metaData.alias = "!d";
+    "ddg".metaData.alias = "!d"; # DuckDuckGo
     "youtube".metaData.alias = "!y";
+    "SearX" = {
+      urls = [ { template = "http://localhost:8888/search?q={searchTerms}"; } ];
+      icon = "http://localhost:8888/favicon.ico";
+      updateInterval = dailyUpdateInterval;
+      definedAliases = [ "!s" ];
+    };
     "Google (English)" = {
       urls = [ { template = "https://www.google.com/search?hl=en&gl=ua&lr=lang_en&q={searchTerms}"; } ];
       icon = "https://www.google.com/favicon.ico";

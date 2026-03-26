@@ -144,6 +144,7 @@ in
 
       # Setup signing commits
       commit.gpgsign = true;
+      signing.format = "openpgp";
       user.signingkey = "A2263A612AD152CB";
     };
   };

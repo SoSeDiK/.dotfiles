@@ -1,10 +1,10 @@
-{ fetchFromGitHub
-, buildLua
-,
+{
+  fetchFromGitHub,
+  buildLua,
 }:
 buildLua {
   pname = "skiptosilence";
-  version = "2022-02-27";
+  version = "27-02-2022";
 
   src = fetchFromGitHub {
     owner = "detuur";

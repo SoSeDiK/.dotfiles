@@ -1,6 +1,6 @@
-{ fetchFromGitHub
-, buildLua
-,
+{
+  fetchFromGitHub,
+  buildLua,
 }:
 buildLua rec {
   pname = "SimpleUndo";
