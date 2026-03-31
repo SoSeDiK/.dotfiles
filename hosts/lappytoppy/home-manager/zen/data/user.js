@@ -8,17 +8,11 @@
  */
 
 /****************************************************************************
- * Betterfox                                                                *
- * "Ad meliora"                                                             *
+ * BetterZen                                                                *
+ * "Ex nihilo nihil fit"                                                    *
  * version: 148                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
 ****************************************************************************/
-
-/****************************************************************************
- * SECTION: FASTFOX                                                         *
-****************************************************************************/
-user_pref("gfx.canvas.accelerated.cache-size", 256); // reset pref
-user_pref("gfx.webrender.layer-compositor", true);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
@@ -150,7 +144,6 @@ user_pref("browser.compactmode.show", true);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 
 /** AI ***/
-user_pref("browser.ai.control.default", "blocked");
 user_pref("browser.ml.enable", false);
 user_pref("browser.ml.chat.enabled", false);
 user_pref("browser.ml.chat.menu", false);
@@ -425,8 +418,6 @@ user_pref("gfx.webrender.all", true);
 
 // BETTERFOX Overrides
 // user_pref("browser.contentblocking.category", "standard");
-// Save downloads to default folder
-user_pref("browser.download.useDownloadDir", true);
 // Restore search engine suggestions
 user_pref("browser.search.suggest.enabled", true);
 // Better touchpad scrolling

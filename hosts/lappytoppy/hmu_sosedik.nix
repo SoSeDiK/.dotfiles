@@ -165,6 +165,7 @@ in
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

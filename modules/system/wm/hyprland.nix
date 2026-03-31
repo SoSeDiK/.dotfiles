@@ -27,6 +27,7 @@ in
   ];
 
   environment.systemPackages = with pkgs; [
+    inputs'.hyprland-preview-share-picker.packages.default
     libnotify
     libsecret
     gvfs

@@ -79,9 +79,9 @@ in
       args
       // {
         withPlugins = true;
-        hyprbars = true;
-        hyprexpo = true;
-        hyprwinwrap = true;
+        hyprbars = false;
+        hyprexpo = false;
+        hyprwinwrap = false;
         hypr-dynamic-cursors = true;
         hyprsplit = false;
         hyprgrass = false;
@@ -277,9 +277,6 @@ in
       };
     });
   };
-
-  # Use lix
-  nix.package = pkgs.lixPackageSets.latest.lix;
 
   programs.direnv.enable = true;
 
