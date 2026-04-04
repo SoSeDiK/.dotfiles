@@ -309,7 +309,8 @@
             "logDeletes": true,
             "showEditDiffs": false,
             "inlineEdits": true,
-            "separatedDiffs": false
+            "separatedDiffs": false,
+            "ignoreSelfEdits": false
         },
         "MutualGroupDMs": {
             "enabled": false
@@ -705,7 +706,8 @@
             "noPomeloNames": false,
             "showStatusIndicators": true,
             "bookmarkNotificationDot": true,
-            "newTabButtonBehavior": true
+            "newTabButtonBehavior": true,
+            "persistUnreadCountFallback": true
         },
         "CharacterCounter": {
             "enabled": false
@@ -1448,6 +1450,14 @@
         },
         "ProfileCollectionsAPI": {
             "enabled": false
+        },
+        "EquibopStreamFixes": {
+            "enabled": true,
+            "unlockQualityOptions": true,
+            "removeResolutionCap": true,
+            "forceEncoderSettings": true,
+            "raiseBitrateCaps": true,
+            "preventFramerateReduction": true
         }
     },
     "notifications": {
@@ -1461,7 +1471,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1774984180341
+        "settingsSyncVersion": 1775301285126
     },
     "ignoreResetWarning": false,
     "userCssVars": {},

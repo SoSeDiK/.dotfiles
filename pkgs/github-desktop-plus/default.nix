@@ -10,7 +10,8 @@
   curlWithGnuTls,
   nss,
   nspr,
-  xorg,
+  libxdamage,
+  libx11,
   libdrm,
   alsa-lib,
   cups,
@@ -26,14 +27,14 @@
 
 let
   pname = "github-desktop-plus";
-  version = "3.5.5.0";
+  version = "3.5.7.2";
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   inherit pname version;
 
   src = fetchurl {
     url = "https://github.com/pol-rivero/github-desktop-plus/releases/download/v${version}/GitHubDesktopPlus-v${version}-linux-x86_64.deb";
-    sha256 = "sha256-klhY2bdlnbS3HMkzpydCbSo5YAlbvFeOpPdVQglkPqQ=";
+    sha256 = "sha256-ewmFLRT87H2bEFLbpwXETPBAHMHhFngCbvkMSWRE85M=";
   };
 
   nativeBuildInputs = [
@@ -45,8 +46,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   buildInputs = [
     gnome-keyring
-    xorg.libXdamage
-    xorg.libX11
+    libxdamage
+    libx11
     libsecret
     gitFull
     curlWithGnuTls

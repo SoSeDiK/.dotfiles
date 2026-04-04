@@ -5,6 +5,9 @@
 - Logins: Steam, Discord, Spotify, Stremio, GitHub Desktop
 - Blush HUD options
 
+# Missing things
+- 
+
 # Tracked issues (- issue \* workaround/note)
 
 - kitty "-e" "handlr" "open" "https://google.com"
@@ -19,9 +22,6 @@
 - https://github.com/virt-manager/virt-manager/issues/156
   # virt-manager does not support easy folder sharing
   - Using samba server that auto starts & closes during VM workflow
-- https://github.com/nix-community/home-manager/issues/2562
-  # zsh auto completions do not work for home-manager apps
-  - Manually importing auto completions path
 
 # Why home-manager?
 - Firefox profiles

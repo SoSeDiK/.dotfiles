@@ -135,6 +135,7 @@ in
     "${self}/modules/system/misc/bluetooth.nix"
     "${self}/modules/system/misc/cloudflare-dns.nix"
     "${self}/modules/system/misc/dbus.nix"
+    "${self}/modules/system/misc/emoji-picker.nix"
     "${self}/modules/system/misc/fastfetch.nix"
     "${self}/modules/system/misc/keyring.nix"
     "${self}/modules/system/misc/lenovo-legion.nix"
@@ -210,14 +211,13 @@ in
     unrar
 
     # Misc
-    smile # emoji picker
     gnome-clocks # Clocks & Alarms
     mission-center # Windows-like process manager
     resources # Process manager
     qdirstat # Space management
     qalculate-qt # Calculator
     libqalculate # calc for walker
-    onlyoffice-desktopeditors # Office tools
+    libreoffice # Office tools
     kdePackages.kdeconnect-kde # Communication with phone
     kdePackages.qttools # For qdbus - used by noctalia shell for kdeconnect support
     bitwarden-desktop
@@ -364,10 +364,16 @@ in
   services.searx = {
     enable = true;
     redisCreateLocally = true;
-    settings.server = {
-      bind_address = "::1";
-      port = 8888;
-      secret_key = config.sops.secrets.searxKey.path;
+    settings = {
+      server = {
+        bind_address = "::1";
+        port = 8888;
+        secret_key = config.sops.secrets.searxKey.path;
+      };
+      search = {
+        autocomplete = "duckduckgo";
+        favicon_resolver = "duckduckgo";
+      };
     };
   };
 

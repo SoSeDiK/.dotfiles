@@ -15,7 +15,8 @@ for bin in "${bins_to_try[@]}"; do
     if [ "$1" != "default" ] && is_profile_running "$bin" "$1"; then
         $bin -P "$1" "$2"
         exit 0
-    elif ! is_profile_running "$bin" "default" && is_profile_running "$bin" "private"; then
+    # elif ! is_profile_running "$bin" "default" && is_profile_running "$bin" "private"; then
+    elif is_profile_running "$bin" "private"; then
         $bin --private-window -P "private" "$2"
         hyprctl dispatch focusworkspaceoncurrentmonitor "special:private"
         exit 0

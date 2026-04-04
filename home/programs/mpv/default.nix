@@ -13,6 +13,7 @@ in
       thumbfast
       autoload
       memo
+      evafast
       (mkMpvScript ./mpvScripts/simple-undo.nix)
       (mkMpvScript ./mpvScripts/skip-to-silence.nix) # F3 to skip to silence
       (mkMpvScript ./mpvScripts/fuzzydir.nix)
