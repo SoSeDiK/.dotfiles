@@ -1471,7 +1471,7 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1775301285126
+        "settingsSyncVersion": 1775506140594
     },
     "ignoreResetWarning": false,
     "userCssVars": {},
@@ -1481,5 +1481,6 @@
     },
     "enableOnlineThemes": true,
     "pinnedThemes": [],
-    "mainWindowFrameless": false
+    "mainWindowFrameless": false,
+    "themeActivationModes": {}
 }

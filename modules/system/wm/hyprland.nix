@@ -13,7 +13,7 @@
   hypr-dynamic-cursors,
   hyprsplit,
   hyprgrass,
-  hyprscrolling,
+  hyprdarkwindow,
   ...
 }:
 
@@ -96,8 +96,8 @@ in
         ""
     )
     + (
-      if withPlugins && hyprscrolling then
-        "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprscrolling.conf"
+      if withPlugins && hyprdarkwindow then
+        "\nsource = ${flakeDir}/hosts/${hostName}/assets/hypr/plugins/hyprdarkwindow.conf"
       else
         ""
     );
@@ -123,7 +123,7 @@ in
           [ ]
       )
       ++ (
-        if withPlugins && hyprscrolling then [ inputs'.hyprland-plugins.packages.hyprscrolling ] else [ ]
+        if withPlugins && hyprdarkwindow then [ inputs'.hypr-darkwindow.packages.Hypr-DarkWindow ] else [ ]
       );
   };
 

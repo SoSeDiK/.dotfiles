@@ -10,7 +10,9 @@
 
 # Tracked issues (- issue \* workaround/note)
 
-- kitty "-e" "handlr" "open" "https://google.com"
+- handlr terminal emulator support does not work
+  - kitty "-e" "handlr" "open" "https://google.com"
+  - Context: https://github.com/Anomalocaridid/handlr-regex?tab=readme-ov-file#terminal-emulator-compatibility
 
 - https://github.com/Alexays/Waybar/issues/1127
   # Wine system tray integration
@@ -22,6 +24,8 @@
 - https://github.com/virt-manager/virt-manager/issues/156
   # virt-manager does not support easy folder sharing
   - Using samba server that auto starts & closes during VM workflow
+- zsh does not like combining emoji
+  - https://github.com/zsh-users/zsh-autosuggestions/issues/570
 
 # Why home-manager?
 - Firefox profiles

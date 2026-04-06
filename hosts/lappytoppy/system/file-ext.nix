@@ -49,7 +49,6 @@ in
       ".config/handlr/handlr.toml".source = (pkgs.formats.toml { }).generate "handlr-config" {
         enable_selector = false;
         selector = "rofi -dmenu -i -p 'Open With: '";
-        term_exec_args = "";
         handlers = [
           # GW 2 thingies
           {
