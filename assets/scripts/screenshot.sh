@@ -30,7 +30,7 @@ capture_common() {
     (
         local action
         action=$(notify-send "Screenshot saved to clipboard and file" \
-            "Edit with Super + Alt + , (or click this)" \
+            "Edit with Super + Alt + , — or middle-click this notification." \
             -t 10000 -i "$filepath" -A "default=edit" 2>/dev/null || true)
         if [[ "$action" == "default" ]]; then
             open_editor "$filepath"
@@ -64,12 +64,12 @@ capture_window() {
     fi
 
     local addr
-    addr=$(hyprctl activewindow -j 2>/dev/null | jq -r '.address')
+    addr=$(hyprctl -j activewindow 2>/dev/null | jq -r '.stableId')
     if [[ -z "$addr" || "$addr" == "null" ]]; then
         echo "No active window found" >&2
         return 1
     fi
-    capture_common -w "$addr"
+    capture_common -T "$addr"
 }
 
 # ------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ capture_monitor() {
     fi
 
     local monitor
-    monitor=$(hyprctl monitors -j 2>/dev/null | jq -r '.[] | select(.focused) | .name')
+    monitor=$(hyprctl -j monitors 2>/dev/null | jq -r '.[] | select(.focused) | .name')
     if [[ -z "$monitor" || "$monitor" == "null" ]]; then
         echo "No focused monitor found" >&2
         return 1

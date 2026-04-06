@@ -1,4 +1,4 @@
-{ inputs, inputs', pkgs, ... }:
+{ inputs', pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -10,9 +10,5 @@
     inputs'.shadower.packages.shadower          # Adding nice shadow to images
     satty                                       # Simple editor
     tesseract                                   # OCR
-  ];
-
-  nixpkgs.overlays = [
-    inputs.grim-hyprland.overlays.default
   ];
 }

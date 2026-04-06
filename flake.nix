@@ -141,8 +141,6 @@
 
     shadower.url = "github:n3oney/shadower";
 
-    grim-hyprland.url = "github:eriedaberrie/grim-hyprland";
-
     # UI shell
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
