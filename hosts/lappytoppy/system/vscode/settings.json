@@ -38,5 +38,11 @@
   "claudeCode.preferredLocation": "panel",
   "http.systemCertificatesNode": true,
   "cSpell.blockCheckingWhenTextChunkSizeGreaterThan": 10000,
-  "cSpell.blockCheckingWhenLineLengthGreaterThan": 2000000
+  "cSpell.blockCheckingWhenLineLengthGreaterThan": 2000000,
+  "workbench.editorAssociations": {
+    "{hexdiff}:/**/*.*": "hexEditor.hexedit",
+    "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc": "default",
+    "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.ui": "default",
+    "*.qrc": "qt-core.qrcEditor"
+  }
 }

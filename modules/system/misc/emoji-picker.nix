@@ -32,7 +32,7 @@ let
         ${lib.getExe' pkgs.wl-clipboard "wl-paste"} | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} --primary -n
 
         # Paste (Shift + Insert)
-        ${lib.getExe' pkgs.ydotool "ydotool"} key 42:1 110:1 110:0 42:0
+        ${lib.getExe pkgs.ydotool} key 42:1 110:1 110:0 42:0
       done
   '';
 in
