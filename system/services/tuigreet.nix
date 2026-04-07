@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  inputs',
+  ...
+}:
 
 let
-  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
+  tuigreet = inputs'.tuigreet.packages.tuigreet;
 in
 {
   services.xserver = {
@@ -15,15 +20,22 @@ in
   services.greetd = {
     enable = true;
     settings = {
-      default_session = {
-        command = ''
-          ${tuigreet} \
-          --time \
-          --remember \
-          --remember-user-session \
-          --greeting "Access restricted. High-profile personnel only. Authorization required."
-        '';
-      };
+      default_session =
+        let
+          baseSessionsDir = "${config.services.displayManager.sessionData.desktops}";
+          xSessions = "${baseSessionsDir}/share/xsessions";
+          waylandSessions = "${baseSessionsDir}/share/wayland-sessions";
+          tuigreetOptions = [
+            "--sessions ${waylandSessions}:${xSessions}"
+            "--time"
+            "--remember"
+            "--remember-session"
+            "--greeting 'Access restricted. High-profile personnel only. Authorization required.'"
+          ];
+        in
+        {
+          command = "${lib.getExe tuigreet} ${lib.concatStringsSep " " tuigreetOptions}";
+        };
     };
   };
 

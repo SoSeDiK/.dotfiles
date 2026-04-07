@@ -151,6 +151,11 @@
     walker.url = "github:abenz1267/walker";
     hexecute.url = "github:ThatOtherAndrew/Hexecute";
 
+    tuigreet = {
+      url = "github:NotAShelf/tuigreet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Deduplicators (other inputs use these)
     flake-utils.url = "github:numtide/flake-utils";
   };
