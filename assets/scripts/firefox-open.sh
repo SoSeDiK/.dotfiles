@@ -4,9 +4,6 @@
 # *Special case: if not running default profile, but private profile exists, open in private
 # (!) Depends on Hyprland to show special private workspace
 
-echo "t" > /home/sosedik/.cache/handlr/test.txt
-notify-send "yppp"
-
 bins_to_try=("firefox" "firefox-nightly" "zen" "zen-twilight")
 default_bin=${FIREFOX_BIN:-zen-twilight}
 
