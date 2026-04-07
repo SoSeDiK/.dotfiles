@@ -21,6 +21,8 @@
       "/var/lib/sbctl"
       # Bluetooth data
       "/var/lib/bluetooth"
+      # RF Kill switch states
+      "/var/lib/systemd/rfkill"
       # Important NixOS thingies
       "/var/lib/nixos"
       # Core dumbs, in case of crashes
